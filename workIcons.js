@@ -6,7 +6,7 @@ function createShape(shapeType, fill, isDashed, skewed) {
     const Point = paper.Point;
     
     // 根据页面设置不同的尺寸
-    const isMapPage = window.location.pathname.includes('map.html');
+    const isMapPage = window.location.pathname.includes('index.html');
     const size = isMapPage ? 32 : 18;
     const starSize = size * 1.4;
     const roundedStarSize = size * 1.18;
