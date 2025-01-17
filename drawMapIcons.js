@@ -96,8 +96,8 @@ function createIconElement(work) {
 
     // 创建canvas元素并设置样式
     const canvas = document.createElement('canvas');
-    canvas.width = 200;
-    canvas.height = 200;
+    canvas.width = 48;
+    canvas.height = 48;
 
     wrapperElement.appendChild(canvas);
     

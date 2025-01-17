@@ -54,7 +54,7 @@
 .icon-wrapper {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 64px;
+    width: 48px;
     aspect-ratio: 1;
 
     display: flex;
@@ -87,7 +87,6 @@
 .work-text {
     position: absolute;
     text-align: center;
-    font-size: 12px;
     pointer-events: none;
     z-index: 2;
 
