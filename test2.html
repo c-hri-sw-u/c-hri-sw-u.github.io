@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.17/paper-full.min.js"></script>
+</head>
+<body>
+    <canvas id="myCanvas" resize></canvas>
+    <script type="text/paperscript" canvas="myCanvas">
+        var path = new Path.RegularPolygon({
+            center: view.center,
+            sides: 6,
+            radius: 50,
+            strokeColor: 'black',
+            dashArray: [4, 4],
+            fillColor: null
+        });
+
+        path.shear(Math.PI/18, 0, path.position);
+        
+
+    </script>
+</body>
+</html>

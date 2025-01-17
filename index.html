@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" background-color: #f4f3f0>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Map</title>
+
+    <link rel="stylesheet" href="./navigater.css">
+    <link rel="stylesheet" href="./map.css">
+    <link rel="stylesheet" href="../MapStyle/crossline.css">
+    <link rel="stylesheet" href="../MapStyle/compass.css">
+    <link rel="stylesheet" href="../MapStyle/scale.css">
+    <link rel="stylesheet" href="../MapStyle/workIcon.css">
+    <link rel="stylesheet" href="../MapStyle/decorations.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Shrikhand&display=swap" rel="stylesheet">
+
+
+    <!-- 在head标签中添加 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.17/paper-full.min.js"></script>
+    <script type="text/javascript">
+        // 全局安装Paper.js
+        paper.install(window);
+        // 页面加载完成后初始化
+        window.onload = function() {
+            // 现在可以安全地使用Paper.js了
+            generateIcons();
+        }
+    </script>
+
+
+    <style>
+        .hover-description {
+            position: fixed;
+            right: 32px;
+            /* transform: translate(-50%, -50%); */
+            width: 240px;
+            max-height: 320px;
+            background-color: white;
+            border: 1px solid black;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            padding: 15px;
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+        }
+
+        .hover-description p:first-child {
+            font-weight: 600;
+        }
+
+        .hover-description p:last-child {
+            font-weight: 400;
+        }
+
+        .hover-description p {
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 14; /* 根据行高调整，确保不超过max-height */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.2;
+        }
+
+        .hover-content {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            z-index: 9999; /* 设置更高的z-index */
+            margin-bottom: 0px;
+            pointer-events: none; /* 防止hover内容影响鼠标事件 */
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        .hover-content img {
+            height: auto;
+            object-fit: cover;
+        }
+
+        .hover-content iframe {
+            border: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <section id="navigater">
+        <div class="map-container">
+            <div class="navigater-title left" id="fullmap">
+                <a class="eng">FullMap</a>
+            </div>
+            <div class="navigater-title middle" id="filter">
+                <a class="eng">Filter</a>
+            </div>
+            <div class="navigater-title right" id="contact">
+                <a class="eng">Contact</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="header">
+        
+    </section>
+
+    
+
+    <section id="map">
+        
+
+        <div id="map-background">
+            <!-- background pattern -->
+            <canvas id="myCanvas"></canvas>
+
+            <!-- cross line -->
+            <div id="cross-line">
+                <div id="row-line">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="col-line">
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <div id="crossline-text">
+                    <div id="row-text">
+                        <p><&nbsp;&nbsp;Real</p>
+                        <p>Virtual&nbsp;&nbsp;></p>
+                    </div>
+
+                    <div id="col-text">
+                        <div>
+                            <p style="transform: rotate(90deg);"><</p>
+                            <p>Digital</p>
+                        </div>
+                        <div>
+                            <p>Physical</p>
+                            <p style="transform: rotate(-90deg);"><</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- compass -->
+            <div class="compass">
+                <div class="base"></div>
+                <div class="needle">
+                    <div id="ne"></div>
+                    <div id="north"> <p>N</p> </div>
+                </div>
+            </div>
+
+            <!-- scale -->
+            <div id="scale">
+                <div id="scale-line">
+                    <div></div>
+                    <div></div>
+                    
+                </div>
+                <div id="scale-text">
+                    <p>1</p>
+                    <p>10</p>
+                </div>
+            </div>
+
+            <div class="copyright" 
+            style="margin-bottom: 0px; 
+            font-family: 'Quicksand';
+            font-size: 15px;
+            font-weight: 600;
+            position: fixed;
+            bottom: 68px;
+            right: 32px;">
+                <a class="eng">© 2025 <NAME>Chris W.</NAME></a>
+            </div>
+        </div>
+
+        <div id="map-content">
+            <div id="interaction-container">
+                <!-- kiwi -->
+                <div id="kiwi-container" 
+                style="position: absolute; top: 16%; left: 10%;
+                background: #881d9b00; transform: translate(-50%, 0%);
+                display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                    <div id="kiwi">
+                        <img id="kiwi-stand" class="icon" src="./icon/kiwi-bird-svgrepo-com.svg">
+                        <img id="kiwi-body" class="icon" src="./icon/Kiwi.svg">
+                        <img id="kiwi-legs1" class="icon" src="./icon/Kiwi Bird (1).svg">
+                        <img id="kiwi-legs2" class="icon" src="./icon/Kiwi-Bird (2).svg">
+                    </div>
+
+                    <div class="dialogue-container" style="position: relative; top: 10px; left: 10px;">
+                        <div class="dialogue" id="dialogue4" style="width: 100px;">
+                            <p>I'm a kiwi bird,<br>Ask me anything.</p>
+                        </div>
+                        <div class="dialogue" id="dialogue5" style="width: 165px;">
+                            <p>Well... Actually, you can't ask,<br>unless...</p>
+                        </div>
+                        <div class="dialogue" id="dialogue6" style="width: 125px;">
+                            <p>You seem like a noob.<br>Try the <span style="font-weight: 500;">About +</span> on the top right corner.</p>
+                        </div>
+                        <div class="dialogue" id="dialogue1" style="width: 180px;">
+                            <p>This is a personal website - as a puzzle game.<br></p>
+                        </div>
+                        <div class="dialogue" id="dialogue2" style="width: 190px;">
+                            <p>Just click on whatever attracts you to explore. <br> You can also use the filter to find specific projects.<br></p>
+                        </div>
+                        <div class="dialogue" id="dialogue3" style="width: 190px;">
+                            <p>Cause I'm super bored, and I'm born to be alternative.<br></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ufo -->
+                <img  class="icon" src="./icon/UFO Flying.svg" id="ufo">
+                <div id="ufo-shadow"></div>
+
+            </div>
+
+            <!-- work icon -->
+            <div id="icon-container">
+            </div>
+
+            <!-- decorations -->
+            <div id="decoration-container">
+                <!-- parthenon -->
+                <div style="width: calc(3vw + 30px); aspect-ratio: 0.54; 
+                position: absolute; 
+                top: 88%; left: 18%; 
+                transform: translate(-50%, -50%) rotate(-26deg);
+                transform-origin: center;
+                overflow: hidden;
+                ">
+                    <img style="width: 100%; 
+                    left: 50%; top: 45%; position: absolute; 
+                    transform: translate(-50%, -50%);" 
+                    src="./icon/Parthenon Top View.svg" alt="">
+                </div>
+
+                <!-- trees -->
+                <div class="tree-container" id="tree1">
+                </div>
+                <div class="tree-container" id="tree2">
+                </div>
+                <div class="tree-container" id="tree3">
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-page" style="display: block;">
+        <iframe id="contact-iframe" src="" frameborder="0"
+        style="width: 0; height: 0; 
+        position: absolute; 
+        display: none;
+        z-index: 6668;
+        top: 50%; left: 50%; 
+        transform: translate(-50%, -50%);"></iframe>
+    </section>
+
+
+    <div id="opacity-area"></div>
+
+    <section id="overlay" style="display: block;">
+        <iframe id="overlay-iframe" src="" frameborder="0"></iframe>
+    </section>
+
+    <!-- script -->
+    <script src="./mapBackground.js"></script>
+    <script src="./compass.js"></script>
+
+    <script src="./works.js"></script>
+    <script src="./workIcons.js"></script>
+    <script src="./drawMapIcons.js"></script>
+
+    <script src="./kiwi.js"></script>
+    <script src="./tree-flip.js"></script>
+    <script src="./ufo-and-footer.js"></script>
+    <script src="./overlay.js"></script>
+    
+</body>

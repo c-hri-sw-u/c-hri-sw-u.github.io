@@ -1,0 +1,80 @@
+/* navigater */
+#navigater {
+    /* background-color: #F2F76D; */
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 40px;
+
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+#navigater > .container {
+    background: rgb(185, 185, 185);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navigater > .map-container {
+    background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navigater * {
+    text-decoration: none;
+    color: black;
+}
+
+#navigater .navigater-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+
+#navigater .left:hover {
+    background: rgba(217, 217, 217);
+    cursor: default;
+}
+#navigater .middle:hover {
+    background: rgba(255, 255, 255);
+    backdrop-filter: blur(1px);
+    cursor: default;
+}
+#navigater .right:hover {
+    background: rgba(255, 255, 255);
+    cursor: default;
+}
+
+
+
+#navigater > .map-container .left:hover {
+    background: rgba(217, 217, 217);
+    backdrop-filter: blur(1px);
+    cursor: default;
+}
+
+#navigater > .map-container .middle:hover {
+    background: rgb(185, 185, 185);
+    cursor: default;
+}
+#navigater > .map-container .right:hover {
+    background: #F2F76D;
+    cursor: default;
+}
+
+@media (max-width: 600px) {
+    #navigater {
+        padding: 16px 20px 16px 20px;
+    }
+}

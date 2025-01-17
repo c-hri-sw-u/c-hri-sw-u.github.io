@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#map {
+    /* background-color: rgb(177, 30, 30); */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#map-content {
+    box-sizing: border-box;
+    position: relative;
+
+    /* background-color: aqua; */
+    opacity: 1;
+    height: calc(100% - 72px - 72px);
+    width: calc(100% - 32px - 32px);
+    left: 32px;
+    top: 72px;
+    
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+#map-background {
+    box-sizing: border-box;
+    /* background-color: aqua; */
+    position: absolute;
+    
+    height: calc(100% - 36px);
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
+
+#myCanvas {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    z-index: -1;
+}
+
