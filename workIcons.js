@@ -7,7 +7,8 @@ function createShape(shapeType, fill, isDashed, skewed) {
     
     // 根据页面设置不同的尺寸
     const isMapPage = window.location.pathname.includes('index.html');
-    const size = 32;
+    const size = isMapPage ? 32 : 18; 
+    //  32: 首页， 18: 其他页面 ？？？？？？
     const starSize = size * 1.4;
     const roundedStarSize = size * 1.18;
     
