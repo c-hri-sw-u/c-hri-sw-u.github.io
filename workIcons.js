@@ -7,7 +7,9 @@ function createShape(shapeType, fill, isDashed, skewed) {
     
     // 根据页面设置不同的尺寸
     const pageTypeMeta = document.querySelector('meta[name="page-type"]');
-    const isMapPage = pageTypeMeta && pageTypeMeta.content === 'map';
+    const isMapPage = (pageTypeMeta 
+                        && pageTypeMeta.content === 'map')
+                        || window.location.pathname.includes('index.html');
     
     const size = isMapPage ? 32 : 18; 
     //  32: 首页， 18: 其他页面 ？？？？？？
