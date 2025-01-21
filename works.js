@@ -909,7 +909,7 @@ const worksData = {
                     Recovery can be lengthy due to inadequate motivation, feedback, and personalization. Our product addresses these challenges by leveraging advanced Electromyography (EMG) technology and AI. It analyzes muscle activity, offers real-time feedback, and customizes the recovery trajectory through our personalized recovery curve.
                     `,  // 保持空的description
                     content: `
-                        <div class="full-image" style="border-radius: 10px;">
+                        <div class="full-image" style="border: 1px solid #ccc;">
                             <iframe style="width: 100%; aspect-ratio: 16/9;" 
                             src="https://www.youtube.com/embed/1gdsnocX3C0?si=ZYrNoK85hbgnklt5" 
                             // title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
