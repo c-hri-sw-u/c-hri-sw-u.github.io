@@ -904,14 +904,16 @@ const worksData = {
                         Instructor: <span class='hyperlink' onclick='window.open("https://caup.tongji.edu.cn/caupen/e6/9e/c33466a321182/page.htm")'>Zheng chen</span>
                         <br>
                         Team Members: Yike Wang, Yixi Wu, Tommy Bao-Nghi Nguyen, Tianyu Li, Xiyu Zhang
-                        <br>
-                        Role: Design Intern`,
+                        `,
                     description: `
                     Recovery can be lengthy due to inadequate motivation, feedback, and personalization. Our product addresses these challenges by leveraging advanced Electromyography (EMG) technology and AI. It analyzes muscle activity, offers real-time feedback, and customizes the recovery trajectory through our personalized recovery curve.
                     `,  // 保持空的description
                     content: `
                         <div class="full-image" style="border-radius: 10px;">
-                            <img src="../../Assets/Works/ReCurv/1-0.webp" alt="">
+                            <iframe style="width: 100%; aspect-ratio: 16/9;" 
+                            src="https://www.youtube.com/embed/1gdsnocX3C0?si=ZYrNoK85hbgnklt5" 
+                            // title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+                            // allowfullscreen></iframe>
                         </div>
                         <div class="full-image">
                             <img src="../../Assets/Works/ReCurv/1-3.webp" alt="">
