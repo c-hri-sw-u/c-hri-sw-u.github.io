@@ -906,7 +906,9 @@ const worksData = {
                         Team Members: Yike Wang, Yixi Wu, Tommy Bao-Nghi Nguyen, Tianyu Li, Xiyu Zhang
                         `,
                     description: `
-                    Recovery can be lengthy due to inadequate motivation, feedback, and personalization. Our product addresses these challenges by leveraging advanced Electromyography (EMG) technology and AI. It analyzes muscle activity, offers real-time feedback, and customizes the recovery trajectory through our personalized recovery curve.
+                        Recovery can be lengthy due to inadequate motivation, feedback, and personalization. Our product addresses these challenges by leveraging advanced Electromyography (EMG) technology and AI. It analyzes muscle activity, offers real-time feedback, and customizes the recovery trajectory through our personalized recovery curve.
+                        <br><br>
+                        
                     `,  // 保持空的description
                     content: `
                         <div class="full-image" style="border: 1px solid #ccc;">
