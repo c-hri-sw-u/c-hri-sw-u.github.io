@@ -6,6 +6,58 @@ const worksData = {
             id: 'C',
             name: 'Graduate Studies',
             works: [
+                // Boba Bubble Trouble
+                {
+                    id: 'boba-bubble-trouble',
+                    icon: {
+                        shape: 'star4rotatedRounded',
+                        fill: 'black',
+                        dashed: false,
+                        skewed: false,
+                        position: [86, 6],
+                    },
+                    hover: `<img src="../../Assets/Works/Story Machine/2.webp" alt="">`,
+                    title: `
+                    2025 GLOGAL GAME JAM
+                    Boba Bubble Trouble
+                    `,
+                    listTitle: 'Boba Bubble Trouble',
+                    subtitle: ``,
+                    type: 'Game Development + Game Design',
+                    date: '2025 Spring',
+                    purpose: `Hackathon <span class="hyperlink">2025 GGJ</span> (Global Game Jam)
+                        <br>
+                        Project Type: Game Making
+                        <br>
+                        Team Members: Flanklin Xu, Yixi(Chris) Wu, Nik Kim, Regina Xia, Yiran Zhang
+                        `,
+                    description: `
+                        Boba Bubble Trouble is a 3D game where players (boba bubbles) compete to escape the bubble tea cup, 
+                        embarking on adventures in delicious milk tea ingredients.
+                        <br><br>
+                        This game was developed in 48 hours during the 2025 Global Game Jam, using Unity as the game engine.
+                        <br><br>
+                        Contributions: Game Concept, Level Design, 3D Modeling, Game Testing, Sound Design, Game development
+                    `,  // 保持空的description
+                    content: `
+                        <div class="full-image">
+                            <div style='position:relative; overflow:hidden; aspect-ratio:1; background: white;'>
+                                <img style='z-index: 2; position:relative'
+                                src="../../Assets/Works/Story Machine/2.png" alt="">
+                                <img 
+                                style='
+                                    border-radius: 1%; border: 0.5px solid white; opacity: 0.9; 
+                                    z-index: 1; position:relative; 
+                                    top: 50%; left: 50%; transform: translate(-51%, -307%);
+                                    width: 68.2%; height: auto;
+                                '
+                                src="../../Assets/Works/Story Machine/1.gif" alt="">
+                            </div>
+                        
+                        </div>
+                    `  // 保持空的content
+                },
+
                 // breadReader
                 {
                     id: 'bread-reader',
@@ -39,6 +91,15 @@ const worksData = {
                         woven into our daily consumption.
                     `,  // 保持空的description
                     content: `
+                        <div class="full-image">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <iframe style="width: 100%; aspect-ratio: 16/9;"
+                                src="https://www.youtube.com/embed/qmIV9mdoruA?si=Fq4CUbBAGrU7sfED" 
+                                // title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                                // gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        
                         <div class="half-image">
                             <img style="aspect-ratio: 9/12;"
                                 src="../../Assets/Works/breadReader/1.webp" alt="">
@@ -903,7 +964,7 @@ const worksData = {
                         <br>
                         Instructor: <span class='hyperlink' onclick='window.open("https://caup.tongji.edu.cn/caupen/e6/9e/c33466a321182/page.htm")'>Zheng chen</span>
                         <br>
-                        Team Members: Yike Wang, Yixi Wu, Tommy Bao-Nghi Nguyen, Tianyu Li, Xiyu Zhang
+                        Team Members: Yike Wang, Yixi(Chris) Wu, Tommy Bao-Nghi Nguyen, Tianyu Li, Xiyu Zhang
                         `,
                     description: `
                         Recovery can be lengthy due to inadequate motivation, feedback, and personalization. Our product addresses these challenges by leveraging advanced Electromyography (EMG) technology and AI. It analyzes muscle activity, offers real-time feedback, and customizes the recovery trajectory through our personalized recovery curve.
