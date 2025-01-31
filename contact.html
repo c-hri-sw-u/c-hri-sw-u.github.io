@@ -92,6 +92,33 @@
             font-family: "Quicksand", Arial, Helvetica, sans-serif;
         }
 
+        #header {
+            position: fixed;
+            top: 16px;
+            right: 32px;
+            z-index: 1000;
+            font-family: 'Quicksand', sans-serif;
+            color: #fff;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hyperlink {
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-thickness: 1.6px;
+            text-underline-offset: 1px;
+
+            cursor: pointer;
+            user-select: none;
+        }
+
 
         @media screen and (max-width: 600px) {
             .contact-info {
@@ -110,6 +137,13 @@
 </head>
 
 <body>
+    <section id="header">
+        <div class="header-container">
+            <span class="hyperlink" id="email">EMAIL</span>
+            <span class='hyperlink' onclick="window.open('./Assets/cv.pdf')">CV</span>
+            <span class='hyperlink' onclick="window.open('https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/')">LinkedIn</span>
+        </div>
+    </section>
 
     <div id="wrapper">
         <section id="animation">
@@ -126,7 +160,7 @@
                 <div class="work-title" style="margin-bottom: 64px;">
                     <p id="main-title" style="font-size: 48px;">&nbsp;&nbsp;&nbsp;&nbsp;↓↓↓</p>
                     <p id="main-title">Hi, I'm <span class="hyperlink" style="text-decoration-thickness: 3.2px;
-                    text-underline-offset: 4px;">Chris W.</span></p>
+                    text-underline-offset: 4px; font-size: 30px;" onclick="window.open('https://www.instagram.com/sexy.robot/')">Chris W.</span></p>
                     <p class="subtitle" id="sub-title"></p>
                 </div>
 
@@ -210,7 +244,7 @@
                         </p>
                         <p>LinkedIn
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span class="hyperlink" id="x">@Yixi(Chris) Wu</span>
+                            <span class="hyperlink" id="linkedin">@Yixi(Chris) Wu</span>
                         </p>
                         <p>Rednote
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
