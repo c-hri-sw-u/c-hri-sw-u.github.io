@@ -3,6 +3,7 @@ const hyperlinkX = document.getElementById("x");
 const hyperlinkLinkedin = document.getElementById("linkedin");
 const hyperlinkRed = document.getElementById("red");
 const hyperlinkEmail = document.getElementById("email");
+const hyperlinkEmail2 = document.getElementById("email2");
 
 hyperlinkInstagram.addEventListener("click", function() {
     window.open("https://www.instagram.com/sexy.robot/", "_blank");
@@ -50,7 +51,6 @@ hyperlinkEmail.addEventListener("click", function() {
     }, 1000);
 });
 
-const hyperlinkEmail2 = document.getElementById("email2");
 hyperlinkEmail2.addEventListener("click", function() {
     // 复制邮箱到剪贴板
     navigator.clipboard.writeText("cwu14932@gmail.com");
