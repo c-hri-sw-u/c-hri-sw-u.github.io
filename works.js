@@ -14,47 +14,60 @@ const worksData = {
                         fill: 'black',
                         dashed: false,
                         skewed: false,
-                        position: [86, 6],
+                        position: [85, 6],
                     },
-                    hover: `<img src="../../Assets/Works/Story Machine/2.webp" alt="">`,
+                    hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Boba Bubble Trouble/7.webp" alt="">`,
                     title: `
                     2025 GLOGAL GAME JAM
+                    <br>
                     Boba Bubble Trouble
                     `,
                     listTitle: 'Boba Bubble Trouble',
                     subtitle: ``,
                     type: 'Game Development + Game Design',
                     date: '2025 Spring',
-                    purpose: `Hackathon <span class="hyperlink">2025 GGJ</span> (Global Game Jam)
+                    purpose: `Hackathon <span class="hyperlink" onclick="window.open('https://globalgamejam.org/games/2025/boba-bubble-trouble-2#jam-menu-games')">2025 Global Game Jam</span> (GGJ)
                         <br>
                         Project Type: Game Making
                         <br>
                         Team Members: Flanklin Xu, Yixi(Chris) Wu, Nik Kim, Regina Xia, Yiran Zhang
                         `,
                     description: `
+
                         Boba Bubble Trouble is a 3D game where players (boba bubbles) compete to escape the bubble tea cup, 
                         embarking on adventures in delicious milk tea ingredients.
                         <br><br>
                         This game was developed in 48 hours during the 2025 Global Game Jam, using Unity as the game engine.
                         <br><br>
-                        Contributions: Game Concept, Level Design, 3D Modeling, Game Testing, Sound Design, Game development
+                        Contributions: Game Concept, 3D Modeling, Level Design, Game Testing, Sound Design, Game development
                     `,  // 保持空的description
                     content: `
+
                         <div class="full-image">
-                            <div style='position:relative; overflow:hidden; aspect-ratio:1; background: white;'>
-                                <img style='z-index: 2; position:relative'
-                                src="../../Assets/Works/Story Machine/2.png" alt="">
-                                <img 
-                                style='
-                                    border-radius: 1%; border: 0.5px solid white; opacity: 0.9; 
-                                    z-index: 1; position:relative; 
-                                    top: 50%; left: 50%; transform: translate(-51%, -307%);
-                                    width: 68.2%; height: auto;
-                                '
-                                src="../../Assets/Works/Story Machine/1.gif" alt="">
-                            </div>
-                        
+                            <img src="../../Assets/Works/Boba Bubble Trouble/7.webp" alt="">
                         </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Boba Bubble Trouble/6.webp" alt="">
+                        </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Boba Bubble Trouble/3.webp" alt="">
+                        </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Boba Bubble Trouble/2.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            Bobas try to escape from human's cruel chewing. Enjoy unique squishy, jelly-like controls, and the fantastic bobascape!
+                            <br><br>
+                            <span class="hyperlink" onclick="window.open('https://globalgamejam.org/games/2025/boba-bubble-trouble-2#jam-menu-games')">
+                                Click here to visit the game page
+                            </span>
+                        </p>
+                        
+                        
                     `  // 保持空的content
                 },
 
@@ -65,7 +78,7 @@ const worksData = {
                         shape: 'star8rounded',
                         fill: 'black',
                         dashed: false,
-                        position: [34, 43],
+                        position: [74, 44],
                         skewed: true,
                     },
                     hover: `<img style="aspect-ratio: 9/14;" src="../../Assets/Works/breadReader/1.webp" alt="">`,
@@ -571,7 +584,7 @@ const worksData = {
                         shape: 'star6rounded',
                         fill: 'white',
                         dashed: false,
-                        position: [56, 23],
+                        position: [44, 32],
                     },
                     hover: `<img style="aspect-ratio: 9/9;"
                                 src="../../Assets/Works/MOREDANCE/1.webp" alt="">`,
@@ -627,7 +640,8 @@ const worksData = {
                         skewed: false,
                         position: [46, 18],
                     },
-                    hover: ``,
+                    hover: `<img style="aspect-ratio: 14/9;"
+                                src="../../Assets/Works/Lino/10.webp" alt="">`,
                     title: `
                     [PROTOTYPE SPRINT]
                     <br>
