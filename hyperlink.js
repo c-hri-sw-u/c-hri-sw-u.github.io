@@ -1,5 +1,6 @@
 const hyperlinkInstagram = document.getElementById("instagram");
 const hyperlinkX = document.getElementById("x");
+const hyperlinkLinkedin = document.getElementById("linkedin");
 const hyperlinkRed = document.getElementById("red");
 const hyperlinkEmail = document.getElementById("email");
 
@@ -9,6 +10,10 @@ hyperlinkInstagram.addEventListener("click", function() {
 
 hyperlinkX.addEventListener("click", function() {
     window.open("https://x.com/Chris461597", "_blank");
+});
+
+hyperlinkLinkedin.addEventListener("click", function() {
+    window.open("https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/", "_blank");
 });
 
 hyperlinkRed.addEventListener("click", function() {

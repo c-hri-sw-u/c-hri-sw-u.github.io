@@ -90,6 +90,32 @@
             border: none;
         }
 
+        #header {
+            position: fixed;
+            top: 10px;
+            right: 32px;
+            z-index: 1000;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hyperlink {
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-thickness: 1.6px;
+            text-underline-offset: 1px;
+
+            cursor: pointer;
+            user-select: none;
+        }
+
     </style>
 
 </head>
@@ -110,7 +136,11 @@
     </section>
 
     <section id="header">
-        
+        <div class="header-container">
+            <span class="hyperlink" id="email">EMAIL</span>
+            <span class='hyperlink' onclick="window.open('./Assets/cv.pdf')">CV</span>
+            <span class='hyperlink' onclick="window.open('https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/')">LinkedIn</span>
+        </div>
     </section>
 
     
@@ -290,4 +320,36 @@
     <script src="./ufo-and-footer.js"></script>
     <script src="./overlay.js"></script>
     
+    <script>
+        const hyperlinkEmail = document.getElementById("email");
+        hyperlinkEmail.addEventListener("click", function() {
+            // 复制邮箱到剪贴板
+            navigator.clipboard.writeText("cwu14932@gmail.com");
+            
+            // 创建并显示提示元素
+            const toast = document.createElement("div");
+            toast.textContent = "Copied";
+            toast.style.cssText = `
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 0px;
+                font-size: 14px;
+                z-index: 1000;
+                pointer-events: none;
+                font-family: "Quicksand", sans-serif;
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // 1秒后移除提示
+            setTimeout(() => {
+                toast.remove();
+            }, 1000);
+        });
+    </script>
 </body>
