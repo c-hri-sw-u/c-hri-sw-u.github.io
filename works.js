@@ -459,7 +459,7 @@ const worksData = {
                         </div>
 
                         <div class="full-image">
-                            <img src="../../Assets/Works/Banana Exoskeleton/13.webp" alt="">
+                            <img src="../../Assets/Works/Banana Exoskeleton/13.png" alt="">
                         </div>
 
                         <p class = "work-discription">
@@ -467,7 +467,7 @@ const worksData = {
                         </p>
 
                         <div class="half-image">
-                            <img src="../../Assets/Works/Banana Exoskeleton/15.webp" alt="">
+                            <img src="../../Assets/Works/Banana Exoskeleton/15.png" alt="">
                         </div>
 
                         <p class = "work-discription">
@@ -489,7 +489,7 @@ const worksData = {
                         </div>
 
                         <div class="full-image">
-                            <img src="../../Assets/Works/Banana Exoskeleton/16.webp" alt="">
+                            <img src="../../Assets/Works/Banana Exoskeleton/16.png" alt="">
                         </div>
 
                     `  // 保持空的content

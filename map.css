@@ -120,5 +120,27 @@ body {
     z-index: -1;
 }
 
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 600px) {
+    #map-content {
+        width: calc(100% - 16px - 16px);
+        left: 16px;
+        height: calc(100% - 72px - 48px);
+    }
+    
+    #filter-container {
+        width: 90%;
+    }
+    
+    .hyperlink {
+        font-size: 14px;
+    }
+    
+    #header {
+        top: 12px;
+        right: 16px;
+    }
+}
+
 
 

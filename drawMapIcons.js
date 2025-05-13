@@ -218,6 +218,18 @@ function generateIcons() {
                 <p>${work.description}</p>
             `;
 
+            // 横向自适应
+            if (work.icon.position[0] >= 50) {
+                // 图标在右半边，简介显示在左侧
+                descriptionBox.style.left = '32px';
+                descriptionBox.style.right = 'auto';
+            } else {
+                // 图标在左半边，简介显示在右侧
+                descriptionBox.style.right = '32px';
+                descriptionBox.style.left = 'auto';
+            }
+
+            // 纵向自适应
             if (work.icon.position[1] >= 50) {
                 // 图标下半屏，向上显示悬停描述
                 descriptionBox.style.bottom = 'calc(50% + 32px)';

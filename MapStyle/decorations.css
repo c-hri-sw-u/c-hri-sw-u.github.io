@@ -164,20 +164,24 @@
 }
 
 #ufo {
-    top: 89%; left: 85%;
+    top: 89%; 
+    left: 85%;
     transform-origin: center;
     z-index: 99999;
+    position: absolute;
+    cursor: pointer;
+    width: 32px;
+    aspect-ratio: 1;
 }
 
 #ufo-shadow {
     position: absolute;
     border-radius: 50%;
     transform: translate(-50%, -50%) scaleY(0.0) scaleX(0.0);
-    top: calc(89% + 3px); left: 85%;
-
+    top: calc(89% + 3px); 
+    left: 85%;
     width: 30px;
     height: 30px;
     background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.57) 0%, rgba(0, 0, 0, 0) 100%);
-
     transition: all 0.30s ease-in-out;
 }

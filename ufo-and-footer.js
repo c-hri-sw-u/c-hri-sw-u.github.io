@@ -4,16 +4,52 @@ const contactIframe = document.getElementById('contact-iframe');
 
 let ufoClick = 0;
 
+// 定义动画控制变量，修复未定义错误
+let ufoAnimation1Running = false;
+let ufoAnimation2Running = false;
+
 var ufoTop = ufo.offsetTop;
 var ufoLeft = ufo.offsetLeft;
 var ufoInitialTop = ufo.offsetTop;
 var ufoInitialLeft = ufo.offsetLeft;
 
+// 添加更新UFO位置函数
+function updateUfoPosition() {
+    // 使用百分比计算
+    const winHeight = window.innerHeight;
+    const winWidth = window.innerWidth;
+    
+    // 使用CSS中定义的百分比位置 (89%, 85%)
+    // 注意：因为UFO本身已经有transform: translate(-50%, -50%)，所以这里直接使用百分比即可
+    ufo.style.top = '89%';
+    ufo.style.left = '85%';
+    
+    // 同时更新当前值，以便动画使用
+    ufoTop = ufo.getBoundingClientRect().top;
+    ufoLeft = ufo.getBoundingClientRect().left;
+    ufoInitialTop = ufoTop;
+    ufoInitialLeft = ufoLeft;
+    
+    // 确保影子位置也正确
+    ufoShadow.style.top = 'calc(89% + 3px)';
+    ufoShadow.style.left = '85%';
+    
+    // 确保正确的transform属性
+    ufo.style.transform = 'translate(-50%, -50%)';
+}
+
+// 添加窗口大小变化事件监听，更新初始位置
+window.addEventListener('resize', function() {
+    // 只在非动画状态更新位置
+    if (!ufoAnimation1Running && !ufoAnimation2Running) {
+        updateUfoPosition();
+    }
+});
+
 function ufoAnimation1() {
     let step = 0;
     ufoAnimation1Running = true;
     let intervalId = setInterval(() => {
-
         // Alternate shake and rotate
         if (step % 2 === 0) {
             ufo.style.transform = 'translate(-50%, -50%) rotate(3deg)';
@@ -29,33 +65,35 @@ function ufoAnimation1() {
         }
     }, 100); // Adjust the delay between steps for desired animation speed
 
-    ufo.style.top += 30;
+    // 获取当前位置并保存
+    ufoTop = parseFloat(ufo.offsetTop);
+    ufoLeft = parseFloat(ufo.offsetLeft);
+    
+    // 直接开始上升动画
+    ufo.style.transition = 'top 0.25s';
+    ufoShadow.style.opacity = 0.6;
+    ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(0.7) scaleX(1.4)';
+    
+    // 向上移动30px
+    ufo.style.top = (ufoTop - 30) + 'px';
     
     setTimeout(function() {
-        ufo.style.transition = 'top 0.2s';
-        ufoShadow.style.opacity = 0.6;
-        ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(0.7) scaleX(1.4)';    
-        ufoTop += -30;
+        // 回到原始位置
         ufo.style.top = ufoTop + 'px';
+        ufoShadow.style.opacity = 0;
+        ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(0.0) scaleX(0.0)';
         
         setTimeout(function() {
-            ufoTop += 30;
-            ufo.style.top = ufoTop + 'px';
-            ufoShadow.style.opacity = 1;
-            ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(0.0) scaleX(0.0)';
-            
             ufoAnimation1Running = false;
-        }, 600);   
-    }, 300);
-    ufoTop = ufo.offsetTop;
-    ufoLeft = ufo.offsetLeft;
+            ufo.style.transition = '';
+        }, 300);   
+    }, 600);
 }
 
 function ufoAnimation2() {
     let step = 0;
     ufoAnimation2Running = true;
     let intervalId = setInterval(() => {
-
         // Alternate shake and rotate
         if (step % 2 === 0) {
             ufo.style.transform = 'translate(-50%, -50%) rotate(3deg)';
@@ -71,37 +109,38 @@ function ufoAnimation2() {
         }
     }, 100); // Adjust the delay between steps for desired animation speed
 
-    ufo.style.top += 80;
+    // 获取当前位置并保存
+    ufoTop = parseFloat(ufo.offsetTop);
+    ufoLeft = parseFloat(ufo.offsetLeft);
+    
+    // 直接开始上升动画
+    ufo.style.transition = 'top 0.25s';
+    ufoShadow.style.opacity = 0.6;
+    ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(1.5) scaleX(3)';
+    
+    // 向上移动80px
+    ufo.style.top = (ufoTop - 80) + 'px';
     
     setTimeout(function() {
-        ufo.style.transition = 'top 0.2s';
-        ufoShadow.style.opacity = 0.6;
-        ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(1.5) scaleX(3)';
-        ufoTop += -80;
+        // 回到原始位置
         ufo.style.top = ufoTop + 'px';
+        ufoShadow.style.opacity = 0;
+        ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(0.0) scaleX(0.0)';
         
         setTimeout(function() {
-            ufoTop += 80;
-            ufo.style.top = ufoTop + 'px';
-            ufoShadow.style.opacity = 1;
-            ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(0.0) scaleX(0.0)';
-            setTimeout(function() {
-                ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(1)';
-                ufo.style.top = ufoInitialTop + 'px';
-                ufo.style.left = ufoInitialLeft + 'px';
-                ufoAnimation2Running = false;
-            }, 10);
-        }, 800);   
-    }, 400);
-    ufoTop = ufo.offsetTop;
-    ufoLeft = ufo.offsetLeft;
+            ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(1)';
+            // 调用位置更新函数，而不是使用固定值
+            updateUfoPosition();
+            ufoAnimation2Running = false;
+            ufo.style.transition = '';
+        }, 300);   
+    }, 800);
 }
 
 function ufoAnimation3() {
     let step = 0;
-    // ufoAnimation3Running = true;
+    let ufoAnimation3Running = true;
     let intervalId = setInterval(() => {
-
         // Alternate shake and rotate
         if (step % 2 === 0) {
             ufo.style.transform = 'translate(-50%, -50%) rotate(3deg)';
@@ -117,74 +156,88 @@ function ufoAnimation3() {
         }
     }, 100); // Adjust the delay between steps for desired animation speed
 
-    ufo.style.top += 80;
+    // 获取当前位置并保存
+    ufoTop = parseFloat(ufo.offsetTop);
+    ufoLeft = parseFloat(ufo.offsetLeft);
+    
+    // 直接开始上升动画
+    ufo.style.transition = 'top 0.25s';
+    ufoShadow.style.opacity = 0.6;
+    ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(1.5) scaleX(3)';
+    
+    // 向上移动80px
+    ufo.style.top = (ufoTop - 80) + 'px';
     
     setTimeout(function() {
-        ufo.style.transition = 'top 0.2s';
-        ufoShadow.style.opacity = 0.6;
-        ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(1.5) scaleX(3)';
-        ufoTop += -80;
+        ufo.style.transition = 'all 0.5s ease-in-out';
+        ufoTop = 0.4 * window.innerHeight;
+        ufoLeft = 0.6 * window.innerWidth;
         ufo.style.top = ufoTop + 'px';
-        
+        ufo.style.left = ufoLeft + 'px';
+        ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(2)';
+
+        ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(0.0) scaleX(0.0)';
         setTimeout(function() {
-            ufo.style.transition = 'all 0.5s ease-in-out';
-            ufoTop = 0.4 * window.innerHeight;
-            ufoLeft = 0.6 * window.innerWidth;
+            ufo.style.transition = 'all 0.1s ease-in-out';
+            ufoTop = 0.6 * window.innerHeight;
+            ufoLeft = 0.4 * window.innerWidth;
             ufo.style.top = ufoTop + 'px';
             ufo.style.left = ufoLeft + 'px';
-            ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(2)';
-
-            ufoShadow.style.transform = 'translate(-50%, -50%) scaleY(0.0) scaleX(0.0)';
+            ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(4)';
             setTimeout(function() {
-                ufo.style.transition = 'all 0.1s ease-in-out';
-                ufoTop = 0.6 * window.innerHeight;
-                ufoLeft = 0.4 * window.innerWidth;
+                ufo.style.transition = 'all 0.2s ease-in-out';
+                ufoTop = 0.5 * window.innerHeight;
+                ufoLeft = 0.5 * window.innerWidth;
                 ufo.style.top = ufoTop + 'px';
                 ufo.style.left = ufoLeft + 'px';
-                ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(4)';
+                ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(200)';
+                
+                contactIframe.style.width = '100%';
+                contactIframe.style.height = '100%';
+                contactIframe.style.transition = 'all 0.01s ease-in-out';
+                
+                const filterText = document.querySelector('#filter .eng');
+                const contactText = document.querySelector('#contact .eng');
+                if (filterText) {
+                    filterText.style.textDecoration = 'line-through';
+                    filterText.style.textDecorationThickness = '2px';
+                    filterText.parentElement.style.opacity = '0.25';
+                    filterText.parentElement.style.pointerEvents = 'none';
+                }
+                if (contactText) {
+                    contactText.style.textDecoration = 'line-through';
+                    contactText.style.textDecorationThickness = '2px';
+                    contactText.parentElement.style.opacity = '0.25';
+                    contactText.parentElement.style.pointerEvents = 'none';
+                }
                 setTimeout(function() {
-                    ufo.style.transition = 'all 0.2s ease-in-out';
-                    ufoTop = 0.5 * window.innerHeight;
-                    ufoLeft = 0.5 * window.innerWidth;
-                    ufo.style.top = ufoTop + 'px';
-                    ufo.style.left = ufoLeft + 'px';
-                    ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(200)';
-                    
-                    // contactIframe.style.display = 'block';
-                    contactIframe.style.width = '100%';
-                    contactIframe.style.height = '100%';
-                    // contactIframe.style.opacity = '80%';
-                    contactIframe.style.transition = 'all 0.01s ease-in-out';
-                    // Add strikethrough to Filter and Contact text
-                    const filterText = document.querySelector('#filter .eng');
-                    const contactText = document.querySelector('#contact .eng');
-                    if (filterText) {
-                        filterText.style.textDecoration = 'line-through';
-                        filterText.style.textDecorationThickness = '2px';
-                        filterText.parentElement.style.opacity = '0.25';
-                        filterText.parentElement.style.pointerEvents = 'none';
-                    }
-                    if (contactText) {
-                        contactText.style.textDecoration = 'line-through';
-                        contactText.style.textDecorationThickness = '2px';
-                        contactText.parentElement.style.opacity = '0.25';
-                        contactText.parentElement.style.pointerEvents = 'none';
-                    }
-                    setTimeout(function() {
-                        ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(1)';
-                        ufo.style.top = ufoInitialTop + 'px';
-                        ufo.style.left = ufoInitialLeft + 'px';
-                        // Remove the strikethrough removal code here since we want it to persist
-                        // ufoAnimation3Running = false;
-                    }, 100);
-                }, 80); 
-            }, 400);    
-        }, 800);   
-    }, 400);
-    ufoTop = ufo.offsetTop;
-    ufoLeft = ufo.offsetLeft;
+                    ufo.style.display = 'block';
+                    ufo.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(1)';
+                    // 调用位置更新函数，而不是使用固定值
+                    updateUfoPosition();
+                    ufo.style.transition = '';
+                    ufoAnimation3Running = false;
+                }, 100);
+            }, 80); 
+        }, 400);    
+    }, 800);
 }
 
+// 确保页面加载后UFO位置正确初始化
+document.addEventListener('DOMContentLoaded', function() {
+    // 延迟一点以确保DOM完全加载
+    setTimeout(function() {
+        // 初始化UFO位置
+        updateUfoPosition();
+        console.log('UFO初始化完成:', ufoInitialTop, ufoInitialLeft);
+    }, 200);
+});
+
+// 确保页面加载后UFO位置正确初始化
+window.addEventListener('load', function() {
+    // 再次确保位置正确
+    updateUfoPosition();
+});
 
 // ufo simply click/shiftleft
 
@@ -220,6 +273,18 @@ contactButton.addEventListener('click', function(event) {
     // Hide filter container and reset to select all
     hideFilterContainer();
 
+    // 确保UFO和影子是可见的
+    ufo.style.display = 'block';
+    ufoShadow.style.display = 'block';
+
+    // 获取当前UFO位置，确保操作前有效
+    if (!ufoInitialTop || !ufoInitialLeft || isNaN(ufoInitialTop) || isNaN(ufoInitialLeft)) {
+        ufoInitialTop = ufo.offsetTop || window.innerHeight * 0.89;
+        ufoInitialLeft = ufo.offsetLeft || window.innerWidth * 0.85;
+        ufoTop = ufoInitialTop;
+        ufoLeft = ufoInitialLeft;
+    }
+
     if (ufoClick === 0) {
         ufoClick++;
         ufoAnimation1();
@@ -230,9 +295,8 @@ contactButton.addEventListener('click', function(event) {
         contactIframe.src = 'contact.html';
     } else if (contactIframe.style.display === 'none' 
     && overlayIframe.style.display === 'none' 
-    && ufo.style.top === ufoInitialTop + 'px'
-    && ufoAnimation1Running === false
-    && ufoAnimation2Running === false) {
+    && !ufoAnimation1Running
+    && !ufoAnimation2Running) {
         contactIframe.style.display = 'block';
         ufoAnimation3();
     } else {
@@ -392,6 +456,15 @@ function startAutoPlayShowcase() {
                 <p>${currentWork.title} <br><br></p>
                 <p>${currentWork.description}</p>
             `;
+            // 横向自适应
+            if (currentWork.icon.position[0] >= 50) {
+                descriptionBox.style.left = '32px';
+                descriptionBox.style.right = 'auto';
+            } else {
+                descriptionBox.style.right = '32px';
+                descriptionBox.style.left = 'auto';
+            }
+            // 纵向自适应
             if (currentWork.icon.position[1] >= 50) {
                 descriptionBox.style.bottom = 'calc(50% + 32px)';
                 descriptionBox.style.top = 'auto';
@@ -526,21 +599,33 @@ function addHoverListeners() {
 
             // Show description
             const descriptionBox = document.querySelector('.hover-description');
-            const work = works.find(w => w.id === workId);
-            if (work) {
-                descriptionBox.innerHTML = `
-                    <p>${work.title} <br><br></p>
-                    <p>${work.description}</p>
-                `;
-                if (work.icon.position[1] >= 50) {
-                    descriptionBox.style.bottom = 'calc(50% + 32px)';
-                    descriptionBox.style.top = 'auto';
-                } else {
-                    descriptionBox.style.top = 'calc(50% - 4px)';
-                    descriptionBox.style.bottom = 'auto';
-                }
-                descriptionBox.style.display = 'block';
+            descriptionBox.innerHTML = `
+                <p>${work.title} <br><br></p>
+                <p>${work.description}</p>
+            `;
+            // 横向自适应
+            if (work.icon.position[0] >= 50) {
+                descriptionBox.style.left = '32px';
+                descriptionBox.style.right = 'auto';
+            } else {
+                descriptionBox.style.right = '32px';
+                descriptionBox.style.left = 'auto';
             }
+            // 纵向自适应
+            if (work.icon.position[1] >= 50) {
+                descriptionBox.style.bottom = 'calc(50% + 32px)';
+                descriptionBox.style.top = 'auto';
+            } else {
+                descriptionBox.style.top = 'calc(50% - 4px)';
+                descriptionBox.style.bottom = 'auto';
+            }
+            descriptionBox.style.display = 'block';
+        });
+
+        // 重新绑定点击事件，兼容移动端
+        newWrapper.addEventListener('click', function(e) {
+            const workId = this.getAttribute('data-work-id');
+            window.location.href = `template.html?work=${workId}&from=map`;
         });
 
         newWrapper.addEventListener('mouseleave', function(e) {
