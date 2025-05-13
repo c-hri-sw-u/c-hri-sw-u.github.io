@@ -130,6 +130,21 @@ const descriptionBox = document.createElement('div');
 descriptionBox.className = 'hover-description';
 document.body.appendChild(descriptionBox);
 
+function createDotElement(position) {
+    const dotElement = document.createElement('div');
+    dotElement.style.position = 'absolute';
+    dotElement.style.left = `${position[0]}%`;
+    dotElement.style.top = `${position[1]}%`;
+    dotElement.style.transform = 'translate(-50%, -50%)';
+    dotElement.style.width = '12px';
+    dotElement.style.height = '12px';
+    dotElement.style.backgroundColor = '#555';
+    dotElement.style.borderRadius = '50%';
+    dotElement.style.opacity = '0.8';
+    dotElement.style.zIndex = '2';
+    return dotElement;
+}
+
 function generateIcons() {
     const iconContainer = document.getElementById('icon-container');
     const works = getAllWorksWithIcons();
@@ -137,6 +152,12 @@ function generateIcons() {
     // 首先添加SVG连线
     const connectionsElement = generateConnections(works);
     iconContainer.appendChild(connectionsElement);
+    
+    // 为每个作品创建圆点
+    works.forEach(work => {
+        const dotElement = createDotElement(work.icon.position);
+        iconContainer.appendChild(dotElement);
+    });
     
     works.forEach(work => {
         const wrapperElement = createIconElement(work);

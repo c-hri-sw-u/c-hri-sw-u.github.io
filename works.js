@@ -3,9 +3,498 @@ console.log("works.js loaded");
 const worksData = {
     stages: [
         {
-            id: 'C',
-            name: 'Graduate Studies',
+            id: 'D',
+            name: 'Graduate Studies 25 Spring',
             works: [
+                // Piko
+                {
+                    id: 'piko',
+                    icon: {
+                        shape: 'star8rounded',
+                        fill: 'white',
+                        dashed: false,
+                        position: [66, 56],
+                        skewed: false,
+                    },
+                    hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Piko/0.webp" alt="">`,
+                    title: 'Piko',
+                    listTitle: 'Piko',
+                    subtitle: `- Embrace the Future of Companionship`,
+                    type: 'Product + Interaction | <b>Design + Development + Fabrication</b> | Sensing | Social Robotics',
+                    date: '2025 Spring',
+                    purpose: `<span class="bold">Teamwork</span> | Coursework
+                        <br>
+                        Course: Building User-Focused Sensing Systems
+                        <br>
+                        Instructor: <span class='hyperlink' onclick="window.open('http://www.mayankgoel.com/')">Mayank Goel</span>, <span class='hyperlink' onclick="window.open('https://www.synergylabs.org/yuvraj/')">Yuvraj Agarwal</span>
+                        <br>
+                        Team Members: Ashveen Banga, Yixi(Chris) Wu, Leo Liu, Narayan Ashanahalli`,
+                    description: `
+                        Meet Piko, our vision for the future of companionship. Housed within a charming Koala hand puppet exterior, Piko seamlessly blends technology with tactile comfort. Its sophisticated sensing capabilities and expressive body language transcend conventional human-technology interaction, fostering genuine emotional connections rather than simply performing functions.
+                        <br><br>
+                        Through strategically integrated sensors, cameras, advanced computer vision, and LLM capabilities, Piko provides attentive supervision, loyal companionship, and nuanced emotional support throughout your daily life - transforming ordinary moments into shared experiences.
+                        <br><br>
+                        Contribution: Ideation, Full hardware prototyping, Interactive Mechanics - Physical Design and Code Implementation, Interaction System and User Experience Design
+                    `,  // 保持空的description
+                    content: `
+                        <div class="full-image">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <iframe style="width: 100%; aspect-ratio: 16/9;"
+                                src="https://www.youtube.com/embed/TZLEKZw-F2s?si=7UC1kdliZqTpGC5U" 
+                                // title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                                // gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div class = "h3">
+                            <p>
+                                Ideation
+                                <br>
+                                - Wearable Device X Fashionable Item X Social Robot/Pet
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img
+                                src="../../Assets/Works/Piko/2.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            Does anyone has this feeling: Technology is getting more and more boring? 
+                            <br><br>
+                            In 1999, when the concept of "wearable" was far from mainstream, 
+                            Mark Billinghurst and Thad Starner published an article in Computer magazine titled "Wearable devices: new ways to manage information," 
+                            revealing that wearable devices could not only help humans process information but would also create an intimate human-computer symbiosis. 
+                            However, after all these years, wearable devices haven't changed much since the first Apple Watch was released in 2016.
+                            <br><br>
+                            Similarly, in the 1990s, the first Social Robot - Kismet was born in MIT's laboratory. 
+                            This concept has been repeatedly revisited, but without significant breakthroughs until the arrival of the LLM wave. 
+                            From 2019-2025, countless AI Pets - social robots featuring soft or rounded exteriors - appeared on the market: Moflin, Lovot, Paro, Jennie, Ropet, Mirumi... 
+                            Yet something is missing: Scenarios. When people place Social Robots and AI pets on their desks, by their bedsides, or on the floor like roombas, 
+                            their use scenarios become greatly limited.
+                        </p>
+                        <div class="full-image">
+                            <img
+                                src="../../Assets/Works/Piko/1.webp" alt="">
+                        </div>
+                        <p class = "work-discription">
+                            The convergence of Wearable Device, Fashionable Item, and Social Robot/Pet concepts addresses this fundamental limitation. 
+                            By bringing the companion closer to the user's body, this fusion enables more sensing abilities and data collection about both the user and their surroundings. 
+                            The device stays with the user longer throughout their day, eliminating social awkwardness through stylish design while fostering deeper emotional connections. 
+                            This integration creates stronger communication channels and contextual insights, ultimately expanding potential applications far beyond what any single category could achieve alone.
+                        </p>
+
+
+                        <div class = "h2">
+                            <p>
+                                Piko
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Piko/0.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            Meet Piko, our vision for the future of companionship. Housed within a charming Koala hand puppet exterior, Piko seamlessly blends technology with tactile comfort. Its sophisticated sensing capabilities and expressive body language transcend conventional human-technology interaction, fostering genuine emotional connections rather than simply performing functions. 
+                            <br><br>
+                            Through strategically integrated sensors, cameras, advanced computer vision, and LLM capabilities, Piko provides attentive supervision, loyal companionship, and nuanced emotional support throughout your daily life - transforming ordinary moments into shared experiences.
+                        </p>
+                        
+                        <div class = "h3">
+                            <p>
+                                Scenarios and Our Solution 
+                                <br>
+                                - Doomscrolling Supervision
+                            </p>
+                        </div>
+
+                        <p class = "work-discription">
+                            Piko's sensor array enables rich contextual awareness while its expressive movements and audio feedback create deeply engaging interactions. 
+                            For our prototype demonstration, we developed a key scenario—doomscrolling intervention—that showcases Piko's visual recognition, 
+                            intelligent responsiveness, and voice interaction capabilities.
+                            <br><br>
+                            When worn near chest level, Piko's downward-facing camera monitors phone usage patterns to detect prolonged, repetitive scrolling behaviors. 
+                            Upon identifying potential doomscrolling, Piko responds with expressive movements and sounds, gently interrupting the harmful cycle. 
+                            Users can explain their usage through voice interaction, which Piko evaluates and responds to accordingly. 
+                            This creates a non-judgmental accountability system that helps users become more mindful of their digital habits without requiring them to abandon technology altogether.
+                        </p>
+
+                        <div class = "h3">
+                            <p>
+                                Interaction System 
+                                <br>
+                                - Piko Interaction 101
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img
+                                src="../../Assets/Works/Piko/3.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            Piko responds to different touch patterns designed for intuitive interaction. A single tap in normal mode prompts Piko to listen for your excuse when caught doomscrolling, analyzing your sentiment and responding accordingly with appropriate animations and sounds. We implemented a quiet mode, activated with a double tap, which suppresses Piko's more expressive reactions for use in public spaces or shared environments. In quiet mode, Piko sends gentle notifications to your phone instead of making sounds or movements.
+                        </p>
+
+                        <div class = "h3">
+                            <p>
+                                Implementation Details 
+                                <br>
+                                - Code, Circuits, Chaos: Inside Piko
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img
+                                src="../../Assets/Works/Piko/4.gif" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            Piko combines advanced hardware and intelligent software systems to create its interactive capabilities:
+                            <br><br>
+                            <span class="bold">Hardware Core</span>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Custom Koala design with 3D printed structure housing dual Raspberry Pi Zero system
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- WM8960 Audio HAT with earphone output
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Dual micro servo motors for expressive movements
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Camera Module 3 for visual tracking
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- GPIO button for user input
+                            <br><br>
+                            <span class="bold">Intelligence Systems</span>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Computer Vision: Custom YOLOv8 model trained on 300+ phone images with MediaPipe hand detection verifies scrolling behavior
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Sentiment Analysis: Audio input processed through Google Cloud Speech-to-Text and Gemini 2.0 Flash to classify emotions and evaluate explanations
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Interaction Design: Synchronized motion library (curious tilts, happy clapping, angry shaking) paired with contextual sounds at intimate volume levels
+                            <br><br>
+                            <span class="bold">User Experience</span>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Real-time behavior tracking via Python HTTP server with JSON data visualization
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Supportive notifications through Pushover API when needed
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Adaptive responses based on detected emotional states and usage patterns
+                            <br><br>
+                            The dual-Pi architecture separates audio/cognitive functions from motion control, ensuring smooth operation while communication happens through lightweight HTTP requests between components.
+                        </p>
+
+                        <div class = "full-image">
+                            <img src="../../Assets/Works/Piko/6.gif" alt="">
+                        </div>
+
+                        <div class = "h3">
+                            <p>
+                                Physical Design 
+                                <br>
+                                - Piko's Anatomy
+
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img
+                                src="../../Assets/Works/Piko/5.webp" alt="">
+                        </div>
+
+                        <div class="full-image">
+                            <img
+                                src="../../Assets/Works/Piko/17.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            ↑ Iterations of Piko's physical design
+                        </p>
+
+                        <div class = "h3">
+                            <p>
+                                Privacy/Ethics Pros and Cons 
+                                <br>
+                                - Is Your Koala Spying On You?
+
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Piko/7.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            <span class="bold">Privacy [GOOD]</span>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Camera angled downward at lap/keyboard area with low quality 
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- can't see faces or read screen content
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Audio only recorded when user chooses to provide an excuse (preserves user agency)
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Using Google Cloud with standard privacy protections
+                            <br><br>
+                            <span class="bold">Privacy [NOT GREAT]</span>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- No camera indicator light
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Camera remains on continuously
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Time constraints prevented implementation
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Processing via cloud instead of on-device
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Local processing caused unacceptable CV lag
+
+                        </p>
+
+                        <div class = "h3">
+                            <p>
+                                Play with Piko
+                                <br>
+                                - Live from National Geographic...
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Piko/8.webp" alt="">
+                        </div>
+
+                        <div class="half-image">
+                            <img src="../../Assets/Works/Piko/11.webp" alt="">
+                            <img src="../../Assets/Works/Piko/13.webp" alt="">
+                        </div>
+
+                        <div class="half-image">
+                            <img src="../../Assets/Works/Piko/12.webp" alt="">
+                            <img src="../../Assets/Works/Piko/10.webp" alt="">
+                        </div>
+
+                        
+                    `  // 保持空的content
+                },
+
+                // Banana Exoskeleton
+                {
+                    id: 'banana-exoskeleton',
+                    icon: {
+                        shape: 'star8rounded',
+                        fill: 'black',
+                        dashed: false,
+                        position: [74, 64],
+                        skewed: true,
+                    },
+                    hover: `<img style="aspect-ratio: 9/14;" src="../../Assets/Works/Banana Exoskeleton/0.webp" alt="">`,
+                    title: 'Banana Exoskeleton',
+                    listTitle: 'Banana Exoskeleton',
+                    subtitle: ``,
+                    type: 'Product | <b>Design + Development + Research + Fabrication</b> | Computational Design | Physical UI',
+                    date: '2025 Spring',
+                    purpose: `<span class="bold">Teamwork</span> | Coursework
+                        <br>
+                        Course: Computational Methods for Interactive Systems
+                        <br>
+                        Instructor: <span class='hyperlink' onclick="window.open('https://alexandraion.com/')">Alexandra Ion</span>
+                        <br>
+                        Team Members: Yixi(Chris) Wu, Xinyi Luo`,
+                        
+                    description: `
+                        Bananas are common but easily damaged fruits. People invent something called "banana case" to protect bananas.
+                        The problem is that, bananas vary significantly in size and shape(curvature), making standardized banana cases inadequate.
+                        So, after I learned 'compliant mechanisms', I decided to optimize and design one or a series of cases that can fit any banana. I thought it would be a fun project!
+                        <br><br>
+                        The implementation involved multiple technical approaches: data analysis using Python with OpenCV and machine learning to understand banana shapes; developing optimization algorithms for adaptable designs; geometric processing to compare banana forms; parametric 3D modeling in Rhino/Grasshopper; and finally manufacturing prototypes through FDM 3D printing with PLA material.
+                        <br><br>
+                        Contribution: Ideation 85%, Data collection 100%, Data processing and feature extraction 95%, 
+                        Classification 100%, Optimization 95%, 2D -> 3D 100%, 3D Printing 70%
+                    `,  // 保持空的description
+                    content: `
+
+                        <div class="full-image">
+                            <img style="aspect-ratio: 1;"
+                                src="../../Assets/Works/Banana Exoskeleton/0.webp" alt="">
+                        </div>
+
+                        <div class="full-image">
+                            <img 
+                                src="../../Assets/Works/Banana Exoskeleton/17.gif" alt="">
+                        </div>
+
+                        <div class = "h3">
+                            <p>
+                                Objective 
+                                <br>
+                                - How to fit any banana?
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img
+                                src="../../Assets/Works/Banana Exoskeleton/2.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            Bananas are common but easily damaged fruits. People invent something called "banana case" to protect bananas.
+                            It's not as meaningless as it looks. At least, I often experience bananas rotting in my backpack.
+                            <br><br>
+                            The problem is that, bananas vary significantly in size and shape(curvature), making standardized banana cases inadequate. 
+                            Just like this Reddit comment quote: "<a class="hyperlink" onclick="window.open('https://arc.net/l/quote/dwbvbkuj')">The case sets unrealistic standards for bananas. All bananas are beautiful.</a>"
+                            <br><br>
+                            So, after I learned <span class="bold">'compliant mechanisms'</span>, I decided to optimize and design one or a series of cases that can fit any banana. I thought it would be a fun project!
+                        </p>
+
+                        <div class = "h3">
+                            <p>
+                                Compliant Mechanisms
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img 
+                                src="../../Assets/Works/Banana Exoskeleton/3.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            The <span class="bold">compliant mechanism</span> is a specialized mechanical structure that achieves motion and functionality through the material's inherent elasticity, rather than relying on traditional mechanical components like hinges, bearings, or other connectors. 
+                            This design philosophy leverages a single material's elastic properties to integrate motion, energy storage, and functionality into a unified structure.
+                            I began by researching various <span class="bold">compliant mechanism</span> models common in 3D printing communities. 
+                            By printing these models and testing them firsthand, I gained deeper insights into Compliant Mechanisms. 
+                            <br><br>
+                            To fulfill our project requirements, I needed to select an appropriate base model. This selection process considered several key factors:
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. The model must be capable of deforming within a specific range to accommodate various banana shapes
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. The structure must be suitable for shape optimization
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Parameter settings should facilitate easy calculation and adjustment
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Ideally, the structure could be decomposed into easily analyzable basic units
+                        </p>
+                        <div class="full-image">
+                            <img 
+                                src="../../Assets/Works/Banana Exoskeleton/6.webp" alt="">
+                        </div>
+                        <p class = "work-discription">
+                            After careful comparison, I selected a ring-shaped base model consisting of multiple identical units arranged in a circle:
+                            <a class="hyperlink" onclick="window.open('https://makerworld.com/en/models/167337-the-ring-compliant-mechanism#profileId-183720')">
+                                The Ring - Compliant Mechanism by BØDEXMakerWorld: Download Free 3D Models
+                            </a>
+                        </p>
+                        <p class = "work-discription">
+                            To optimize the model for algorithmic processing, 
+                            I parameterized the structure in terms of angle θ and the geometric relationships between vertices and edges.
+                        </p>
+
+                        <div class = "h3">
+                            <p>
+                                Banana Data 
+                                <br>
+                                - How to understand bananas' geometry?
+                            </p>
+                        </div>
+
+                        <div class="half-image">
+                            <img 
+                                src="../../Assets/Works/Banana Exoskeleton/18.gif" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            ↑ The 1400 bananas I collected
+                        </p>
+
+                        <p class = "work-discription">
+                            The curved shape of bananas, a distinctive feature that sets them apart from other fruits. 
+                            This curvature is primarily attributed to two phenomena: phototropism and negative geotropism. 
+                            Initially, the fruit grows downward due to gravity. As bananas develop, they begin growing toward sunlight, 
+                            exhibiting positive phototropism. 
+                            This combination of initially growing downward and subsequently growing upward creates the characteristic curve unique to banana fruits.
+                            <br><br>
+                            Since bananas curve predominantly in one direction, we can effectively transform what would be a complex 3D problem into a more manageable 2D problem.
+                            <br><br>
+                            At the outset of our project, we faced an unexpected challenge: despite bananas being one of the world's most popular fruits, 
+                            no dedicated "banana geometry database" existed! Therefore, we decided to build our own using computer vision (CV) techniques.
+                        </p>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/7.webp" alt="">
+                        </div>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/8.webp" alt="">
+                        </div>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/9.webp" alt="">
+                        </div>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/10.webp" alt="">
+                        </div>
+                        <div class = "h3">
+                            <p>
+                                Optimization
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/11.gif" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            After analyzing the geometric features of bananas and classifying them, 
+                            we found ourselves in a favorable position to tackle the core challenge. 
+                            By transforming the problem from 3D to 2D and simplifying our base model into a vertices and edges representation, 
+                            we significantly reduced the complexity of the task. This simplification allowed us to design an optimization algorithm that would enable our compliant mechanism to precisely match various banana shapes(for each cluster). 
+                            For this purpose, we developed a sophisticated optimization framework based on energy minimization.
+                            <br><br>
+                            The objective is to iteratively transform from an initial state to a target shape (aiming to approximate the shape of all bananas in the same cluster with good overlap).
+                        </p>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/12.webp" alt="">
+                        </div>
+
+                        <div class = "h3">
+                            <p>
+                                2D -> 3D
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/13.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            ↑ Basic model -> 2D Optimized banana -> 3D Banana Exoskeleton
+                        </p>
+
+                        <div class="half-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/15.webp" alt="">
+                        </div>
+
+                        <p class = "work-discription">
+                            ↑ Grasshopper Banana Case Implementation
+                            <br>
+                            <br>
+                            I designed a 3D version banana case based on the 2D input. I also used <span class="bold">Grasshopper</span> making it totally customizable.
+                            <br>
+                            <br>
+                            Figuratively speaking, two rows of "ribs" extend from a "spine" on the back side, surrounding the banana. 
+                            This design ensures that the case can be bent to adapt to bananas with varying degrees of curvature. 
+                            I designed the "spine" on the belly side to be movable, allowing the banana to be inserted and also enabling the overall bending of the case to adapt accordingly.
+                        </p>
+
+                        <div class = "h3">
+                            <p>
+                                Outcomes
+                            </p>
+                        </div>
+
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Banana Exoskeleton/16.webp" alt="">
+                        </div>
+
+                    `  // 保持空的content
+                },
+
                 // Boba Bubble Trouble
                 {
                     id: 'boba-bubble-trouble',
@@ -14,7 +503,7 @@ const worksData = {
                         fill: 'black',
                         dashed: false,
                         skewed: false,
-                        position: [85, 6],
+                        position: [62, 20],
                     },
                     hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Boba Bubble Trouble/7.webp" alt="">`,
                     title: `
@@ -24,11 +513,11 @@ const worksData = {
                     `,
                     listTitle: 'Boba Bubble Trouble',
                     subtitle: ``,
-                    type: 'Game Development + Game Design',
+                    type: 'Game | <b>Design + Development</b> | Unity | 3D Platformer + PvP',
                     date: '2025 Spring',
-                    purpose: `Hackathon <span class="hyperlink" onclick="window.open('https://globalgamejam.org/games/2025/boba-bubble-trouble-2#jam-menu-games')">2025 Global Game Jam</span> (GGJ)
+                    purpose: `Teamwork | Hackathon
                         <br>
-                        Project Type: Game Making
+                        Event: <span class="hyperlink" onclick="window.open('https://globalgamejam.org/games/2025/boba-bubble-trouble-2#jam-menu-games')">2025 Global Game Jam</span> (GGJ)
                         <br>
                         Team Members: Flanklin Xu, Yixi(Chris) Wu, Nik Kim, Regina Xia, Yiran Zhang
                         `,
@@ -70,7 +559,12 @@ const worksData = {
                         
                     `  // 保持空的content
                 },
-
+            ]
+        },
+        {
+            id: 'C',
+            name: 'Graduate Studies',
+            works: [
                 // breadReader
                 {
                     id: 'bread-reader',
@@ -78,16 +572,17 @@ const worksData = {
                         shape: 'star8rounded',
                         fill: 'black',
                         dashed: false,
-                        position: [74, 44],
+                        position: [82, 58],
                         skewed: true,
                     },
                     hover: `<img style="aspect-ratio: 9/14;" src="../../Assets/Works/breadReader/1.webp" alt="">`,
                     title: 'breadReader',
                     listTitle: 'breadReader',
                     subtitle: ``,
-                    type: 'Unmaking + Hardware + Interaction + Discursive Design',
+                    type: 'Product + Interaction | <b>Design + Development</b> | Hacking + Unmaking | Discursive Design',
                     date: '2024 Fall',
-                    purpose: `<span class="bold">Acadamic</span><br>
+                    purpose: `<span class="bold">Personal</span> | Coursework
+                        <br>
                         Course: Advanced Synthesis Options Studio(ASOS) - Waste Machines
                         <br>
                         Instructor: <span class='hyperlink' onclick="window.open('http://daraghbyrne.me/')">Daragh Byrne</span>`,
@@ -241,20 +736,21 @@ const worksData = {
                     icon: {
                         shape: 'star4rotatedRounded',
                         fill: 'white',
-                        dashed: false,
+                        dashed: true,
                         skewed: false,
-                        position: [82, 8],
+                        position: [72, 19],
                     },
                     hover: `<img src="../../Assets/Works/Story Machine/2.webp" alt="">`,
                     title: 'Story Machine',
                     listTitle: 'Story Machine',
                     subtitle: ``,
-                    type: 'Game Development + Game Design + AI Game',
+                    type: 'Game | <b>Design + Development</b> | LLM + Python | Simulation',
                     date: '2024 Fall',
-                    purpose: `<span class="bold">Acadamic</span><br>
+                    purpose: `<span class="bold">Personal</span> | Coursework
+                        <br>
                         Course: Fundamentals of Programming and Computer Science`,
                     description: `
-                    This is a term project inspired by <span class='hyperlink' onclick="window.open('https://reverie.herokuapp.com/arXiv_Demo/')"> Smallville</span>, 
+                    This is an inspired recreation of <span class='hyperlink' onclick="window.open('https://reverie.herokuapp.com/arXiv_Demo/')"> Smallville</span>, 
                     featuring a nostalgic 1-bit visual style and using OpenAI's API. 
                     Players can design their own world, create and customize characters, 
                     then watch their characters interact and stories unfold through AI-driven behaviors.
@@ -283,9 +779,9 @@ const worksData = {
                     icon: {
                         shape: 'star6rounded',
                         fill: 'white',
-                        dashed: true,
+                        dashed: false,
                         skewed: false,
-                        position: [57, 8],
+                        position: [78, 34],
                     },
                     hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Rethinking Rabbit R1/0.webp" alt="">`,
                     title: `
@@ -295,9 +791,10 @@ const worksData = {
                     `,
                     listTitle: 'Rethinking Rabbit R1',
                     subtitle: ``,
-                    type: 'UIUX + Interaction + AI Product',
+                    type: 'UX/UI + Interaction | <b>Design</b> | LLM + Agent | OS',
                     date: '2024 Fall',
-                    purpose: `<span class="bold">Acadamic</span><br>
+                    purpose: `<span class="bold">Personal</span> | Coursework
+                        <br>
                         Course: History and Future of Interaction Design
                         <br>
                         Instructor: <span class='hyperlink' onclick="window.open('https://pangaro.com/index.html')">Paul Pangaro</span>`,
@@ -458,7 +955,7 @@ const worksData = {
                         fill: 'white',
                         dashed: false,
                         skewed: false,
-                        position: [49, 13],
+                        position: [82, 12],
                     },
                     hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Playground OS/1-9.webp" alt="">`,
                     title: `
@@ -468,9 +965,10 @@ const worksData = {
                     `,
                     listTitle: 'Playground OS',
                     subtitle: `- An Operating System Designed for Creation`,
-                    type: 'UIUX + Interaction + XR + Operating System + AI Product',
+                    type: 'UX/UI + Interaction | <b>Design</b> | LLM + Agent + XR | OS',
                     date: '2024 Fall',
-                    purpose: `<span class="bold">Acadamic</span><br>
+                    purpose: `<span class="bold">Personal</span> | Coursework
+                        <br>
                         Course: History and Future of Interaction Design
                         <br>
                         Instructor: <span class='hyperlink' onclick="window.open('https://pangaro.com/index.html')">Paul Pangaro</span>`,
@@ -584,7 +1082,7 @@ const worksData = {
                         shape: 'star6rounded',
                         fill: 'white',
                         dashed: false,
-                        position: [44, 32],
+                        position: [58, 52],
                     },
                     hover: `<img style="aspect-ratio: 9/9;"
                                 src="../../Assets/Works/MOREDANCE/1.webp" alt="">`,
@@ -595,9 +1093,10 @@ const worksData = {
                     `,
                     listTitle: 'MOREDANCE',
                     subtitle: `- An AI Product for Exploring Music`,
-                    type: 'Interaction + AI Product',
+                    type: 'Product + Interaction | <b>Design</b> | GenAI | Music',
                     date: '2024 Fall',
-                    purpose: `<span class="bold">Acadamic</span><br>
+                    purpose: `<span class="bold">Personal</span> | Coursework
+                        <br>
                         Course: History and Future of Interaction Design
                         <br>
                         Instructor: <span class='hyperlink' onclick="window.open('https://pangaro.com/index.html')">Paul Pangaro</span>`,
@@ -638,7 +1137,7 @@ const worksData = {
                         fill: 'white',
                         dashed: true,
                         skewed: false,
-                        position: [46, 18],
+                        position: [42, 35],
                     },
                     hover: `<img style="aspect-ratio: 14/9;"
                                 src="../../Assets/Works/Lino/10.webp" alt="">`,
@@ -649,9 +1148,10 @@ const worksData = {
                     `,
                     listTitle: 'Lino',
                     subtitle: `- A Personal Knowledge Management System`,
-                    type: 'UIUX + Interaction + AI Product',
+                    type: 'Product + UX/UI + Interaction | <b>Design</b> | LLM + Agent | Knowledge Management',
                     date: '2024 Fall',
-                    purpose: `<span class="bold">Acadamic</span><br>
+                    purpose: `<span class="bold">Personal</span><br> | Coursework
+                        <br>
                         Course: History and Future of Interaction Design
                         <br>
                         Instructor: <span class='hyperlink' onclick="window.open('https://pangaro.com/index.html')">Paul Pangaro</span>`,
@@ -771,7 +1271,7 @@ const worksData = {
                         fill: 'black',
                         dashed: false,
                         skewed: true,
-                        position: [22, 62],
+                        position: [32, 75],
                     },
                     hover: `<img style="aspect-ratio: 14/9;"
                                 src="../../Assets/Works/Hill Making/img1051.webp" alt="">`,
@@ -782,7 +1282,7 @@ const worksData = {
                     &nbsp;Space, Experience,<br>
                     &nbsp;and Interactive Design
                     `,
-                    type: 'Space + Resiposive Environment + Affective Computing + Digital Media Art',
+                    type: 'Space | <b>Design + Research</b> | Biosensing + IoT | Responsive Environment',
                     date: '2023 Fall',
                     purpose: 'Personal',
                     description: `
@@ -954,13 +1454,13 @@ const worksData = {
 
                 // ReCurv
                 {
-                    id: 'ReCurv',
+                    id: 'recurv',
                     icon: {
                         shape: 'star6',
                         fill: 'white',
-                        dashed: true,
+                        dashed: false,
                         skewed: false,
-                        position: [26, 46],
+                        position: [35, 70],
                     },
                     hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/ReCurv/1-7.webp" alt="">`,
                     title: `2024 DigitalFUTURES
@@ -970,11 +1470,11 @@ const worksData = {
                     subtitle: `
                     - Home-based<br>
                     &nbsp;Stroke Rehabilitation System`,
-                    type: 'Product + Health',
+                    type: 'Product | <b>Design + Research</b> | Biosensing + Gamification | Recovery',
                     date: '2024 Summer',
-                    purpose: `Workshop <span class="hyperlink">2024 DigitalFUTURES</span> (Environmental Nudges via Eye-tracking and Bio-sensory Measures)
+                    purpose: `Teamwork | Workshop
                         <br>
-                        Project Type: Research + Product Design
+                        Event: <span class="hyperlink">2024 DigitalFUTURES</span> (Environmental Nudges via Eye-tracking and Bio-sensory Measures)
                         <br>
                         Instructor: <span class='hyperlink' onclick='window.open("https://caup.tongji.edu.cn/caupen/e6/9e/c33466a321182/page.htm")'>Zheng chen</span>
                         <br>
@@ -1057,9 +1557,9 @@ const worksData = {
                     icon: {
                         shape: 'star6',
                         fill: 'white',
-                        dashed: true,
+                        dashed: false,
                         skewed: false,
-                        position: [29, 47],
+                        position: [30, 63],
                     },
                     hover: `<img src="../../Assets/Works/T1/0.webp" alt="">`,
                     title: `For Glance
@@ -1067,12 +1567,14 @@ const worksData = {
                         T1`,
                     listTitle: 'T1',
                     subtitle: ``,
-                    type: 'Product + AI Device',
+                    type: 'Product | <b>Design</b> | - | AI + Wearable',
                     date: '2024 Summer',
                     purpose: `For <span class="bold">Glance</span><br>
-                        Project Type: AI Earphone Concept Design
+                        Role: Design Intern
                         <br>
-                        Role: Design Intern`,
+                        Work Content: AI Earphone Concept Design
+                        <br>
+                        `,
                     description: `
                     This conceptual exploration, undertaken during my internship at Glance, 
                     proposes new directions for AI-enabled earphones, 
@@ -1175,14 +1677,14 @@ const worksData = {
                         fill: 'black',
                         dashed: false,
                         skewed: true,
-                        position: [75, 79],
+                        position: [76, 82],
                     },
                     hover: `<img style="aspect-ratio: 9/14;"
                     src="../../Assets/Works/Vive Towers/2-0.webp" alt="">`,
                     title: 'Vive Towers',
                     listTitle: 'Vive Towers',
                     subtitle: `- Reviving unfinished buildings`,
-                    type: 'Architecture',
+                    type: 'Architecture | <b>Design</b> | Computational Design | Urban',
                     date: '2022 Fall',
                     purpose: 'Personal',
                     description: `"别样幸福城" (City of Ecstasy) stands out as one of China's most renowned unfinished neighborhoods, emblematic of numerous unfinished residential projects resulting from broken financial chains. These speculative constructions, often far from urban centers, epitomize the stark contradictions in China's urbanization process. Due to financial constraints, some homebuyers opt to move into unfinished "Brutalist" buildings. People gather scraps for firewood, form patrol teams, establish community kitchens, and even engage in self-sufficient vegetable gardening to meet their needs. Despite potential renovations to make them habitable, these long-abandoned structures face numerous challenges.
@@ -1267,15 +1769,15 @@ const worksData = {
                         fill: 'black',
                         dashed: false,
                         skewed: true,
-                        position: [71, 78],
+                        position: [64, 78],
                     },
                     hover: `<img style="aspect-ratio: 9/14;" src="../../Assets/Works/Parade with Gods/1-1.webp" alt="">`,
                     title: 'Parade with Gods',
                     listTitle: 'Parade with Gods',
                     subtitle: `- How can China's villages win the tug-of-war with cities?`,
-                    type: 'Architecture + Rural Urban Planning',
+                    type: 'Architecture | <b>Design + Research + Planning</b> | Architectural Ethnography | Rural',
                     date: '2023 Spring - Summer',
-                    purpose: `<span class="bold">Academic</span>
+                    purpose: `<span class="bold">Personal</span> | Coursework
                         <br>
                         Course: Graduation design
                         <br>
@@ -1416,15 +1918,15 @@ const worksData = {
                         fill: 'black',
                         dashed: false,
                         skewed: false,
-                        position: [24, 82],
+                        position: [20, 87],
                     },
                     hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Go Above or Below/4-11.webp" alt="">`,
                     title: 'Go Above or Below',
                     listTitle: 'Go Above or Below',
                     subtitle: ``,  // 这个作品没有副标题
-                    type: 'Architecture',
+                    type: 'Architecture | <b>Design</b> | - | Campus',
                     date: '2022 Spring',
-                    purpose: `<span class="bold">Academic</span>
+                    purpose: `<span class="bold">Personal</span> | Coursework
                         <br>
                         Course: Large-span building design
                         <br>
@@ -1508,7 +2010,7 @@ const worksData = {
                         fill: 'black',
                         dashed: false,
                         skewed: false,
-                        position: [10, 90],
+                        position: [12, 90],
                     },
                     hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Aurora House/5-0.webp" alt="">`,
                     title: `2021 SOLAR DECATHLON CHINA(SDC) COMPETITION
@@ -1516,11 +2018,11 @@ const worksData = {
                         Aurora House`,
                     listTitle: 'Aurora House',
                     subtitle: ``,
-                    type: 'Architecture + Construction',
+                    type: `Architecture | <b>Design + Construction</b> | MR | Residential`,
                     date: 'March 2021 - Sept. 2021',
-                    purpose: `<span class="bold">Team work</span>
+                    purpose: `<span class="bold">Teamwork</span> | Competition
                         <br>
-                        Competition: 2021 SOLAR DECATHLON CHINA(SDC) COMPETITION
+                        Event: 2021 SOLAR DECATHLON CHINA(SDC) COMPETITION
                         <br>
                         Instructor: <span class="hyperlink" onclick="window.open('https://scholar.google.ca/citations?user=k56lrcMAAAAJ&hl=en')">Dr. Wang Sining</span>, Dr. Han Dongchen`,
                     description: `Aurora House comprises an 80-square-meter family residence and a 60-square-meter family residence, connected by a 35-square-meter courtyard. The square floor plan allows for efficient utilization of the space, while minimizing energy and transportation costs.

@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentWorkId = urlParams.get('work');
     const fromList = urlParams.get('from') === 'list';
 
+    // 确保 worksData 已加载
+    if (typeof worksData === 'undefined') {
+        console.warn('worksData is not loaded yet, navigation features may be limited');
+        return;
+    }
+
     // 获取展平的作品列表
     const allWorks = getAllWorks();
     const currentIndex = allWorks.findIndex(work => work.id === currentWorkId);
@@ -81,6 +87,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 辅助函数：获取展平的作品列表
 function getAllWorks() {
+    if (typeof worksData === 'undefined') {
+        console.warn('worksData is not available');
+        return [];
+    }
+    
     const allWorks = [];
     worksData.stages.forEach(stage => {
         stage.works.forEach(work => {
@@ -103,6 +114,11 @@ function initializeHistory() {
 }
 
 function updateNavigationButtons() {
+    if (typeof worksData === 'undefined') {
+        console.warn('worksData is not available, navigation buttons may not update correctly');
+        return;
+    }
+    
     const currentIndex = parseInt(sessionStorage.getItem('currentWorkIndex') || '0');
     const allWorks = getAllWorks();
     const nextBtnText = document.querySelector('#next a');
