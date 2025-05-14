@@ -128,11 +128,6 @@ const worksData = {
                             </p>
                         </div>
 
-                        <div class="full-image">
-                            <img
-                                src="../../Assets/Works/Piko/3.webp" alt="">
-                        </div>
-
                         <p class = "work-discription">
                             Piko responds to different touch patterns designed for intuitive interaction. A single tap in normal mode prompts Piko to listen for your excuse when caught doomscrolling, analyzing your sentiment and responding accordingly with appropriate animations and sounds. We implemented a quiet mode, activated with a double tap, which suppresses Piko's more expressive reactions for use in public spaces or shared environments. In quiet mode, Piko sends gentle notifications to your phone instead of making sounds or movements.
                         </p>
