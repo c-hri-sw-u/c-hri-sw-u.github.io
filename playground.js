@@ -6,7 +6,7 @@ const playgroundData = {
         {
             id: 'mini-project-1',
             icon: {
-                shape: 'star4rounded',
+                shape: 'star6',
                 fill: 'white',
                 dashed: false,
                 skewed: false,
@@ -42,7 +42,7 @@ const playgroundData = {
         {
             id: 'mini-project-2',
             icon: {
-                shape: 'circle',
+                shape: 'star6',
                 fill: 'white',
                 dashed: true,
                 skewed: false,
