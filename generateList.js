@@ -15,7 +15,7 @@ function generateList() {
     const listSection = document.getElementById('list');
     let listHTML = `
         <div class="container">
-            <div class="copyright" style="margin-bottom: 48px;">
+            <div class="copyright" style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
                 <a class="eng">© 2025 <NAME>Yixi(Chris) Wu</NAME></a>
             </div>
             <div class="list-container">
