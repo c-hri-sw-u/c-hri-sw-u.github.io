@@ -591,7 +591,7 @@ function addHoverListeners() {
                 if (work && work.icon.position[1] >= 50) {
                     hoverContent.style.bottom = '100%';
                     hoverContent.style.top = 'auto';
-                } else {
+                } else if (work) {
                     hoverContent.style.top = '100%';
                     hoverContent.style.bottom = 'auto';
                 }
@@ -599,27 +599,30 @@ function addHoverListeners() {
 
             // Show description
             const descriptionBox = document.querySelector('.hover-description');
-            descriptionBox.innerHTML = `
-                <p>${work.title} <br><br></p>
-                <p>${work.description}</p>
-            `;
-            // 横向自适应
-            if (work.icon.position[0] >= 50) {
-                descriptionBox.style.left = '32px';
-                descriptionBox.style.right = 'auto';
-            } else {
-                descriptionBox.style.right = '32px';
-                descriptionBox.style.left = 'auto';
+            const work = works.find(w => w.id === workId);
+            if (work) {
+                descriptionBox.innerHTML = `
+                    <p>${work.title} <br><br></p>
+                    <p>${work.description}</p>
+                `;
+                // 横向自适应
+                if (work.icon.position[0] >= 50) {
+                    descriptionBox.style.left = '32px';
+                    descriptionBox.style.right = 'auto';
+                } else {
+                    descriptionBox.style.right = '32px';
+                    descriptionBox.style.left = 'auto';
+                }
+                // 纵向自适应
+                if (work.icon.position[1] >= 50) {
+                    descriptionBox.style.bottom = 'calc(50% + 32px)';
+                    descriptionBox.style.top = 'auto';
+                } else {
+                    descriptionBox.style.top = 'calc(50% - 4px)';
+                    descriptionBox.style.bottom = 'auto';
+                }
+                descriptionBox.style.display = 'block';
             }
-            // 纵向自适应
-            if (work.icon.position[1] >= 50) {
-                descriptionBox.style.bottom = 'calc(50% + 32px)';
-                descriptionBox.style.top = 'auto';
-            } else {
-                descriptionBox.style.top = 'calc(50% - 4px)';
-                descriptionBox.style.bottom = 'auto';
-            }
-            descriptionBox.style.display = 'block';
         });
 
         // 重新绑定点击事件，兼容移动端

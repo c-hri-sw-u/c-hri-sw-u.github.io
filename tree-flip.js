@@ -12,8 +12,8 @@ const treeStructures = [
 ]
 
 const treePositions = [
-    {left: '18%', top: '40%'},
-    {left: '70%', top: '60%'},
+    {left: '18.5%', top: '40%'},
+    {left: '70.5%', top: '60%'},
 ];
 
 function getTree2Position() {

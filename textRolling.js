@@ -6,42 +6,41 @@ const iPlayWithContainer = document.getElementById("play-with");
 var iDesignText = [
     "Space",
     "Architecture",
-    "Interior",
-    "Furniture",
     "Web",
     "Product",
     "Graphic",
-    "UIUX",
+    "UX/UI",
     "Interaction",
 ]
 
 var iMakeText = [
-    "Game",
-    "App",
-    "Website",
-    "Product",
-    "Experience",
-    "Video",
+    "Games",
+    "Apps",
+    "Websites",
+    "Products",
+    "Experiences",
+    "Videos",
+    "Robotics",
 ]
 
 var iStudyText = [
     "HCI",
-    "AI",
+    "Generative AI",
     "Machine Learning",
-    "Data Science",
     "Algorithms",
     "Psychology",
-    "Philosophy",
-    "Economics",
-    "History",
+    "Product Management",
+    "Language",
     "Art",
-    "Crafts",
 ]
 
 var iPlayWithText = [
     "3D Printing",
     "Arduino",
     "LLM",
+    "Coding",
+    "Hardware",
+    "Fabrication",
 ]
 
 function createRollingText(container, textArray) {

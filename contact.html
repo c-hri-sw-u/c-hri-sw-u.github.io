@@ -15,10 +15,19 @@
 
     <style>
         body {
-            background-color: #fff;
+            background-color: #000;
             margin: 0;
             padding: 0;
             overflow: hidden;
+        }
+
+        #wrapper {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            font-size: 0;
+            position: relative;
+            background-color: #000000;
         }
 
         #animation, #info {
@@ -28,14 +37,20 @@
             box-sizing: border-box;
             background-color: #000000;
             color: #fff;
+            margin: 0;
         }
 
         #animation {
             flex: 34%;
+            position: relative;
+            border-right: 0;
         }
 
         #info {
             flex: 66%;
+            position: relative;
+            margin-left: -1px; /* 关键修复: 创建1px的负边距覆盖可能的缝隙 */
+            border-left: 1px solid #000; /* 添加黑色边框防止意外的背景透视 */
         }
 
         /* Contact info styles */
@@ -119,8 +134,81 @@
             user-select: none;
         }
 
-
+        /* 桌面/移动布局切换 */
+        .desktop-only {
+            display: flex;
+        }
+        
+        .mobile-only {
+            display: none;
+        }
+        
+        /* 移动端样式 */
+        .personal-info-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-section {
+            margin-bottom: 0px;
+        }
+        
+        .mobile-title {
+            font-size: 15px;
+            font-family: "Quicksand", Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .mobile-subtitle {
+            font-weight: 600;
+            margin-bottom: 0px;
+            font-size: 15px;
+            font-family: "Quicksand", Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            line-height: 20px;
+            /* background-color: aqua; */
+        }
+        
+        .mobile-content {
+            margin-left: 20px;
+            margin-bottom: 0px;
+        }
+        
+        .mobile-content p {
+            margin: 3px 0;
+            font-family: "Quicksand", Arial, Helvetica, sans-serif;
+            font-size: 15px;
+        }
+        
+        .mobile-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+            margin-bottom: 0px; /* 确保每行间有足够间距 */
+        }
+        
+        .mobile-rolling {
+            height: 20px;
+            min-width: 200px;
+            font-size: 15px;
+            font-family: "Quicksand", Arial, Helvetica, sans-serif;
+            line-height: 20px;
+            /* background-color: aqua; */
+        }
+        
         @media screen and (max-width: 600px) {
+            .desktop-only {
+                display: none !important; /* 强制隐藏桌面版 */
+            }
+            
+            .mobile-only {
+                display: flex !important; /* 强制显示移动版 */
+            }
+            
             .contact-info {
                 flex-direction: column;
             }
@@ -168,7 +256,8 @@
                     <!-- 作品内容会通过JavaScript动态加载 -->
                 </div>
 
-                <div class="personal-info">
+                <!-- 桌面版排版 - 默认显示 -->
+                <div class="personal-info desktop-only">
                     <div class = "h1">
                         <a class="eng">Education</a>
                     </div>
@@ -188,7 +277,7 @@
                     </div>
                 </div>
 
-                <div class="personal-info">
+                <div class="personal-info desktop-only">
                     <div class = "h1">
                         <a class="eng">I</a>
                     </div>
@@ -207,6 +296,60 @@
                         <div class="text-rolling" id="make"></div>
                         <div class="text-rolling" id="study"></div>
                         <div class="text-rolling" id="play-with"></div>
+                    </div>
+                </div>
+                
+                <!-- 移动端排版 - 默认隐藏 -->
+                <div class="personal-info-mobile mobile-only">
+                    <div class="mobile-section">
+                        <p class="mobile-title">Education</p>
+                    </div>
+                    <div class="mobile-section">
+                        <div class="mobile-content">
+                            <p class="mobile-subtitle">MA (in progress)</p>
+                            <p style="color: rgb(145, 145, 145);">MAAD (an inter-disciplinary design program)</p>
+                            <p>Carnegie Mellon University</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-section">
+                        <div class="mobile-content">
+                            <p class="mobile-subtitle">BA</p>
+                            <p style="color: rgb(145, 145, 145);">Landscape -> Architecture</p>
+                            <p>Shoochow University</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-section">
+                        <p class="mobile-title">I</p>
+                    </div>
+                    
+                    <div class="mobile-section">
+                        <div class="mobile-row">
+                            <p class="mobile-subtitle">DESIGN</p>
+                            <div class="mobile-rolling" id="mobile-design"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-section">
+                        <div class="mobile-row">
+                            <p class="mobile-subtitle">MAKE</p>
+                            <div class="mobile-rolling" id="mobile-make"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-section">
+                        <div class="mobile-row">
+                            <p class="mobile-subtitle">STUDY</p>
+                            <div class="mobile-rolling" id="mobile-study"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-section">
+                        <div class="mobile-row">
+                            <p class="mobile-subtitle">PLAY WITH</p>
+                            <div class="mobile-rolling" id="mobile-play-with"></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -260,11 +403,66 @@
         </section>
     </div>
 
-
     <script src="navigater.js"></script>
     <script src="brand.js"></script>
     <script src="walking.js"></script>
     <script src="textRolling.js"></script>
+
+    <script>
+        // 为移动版创建滚动文本
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileDesign = document.getElementById("mobile-design");
+            const mobileMake = document.getElementById("mobile-make");
+            const mobileStudy = document.getElementById("mobile-study");
+            const mobilePlayWith = document.getElementById("mobile-play-with");
+            
+            // 检查是否是移动设备
+            const isMobile = window.matchMedia("(max-width: 600px)").matches;
+            
+            // 确保只有在移动设备上才初始化移动版滚动
+            if (isMobile) {
+                if (mobileDesign && typeof iDesignText !== 'undefined') {
+                    createRollingText(mobileDesign, iDesignText);
+                }
+                
+                if (mobileMake && typeof iMakeText !== 'undefined') {
+                    createRollingText(mobileMake, iMakeText);
+                }
+                
+                if (mobileStudy && typeof iStudyText !== 'undefined') {
+                    createRollingText(mobileStudy, iStudyText);
+                }
+                
+                if (mobilePlayWith && typeof iPlayWithText !== 'undefined') {
+                    createRollingText(mobilePlayWith, iPlayWithText);
+                }
+            }
+            
+            // 添加媒体查询监听，屏幕大小变化时更新布局
+            const mediaQuery = window.matchMedia('(max-width: 600px)');
+            
+            function handleScreenChange(e) {
+                const desktopElements = document.querySelectorAll('.desktop-only');
+                const mobileElements = document.querySelectorAll('.mobile-only');
+                
+                if (e.matches) {
+                    // 移动设备
+                    desktopElements.forEach(el => el.style.display = 'none');
+                    mobileElements.forEach(el => el.style.display = 'flex');
+                } else {
+                    // 桌面设备
+                    desktopElements.forEach(el => el.style.display = 'flex');
+                    mobileElements.forEach(el => el.style.display = 'none');
+                }
+            }
+            
+            // 初始运行一次
+            handleScreenChange(mediaQuery);
+            
+            // 添加监听
+            mediaQuery.addEventListener('change', handleScreenChange);
+        });
+    </script>
 
     <script src="hyperlink.js"></script>
 

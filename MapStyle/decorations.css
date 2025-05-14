@@ -27,6 +27,7 @@
 /* 需要交互的元素单独设置 */
 #interaction-container #kiwi-container,
 #interaction-container #ufo,
+#interaction-container #playground-container,
 #interaction-container .dialogue-container {
     pointer-events: auto; /* 恢复这些元素的鼠标事件 */
 }
@@ -184,4 +185,21 @@
     height: 30px;
     background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.57) 0%, rgba(0, 0, 0, 0) 100%);
     transition: all 0.30s ease-in-out;
+}
+
+#playground-container {
+    cursor: help !important;
+    z-index: 99999;
+    pointer-events: auto !important;
+}
+
+#playground-icon {
+    cursor: help !important;
+    z-index: 99999;
+    pointer-events: auto !important;
+}
+
+#playground-container:hover {
+    cursor: help;
+    transform: scale(1.1);
 }

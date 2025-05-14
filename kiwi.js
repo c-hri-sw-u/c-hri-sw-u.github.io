@@ -127,28 +127,3 @@ kiwi.addEventListener("click", function() {
     
 });
 
-const aboutDropdown1 = document.getElementById("about-dropdown1");
-const aboutDropdown2 = document.getElementById("about-dropdown2");
-const aboutDropdown3 = document.getElementById("about-dropdown3");
-
-function showDialogue(aboutDropdown, dialogue) {
-    aboutDropdown.addEventListener("click", function() {
-        // Start the waddle animation
-        startWaddleAnimation();
-
-        if (!isClicking && !dialogues.some(dialogue => dialogue.style.opacity === 1)) {
-            isClicking = true;
-            dialogue.style.display = "block";
-            setTimeout(() => {
-                dialogue.style.display = "none";
-                isClicking = false;
-            }, 4000);
-        }
-        
-    });
-}
-
-showDialogue(aboutDropdown1, dialogue1);
-showDialogue(aboutDropdown2, dialogue2);
-showDialogue(aboutDropdown3, dialogue3);
-

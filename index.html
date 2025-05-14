@@ -117,6 +117,17 @@
             user-select: none;
         }
 
+        /* 添加媒体查询，在小屏幕设备上隐藏compass和scale */
+        @media screen and (max-width: 768px) {
+            .compass {
+                display: none !important;
+            }
+            
+            #scale {
+                display: none !important;
+            }
+        }
+
     </style>
 
 </head>
@@ -290,6 +301,23 @@
                 <img class="icon" src="./icon/UFO Flying.svg" id="ufo" style="transform: translate(-50%, -50%); top: 89%; left: 85%;">
                 <div id="ufo-shadow" style="transform: translate(-50%, -50%) scaleY(0.0) scaleX(0.0); top: calc(89% + 3px); left: 85%;"></div>
 
+                <div id="playground-container" 
+                style="width: calc(4vw + 120px); aspect-ratio: 1.14; 
+                position: absolute; 
+                top: 68%; right: 0%; 
+                transform: translate(-50%, -50%) rotate(0deg);
+                transform-origin: center;
+                overflow: hidden;
+                cursor: help; z-index: 99999;
+                ">
+                    <img id="playground-icon" 
+                    style="width: 100%; 
+                    left: 50%; top: 50%; position: absolute; 
+                    transform: translate(-50%, -50%); cursor: help; z-index: 99999" 
+                    src="./icon/Playground(3).svg" alt=""
+                    onclick="window.location.href='playground.html'">
+                
+                </div>
             </div>
 
             <!-- work icon -->
@@ -320,6 +348,9 @@
                 <div class="tree-container" id="tree3">
                 </div>
                 
+                <!-- <img id="cave" 
+                style="position: absolute; top: 72%; left: 28%;"
+                class="icon" src="./icon/Cave Entrance Icon (1).svg"> -->
             </div>
         </div>
     </section>
@@ -386,5 +417,38 @@
                 toast.remove();
             }, 1000);
         });
+
+        // 添加调试代码
+        console.log("正在调试playground元素");
+        const playgroundIcon = document.getElementById("playground-icon");
+        const playgroundContainer = document.getElementById("playground-container");
+        
+        if (playgroundIcon) {
+            console.log("找到playground-icon元素:", playgroundIcon);
+            playgroundIcon.addEventListener("click", function(e) {
+                console.log("playground-icon被点击");
+                window.location.href = 'playground.html';
+                e.stopPropagation(); // 阻止事件冒泡
+            });
+            
+            playgroundIcon.addEventListener("mouseover", function() {
+                console.log("鼠标悬停在playground-icon上");
+            });
+        } else {
+            console.error("未找到playground-icon元素");
+        }
+        
+        if (playgroundContainer) {
+            console.log("找到playground-container元素:", playgroundContainer);
+            // 确保父容器也可以接收事件
+            playgroundContainer.style.pointerEvents = "auto";
+            
+            playgroundContainer.addEventListener("click", function() {
+                console.log("playground-container被点击");
+                window.location.href = 'playground.html';
+            });
+        } else {
+            console.error("未找到playground-container元素");
+        }
     </script>
 </body>
