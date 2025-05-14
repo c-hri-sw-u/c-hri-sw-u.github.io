@@ -1,3 +1,9 @@
+/* 全局规则确保所有装饰和交互元素都有help光标 */
+#decoration-container *,
+#interaction-container * {
+    cursor: help !important;
+}
+
 /* interaction-container */
 #interaction-container {
     width: 100%;
@@ -13,15 +19,16 @@
     user-select: none;
 }
 
-#interaction-container .icon:hover {
-    cursor: help;
-}
-
 #interaction-container .icon {
     position: absolute;
     width: 32px;
     aspect-ratio: 1;
     transform: translate(-50%, -50%);
+    cursor: help !important;
+}
+
+#interaction-container .icon:hover {
+    cursor: help !important;
 }
 
 /* 需要交互的元素单独设置 */
@@ -30,6 +37,7 @@
 #interaction-container #playground-container,
 #interaction-container .dialogue-container {
     pointer-events: auto; /* 恢复这些元素的鼠标事件 */
+    cursor: help !important;
 }
 
 /* ----------------------------------- */
@@ -50,12 +58,13 @@
 #decoration-container img,
 #decoration-container div {
     pointer-events: auto;
+    cursor: help !important;
 }
 
 /* 特定元素的hover效果 */
 #decoration-container .tree-icon:hover,
 #decoration-container img:hover {
-    cursor: help;
+    cursor: help !important;
     z-index: 9998; /* 悬停时提升层级 */
 }
 
@@ -64,11 +73,11 @@
 }
 
 #decoration-container .icon:hover {
-    cursor: help;
+    cursor: help !important;
 }
 
 #decoration-container .tree-icon:hover {
-    cursor: help;
+    cursor: help !important;
     z-index: 2; /* 悬停时提升层级 */
 }
 
@@ -80,11 +89,13 @@
     width: 32px;
     aspect-ratio: 1;
     transform: translate(-50%, -50%);
+    cursor: help !important;
 }
 
 .tree-icon {
     width: 24px;
     aspect-ratio: 1;
+    cursor: help !important;
 }
 
 .tree-container {
@@ -95,6 +106,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: help !important;
 }
 
 .flip {
@@ -129,11 +141,13 @@
     transition: all 0.5s ease-in-out;
 
     position: absolute;
+    cursor: help !important;
 }
 
 .dialogue p {
     font-size: 12px;
     line-height: 16px;
+    cursor: help !important;
 }
 
 #kiwi {
@@ -170,7 +184,7 @@
     transform-origin: center;
     z-index: 99999;
     position: absolute;
-    cursor: pointer;
+    cursor: help !important;
     width: 32px;
     aspect-ratio: 1;
 }
@@ -200,6 +214,6 @@
 }
 
 #playground-container:hover {
-    cursor: help;
+    cursor: help !important;
     transform: scale(1.1);
 }

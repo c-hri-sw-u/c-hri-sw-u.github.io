@@ -40,7 +40,7 @@ const worksData = {
                         <div class="full-image">
                             <div style="display: flex; justify-content: center; align-items: center;">
                                 <iframe style="width: 100%; aspect-ratio: 16/9;"
-                                src="https://www.youtube.com/embed/TZLEKZw-F2s?si=7UC1kdliZqTpGC5U" 
+                                src="https://www.youtube-nocookie.com/embed/TZLEKZw-F2s?rel=0&modestbranding=1&showinfo=0" 
                                 // title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
                                 // gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
@@ -597,7 +597,7 @@ const worksData = {
                         <div class="full-image">
                             <div style="display: flex; justify-content: center; align-items: center;">
                                 <iframe style="width: 100%; aspect-ratio: 16/9;"
-                                src="https://www.youtube.com/embed/qmIV9mdoruA?si=Fq4CUbBAGrU7sfED" 
+                                src="https://www.youtube-nocookie.com/embed/qmIV9mdoruA?rel=0&modestbranding=1&showinfo=0" 
                                 // title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
                                 // gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
@@ -1113,7 +1113,7 @@ const worksData = {
                         <div class="full-image">
                             <div style="display: flex; justify-content: center; align-items: center;">
                                 <iframe style="width: 100%; aspect-ratio: 16/9;"
-                                src="https://www.youtube.com/embed/-Ez5RnWz7Zs?si=O8DlMQofNsPaldjp" 
+                                src="https://www.youtube-nocookie.com/embed/-Ez5RnWz7Zs?rel=0&modestbranding=1&showinfo=0" 
                                 title="YouTube video player" frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -1302,7 +1302,7 @@ const worksData = {
                         <div class="full-image">
                             <div style="display: flex; justify-content: center; align-items: center;">
                                 <iframe class="ytb-embed" style="width: 100%; aspect-ratio: 16/9;"
-                                src="https://www.youtube.com/embed/L9DkcnfT-aA?si=5j6UGOJ_z1UTpuK5rel=0&modestbranding=1&controls=1&showinfo=0" 
+                                src="https://www.youtube-nocookie.com/embed/L9DkcnfT-aA?rel=0&modestbranding=1&controls=1&showinfo=0" 
                                 frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen></iframe>
@@ -1331,7 +1331,7 @@ const worksData = {
                         </div>
                         
                         <p class = "work-discription">
-                            “假山” (piled stone hill) also known as artificial mountains, 
+                            "假山" (piled stone hill) also known as artificial mountains, 
                             are an integral element in traditional Chinese gardens, 
                             occupying a unique space between the artificial and the natural. 
                             They are believed to have originated from the imaginative realm of the place of gods. 
@@ -1483,7 +1483,7 @@ const worksData = {
                     content: `
                         <div class="full-image" style="border: 1px solid #ccc;">
                             <iframe style="width: 100%; aspect-ratio: 16/9;" 
-                            src="https://www.youtube.com/embed/1gdsnocX3C0?si=ZYrNoK85hbgnklt5" 
+                            src="https://www.youtube-nocookie.com/embed/1gdsnocX3C0?rel=0&modestbranding=1&showinfo=0" 
                             // title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
                             // allowfullscreen></iframe>
                         </div>

@@ -16,7 +16,7 @@ function generateList() {
     let listHTML = `
         <div class="container">
             <div class="copyright" style="margin-bottom: 48px;">
-                <a class="eng">© 2025 <NAME>Chris W.</NAME></a>
+                <a class="eng">© 2025 <NAME>Yixi(Chris) Wu</NAME></a>
             </div>
             <div class="list-container">
     `;

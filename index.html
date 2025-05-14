@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="page-type" content="map">
-    <title>Chris W/WALKING</title>
+    <title>FullMap - Yixi(Chris) Wu</title>
     <link rel="icon" type="image/svg" href="./icon/walking.svg">
 
     <link rel="stylesheet" href="./navigater.css">
@@ -117,6 +117,33 @@
             user-select: none;
         }
 
+        #pop-up {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease-in-out;
+
+            width: 600px;
+            height: 300px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            font-family: 'Quicksand', sans-serif;
+
+            overflow: hidden;
+
+            background-color: #0dd460;
+            display: none; /* 默认隐藏 */
+        }
+
+        #cancel-pop-up:hover {
+            cursor: pointer;
+        }
+
+
         /* 添加媒体查询，在小屏幕设备上隐藏compass和scale */
         @media screen and (max-width: 768px) {
             .compass {
@@ -126,6 +153,34 @@
             #scale {
                 display: none !important;
             }
+
+            .copyright {
+                display: none !important;
+            }
+
+            .tree-container {
+                display: none !important;
+            }
+            
+            /* 手机端弹窗样式调整 */
+            #pop-up {
+                width: 80%;
+                height: auto;
+                min-height: 250px;
+                padding: 15px;
+            }
+            
+            #pop-up img {
+                width: 35%;
+                top: 50%;
+                left: 0;
+            }
+            
+            #pop-up-text {
+                width: 70%;
+                left: 30%;
+                font-size: 14px;
+            }
         }
 
     </style>
@@ -133,6 +188,23 @@
 </head>
 
 <body>
+    <!-- pop-up window -->
+    <section id="pop-up">
+        <p id="cancel-pop-up"
+        style="width: 16px; position: absolute; top: 0px; right: 16px;"> X </p>
+        <img src="./icon/walking.svg" alt=""
+        style=" width: 72%; position: absolute; top: 44%; left: -22%; transform: translate(0, -50%);">
+        <div id="pop-up-text" style="width: 56%; position: absolute; left: 36%;">
+            <!-- <p>Welcome to my website!</p>
+            <p>This is a map of my personal growth and experience.</p>
+            <p>I will keep walking and keep creating.</p> -->
+
+            <p>A LITTLE HELP HERE…</p>
+            <p>&nbsp;</p>
+            <p>I'm trying to get Google to auto-complete "Yixi(Chris) Wu is Awesome" when you type "Yixi(Chris) Wu" into the search box so if you click this link below that searchs Google for <a href="https://www.google.com/search?q=Yixi(Chris)+Wu+is+Awesome" target="_blank" style="font-weight: 500; color: #000000;">"Yixi(Chris) Wu is Awesome"</a> it would really help me out.</p>
+        </div>
+    </section>
+
     <section id="navigater">
         <div class="map-container">
             <div class="navigater-title left" id="fullmap">
@@ -257,7 +329,7 @@
             position: fixed;
             bottom: 54px;
             right: 32px;">
-                <a class="eng">© 2025 <NAME>Chris W.</NAME></a>
+                <a class="eng">© 2025 <NAME>Yixi(Chris) Wu</NAME></a>
             </div>
         </div>
 
@@ -267,39 +339,39 @@
                 <div id="kiwi-container" 
                 style="position: absolute; top: 16%; left: 10%;
                 background: #881d9b00; transform: translate(-50%, 0%);
-                display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
-                    <div id="kiwi">
-                        <img id="kiwi-stand" class="icon" src="./icon/kiwi-bird-svgrepo-com.svg">
-                        <img id="kiwi-body" class="icon" src="./icon/Kiwi.svg">
-                        <img id="kiwi-legs1" class="icon" src="./icon/Kiwi Bird (1).svg">
-                        <img id="kiwi-legs2" class="icon" src="./icon/Kiwi-Bird (2).svg">
+                display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; cursor: help;">
+                    <div id="kiwi" style="cursor: help;">
+                        <img id="kiwi-stand" class="icon" src="./icon/kiwi-bird-svgrepo-com.svg" style="cursor: help;">
+                        <img id="kiwi-body" class="icon" src="./icon/Kiwi.svg" style="cursor: help;">
+                        <img id="kiwi-legs1" class="icon" src="./icon/Kiwi Bird (1).svg" style="cursor: help;">
+                        <img id="kiwi-legs2" class="icon" src="./icon/Kiwi-Bird (2).svg" style="cursor: help;">
                     </div>
 
-                    <div class="dialogue-container" style="position: relative; top: 10px; left: 10px;">
-                        <div class="dialogue" id="dialogue4" style="width: 100px;">
+                    <div class="dialogue-container" style="position: relative; top: 10px; left: 10px; cursor: help;">
+                        <div class="dialogue" id="dialogue4" style="width: 100px; cursor: help !important;">
                             <p>I'm a kiwi bird,<br>Ask me anything.</p>
                         </div>
-                        <div class="dialogue" id="dialogue5" style="width: 165px;">
+                        <div class="dialogue" id="dialogue5" style="width: 165px; cursor: help !important;">
                             <p>Well... Actually, you can't ask,<br>unless...</p>
                         </div>
-                        <div class="dialogue" id="dialogue6" style="width: 125px;">
+                        <div class="dialogue" id="dialogue6" style="width: 125px; cursor: help !important;">
                             <p>You seem like a noob.<br>Try the "Contact" button three times.</p>
                         </div>
-                        <div class="dialogue" id="dialogue1" style="width: 180px;">
+                        <div class="dialogue" id="dialogue1" style="width: 180px; cursor: help !important;">
                             <p>This is a personal website - as a puzzle game.<br></p>
                         </div>
-                        <div class="dialogue" id="dialogue2" style="width: 190px;">
+                        <div class="dialogue" id="dialogue2" style="width: 190px; cursor: help !important;">
                             <p>Just click on whatever attracts you to explore. <br> You can also use the filter to find specific projects.<br></p>
                         </div>
-                        <div class="dialogue" id="dialogue3" style="width: 190px;">
+                        <div class="dialogue" id="dialogue3" style="width: 190px; cursor: help !important;">
                             <p>Cause I'm super bored, and I'm born to be alternative.<br></p>
                         </div>
                     </div>
                 </div>
 
                 <!-- ufo -->
-                <img class="icon" src="./icon/UFO Flying.svg" id="ufo" style="transform: translate(-50%, -50%); top: 89%; left: 85%;">
-                <div id="ufo-shadow" style="transform: translate(-50%, -50%) scaleY(0.0) scaleX(0.0); top: calc(89% + 3px); left: 85%;"></div>
+                <img class="icon" src="./icon/UFO Flying.svg" id="ufo" style="transform: translate(-50%, -50%); top: 89%; left: 85%; cursor: help;">
+                <div id="ufo-shadow" style="transform: translate(-50%, -50%) scaleY(0.0) scaleX(0.0); top: calc(89% + 3px); left: 85%; cursor: help;"></div>
 
                 <div id="playground-container" 
                 style="width: calc(6vw + 120px); aspect-ratio: 1.14; 
@@ -314,7 +386,7 @@
                     style="width: 100%; 
                     left: 50%; top: 50%; position: absolute; 
                     transform: translate(-50%, -50%); cursor: help; z-index: 99999" 
-                    src="./icon/Playground(3).svg" alt=""
+                    src="./icon/Playground(4).svg" alt=""
                     onclick="window.location.href='playground.html'">
                 
                 </div>
@@ -333,10 +405,11 @@
                 transform: translate(-50%, -50%) rotate(-26deg);
                 transform-origin: center;
                 overflow: hidden;
+                cursor: help;
                 ">
                     <img style="width: 100%; 
                     left: 50%; top: 45%; position: absolute; 
-                    transform: translate(-50%, -50%);" 
+                    transform: translate(-50%, -50%); cursor: help;" 
                     src="./icon/Parthenon Top View.svg" alt="">
                 </div>
 
@@ -349,7 +422,7 @@
                 </div>
                 
                 <img id="cave" 
-                style="position: absolute; top: 72%; left: 28%;"
+                style="position: absolute; top: 72%; left: 20%; cursor: help;"
                 class="icon" src="./icon/Cave Entrance Icon (1).svg">
             </div>
         </div>
@@ -385,6 +458,7 @@
     <script src="./tree-flip.js"></script>
     <script src="./ufo-and-footer.js"></script>
     <script src="./overlay.js"></script>
+    <script src="./viewport-fix.js"></script>
     
     <script>
         const hyperlinkEmail2 = document.getElementById("email2");
@@ -416,6 +490,21 @@
             setTimeout(() => {
                 toast.remove();
             }, 1000);
+        });
+
+        // 添加弹窗控制
+        const popUp = document.getElementById("pop-up");
+        const cancelPopUp = document.getElementById("cancel-pop-up");
+        const caveIcon = document.getElementById("cave");
+        
+        // 点击cave图标显示弹窗
+        caveIcon.addEventListener("click", function() {
+            popUp.style.display = "flex";
+        });
+        
+        // 点击取消按钮隐藏弹窗
+        cancelPopUp.addEventListener("click", function() {
+            popUp.style.display = "none";
         });
 
         // 添加调试代码

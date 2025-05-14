@@ -93,11 +93,13 @@ function createIconElement(work) {
     wrapperElement.className = 'icon-wrapper';
     wrapperElement.style.left = `${work.icon.position[0]}%`;
     wrapperElement.style.top = `${work.icon.position[1]}%`;
+    wrapperElement.style.cursor = 'default'; // 确保默认光标
 
     // 创建canvas元素并设置样式
     const canvas = document.createElement('canvas');
     canvas.width = 48;
     canvas.height = 48;
+    canvas.style.cursor = 'default'; // 确保默认光标
 
     wrapperElement.appendChild(canvas);
     
@@ -119,6 +121,7 @@ function createIconElement(work) {
     textElement.className = 'work-text';
     textElement.textContent = `${work.stageId}${work.indexNumber}`;
     textElement.style.color = `${work.icon.fill === 'black' ? 'white' : 'black'}`;
+    textElement.style.cursor = 'default'; // 确保默认光标
     
     wrapperElement.appendChild(textElement);
 
@@ -209,6 +212,7 @@ function generateIcons() {
         // 绑定悬停事件
         wrapperElement.addEventListener('mouseover', function(e) {
             e.preventDefault();
+            this.style.cursor = 'default'; // 确保悬停时仍然是默认光标
             const workId = this.getAttribute('data-work-id');
             const work = works.find(w => w.id === workId);
 
