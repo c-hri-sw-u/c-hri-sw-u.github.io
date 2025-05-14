@@ -75,10 +75,58 @@ body {
     opacity: 0.6;
     border: 1px dashed rgb(0, 0, 0);
 }
-.filter-tag:hover {
-    opacity: 1;
-    border: 1px dashed #000000;
+
+/* 只在支持真实hover的设备上应用hover效果 */
+@media (hover: hover) {
+    .filter-tag:hover {
+        opacity: 1;
+        border: 1px dashed #000000;
+    }
+    
+    #filter-container #filter-line4 div:hover {
+        background-color: rgb(185, 185, 185);
+        border: 0.5px solid rgb(185, 185, 185);
+    }
 }
+
+/* 触摸设备上使用active替代hover */
+@media (hover: none) {
+    .filter-tag:hover {
+        /* 移除hover效果，使用原始样式 */
+        opacity: inherit;
+        border: inherit;
+    }
+    
+    .filter-tag:active {
+        opacity: 1;
+        border: 1px dashed #000000;
+        transition: none; /* 防止延迟 */
+    }
+    
+    /* 添加一个显式的活动状态样式类 */
+    .filter-tag.touch-active {
+        opacity: 1 !important;
+        border: 1px dashed #000000 !important;
+    }
+    
+    #filter-container #filter-line4 div:hover {
+        background-color: inherit;
+        border: 0.5px solid rgb(0, 0, 0);
+    }
+    
+    #filter-container #filter-line4 div:active {
+        background-color: rgb(185, 185, 185);
+        border: 0.5px solid rgb(185, 185, 185);
+        transition: none; /* 防止延迟 */
+    }
+    
+    /* 添加一个显式的活动状态样式类 */
+    #filter-container #filter-line4 div.touch-active {
+        background-color: rgb(185, 185, 185) !important;
+        border: 0.5px solid rgb(185, 185, 185) !important;
+    }
+}
+
 .filter-tag.disabled {
     pointer-events: none;
     opacity: 0.25;
@@ -90,11 +138,6 @@ body {
     /* background-color: #cdcdcd; */
     opacity: 1;
     border: 0.5px solid rgb(0, 0, 0);
-}
-
-#filter-container #filter-line4 div:hover {
-    background-color: rgb(185, 185, 185);
-    border: 0.5px solid rgb(185, 185, 185);
 }
 
 #map-background {

@@ -27,6 +27,58 @@ const tagToWorksMapLine3 = {
     'filter-line3-item10': ['parade-with-gods', 'go-above-or-below', 'boba-bubble-trouble', 'glance-t1'] // Others
 };
 
+// ========== 触摸设备检测与处理 ==========
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+// 在触摸设备上，添加touchend事件处理，清除可能的hover状态
+if (isTouchDevice) {
+    const clearHoverState = (event) => {
+        // 如果点击的不是filter标签，则清除所有filter标签的可能hover状态
+        if (!event.target.closest('#filter-container')) {
+            document.querySelectorAll('.filter-tag, #filter-container #filter-line4 div').forEach(tag => {
+                // 强制移除可能的hover视觉效果
+                tag.classList.remove('hover-state');
+                tag.classList.remove('touch-active');
+                
+                // 以下是用于IE/Safari等浏览器的trick
+                // 临时切换display以重置hover状态
+                const oldDisplay = tag.style.display;
+                tag.style.display = 'none';
+                // 触发重绘
+                tag.offsetHeight;
+                tag.style.display = oldDisplay;
+            });
+        }
+    };
+    
+    // 监听整个文档的触摸结束事件
+    document.addEventListener('touchend', clearHoverState);
+    
+    // 为所有filter标签添加触摸开始和触摸结束事件
+    [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3, selectAllButton, clearButton].forEach(tag => {
+        tag.addEventListener('touchstart', () => {
+            // 清除其他标签可能的hover状态
+            document.querySelectorAll('.filter-tag, #filter-container #filter-line4 div').forEach(t => {
+                if (t !== tag) {
+                    t.classList.remove('touch-active');
+                }
+            });
+            
+            // 添加活动状态类
+            if (!tag.classList.contains('disabled')) {
+                tag.classList.add('touch-active');
+            }
+        });
+        
+        tag.addEventListener('touchend', () => {
+            // 延迟移除活动状态类，以便用户看到反馈
+            setTimeout(() => {
+                tag.classList.remove('touch-active');
+            }, 100);
+        });
+    });
+}
+
 // ========== 获取各层 tags ==========
 const filterTagsLine1 = document.querySelectorAll('#filter-line1 > div');
 const filterTagsLine2 = document.querySelectorAll('#filter-line2 > div');
@@ -152,23 +204,54 @@ function updateTagStyle(tag) {
 
 // ========== 事件绑定 ==========
 [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(tag => {
-    tag.addEventListener('click', () => {
-        if (tag.classList.contains('disabled')) return;
-        if (selectedTags.has(tag.id)) {
-            selectedTags.delete(tag.id);
-        } else {
-            selectedTags.add(tag.id);
-        }
-        updateTagStyle(tag);
-        updateDisabledTags();
-        [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(updateTagStyle);
-        updateMapIcons();
-    });
+    // 移动端和桌面端使用不同的事件处理方式
+    if (isTouchDevice) {
+        // 触摸设备上使用touchend事件
+        tag.addEventListener('touchend', (e) => {
+            if (tag.classList.contains('disabled')) return;
+            
+            // 阻止默认行为，防止触发鼠标事件
+            e.preventDefault();
+            
+            // 切换选中状态
+            if (selectedTags.has(tag.id)) {
+                selectedTags.delete(tag.id);
+            } else {
+                selectedTags.add(tag.id);
+            }
+            
+            // 立即更新视觉样式，不依赖hover
+            updateTagStyle(tag);
+            
+            // 更新其他状态
+            updateDisabledTags();
+            [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(updateTagStyle);
+            updateMapIcons();
+            
+            // 移除活动状态类
+            tag.classList.remove('touch-active');
+        });
+    } else {
+        // 桌面设备使用click事件
+        tag.addEventListener('click', () => {
+            if (tag.classList.contains('disabled')) return;
+            if (selectedTags.has(tag.id)) {
+                selectedTags.delete(tag.id);
+            } else {
+                selectedTags.add(tag.id);
+            }
+            updateTagStyle(tag);
+            updateDisabledTags();
+            [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(updateTagStyle);
+            updateMapIcons();
+        });
+    }
 });
 
 let clearStep = 0; // 0: Others, 1: line3, 2: line2, 3: line1
 
-clearButton.addEventListener('click', () => {
+// 定义clear按钮的处理函数
+function handleClearButton() {
     if (clearStep === 0) {
         // 清空 Others（filter-line3-item10）
         const othersTag = document.getElementById('filter-line3-item10');
@@ -205,7 +288,20 @@ clearButton.addEventListener('click', () => {
     }
     updateDisabledTags();
     updateMapIcons();
-});
+}
+
+// 为桌面和移动设备分别绑定事件
+if (isTouchDevice) {
+    clearButton.addEventListener('touchend', (e) => {
+        e.preventDefault(); // 阻止默认行为
+        handleClearButton();
+        
+        // 移除活动状态类
+        clearButton.classList.remove('touch-active');
+    });
+} else {
+    clearButton.addEventListener('click', handleClearButton);
+}
 
 function selectAllTags() {
     clearStep = 0;
@@ -218,7 +314,18 @@ function selectAllTags() {
     updateMapIcons();
 }
 
-selectAllButton.addEventListener('click', selectAllTags);
+// 为桌面和移动设备分别绑定事件
+if (isTouchDevice) {
+    selectAllButton.addEventListener('touchend', (e) => {
+        e.preventDefault(); // 阻止默认行为
+        selectAllTags();
+        
+        // 移除活动状态类
+        selectAllButton.classList.remove('touch-active');
+    });
+} else {
+    selectAllButton.addEventListener('click', selectAllTags);
+}
 
 // 在初始化和其它操作时也可重置 clearStep
 clearStep = 0;
