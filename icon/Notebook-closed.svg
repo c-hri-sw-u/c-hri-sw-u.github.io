@@ -1,0 +1,11 @@
+<svg width="800px" height="800px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bottom Pages Thickness -->
+  <path fill="#000000" d="M25 88 L85 88 L85 98 L25 98 Z" opacity="0.8"/>
+  <path fill="#000000" d="M85 88 L75 53 L75 63 L85 98 Z" opacity="0.8"/>
+  
+  <!-- Spine -->
+  <path fill="#000000" d="M15 53 L25 88 L25 98 L15 63 Z"/>
+
+  <!-- Top Cover (Closed) -->
+  <path fill="#000000" stroke="#000000" stroke-width="2" stroke-linejoin="round" d="M15 53 L75 53 L85 88 L25 88 Z"/>
+</svg>

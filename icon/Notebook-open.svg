@@ -1,0 +1,25 @@
+<svg width="800px" height="800px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bottom Pages Thickness -->
+  <path fill="#000000" d="M25 88 L85 88 L85 98 L25 98 Z" opacity="0.8"/>
+  <path fill="#000000" d="M85 88 L75 53 L75 63 L85 98 Z" opacity="0.8"/>
+  
+  <!-- Spine -->
+  <path fill="#000000" d="M15 53 L25 88 L25 98 L15 63 Z"/>
+
+  <!-- Bottom Page Surface -->
+  <path fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-linejoin="round" d="M15 53 L75 53 L85 88 L25 88 Z"/>
+  <!-- Page Lines -->
+  <path stroke="#000000" stroke-width="2" stroke-linecap="round" d="M40 63 L70 63"/>
+  <path stroke="#000000" stroke-width="2" stroke-linecap="round" d="M38 73 L75 73"/>
+  <path stroke="#000000" stroke-width="2" stroke-linecap="round" d="M36 83 L80 83"/>
+  
+  <!-- Top Cover (Fully Open - Extended) -->
+  <!-- Hinge: (15,53) to (25,88) -->
+  <!-- Extended Vector roughly (30, -50) -->
+  <!-- Top-Left: (15+30, 53-50) = (45, 3) -->
+  <!-- Top-Right: (25+30, 88-50) = (55, 38) -->
+  <path fill="#000000" stroke="#000000" stroke-width="2" stroke-linejoin="round" d="M15 53 L45 3 L55 38 L25 88 Z"/>
+  
+  <!-- Inner Page Detail on the lifted cover (optional) -->
+  <path stroke="#FFFFFF" stroke-width="1" d="M25 53 L38 28" opacity="0.3"/>
+</svg>

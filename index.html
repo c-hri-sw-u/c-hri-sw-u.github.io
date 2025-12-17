@@ -436,6 +436,48 @@
                 <div class="tree-container" id="tree3">
                 </div>
                 
+                <img id="notebook" 
+                style="position: absolute; top: 68%; left:8%; cursor: help; width: 38px;"
+                class="icon" src="./icon/Notebook-closed.svg">
+
+                <script>
+                    (function() {
+                        const notebook = document.getElementById('notebook');
+                        let isHovered = false;
+                        
+                        // Icons
+                        const iconClosed = './icon/Notebook-closed.svg';
+                        const iconSemi = './icon/Notebook-semiopen.svg';
+                        const iconOpen = './icon/Notebook-open.svg';
+                        
+                        // Hover events
+                        notebook.addEventListener('mouseenter', () => {
+                            isHovered = true;
+                            notebook.src = iconOpen;
+                        });
+                        
+                        notebook.addEventListener('mouseleave', () => {
+                            isHovered = false;
+                            notebook.src = iconClosed;
+                        });
+                        
+                        // Idle animation
+                        setInterval(() => {
+                            if (!isHovered) {
+                                // Switch to semi-open
+                                notebook.src = iconSemi;
+                                
+                                // Switch back to closed after 800ms
+                                setTimeout(() => {
+                                    if (!isHovered) {
+                                        notebook.src = iconClosed;
+                                    }
+                                }, 800);
+                            }
+                        }, 2000);
+                    })();
+                </script>
+
                 <img id="cave" 
                 style="position: absolute; top: 72%; left: 20%; cursor: help;"
                 class="icon" src="./icon/Cave Entrance Icon (1).svg">
