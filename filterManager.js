@@ -79,13 +79,6 @@ if (isTouchDevice) {
     });
 }
 
-// ========== 获取各层 tags ==========
-const filterTagsLine1 = document.querySelectorAll('#filter-line1 > div');
-const filterTagsLine2 = document.querySelectorAll('#filter-line2 > div');
-const filterTagsLine3 = document.querySelectorAll('#filter-line3 > div');
-const selectAllButton = document.getElementById('filter-line4-item1');
-const clearButton = document.getElementById('filter-line4-item2');
-
 // ========== 状态 ==========
 let selectedTags = new Set();
 
@@ -203,47 +196,40 @@ function updateTagStyle(tag) {
 }
 
 // ========== 事件绑定 ==========
+function toggleTag(tag) {
+    if (tag.classList.contains('disabled')) return;
+    
+    // 切换选中状态
+    if (selectedTags.has(tag.id)) {
+        selectedTags.delete(tag.id);
+    } else {
+        selectedTags.add(tag.id);
+    }
+    
+    // 更新视觉样式和状态
+    updateTagStyle(tag);
+    updateDisabledTags();
+    [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(updateTagStyle);
+    updateMapIcons();
+}
+
 [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(tag => {
-    // 移动端和桌面端使用不同的事件处理方式
+    // 1. 始终绑定 click 事件，确保鼠标交互（以及未被拦截的触摸交互）正常工作
+    tag.addEventListener('click', (e) => {
+        // 如果是触摸设备触发的 click（未被 preventDefault），也正常处理
+        toggleTag(tag);
+    });
+
+    // 2. 如果是触摸设备，绑定 touch 事件以获得更好体验（无延迟，Active状态）
     if (isTouchDevice) {
-        // 触摸设备上使用touchend事件
         tag.addEventListener('touchend', (e) => {
-            if (tag.classList.contains('disabled')) return;
-            
-            // 阻止默认行为，防止触发鼠标事件
+            // 阻止默认行为，防止触发 click (避免双重触发)
             e.preventDefault();
             
-            // 切换选中状态
-            if (selectedTags.has(tag.id)) {
-                selectedTags.delete(tag.id);
-            } else {
-                selectedTags.add(tag.id);
-            }
-            
-            // 立即更新视觉样式，不依赖hover
-            updateTagStyle(tag);
-            
-            // 更新其他状态
-            updateDisabledTags();
-            [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(updateTagStyle);
-            updateMapIcons();
+            toggleTag(tag);
             
             // 移除活动状态类
             tag.classList.remove('touch-active');
-        });
-    } else {
-        // 桌面设备使用click事件
-        tag.addEventListener('click', () => {
-            if (tag.classList.contains('disabled')) return;
-            if (selectedTags.has(tag.id)) {
-                selectedTags.delete(tag.id);
-            } else {
-                selectedTags.add(tag.id);
-            }
-            updateTagStyle(tag);
-            updateDisabledTags();
-            [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(updateTagStyle);
-            updateMapIcons();
         });
     }
 });
