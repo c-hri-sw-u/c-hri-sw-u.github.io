@@ -90,7 +90,15 @@
     cursor: default !important;
 }
 
-.icon-wrapper:hover {
+@media (hover: hover) {
+    .icon-wrapper:hover {
+        transform: translate(-50%, -50%) scale(1.2);
+        z-index: 9999;
+        cursor: default !important;
+    }
+}
+
+.icon-wrapper.active {
     transform: translate(-50%, -50%) scale(1.2);
     z-index: 9999;
     cursor: default !important;

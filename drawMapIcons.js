@@ -133,6 +133,62 @@ const descriptionBox = document.createElement('div');
 descriptionBox.className = 'hover-description';
 document.body.appendChild(descriptionBox);
 
+// ========== Touch Device Logic Helpers ==========
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+let activeWorkId = null;
+
+function showWorkDescription(wrapper, workId, works) {
+    const work = works.find(w => w.id === workId);
+    if (!work) return;
+
+    // 显示悬停描述
+    descriptionBox.innerHTML = `
+        <p>${work.title} <br><br></p>
+        <p>${work.description}</p>
+    `;
+
+    // 横向自适应
+    if (work.icon.position[0] >= 50) {
+        descriptionBox.style.left = '32px';
+        descriptionBox.style.right = 'auto';
+    } else {
+        descriptionBox.style.right = '32px';
+        descriptionBox.style.left = 'auto';
+    }
+
+    // 纵向自适应
+    if (work.icon.position[1] >= 50) {
+        descriptionBox.style.bottom = 'calc(50% + 32px)';
+        descriptionBox.style.top = 'auto';
+    } else {
+        descriptionBox.style.top = 'calc(50% - 4px)';
+        descriptionBox.style.bottom = 'auto';
+    }
+    descriptionBox.style.display = 'block';
+
+    // 显示悬停内容
+    const hoverContent = wrapper.querySelector('.hover-content');
+    if (hoverContent) {
+        hoverContent.style.display = 'block';
+        if (work.icon.position[1] >= 50) {
+            hoverContent.style.bottom = '100%';
+            hoverContent.style.top = 'auto';
+        } else {
+            hoverContent.style.top = '100%';
+            hoverContent.style.bottom = 'auto';
+        }
+    }
+}
+
+function hideWorkDescription(wrapper) {
+    descriptionBox.style.display = 'none';
+    const hoverContent = wrapper.querySelector('.hover-content');
+    if (hoverContent) {
+        hoverContent.style.display = 'none';
+    }
+}
+// ================================================
+
 function createDotElement(position) {
     const dotElement = document.createElement('div');
     dotElement.style.position = 'absolute';
@@ -206,73 +262,45 @@ function generateIcons() {
         wrapperElement.addEventListener('click', function(e) {
             e.preventDefault();
             const workId = this.getAttribute('data-work-id');
-            window.location.href = `template.html?work=${workId}&from=map`;
+            
+            if (isTouchDevice) {
+                if (activeWorkId === workId) {
+                    // 如果已经是激活状态，则跳转
+                    window.location.href = `template.html?work=${workId}&from=map`;
+                } else {
+                    // 如果不是激活状态，则激活（模拟Hover）
+                    e.stopPropagation(); // 防止冒泡到全局点击事件
+                    
+                    // 清除其他图标的激活状态
+                    document.querySelectorAll('.icon-wrapper.active').forEach(el => {
+                        el.classList.remove('active');
+                        hideWorkDescription(el);
+                    });
+                    
+                    this.classList.add('active');
+                    activeWorkId = workId;
+                    showWorkDescription(this, workId, works);
+                }
+            } else {
+                // 非触摸设备，直接跳转
+                window.location.href = `template.html?work=${workId}&from=map`;
+            }
         });
 
         // 绑定悬停事件
         wrapperElement.addEventListener('mouseover', function(e) {
+            if (isTouchDevice) return; // 触摸设备忽略 mouseover
+            
             e.preventDefault();
             this.style.cursor = 'default'; // 确保悬停时仍然是默认光标
             const workId = this.getAttribute('data-work-id');
-            const work = works.find(w => w.id === workId);
-
-            // 显示悬停描述
-            descriptionBox.innerHTML = `
-                <p>${work.title} <br><br></p>
-                <p>${work.description}</p>
-            `;
-
-            // 横向自适应
-            if (work.icon.position[0] >= 50) {
-                // 图标在右半边，简介显示在左侧
-                descriptionBox.style.left = '32px';
-                descriptionBox.style.right = 'auto';
-            } else {
-                // 图标在左半边，简介显示在右侧
-                descriptionBox.style.right = '32px';
-                descriptionBox.style.left = 'auto';
-            }
-
-            // 纵向自适应
-            if (work.icon.position[1] >= 50) {
-                // 图标下半屏，向上显示悬停描述
-                descriptionBox.style.bottom = 'calc(50% + 32px)';
-                descriptionBox.style.top = 'auto';
-            } else {
-                // 图标上半屏，向下显示悬停描述
-                descriptionBox.style.top = 'calc(50% - 4px)';
-                descriptionBox.style.bottom = 'auto';
-            }
-            descriptionBox.style.display = 'block';
-
-            // 显示悬停内容
-            const hoverContent = this.querySelector('.hover-content');
-            if (hoverContent) {
-                hoverContent.style.display = 'block';
-                if (work.icon.position[1] >= 50) {
-                    // 图标下半屏，向上显示悬停描述
-                    hoverContent.style.bottom = '100%';
-                    hoverContent.style.top = 'auto';
-                } else {
-                    // 图标上半屏，向下显示悬停描述
-                    hoverContent.style.top = '100%';
-                    hoverContent.style.bottom = 'auto';
-                }
-            }
-            else {
-                console.log('No hover content found for work', workId);
-            }
-
+            showWorkDescription(this, workId, works);
         });
 
         wrapperElement.addEventListener('mouseleave', function(e) {
-            // 隐藏悬停描述
-            descriptionBox.style.display = 'none';
-            // 隐藏悬停内容
-            const hoverContent = this.querySelector('.hover-content');
-            if (hoverContent) {
-                hoverContent.style.display = 'none';
-            }
+            if (isTouchDevice) return; // 触摸设备忽略 mouseleave
+            
+            hideWorkDescription(this);
         });
         
         iconContainer.appendChild(wrapperElement);
@@ -284,3 +312,16 @@ function generateIcons() {
 
 // 页面加载时生成图标
 document.addEventListener('DOMContentLoaded', generateIcons);
+
+// Global click listener for Touch Devices to clear active state
+if (isTouchDevice) {
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.icon-wrapper')) {
+            document.querySelectorAll('.icon-wrapper.active').forEach(el => {
+                el.classList.remove('active');
+                hideWorkDescription(el);
+            });
+            activeWorkId = null;
+        }
+    });
+}

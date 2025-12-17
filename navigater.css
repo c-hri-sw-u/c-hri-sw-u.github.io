@@ -58,19 +58,36 @@
 
 
 
-#navigater > .map-container .left:hover {
-    background: rgba(217, 217, 217);
-    backdrop-filter: blur(1px);
-    cursor: default;
+@media (hover: hover) {
+    #navigater > .map-container .left:hover {
+        background: rgba(217, 217, 217);
+        backdrop-filter: blur(1px);
+        cursor: default;
+    }
+
+    #navigater > .map-container .middle:hover {
+        background: rgb(185, 185, 185);
+        cursor: default;
+    }
+    #navigater > .map-container .right:hover {
+        background: #F2F76D;
+        cursor: default;
+    }
 }
 
-#navigater > .map-container .middle:hover {
-    background: rgb(185, 185, 185);
-    cursor: default;
+#navigater > .map-container .left:active,
+#navigater > .map-container .left.touch-active {
+    background: rgba(217, 217, 217);
+    backdrop-filter: blur(1px);
 }
-#navigater > .map-container .right:hover {
+
+#navigater > .map-container .middle:active,
+#navigater > .map-container .middle.touch-active {
+    background: rgb(185, 185, 185);
+}
+#navigater > .map-container .right:active,
+#navigater > .map-container .right.touch-active {
     background: #F2F76D;
-    cursor: default;
 }
 
 @media (max-width: 600px) {
