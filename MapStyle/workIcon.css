@@ -49,6 +49,74 @@
     pointer-events: none;
 
     font-family: "Quicksand", sans-serif;
+}
+
+/* Latest Project Indicator */
+@keyframes bounce-periodic {
+    0%, 80% { transform: translateX(-50%) translateY(0) translateZ(0); }
+    85% { transform: translateX(-50%) translateY(-10px) translateZ(0); }
+    90% { transform: translateX(-50%) translateY(0) translateZ(0); }
+    95% { transform: translateX(-50%) translateY(-5px) translateZ(0); }
+    100% { transform: translateX(-50%) translateY(0) translateZ(0); }
+}
+
+.latest-indicator {
+    position: absolute;
+    top: -42px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    animation: bounce-periodic 5s infinite ease-in-out;
+    z-index: 100;
+    transform: translateX(-50%) translateZ(0);
+    will-change: transform;
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
+}
+
+.latest-triangle-outlined {
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #333;
+    opacity: 0.8;
+    position: relative;
+}
+
+.latest-triangle-outlined::after {
+    content: '';
+    position: absolute;
+    top: -9px; 
+    left: -4px; 
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #eee; 
+}
+
+.latest-text {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.latest-triangle {
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #333;
+    opacity: 0.8;
 } */
 
 /* 优先级更高的选择器确保icon-wrapper不受decoration.css中全局规则的影响 */

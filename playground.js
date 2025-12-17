@@ -2,6 +2,42 @@ console.log("playground.js loaded");
 
 const playgroundData = {
     projects: [
+        // RotFix
+        {
+            id: 'rotfix',
+            icon: {
+                shape: 'circle',
+                fill: 'black',
+                dashed: false,
+                skewed: false,
+            },
+            title: 'RotFix',
+            listTitle: 'RotFix',
+            subtitle: '',
+            type: 'Chrome Extension | <b>Design + Development</b> | LLM + Web | Learning Tool',
+            date: '2025 Summer',
+            purpose: `<span class="bold">Personal</span> | Research Tool`,
+            description: `RotFix is a Chrome extension designed to combat passive learning when using ChatGPT. It detects when you're skimming without understanding and blocks further questions until you write a thoughtful reflection, which is then evaluated by an LLM. It forces active engagement to ensure knowledge retention.`,
+            content: `
+                <div class="full-image">
+                    <img src="Assets/Playgrounds/RotFix/1.gif" alt="">
+                </div>
+                <p class = "work-discription">
+                    In the summer of 2025, while working at an HCI lab, I used ChatGPT extensively to learn about electronic components. ChatGPT is an excellent teacher, capable of answering any human question in seconds. However, human nature is lazy. I soon found myself unable to force myself to read and understand long responses, leading to superficial learning where information slipped through my brain 🧠 without leaving a trace. To address this, I developed this Chrome extension: RotFix.
+                </p>
+
+                <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+                    <img style="width: 80px; height: auto;" src="Assets/Playgrounds/RotFix/icon.png" alt="">
+                </div>
+
+                <div class="full-image">
+                    <img src="Assets/Playgrounds/RotFix/2.gif" alt="">
+                </div>
+                <p class = "work-discription">
+                    RotFix precisely tracks your Q&A sessions with ChatGPT by monitoring changes in web content. When a set limit of turns is reached, it forcefully prevents you from asking further questions to ChatGPT. To unlock the chat, you must write a reflection in the dialog box, which is then evaluated by an LLM (graded as pass, thoughtful, or fail). If your reflection is deemed "thoughtful" (showing thinking but with some gaps), it will even suggest a follow-up question to deepen your understanding.
+                </p>
+            `
+        },
         // A Walk with Shooting Star
         {
             id: 'walk-with-shooting-star',

@@ -3,6 +3,51 @@ console.log("works.js loaded");
 const worksData = {
     stages: [
         {
+            id: 'E',
+            name: 'Lino App',
+            works: [
+                {
+                    id: 'lino-app',
+                    icon: {
+                        shape: 'circle',
+                        fill: 'white',
+                        dashed: true,
+                        skewed: false,
+                        position: [30, 18],
+                    },
+                    hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Lino App/0.png" alt="">`,
+                    title: 'Lino App',
+                    listTitle: 'Lino App',
+                    subtitle: ``,
+                    type: 'SW Product | <b>Design + Development</b> | LLM + Knowledge Management | ALL Platforms',
+                    date: '2025 Fall',
+                    purpose: `<span class="bold">Personal</span> | Startup Project`,
+                    description: `
+                    Everyone who loves knowledge, and was trying to grasp all the essence of human wisdom and the finer details, 
+                    but has failed, must have had this vision or imagery - of a "memory extender", a "second brain", whatever it may be called.
+                    <br>
+                    <br>
+                    Lino is a personal knowledge management system, a search engine and a new way to interact with AIs (LLMs).
+                    `,
+                    content: `
+                        <p class = "work-discription">
+                            I am turning the idea of <span class='hyperlink' onclick="window.location.href='template.html?work=lino&from=map'">Lino</span> into reality! It will make you forget about Notion, Obsidian, Heptabase...
+                            <br><br>
+                            Current Progress: [██████████....................] 56%
+                            <br><br>
+                            <span class='hyperlink'>Recruiting beta testers</span>
+                        </p>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Lino App/1.webp" alt="">
+                        </div>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Lino App/2.png" alt="">
+                        </div>
+                    `
+                }
+            ]
+        },
+        {
             id: 'D',
             name: 'Graduate Studies 25 Spring',
             works: [
@@ -1088,7 +1133,7 @@ const worksData = {
                     icon: {
                         shape: 'circle',
                         fill: 'white',
-                        dashed: true,
+                        dashed: false,
                         skewed: false,
                         position: [42, 35],
                     },
@@ -1197,10 +1242,6 @@ const worksData = {
 
                         </p>
 
-                        <div class="h3">
-                            <p>
-                                Strategy - Auto-fluid & Auto-linking
-                            </p>
                         </div>
 
 

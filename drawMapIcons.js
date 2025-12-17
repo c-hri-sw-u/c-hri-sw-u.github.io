@@ -68,6 +68,22 @@ function generateConnections(works) {
         pathsHTML += createSVGPath(x1, y1, x2, y2, isDashed);
     }
 
+    // 添加 Lino App 和 Lino 之间的特殊连线
+    const linoApp = works.find(w => w.id === 'lino-app');
+    const lino = works.find(w => w.id === 'lino');
+    
+    if (linoApp && lino) {
+        pathsHTML += `<path 
+            d="M ${linoApp.icon.position[0]} ${linoApp.icon.position[1]} L ${lino.icon.position[0]} ${lino.icon.position[1]}"
+            stroke="black"
+            opacity="0.13"
+            stroke-width="2"
+            stroke-dasharray="4 2"
+            fill="none"
+            vector-effect="non-scaling-stroke"
+        />`;
+    }
+
     svg.innerHTML = pathsHTML;
     return svg;
 }
@@ -206,6 +222,9 @@ function createDotElement(position) {
 
 function generateIcons() {
     const iconContainer = document.getElementById('icon-container');
+    // Clear container to prevent duplication
+    iconContainer.innerHTML = '';
+    
     const works = getAllWorksWithIcons();
 
     // 首先添加SVG连线
@@ -218,8 +237,22 @@ function generateIcons() {
         iconContainer.appendChild(dotElement);
     });
     
+    // 获取最新的作品（列表中的最后一个）
+    const latestWork = works[works.length - 1];
+
     works.forEach(work => {
         const wrapperElement = createIconElement(work);
+
+        // Add indicator for the latest project
+        if (work.id === latestWork.id) {
+            const indicator = document.createElement('div');
+            indicator.className = 'latest-indicator';
+            indicator.innerHTML = `
+                <div class="latest-text">I'm into this now</div>
+                <div class="latest-triangle"></div>
+            `;
+            wrapperElement.appendChild(indicator);
+        }
 
         // 创建悬停内容容器
         const hoverContent = document.createElement('div');
