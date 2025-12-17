@@ -46,6 +46,9 @@ const worksData = {
                         <div class="full-image">
                             <img src="../../Assets/Works/Lino App/3.png" alt="">
                         </div>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Lino App/4.png" alt="">
+                        </div>
                     `
                 }
             ]
