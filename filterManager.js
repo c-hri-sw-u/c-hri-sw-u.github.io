@@ -27,11 +27,18 @@ const tagToWorksMapLine3 = {
     'filter-line3-item10': ['parade-with-gods', 'go-above-or-below', 'boba-bubble-trouble', 'glance-t1'] // Others
 };
 
+// ========== 获取各层 tags ==========
+const filterTagsLine1 = document.querySelectorAll('#filter-line1 > div');
+const filterTagsLine2 = document.querySelectorAll('#filter-line2 > div');
+const filterTagsLine3 = document.querySelectorAll('#filter-line3 > div');
+const selectAllButton = document.getElementById('filter-line4-item1');
+const clearButton = document.getElementById('filter-line4-item2');
+
 // ========== 触摸设备检测与处理 ==========
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const isTouchSupported = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 // 在触摸设备上，添加touchend事件处理，清除可能的hover状态
-if (isTouchDevice) {
+if (isTouchSupported) {
     const clearHoverState = (event) => {
         // 如果点击的不是filter标签，则清除所有filter标签的可能hover状态
         if (!event.target.closest('#filter-container')) {
@@ -277,7 +284,7 @@ function handleClearButton() {
 }
 
 // 为桌面和移动设备分别绑定事件
-if (isTouchDevice) {
+if (isTouchSupported) {
     clearButton.addEventListener('touchend', (e) => {
         e.preventDefault(); // 阻止默认行为
         handleClearButton();
@@ -301,7 +308,7 @@ function selectAllTags() {
 }
 
 // 为桌面和移动设备分别绑定事件
-if (isTouchDevice) {
+if (isTouchSupported) {
     selectAllButton.addEventListener('touchend', (e) => {
         e.preventDefault(); // 阻止默认行为
         selectAllTags();
