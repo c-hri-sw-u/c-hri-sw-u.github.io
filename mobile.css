@@ -1,0 +1,213 @@
+/* mobile.css */
+
+/* 默认情况下（桌面端）不应用这些样式，或者仅在 .mobile-view 下应用 */
+/* 但为了防止闪烁，我们可以使用媒体查询 */
+
+@media screen and (max-width: 768px) {
+    /* 隐藏桌面端元素 */
+    #navigater {
+        display: none !important;
+    }
+    #filter-container {
+        display: none !important;
+    }
+    .hover-description {
+        display: none !important;
+    }
+    
+    /* 隐藏图标悬停内容 */
+    .hover-content {
+        display: none !important;
+    }
+    
+    /* 隐藏 UFO 和其他可能的干扰元素 */
+    #ufo, #ufo-shadow, #playground-container {
+        /* 保留 UFO 作为一个有趣的元素？用户没说要去掉，但为了简洁先隐藏，或者缩小 */
+        /* 如果要保留，需要调整位置。先隐藏以防重叠 */
+        display: none !important; 
+    }
+    
+    /* 调整地图为 Mini Map */
+    #map {
+        position: fixed !important;
+        /* 放在右下角 */
+        bottom: 20px !important;
+        right: 20px !important;
+        top: auto !important;
+        left: auto !important;
+        
+        /* 设置固定大小容器，内容通过 transform 缩放 */
+        width: 150px !important;
+        height: 150px !important;
+        
+        /* 视觉样式 */
+        border-radius: 50%; /* 圆形窗口？或者方形 */
+        border: 2px solid #000;
+        background-color: #f4f3f0; /* 防止透明背景 */
+        overflow: hidden !important;
+        
+        z-index: 800 !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        
+        /* 关键：这里我们需要把原来的大地图“塞”进这个小窗口
+           但是原来的 #map 是 100vw * 100dvh。
+           直接改 width/height 会导致 canvas 重绘或变形。
+           
+           更好的策略是：
+           保持 #map 的大小不变，但是用 transform: scale() 把它缩小，并移动到右下角。
+           但是这样会很占位置（因为 scale 占据的空间还是原来的）。
+           
+           替代方案：
+           将 #map 放在一个 .mini-map-wrapper 中（如果改 HTML 结构）。
+           或者：使用 clip-path?
+           
+           让我们尝试 transform 方案：
+        */
+        transform-origin: bottom right;
+        transform: scale(0.25); /* 缩小到 1/4 */
+        pointer-events: none; /* 禁止交互，只作为展示 */
+        
+        /* 修正位置：因为 scale 后占据的空间变了，可能需要负 margin 或者 translate */
+        /* 如果 transform-origin 是 bottom right，那么元素会向右下角收缩。
+           我们需要把它固定在屏幕右下角。
+           如果 #map 是 fixed top:0 left:0 width:100vw height:100dvh，
+           scale(0.25) 后，它依然在 top-left 的 1/4 区域（如果 origin 是 top left）。
+           如果 origin 是 bottom right，它会在 bottom-right 区域。
+           
+           但是 #map 的原始位置是 top:0 left:0。
+        */
+    }
+    
+    /* 修正 #map 的样式策略 */
+    body.mobile-view #map {
+        /* 覆盖内联样式和 map.css */
+        width: 100vw !important;
+        height: 100dvh !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        
+        /* 缩放 */
+        transform-origin: 100% 100%; /* 右下角 */
+        transform: scale(0.3) translate(-20px, -20px); /* 缩小并留出边距 */
+        
+        /* 遮罩/圆形切割 */
+        /* clip-path: circle(40% at 80% 80%);  这会切掉内容 */
+        
+        /* 降低透明度，作为背景？ */
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 50 !important; /* 在列表之下 */
+    }
+
+    /* 列表容器 */
+    #mobile-feature-list {
+        position: relative;
+        z-index: 100; /* 在地图之上 */
+        padding: 40px 24px;
+        min-height: 100dvh;
+        box-sizing: border-box;
+        background: transparent; /* 透明背景，以便看到后面的地图？或者部分透明 */
+        /* 用户说“地图缩小作为一个趣味indicator”，并在右下角。
+           如果列表背景透明，文字会和地图重叠。
+           建议列表有背景，但右下角留空？或者列表就在左边/上方。
+           或者地图就在最上层（z-index 高），遮挡部分列表内容（像 FAB 按钮）。
+        */
+    }
+    
+    /* 修正：地图在最上层，悬浮 */
+    body.mobile-view #map {
+        z-index: 900 !important; /* 悬浮在列表之上 */
+        background: rgba(255, 255, 255, 0.9); /* 给地图加个背景色，防止透出列表文字 */
+        border-radius: 20px; /* 圆角 */
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        
+        /* 重新计算 transform */
+        /* 由于 #map 很大，我们需要把它“裁剪”显示 */
+        /* 这是一个难题：canvas 是全屏绘制的。如果只显示右下角，那左上角的内容就看不到了。
+           但是图标是分布在全屏的。
+           
+           如果只是 scale(0.2)，那整个地图都会变小，正好都在右下角（如果 origin=bottom right）。
+           是的，scale(0.2) 会把 100vw*100vh 的内容缩小到 20vw*20vh。
+           
+           问题是：Canvas 的分辨率。
+        */
+    }
+    
+    #mobile-feature-list {
+        background-color: #f4f3f0;
+        padding-bottom: 200px; /* 底部留出空间给 Mini Map */
+    }
+    
+    .mobile-header h1 {
+        font-family: 'Shrikhand', cursive;
+        font-size: 36px;
+        margin-bottom: 30px;
+        color: #000;
+    }
+    
+    .mobile-work-item {
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+    
+    .mobile-work-item:active {
+        opacity: 0.6;
+    }
+    
+    .mobile-work-item.active {
+        /* 选中状态 */
+        border-bottom: 1px solid #000;
+    }
+    
+    .work-info h2 {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        margin: 0 0 8px 0;
+    }
+    
+    .work-info p {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 14px;
+        color: #666;
+        margin: 0;
+    }
+    
+    .work-arrow {
+        font-size: 24px;
+        font-weight: 300;
+    }
+    
+    .mobile-footer-links {
+        margin-top: 40px;
+        padding: 20px 0;
+        border-top: 2px solid #000;
+    }
+    
+    .mobile-footer-links a {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    /* 图标高亮样式 */
+    /* 注意：这需要作用于 #map 内部的元素。由于 scale 导致内部元素很小，高亮需要放大很多倍 */
+    .icon-wrapper.mobile-highlight {
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 1000 !important;
+        /* filter: drop-shadow(0 0 10px rgba(255,215,0, 0.8)); */
+    }
+    
+    /* 我们在 JS 中动态设置 transform: scale(3) 之类的 */
+}
