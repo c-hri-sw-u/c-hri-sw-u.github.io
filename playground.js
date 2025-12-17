@@ -2,6 +2,52 @@ console.log("playground.js loaded");
 
 const playgroundData = {
     projects: [
+        // A Walk with Shooting Star
+        {
+            id: 'walk-with-shooting-star',
+            icon: {
+                shape: 'star4rotatedRounded',
+                fill: 'white',
+                dashed: false,
+                skewed: false,
+            },
+            title: 'A Walk with Shooting Star',
+            listTitle: 'A Walk with Shooting Star',
+            subtitle: '',
+            type: 'VR Game | <b>Design + Development</b> | LLM + Unity | Virtual Companion',
+            date: '2025 Spring - Summer',
+            purpose: `<span class="bold">Teamwork</span> | Personal Project
+            <br>
+            Team Members: Nik Kim, Yixi(Chris) Wu`,
+            description: `A Walk with Shooting Star is a VR game developed to commemorate a beloved golden retriever. It features an LLM-powered NPC that grows with the player, synchronizing with real-world time and seasons while remembering shared conversations. The project explores advanced LLM-environment interactions to create a deeply immersive virtual companionship.`,
+            content: `
+                <div class="full-image">
+                    <img src="Assets/Playgrounds/Walk With Shooting Star/1.png" alt="">
+                </div>
+                <p class = "work-discription">
+                    In the spring of 2025, I developed this VR game, "A Walk with Shooting Star", alongside Nik. Shooting Star is the name of the golden retriever featured in the game—it was Nik's beloved puppy, and he created this project as a memorial to him.
+                </p>
+
+                <div class="half-image">
+                    <img src="Assets/Playgrounds/Walk With Shooting Star/4.jpg" alt="">
+                    <img src="Assets/Playgrounds/Walk With Shooting Star/2.jpg" alt="">
+                </div>
+                <p class = "work-discription">
+                    Players can walk, chat (powered by an LLM persona), and play fetch with Shooting Star. The game's time system synchronizes with the real world, sharing the changing seasons and the cycle of day and night with you. Over time, Shooting Star remembers the moods and stories you share, growing to understand you better and becoming a reliable virtual companion.
+                </p>
+
+                <div class="full-image">
+                    <img src="Assets/Playgrounds/Walk With Shooting Star/3.png" alt="">
+                </div>
+                <p class = "work-discription">
+                    In the summer of 2025, we decided to further explore "LLM-based NPCs," specifically focusing on how to enable the underlying LLM to interact more realistically with the virtual environment by accessing richer game-state information, thereby achieving a deeply immersive experience.
+                    <br><br>
+                    I also developed a backend system to facilitate testing and controlling the information context provided to the LLM, determining what inputs enable more natural and accurate conversations. 🦮
+                    <br>
+                    <span class='hyperlink' onclick="window.open('https://c-hri-sw-u.github.io/llm_mockup/')">Link to LLM Mockup</span>
+                </p>
+            `
+        },
         // IMU-Based Motion & Gesture Recognition
         {
             id: 'mini-project-1',
@@ -110,6 +156,47 @@ const playgroundData = {
                         Click here to visit the website
                     </span>
                 </p>
+            `
+        },
+        // Story Machine
+        {
+            id: 'story-machine',
+            icon: {
+                shape: 'star4rotatedRounded',
+                fill: 'white',
+                dashed: true,
+                skewed: false,
+            },
+            title: 'Story Machine',
+            listTitle: 'Story Machine',
+            subtitle: ``,
+            type: 'Game | <b>Design + Development</b> | LLM + Python | Simulation',
+            date: '2024 Fall',
+            purpose: `<span class="bold">Personal</span> | Coursework
+                <br>
+                Course: Fundamentals of Programming and Computer Science`,
+            description: `
+            This is an inspired recreation of <span class='hyperlink' onclick="window.open('https://reverie.herokuapp.com/arXiv_Demo/')"> Smallville</span>, 
+            featuring a nostalgic 1-bit visual style and using OpenAI's API. 
+            Players can design their own world, create and customize characters, 
+            then watch their characters interact and stories unfold through AI-driven behaviors.
+            `, 
+            content: `
+                <div class="full-image">
+                    <div style='position:relative; overflow:hidden; aspect-ratio:1; background: white;'>
+                        <img style='z-index: 2; position:relative'
+                        src="Assets/Playgrounds/Story Machine/2.png" alt="">
+                        <img 
+                        style='
+                            border-radius: 1%; border: 0.5px solid white; opacity: 0.9; 
+                            z-index: 1; position:relative; 
+                            top: 50%; left: 50%; transform: translate(-51%, -307%);
+                            width: 68.2%; height: auto;
+                        '
+                        src="Assets/Playgrounds/Story Machine/1.gif" alt="">
+                    </div>
+                
+                </div>
             `
         }
     ],

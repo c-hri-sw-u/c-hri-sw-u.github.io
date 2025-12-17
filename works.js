@@ -725,49 +725,7 @@ const worksData = {
                         </p>
                     `  // 保持空的content
                 },
-                // Story Machine
-                {
-                    id: 'story-machine',
-                    icon: {
-                        shape: 'star4rotatedRounded',
-                        fill: 'white',
-                        dashed: true,
-                        skewed: false,
-                        position: [72, 19],
-                    },
-                    hover: `<img src="../../Assets/Works/Story Machine/2.webp" alt="">`,
-                    title: 'Story Machine',
-                    listTitle: 'Story Machine',
-                    subtitle: ``,
-                    type: 'Game | <b>Design + Development</b> | LLM + Python | Simulation',
-                    date: '2024 Fall',
-                    purpose: `<span class="bold">Personal</span> | Coursework
-                        <br>
-                        Course: Fundamentals of Programming and Computer Science`,
-                    description: `
-                    This is an inspired recreation of <span class='hyperlink' onclick="window.open('https://reverie.herokuapp.com/arXiv_Demo/')"> Smallville</span>, 
-                    featuring a nostalgic 1-bit visual style and using OpenAI's API. 
-                    Players can design their own world, create and customize characters, 
-                    then watch their characters interact and stories unfold through AI-driven behaviors.
-                    `,  // 保持空的description
-                    content: `
-                        <div class="full-image">
-                            <div style='position:relative; overflow:hidden; aspect-ratio:1; background: white;'>
-                                <img style='z-index: 2; position:relative'
-                                src="../../Assets/Works/Story Machine/2.png" alt="">
-                                <img 
-                                style='
-                                    border-radius: 1%; border: 0.5px solid white; opacity: 0.9; 
-                                    z-index: 1; position:relative; 
-                                    top: 50%; left: 50%; transform: translate(-51%, -307%);
-                                    width: 68.2%; height: auto;
-                                '
-                                src="../../Assets/Works/Story Machine/1.gif" alt="">
-                            </div>
-                        
-                        </div>
-                    `  // 保持空的content
-                },
+
                 // Rethinking Rabbit R1
                 {
                     id: 'rethinking-rabbit-r1',
