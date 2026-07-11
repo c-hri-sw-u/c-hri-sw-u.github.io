@@ -8,7 +8,7 @@
     <link rel="icon" type="image/svg" href="./icon/walking.svg">
 
     <link rel="stylesheet" href="./navigater.css">
-    <link rel="stylesheet" href="./map.css">
+    <link rel="stylesheet" href="./map.css?v=1.3">
     <link rel="stylesheet" href="../MapStyle/crossline.css">
     <link rel="stylesheet" href="../MapStyle/compass.css">
     <link rel="stylesheet" href="../MapStyle/scale.css">
@@ -329,7 +329,7 @@
             position: fixed;
             bottom: 54px;
             right: 32px;">
-                <a class="eng">© 2025 <NAME>Yixi(Chris) Wu</NAME></a>
+                <a class="eng">© 2026 <NAME>Yixi(Chris) Wu</NAME></a>
             </div>
         </div>
 
@@ -436,9 +436,12 @@
                 <div class="tree-container" id="tree3">
                 </div>
                 
-                <img id="notebook" 
-                style="position: absolute; top: 68%; left:8%; cursor: help; width: 38px;"
-                class="icon" src="./icon/Notebook-closed.svg">
+                <a href="https://medium.com/@gochris" target="_blank" rel="noopener noreferrer" id="notebook-link"
+                   style="position: absolute; top: 68%; left: 8%; transform: translate(-50%, -50%); width: 38px; cursor: pointer !important; display: inline-block; pointer-events: auto !important; z-index: 9999;">
+                    <img id="notebook" 
+                    style="width: 100%; cursor: pointer !important; position: static; transform: none; pointer-events: auto !important;"
+                    src="./icon/Notebook-closed.svg" alt="Medium Blog">
+                </a>
 
                 <script>
                     (function() {
@@ -506,14 +509,14 @@
     <script src="./mapBackground.js"></script>
     <script src="./compass.js"></script>
 
-    <script src="./works.js"></script>
+    <script src="./works.js?v=2.6"></script>
     <script src="./workIcons.js"></script>
-    <script src="./drawMapIcons.js"></script>
-    <script src="./filterManager.js"></script>
+    <script src="./drawMapIcons.js?v=1.2"></script>
+    <script src="./filterManager.js?v=1.5"></script>
 
     <script src="./kiwi.js"></script>
     <script src="./tree-flip.js"></script>
-    <script src="./ufo-and-footer.js"></script>
+    <script src="./ufo-and-footer.js?v=1.1"></script>
     <script src="./overlay.js"></script>
     <script src="./viewport-fix.js"></script>
     

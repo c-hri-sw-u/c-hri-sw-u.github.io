@@ -1,24 +1,24 @@
 // ========== 手动维护三层 tag-to-works 映射 ==========
 const tagToWorksMapLine1 = {
-    'filter-line1-item1': ['piko', 'banana-exoskeleton', 'bread-reader', 'rethinking-rabbit-r1', 'more-dance', 'lino', 'recurv', 'glance-t1'],
-    'filter-line1-item2': ['rethinking-rabbit-r1', 'playground-os', 'lino'],
-    'filter-line1-item3': ['piko', 'banana-exoskeleton', 'bread-reader', 'rethinking-rabbit-r1', 'more-dance', 'playground-os', 'lino'],
+    'filter-line1-item1': ['piko', 'banana-exoskeleton', 'bread-reader', 'rethinking-rabbit-r1', 'more-dance', 'lino', 'lino-app', 'space-self-log', 'recurv', 'glance-t1'],
+    'filter-line1-item2': ['rethinking-rabbit-r1', 'playground-os', 'lino', 'lino-app'],
+    'filter-line1-item3': ['piko', 'banana-exoskeleton', 'bread-reader', 'rethinking-rabbit-r1', 'more-dance', 'playground-os', 'lino', 'lino-app', 'space-self-log'],
     'filter-line1-item4': ['vive-towers', 'parade-with-gods', 'go-above-or-below', 'aurora-house'],
     'filter-line1-item5': ['boba-bubble-trouble'],
     'filter-line1-item6': ['hill-making'],
 };
 const tagToWorksMapLine2 = {
-    'filter-line2-item1': ['piko', 'banana-exoskeleton', 'bread-reader', 'rethinking-rabbit-r1', 'playground-os', 'more-dance', 'lino', 'vive-towers', 'parade-with-gods', 'go-above-or-below', 'aurora-house', 'hill-making', 'recurv', 'glance-t1', 'boba-bubble-trouble', ],
-    'filter-line2-item2': ['piko', 'banana-exoskeleton', 'bread-reader', 'boba-bubble-trouble'],
-    'filter-line2-item3': ['hill-making', 'recurv', 'parade-with-gods'],
+    'filter-line2-item1': ['piko', 'banana-exoskeleton', 'bread-reader', 'rethinking-rabbit-r1', 'playground-os', 'more-dance', 'lino', 'lino-app', 'space-self-log', 'vive-towers', 'parade-with-gods', 'go-above-or-below', 'aurora-house', 'hill-making', 'recurv', 'glance-t1', 'boba-bubble-trouble', ],
+    'filter-line2-item2': ['piko', 'banana-exoskeleton', 'bread-reader', 'lino-app', 'space-self-log', 'boba-bubble-trouble'],
+    'filter-line2-item3': ['hill-making', 'recurv', 'parade-with-gods', 'space-self-log'],
     'filter-line2-item4': ['piko', 'banana-exoskeleton', 'bread-reader'],
     'filter-line2-item5': ['aurora-house'],
 };
 const tagToWorksMapLine3 = {
-    'filter-line3-item1': ['banana-exoskeleton', 'vive-towers'],
-    'filter-line3-item2': ['lino'],
+    'filter-line3-item1': ['banana-exoskeleton', 'vive-towers', 'space-self-log'],
+    'filter-line3-item2': ['lino', 'lino-app', 'space-self-log'],
     'filter-line3-item3': ['rethinking-rabbit-r1', 'playground-os'],
-    'filter-line3-item4': ['piko', 'rethinking-rabbit-r1', 'playground-os', 'lino', 'bread-reader'],
+    'filter-line3-item4': ['piko', 'rethinking-rabbit-r1', 'playground-os', 'lino', 'lino-app', 'space-self-log', 'bread-reader'],
     'filter-line3-item5': ['piko', 'hill-making', 'recurv'],
     'filter-line3-item6': ['piko'],
     'filter-line3-item7': [],
@@ -192,13 +192,22 @@ function updateMapIcons() {
 }
 
 // ========== 更新 tag 的样式 ==========
+const trashIconSvg = `<span class="trash-icon-wrapper"><svg class="trash-icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; flex-shrink: 0;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></span>`;
+
 function updateTagStyle(tag) {
+    if (!tag.hasAttribute('data-original-text')) {
+        tag.setAttribute('data-original-text', tag.textContent.trim());
+    }
+    const originalText = tag.getAttribute('data-original-text');
+
     if (selectedTags.has(tag.id)) {
         tag.classList.add('selected');
         tag.classList.remove('unselected');
+        tag.innerHTML = `${originalText}${trashIconSvg}`;
     } else {
         tag.classList.remove('selected');
         tag.classList.add('unselected');
+        tag.innerHTML = originalText;
     }
 }
 
@@ -300,8 +309,7 @@ function selectAllTags() {
     clearStep = 0;
     [...filterTagsLine1, ...filterTagsLine2, ...filterTagsLine3].forEach(tag => {
         selectedTags.add(tag.id);
-        tag.classList.add('selected');
-        tag.classList.remove('unselected');
+        updateTagStyle(tag);
     });
     updateDisabledTags();
     updateMapIcons();

@@ -217,3 +217,11 @@
     cursor: help !important;
     transform: scale(1.1);
 }
+
+/* Notebook link pointer cursor override */
+#decoration-container #notebook-link,
+#decoration-container #notebook-link *,
+#decoration-container #notebook {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}

@@ -1,7 +1,7 @@
 const hyperlinkInstagram = document.getElementById("instagram");
 const hyperlinkX = document.getElementById("x");
 const hyperlinkLinkedin = document.getElementById("linkedin");
-const hyperlinkRed = document.getElementById("red");
+const hyperlinkMedium = document.getElementById("medium");
 const hyperlinkEmail = document.getElementById("email");
 const hyperlinkEmail2 = document.getElementById("email2");
 
@@ -17,8 +17,8 @@ hyperlinkLinkedin.addEventListener("click", function() {
     window.open("https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/", "_blank");
 });
 
-hyperlinkRed.addEventListener("click", function() {
-    window.open("https://www.xiaohongshu.com/user/profile/5c87447c000000001201e4aa?xsec_token=AB1D9EF9dySBJRgxO0fwUM1rr6Of5KtlTc0XH86zxI69g%3D&xsec_source=pc_search", "_blank");
+hyperlinkMedium.addEventListener("click", function() {
+    window.open("https://medium.com/@gochris", "_blank");
 });
 
 hyperlinkEmail.addEventListener("click", function() {

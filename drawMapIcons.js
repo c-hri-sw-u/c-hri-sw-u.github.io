@@ -10,7 +10,7 @@ function getAllWorksWithIcons() {
         worksByStage[stage.id] = stageWorks.map(work => ({
             ...work,
             stageId: stage.id,
-            indexNumber: currentIndex--
+            indexNumber: work.indexNumber !== undefined ? work.indexNumber : currentIndex--
         }));
     });
     
@@ -109,13 +109,13 @@ function createIconElement(work) {
     wrapperElement.className = 'icon-wrapper';
     wrapperElement.style.left = `${work.icon.position[0]}%`;
     wrapperElement.style.top = `${work.icon.position[1]}%`;
-    wrapperElement.style.cursor = 'default'; // 确保默认光标
+    wrapperElement.style.cursor = 'pointer'; // 确保指针光标
 
     // 创建canvas元素并设置样式
     const canvas = document.createElement('canvas');
     canvas.width = 48;
     canvas.height = 48;
-    canvas.style.cursor = 'default'; // 确保默认光标
+    canvas.style.cursor = 'pointer'; // 确保指针光标
 
     wrapperElement.appendChild(canvas);
     
@@ -137,7 +137,7 @@ function createIconElement(work) {
     textElement.className = 'work-text';
     textElement.textContent = `${work.stageId}${work.indexNumber}`;
     textElement.style.color = `${work.icon.fill === 'black' ? 'white' : 'black'}`;
-    textElement.style.cursor = 'default'; // 确保默认光标
+    textElement.style.cursor = 'pointer'; // 确保指针光标
     
     wrapperElement.appendChild(textElement);
 
@@ -325,7 +325,7 @@ function generateIcons() {
             if (isTouchDevice) return; // 触摸设备忽略 mouseover
             
             e.preventDefault();
-            this.style.cursor = 'default'; // 确保悬停时仍然是默认光标
+            this.style.cursor = 'pointer'; // 确保悬停时仍然是指针光标
             const workId = this.getAttribute('data-work-id');
             showWorkDescription(this, workId, works);
         });

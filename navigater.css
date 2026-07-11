@@ -47,16 +47,16 @@
 
 #navigater .left:hover {
     background: rgba(217, 217, 217);
-    cursor: default;
+    cursor: pointer;
 }
 #navigater .middle:hover {
     background: rgba(255, 255, 255);
     backdrop-filter: blur(1px);
-    cursor: default;
+    cursor: pointer;
 }
 #navigater .right:hover {
     background: rgba(255, 255, 255);
-    cursor: default;
+    cursor: pointer;
 }
 
 
@@ -65,16 +65,16 @@
     #navigater > .map-container .left:hover {
         background: rgba(217, 217, 217);
         backdrop-filter: blur(1px);
-        cursor: default;
+        cursor: pointer;
     }
 
     #navigater > .map-container .middle:hover {
         background: rgb(185, 185, 185);
-        cursor: default;
+        cursor: pointer;
     }
     #navigater > .map-container .right:hover {
         background: #F2F76D;
-        cursor: default;
+        cursor: pointer;
     }
 }
 

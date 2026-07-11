@@ -288,11 +288,11 @@ contactButton.addEventListener('click', function(event) {
     if (ufoClick === 0) {
         ufoClick++;
         ufoAnimation1();
-        contactIframe.src = 'contact.html';
+        contactIframe.src = 'contact.html?v=1.1';
     } else if (ufoClick === 1) {
         ufoClick++;
         ufoAnimation2();
-        contactIframe.src = 'contact.html';
+        contactIframe.src = 'contact.html?v=1.1';
     } else if (contactIframe.style.display === 'none' 
     && overlayIframe.style.display === 'none' 
     && !ufoAnimation1Running

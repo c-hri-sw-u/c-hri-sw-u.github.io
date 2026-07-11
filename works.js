@@ -8,46 +8,174 @@ const worksData = {
             works: [
                 {
                     id: 'lino-app',
+                    indexNumber: 2,
                     icon: {
                         shape: 'circle',
                         fill: 'white',
-                        dashed: true,
+                        dashed: false,
                         skewed: false,
                         position: [30, 18],
                     },
-                    hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Lino App/0.png" alt="">`,
-                    title: 'Lino App',
-                    listTitle: 'Lino App',
-                    subtitle: ``,
-                    type: 'SW Product | <b>Design + Development</b> | LLM + Knowledge Management | ALL Platforms',
-                    date: '2025 Fall',
-                    purpose: `<span class="bold">Personal</span> | Startup Project`,
+                    hover: `<img style="aspect-ratio: 14/9;" src="https://www.lino.one/demo.webp" alt="">`,
+                    title: 'Lino — AI Canvas for Visual Thinking',
+                    listTitle: 'Lino (Startup)',
+                    subtitle: `- A canvas that thinks the way you do, and acts the way you think`,
+                    type: 'SW Product | <b>Design + Development</b> | AI Spatial Canvas | Infinite Workspace',
+                    date: '2026 Spring',
+                    purpose: `<span class="bold">Personal</span> | Startup Product
+                        <br>
+                        Official Website: <span class='hyperlink' onclick="window.open('https://lino.one')">lino.one</span>`,
                     description: `
-                    Everyone who loves knowledge, and was trying to grasp all the essence of human wisdom and the finer details, 
-                    but has failed, must have had this vision or imagery - of a "memory extender", a "second brain", whatever it may be called.
-                    <br>
-                    <br>
-                    Lino is a personal knowledge management system, a search engine and a new way to interact with AIs (LLMs).
+                    Lino is an AI canvas for visual thinking — an infinite, spatial workspace for your ideas, notes, and research, with an AI agent that acts directly on them. It is designed to preserve human context, offering a minimalist visual playground to shape raw ideas into reality.
+                    <br><br>
+                    Stop building static workflows and copying notes back and forth. Lino replaces fragmented tools, providing a unified thinking and working partner that understands your ideas and executes complex tasks natively.
                     `,
                     content: `
-                        <p class = "work-discription">
-                            I am turning the idea of <span class='hyperlink' onclick="window.location.href='template.html?work=lino&from=map'">Lino</span> into reality! It will make you forget about Notion, Obsidian, Heptabase...
-                            <br><br>
-                            Current Progress: [██████████....................] 56%
-                            <br><br>
-                            <span class='hyperlink'>Recruiting beta testers</span>
+                        <div class="full-image">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <iframe style="width: 100%; aspect-ratio: 16/9; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);"
+                                src="https://lino.one" 
+                                frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <p class="work-discription">
+                            Lino is a startup product currently in active beta. It is an AI canvas for visual thinking — an infinite spatial canvas for your ideas, notes, and research, with an AI agent that acts directly on them. Visit the live platform at <span class="hyperlink" onclick="window.open('https://lino.one')">lino.one</span>.
+                        </p>
+                        
+                        <div class="h2">
+                            <p>Infinite Canvas & Spatial Context</p>
+                        </div>
+                        <p class="work-discription">
+                            Lino provides an infinite, spatial workspace to map out notes, evidence, and research. Traditional linear chat boxes fail to capture structural connections. On the infinite canvas, you never lose context, and neither does the AI, keeping your thoughts in a state of pure flow.
                         </p>
                         <div class="full-image">
-                            <img src="../../Assets/Works/Lino App/1.webp" alt="">
+                            <img src="https://www.lino.one/demo.webp" alt="Lino Infinite Canvas Workspace">
+                        </div>
+                        
+                        <div class="h2">
+                            <p>Interactive Playground & Sparks</p>
+                        </div>
+                        <p class="work-discription">
+                            Your canvas is now a playground. Create interactive mini-apps in seconds. From drum study notes that become playable kits to market charts that render as interactive timelines, Lino turns static notes into active computational tools.
+                        </p>
+                        <div class="full-image">
+                            <img src="https://www.lino.one/demo1.webp" alt="Lino Interactive Sparks and Timelines">
+                        </div>
+                    `
+                },
+                {
+                    id: 'space-self-log',
+                    indexNumber: 1,
+                    icon: {
+                        shape: 'star8rounded',
+                        fill: 'black',
+                        dashed: false,
+                        skewed: false,
+                        position: [45, 48],
+                    },
+                    hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/SpaceSelfLog/results_3.webp" alt="">`,
+                    title: 'Physical-World Observation for Personal AI Agent Personalization',
+                    listTitle: 'Physical-World Observation (Thesis)',
+                    subtitle: `- Integrating Continuous Egocentric Vision into Local Agent Memory Systems`,
+                    type: 'Thesis Project | <b>System Design + Autoethnographic Research</b> | Personal AI Agent | Egocentric Vision',
+                    date: '2026 Spring',
+                    purpose: `Master Thesis | Graduate Project`,
+                    description: `
+                    How can personal AI agents truly understand us? Current agents are blind to the physical world, relying solely on digital logs (chat histories, emails). This thesis introduces a system that integrates <b>continuous egocentric vision</b> into a personal AI agent framework (OpenClaw) to achieve deep personalization.
+                    <br><br>
+                    By mounting an off-the-shelf smartphone on the chest to perform continuous egocentric video capture, the system monitors real-world environments, inferring physical-world user habits, rhythms, and interactions. A two-week autoethnographic study was conducted to evaluate the pipeline's effectiveness, design trade-offs, and memory architectures.
+                    `,
+                    content: `
+                        <div class="full-image">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <iframe style="width: 100%; aspect-ratio: 16/9;"
+                                src="https://www.youtube-nocookie.com/embed/NEK2SAGsXAc?rel=0&modestbranding=1&showinfo=0" 
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                                gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <p class="work-discription">
+                            This graduate thesis project proposes an integration of physical-world observations into personal AI memory systems. It addresses the "digital blind spot" in current AI agent designs and validates egocentric perception through a local, open-source personal agent pipeline.
+                        </p>
+                        
+                        <div class="h2">
+                            <p>Scholarly Context & Rationale</p>
+                        </div>
+                        <p class="work-discription">
+                            Current personal AI agents suffer from a fundamental "digital blind spot": they operate exclusively within our digital streams (emails, chats, calendar invites), remaining completely oblivious to the offline physical world where we spend the vast majority of our lives. This research maps out a new design space at the intersection of Lifelogging, Egocentric Perception, and Autonomous AI Agent Memory, establishing how physical observations can meaningfully drive AI personalization.
+                        </p>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/academic_positioning.webp" alt="Academic Landscape & Scholarly Positioning">
+                        </div>
+                        
+                        <div class="h2">
+                            <p>System Artifact: The 5-Layer Pipeline</p>
+                        </div>
+                        <p class="work-discription">
+                            To validate this paradigm, we designed and implemented a system artifact within the local, open-source personal agent framework, <b>OpenClaw</b>. The pipeline spans five main layers: Frame Filtering (Layer 1), visual-textual inferences (Layer 2), markdown-based multi-tiered memory organization (Layer 3), and synthesized Retrieval (Layer 3.5), allowing local LLMs to query and process offline daily-life observations.
+                        </p>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/5_layer_architecture.webp" alt="5-Layer Pipeline Architecture Overview">
+                        </div>
+                        
+                        <div class="h2">
+                            <p>Pipeline Layers Detailed</p>
+                        </div>
+                        <p class="work-discription">
+                            The technical core of the pipeline is detailing the transition from pixel frames to consolidated memory. Layer 1 filters raw video capture frames. Layer 2 runs multimodal vision-language inferences to generate structured text logs of real-world objects and user actions. Layer 3 formats these inferences into a structured markdown hierarchy, storing data in human-readable, multi-tiered file directories. Finally, Layer 3.5 retrieves contextually relevant memories on-demand to answer user queries.
+                        </p>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/architecture_detail_1.webp" alt="Layer 1: Frame Filtering Detail">
                         </div>
                         <div class="full-image">
-                            <img src="../../Assets/Works/Lino App/2.png" alt="">
+                            <img src="../../Assets/Works/SpaceSelfLog/architecture_detail_2.webp" alt="Layer 2: Visual-Textual Inference Detail">
                         </div>
                         <div class="full-image">
-                            <img src="../../Assets/Works/Lino App/3.png" alt="">
+                            <img src="../../Assets/Works/SpaceSelfLog/architecture_detail_3.webp" alt="Layer 3: Multi-Tiered Memory Detail">
                         </div>
                         <div class="full-image">
-                            <img src="../../Assets/Works/Lino App/4.png" alt="">
+                            <img src="../../Assets/Works/SpaceSelfLog/architecture_detail_4.webp" alt="Layer 3.5: Retrieval & Synthesis Detail">
+                        </div>
+                        
+                        <div class="h2">
+                            <p>Hardware Selection & Study Protocol</p>
+                        </div>
+                        <p class="work-discription">
+                            We compared different hardware form factors, choosing a chest-mounted iPhone running a custom Swift continuous capture app over closed smart-glasses ecosystems for optimal battery life, compute flexibility, and stability. We deployed this system in a two-week intensive autoethnographic user study, logging natural daily routines without social awkwardness or cognitive burden.
+                        </p>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/hardware_selection.webp" alt="Hardware Comparison: Chest Mount vs. Smart Glasses">
+                        </div>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/experimental_protocol.webp" alt="Two-Week Autoethnographic Deployment Protocol">
+                        </div>
+                        
+                        <div class="h2">
+                            <p>Raw Outputs & Inference Examples</p>
+                        </div>
+                        <p class="work-discription">
+                            The agent translates visual scenes into detailed text summaries (inferences). By tracking the occurrences of physical cues (keyboards, water cups, coffee mugs), the agent constructs a granular log of everyday activities and compiles them into daily memory files.
+                        </p>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/raw_output_example.webp" alt="Structured Console Logs & Markdown Memory Output">
+                        </div>
+                        
+                        <div class="h2">
+                            <p>Study Results: Mapping the Unseen Life</p>
+                        </div>
+                        <p class="work-discription">
+                            The autoethnographic study revealed rich insights into the user's offline life. The system mapped out the user's daily life rhythms, compiled high-density activity timelines, mapped visual object networks (tracking object associations), and generated spatial floorplans detailing the trajectory of physical movements within the office workspace. These results demonstrate that egocentric perception enables personal AI agents to achieve a deeper, context-aware level of personalization.
+                        </p>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/results_1.webp" alt="Daily Rhythms & Photo-wall">
+                        </div>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/results_2.webp" alt="Spatial Object Interaction Network">
+                        </div>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/SpaceSelfLog/results_3.webp" alt="Spatial Floorplan & Traces Heatmap">
                         </div>
                     `
                 }

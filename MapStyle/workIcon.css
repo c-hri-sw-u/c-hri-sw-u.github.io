@@ -124,7 +124,7 @@
 #icon-container .icon-wrapper *,
 .icon-wrapper, 
 .icon-wrapper * {
-    cursor: default !important;
+    cursor: pointer !important;
 }
 
 .icon-wrapper {
@@ -143,7 +143,7 @@
     z-index: 3;
 
     pointer-events: auto;
-    cursor: default !important;
+    cursor: pointer !important;
     /* transition: transform 0.05s ease-in-out; */
 
     overflow: visible;
@@ -155,21 +155,21 @@
     left: 0;
     width: 100%;
     height: 100%;
-    cursor: default !important;
+    cursor: pointer !important;
 }
 
 @media (hover: hover) {
     .icon-wrapper:hover {
         transform: translate(-50%, -50%) scale(1.2);
         z-index: 9999;
-        cursor: default !important;
+        cursor: pointer !important;
     }
 }
 
 .icon-wrapper.active {
     transform: translate(-50%, -50%) scale(1.2);
     z-index: 9999;
-    cursor: default !important;
+    cursor: pointer !important;
 }
 
 .work-text {
@@ -184,7 +184,7 @@
     user-select: none;
 
     pointer-events: none;
-    cursor: default !important;
+    cursor: pointer !important;
 
     font-family: "Quicksand", sans-serif;
 }
