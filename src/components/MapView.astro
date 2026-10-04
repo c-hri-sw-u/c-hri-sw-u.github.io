@@ -1,7 +1,6 @@
 ---
-// The map of every work, drawn in the language of the legacy map (public/map.html): paper, hairline
-// axes, coded glyphs, a compass and scale, and the little inhabitants (forests, a kiwi, a UFO,
-// the Parthenon, a cave, the notebook that opens onto Medium, the playground).
+// The map of every work: hairline axes, coded glyphs and their path, drawn in the homepage's quiet
+// style. A few inhabitants from the legacy map (public/map.html) stay: a forest, a kiwi, a UFO, the compass.
 import type { CollectionEntry } from 'astro:content';
 import { glyph } from '../lib/glyph';
 import { links } from '../data/home';
@@ -29,8 +28,6 @@ if (byId['lino'] && byId['lino-app']) {
 // Forests, as the rows of trees in public/tree-flip.js.
 const forests = [
   { rows: [2, 3, 2, 6, 5, 4, 5], x: 18.5, y: 40, tree: 'Coniferous' },
-  { rows: [2, 3, 2, 5, 3], x: 27, y: 31, tree: 'Deciduous' },
-  { rows: [2, 4, 0, 3, 2], x: 70.5, y: 60, tree: 'Coniferous' },
 ];
 const kiwiLines = [
   "I'm a kiwi bird. Ask me anything.",
@@ -54,8 +51,6 @@ const kiwiLines = [
           {f.rows.map(r => <div class="trow">{r === 0 ? <span class="gap"></span> : Array.from({ length: r }, () => <img src={`/icon/${f.tree} Tree.svg`} alt="" />)}</div>)}
         </div>
       ))}
-      <img class="parthenon" src="/icon/Parthenon Top View.svg" alt="" />
-      <img class="cave" src="/icon/Cave Entrance Icon (1).svg" alt="" />
     </div>
 
     <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" set:html={linePaths}></svg>
@@ -74,18 +69,11 @@ const kiwiLines = [
       <span class="bubble say" data-lines={JSON.stringify(kiwiLines)}>{kiwiLines[0]}</span>
     </div>
     <button class="ufo" id="ufo" style="left:85%;top:89%" aria-label="A UFO"><img src="/icon/UFO Flying.svg" alt="" /><i class="ufo-shadow"></i></button>
-    <a class="book map-book" href={links.medium} target="_blank" rel="noopener" style="left:8%;top:68%" aria-label="Notes on Medium">
-      <img class="b-closed" src="/icon/Notebook-closed.svg" alt="" /><img class="b-semi" src="/icon/Notebook-semiopen.svg" alt="" /><img class="b-open" src="/icon/Notebook-open.svg" alt="" />
-    </a>
-    <a class="playground" href={links.playground} style="left:88%;top:68%" aria-label="Playground: more projects">
-      <img src="/icon/Playground(5).svg" alt="" /><span class="bubble">More projects</span>
-    </a>
 
     <div class="preview" id="preview"><img alt=""><div><b></b><span></span></div></div>
   </div>
 
   <div class="compass" id="compass" aria-hidden="true"><div class="needle"><i></i><span>N</span></div></div>
-  <div class="scale" aria-hidden="true"><span>1</span><span>10</span><i></i></div>
   <p class="map-foot">
     <a href={links.fullMap}>Original map, with filters →</a>
     <span>© 2026 Yixi(Chris) Wu</span>
