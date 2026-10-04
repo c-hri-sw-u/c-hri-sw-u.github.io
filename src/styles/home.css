@@ -23,7 +23,6 @@
 }
 
 * { box-sizing: border-box }
-/* The map keeps the legacy map's hairline paper texture (drawn once by home.ts into --paper-tex); the page stays plain. */
 @property --peel { syntax: '<length>'; inherits: true; initial-value: 0px }
 html { background: var(--paper-bg); color: var(--fg); transition: --peel .5s var(--ease) }
 html.peeling { transition: none }
@@ -118,7 +117,7 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 
 /* ---------- the map ---------- */
 #map { position: fixed; inset: 0; z-index: 40; padding: calc(84px + env(safe-area-inset-top, 0px)) 40px calc(110px + env(safe-area-inset-bottom, 0px));
-  background: var(--paper-tex, none) center / cover, var(--paper-bg); font-family: var(--font-map); --font-code: var(--font-map);
+  background: var(--paper-bg); font-family: var(--font-map); --font-code: var(--font-map);
   clip-path: polygon(0 0, var(--peel) 0, 0 var(--peel)) }
 body.is-map #map { clip-path: none }
 /* Under the page it is a shade darker, so the uncovered corner reads as a layer beneath. */

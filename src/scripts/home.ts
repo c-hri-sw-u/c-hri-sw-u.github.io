@@ -204,28 +204,8 @@ export function initHome() {
 
   if (mode === 'map') { mode = 'list'; goMap(); }
 
-  paper();
   walker();
   inhabitants(plane, reduce);
-}
-
-// The legacy map's ground: thousands of faint grey bezier hairlines (public/mapBackground.js),
-// drawn once and used as a background image for both the page and the map.
-function paper() {
-  const c = document.createElement('canvas');
-  const w = (c.width = Math.min(screen.width, 1800)), h = (c.height = Math.min(screen.height, 1200));
-  const ctx = c.getContext('2d')!;
-  const r = (a: number, b?: number) => (b === undefined ? Math.random() * a : a + Math.random() * (b - a));
-  const pad = 1000;
-  ctx.lineWidth = 0.02;
-  for (let e = 30000; e--;) {
-    ctx.strokeStyle = `hsl(0,0%,${r(60, 95)}%)`;
-    ctx.beginPath();
-    ctx.moveTo(r(-pad, w + pad), r(-pad, h + pad));
-    ctx.bezierCurveTo(r(-pad, w + pad), r(-pad, h + pad), r(-pad, w + pad), r(-pad, h + pad), r(-pad, w + pad), r(-pad, h + pad));
-    ctx.stroke();
-  }
-  c.toBlob(b => { if (b) document.documentElement.style.setProperty('--paper-tex', `url(${URL.createObjectURL(b)})`); });
 }
 
 // The walking man takes a step for every bit of scroll, and walks on the spot when hovered.
