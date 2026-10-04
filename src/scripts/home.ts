@@ -276,13 +276,19 @@ function inhabitants(plane: HTMLElement, reduce: boolean) {
     }, reduce ? 0 : i * 25));
   }));
 
-  // Compass: the needle points at the pointer.
+  // Compass (public/compass.js): the arrowhead points at the pointer and slides outward with distance.
+  // The angle is unwrapped so the needle never spins the long way round when it crosses ±180°.
   const compass = document.getElementById('compass')!;
   const needle = compass.querySelector<HTMLElement>('.needle')!;
+  const tip = needle.querySelector<HTMLElement>('i')!;
+  let last = 0;
   addEventListener('pointermove', e => {
     if (!document.body.classList.contains('is-map') || e.pointerType !== 'mouse') return;
     const r = compass.getBoundingClientRect();
-    const a = Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2));
-    needle.style.transform = `rotate(${(a * 180) / Math.PI + 90}deg)`;
+    const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+    const a = (Math.atan2(dy, dx) * 180) / Math.PI - 90;
+    last += ((((a - last) % 360) + 540) % 360) - 180;
+    needle.style.transform = `rotate(${last}deg)`;
+    tip.style.top = Math.min((dx * dx + dy * dy) / 25000 + 43, 57) + '%';
   }, { passive: true });
 }

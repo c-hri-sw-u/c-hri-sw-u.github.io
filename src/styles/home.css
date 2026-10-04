@@ -202,10 +202,12 @@ html:has(body.is-map) { overflow: hidden }
 .preview span { color: var(--muted); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase }
 
 .compass { position: absolute; left: 40px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 50%; background: var(--card) }
-.needle { position: absolute; inset: 0; transition: transform .2s ease-out }
-/* A thin needle with N at its tip. */
-.needle i { position: absolute; left: 50%; top: 34%; bottom: 50%; width: 1px; margin-left: -.5px; background: var(--ink) }
-.needle span { position: absolute; left: 0; right: 0; top: 13%; text-align: center; font-family: var(--font-mono); font-size: 9px; line-height: 1; color: var(--fg) }
+/* As on the legacy map (public/compass.js): the arrowhead points at the pointer and slides outward the
+   farther away the pointer is; N rides along at the centre. */
+.needle { position: absolute; inset: -10%; transition: transform .2s ease-out }
+.needle i { position: absolute; left: 50%; top: 43%; width: 60%; height: 60%; margin: -30% 0 0 -30%; background: var(--ink);
+  clip-path: polygon(50% 100%, 30% 78%, 50% 82%, 70% 78%); transition: top .1s ease-in-out }
+.needle span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-mono); font-size: 9px; line-height: 1; color: var(--fg) }
 .map-foot { position: absolute; right: 40px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); margin: 0; display: grid; justify-items: end; gap: 6px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em }
 .map-foot a { color: var(--muted); text-decoration: none }
 .map-foot a:hover { color: var(--fg) }
