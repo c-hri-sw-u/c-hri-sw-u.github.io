@@ -79,6 +79,12 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 /* Where the work sits on the map, written like a survey mark: a crosshair, then x and y. */
 .coord { position: absolute; top: 21px; right: 14px; z-index: 2; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; line-height: 1; letter-spacing: .02em;
   color: var(--fg); font-variant-numeric: tabular-nums; pointer-events: none }
+/* At rest a cell shows only its badge and name; the coordinates and the caption come in on hover or focus. */
+.name { position: absolute; top: 12px; left: 52px; right: 120px; z-index: 2; height: 32px; display: flex; align-items: center; font-size: 13.5px; font-weight: 500; letter-spacing: -.005em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none }
+.card[data-id] :is(.coord, .cap) { opacity: 0; transition: opacity .25s ease }
+.card[data-id]:is(:hover, :focus-within) :is(.coord, .cap) { opacity: 1 }
+@media (hover: none) { .card[data-id] .cap, .card[data-id] .coord { display: none } }
 .coord em { font-style: normal; color: var(--muted); opacity: .7; margin-right: 3px }
 .xh { position: relative; width: 11px; height: 11px; border: 1px solid var(--muted); border-radius: 50% }
 .xh::before, .xh::after { content: ""; position: absolute; background: var(--muted) }
@@ -249,8 +255,7 @@ body.is-map .peel { pointer-events: none; opacity: 0 }
   .glyph-btn { top: 8px; left: 8px; width: 26px; height: 26px }
   .coord { top: 15px; right: 10px; font-size: 10px; gap: 5px } .xh { display: none }
   .cap { padding: 7px 9px 9px; font-size: 11.5px }
-  .cap .how, .dots { display: none }
-  .cap .what { font-size: 0 } .cap .what b { font-size: 11.5px }
+  .name { top: 8px; left: 40px; right: 10px; height: 26px; font-size: 12px }
   .tip { display: none !important }
   #map { padding: calc(70px + env(safe-area-inset-top, 0px)) 16px calc(150px + env(safe-area-inset-bottom, 0px)) }
   .mapicon { width: 28px; height: 28px; margin: -14px 0 0 -14px }

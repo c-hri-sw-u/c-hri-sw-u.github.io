@@ -74,6 +74,7 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
               <Fragment set:html={glyph(iconOf(c), codeOf(byId[c.id]))} />
               <span class="tip">{describe(iconOf(c))}<small>Click to see where it sits on the map</small></span>
             </button>
+            <span class="name" aria-hidden="true">{c.name}</span>
             <span class="coord" aria-hidden="true"><i class="xh"></i><span><em>x</em>{iconOf(c).position[0]}</span><span><em>y</em>{iconOf(c).position[1]}</span></span>
             <div class="media">
               {c.moments.map((m, i) => m.kind === 'video'
@@ -81,7 +82,7 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
                 : <img class:list={[{ on: i === 0, flat: m.flat }]} src={m.src} alt="" loading={c.lead ? 'eager' : 'lazy'} decoding="async" />)}
             </div>
             <div class="cap">
-              <div class="what"><b>{c.name}</b> {c.what}{c.moments.length > 1 && <span class="dots">{c.moments.map((_, i) => <i class:list={[{ on: i === 0 }]}></i>)}</span>}</div>
+              <div class="what">{c.what}{c.moments.length > 1 && <span class="dots">{c.moments.map((_, i) => <i class:list={[{ on: i === 0 }]}></i>)}</span>}</div>
               <div class="how">{c.how} · {yearOf(c)}</div>
             </div>
           </article>
