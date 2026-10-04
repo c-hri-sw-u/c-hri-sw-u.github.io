@@ -39,7 +39,7 @@ button { font: inherit; color: inherit }
   margin-inline: -24px; padding: 18px 28px 0 84px }
 body.is-map .bar { position: fixed; inset: 0 0 auto 0; margin: 0 }
 .wordmark { justify-self: start; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; font-size: 14px; letter-spacing: -.005em; text-decoration: none }
-.walker { position: relative; width: 22px; height: 22px; flex: none }
+.walker { position: relative; width: 22px; height: 22px; flex: none; top: -2px } /* the figure sits low in its frame */
 .walker img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; filter: invert(1) } /* the frames are drawn white */
 .walker img.on { opacity: 1 }
 .switch { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); z-index: 52;
@@ -54,6 +54,7 @@ body.is-map .bar { position: fixed; inset: 0 0 auto 0; margin: 0 }
 .links-top a { text-decoration: none; color: var(--muted); transition: color .2s }
 .links-top a:hover { color: var(--fg) }
 .book { position: relative; display: inline-block; width: 20px; height: 20px; opacity: .9 }
+.links-top .book { top: -7px } /* the notebook drawing sits at the bottom of its square */
 .book img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0 }
 .book .b-closed { opacity: 1 }
 .book:hover .b-closed { opacity: 0 } .book:hover .b-open { opacity: 1 }
