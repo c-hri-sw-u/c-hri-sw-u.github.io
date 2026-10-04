@@ -141,12 +141,12 @@ export function initHome() {
     });
   }
 
-  // ---------- the peeling corner ----------
-  // --peel is the length of the folded triangle's legs. The map shows through the corner it uncovers;
+  // ---------- the folded corner (top left) ----------
+  // --peel is the length of the fold's legs. The map shows through the corner it uncovers;
   // past about a third of the way, letting go lets the page fall away completely.
   const root = document.documentElement;
   const peel = document.getElementById('peel')!;
-  const rest = () => (innerWidth < 600 ? 46 : 64);
+  const rest = () => (innerWidth < 600 ? 40 : 52);
   const full = () => innerWidth + innerHeight + 40;
   const setPeel = (px: number) => root.style.setProperty('--peel', px + 'px');
   function peelOpen() {
@@ -161,7 +161,7 @@ export function initHome() {
     requestAnimationFrame(() => requestAnimationFrame(() => { root.classList.remove('peeling'); setPeel(rest()); }));
   }
   let drag: { x: number; y: number; moved: boolean } | null = null;
-  peel.addEventListener('pointerenter', e => { if (!drag && e.pointerType === 'mouse') { setPeel(rest() + 34); document.body.classList.add('peeking'); } });
+  peel.addEventListener('pointerenter', e => { if (!drag && e.pointerType === 'mouse') { setPeel(rest() + 22); document.body.classList.add('peeking'); } });
   peel.addEventListener('pointerleave', () => { if (!drag && mode === 'list') { setPeel(rest()); document.body.classList.remove('peeking'); } });
   peel.addEventListener('pointerdown', e => {
     drag = { x: e.clientX, y: e.clientY, moved: false };
@@ -173,11 +173,11 @@ export function initHome() {
     if (!drag) return;
     if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 6) drag.moved = true;
     // The fold passes through the pointer.
-    setPeel(Math.max(rest(), innerWidth - e.clientX + innerHeight - e.clientY));
+    setPeel(Math.max(rest(), e.clientX + e.clientY));
   });
   const release = (e: PointerEvent) => {
     if (!drag) return;
-    const far = innerWidth - e.clientX + innerHeight - e.clientY > 0.32 * (innerWidth + innerHeight);
+    const far = e.clientX + e.clientY > 0.32 * (innerWidth + innerHeight);
     const tap = !drag.moved;
     drag = null;
     if (tap || far) peelOpen();
@@ -200,7 +200,6 @@ export function initHome() {
 
   paper();
   walker();
-  books();
   inhabitants(plane, reduce);
 }
 
@@ -240,16 +239,6 @@ function walker() {
   const mark = document.querySelector('.wordmark')!;
   mark.addEventListener('pointerenter', () => { clearInterval(t); t = window.setInterval(step, 90); });
   mark.addEventListener('pointerleave', () => { clearInterval(t); stand(); });
-}
-
-// The notebooks breathe: every few seconds they lift their cover a little. Hover opens them.
-function books() {
-  const all = [...document.querySelectorAll<HTMLElement>('.book')];
-  setInterval(() => {
-    if (document.hidden) return;
-    all.forEach(b => b.classList.add('semi'));
-    setTimeout(() => all.forEach(b => b.classList.remove('semi')), 420);
-  }, 2600);
 }
 
 function inhabitants(plane: HTMLElement, reduce: boolean) {
