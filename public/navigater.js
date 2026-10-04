@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             sessionStorage.setItem('workVisitHistory', JSON.stringify(history));
             window.location.href = `template.html?work=${previousWorkId}`;
         } else {
-            window.location.href = 'index.html';
+            window.location.href = 'map.html';
         }
     });
 
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fullmapBtn.addEventListener('click', function() {
         sessionStorage.removeItem('workVisitHistory');
         sessionStorage.removeItem('currentWorkIndex');
-        window.location.href = 'index.html';
+        window.location.href = 'map.html';
     });
 
     // 更新按钮状态
@@ -107,8 +107,8 @@ function getAllWorks() {
 
 // 在页面加载时初始化历史记录
 function initializeHistory() {
-    // 如果是从index.html直接访问作品页面，清除之前的历史记录
-    if (document.referrer.includes('index.html')) {
+    // 如果是从map.html直接访问作品页面，清除之前的历史记录
+    if (document.referrer.includes('map.html')) {
         sessionStorage.removeItem('workVisitHistory');
     }
 }

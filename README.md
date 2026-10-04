@@ -1,3 +1,20 @@
+# Yixi (Chris) Wu · personal site
+
+Built with [Astro](https://astro.build) and deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`
+(Settings → Pages → Source must be **GitHub Actions**).
+
+```sh
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # static site in dist/
+```
+
+- `src/pages/index.astro`: the homepage (selected works grid, Concepts, and the map view the cells' glyphs fly into).
+- `src/data/home.ts`: which works are on the homepage and the moments each cell cycles through.
+- `src/content/works/*.md`: one file per work (icon, map position, dates). Generated once from the legacy `works.js` by `npm run extract-works`.
+- `scripts/make-home-media.sh`: rebuilds the small homepage media in `public/media/home` from `public/Assets` (needs ffmpeg).
+- `public/`: copied to the site as is. It holds the original map (`map.html`), the legacy work pages (`template.html?work=…`), Playground, Contact and all `Assets/`.
+
 # Icon System Design Rules for Portfolio Website
 
 ## Basic Identification
