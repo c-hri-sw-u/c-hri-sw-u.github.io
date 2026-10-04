@@ -17,4 +17,4 @@ preview: "/Assets/Works/Lino/10.webp"
 legacyUrl: "/template.html?work=lino"
 ---
 
-Everyone who loves knowledge, and was trying to grasp all the essence of human wisdom and the finer details, but has failed, must have had this vision or imagery - of a "memory extender", a "second brain", whatever it may be called. Lino is a personal knowledge management system, a search engine and a new way to interact with AIs (LLMs).
+Everyone who loves knowledge, and was trying to grasp all the essence of human wisdom and the finer details, but has failed, must have had this vision or imagery - of a "memory extender", a "second brain", whatever it may be called. Lino is a personal knowledge management system, a search engine and a new way to interact with AIs (LLMs). This prototype later grew into Lino, the AI canvas startup.

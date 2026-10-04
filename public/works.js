@@ -16,52 +16,134 @@ const worksData = {
                         skewed: false,
                         position: [30, 18],
                     },
-                    hover: `<img style="aspect-ratio: 14/9;" src="https://www.lino.one/demo.webp" alt="">`,
-                    title: 'Lino — AI Canvas for Visual Thinking',
+                    hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/Lino App/hero-demo-poster.webp" alt="">`,
+                    title: 'Lino — The AI Canvas',
                     listTitle: 'Lino (Startup)',
-                    subtitle: `- A canvas that thinks the way you do, and acts the way you think`,
-                    type: 'SW Product | <b>Design + Development</b> | AI Spatial Canvas | Infinite Workspace',
-                    date: '2026 Spring',
-                    purpose: `<span class="bold">Personal</span> | Startup Product
+                    subtitle: `- A canvas that thinks the way you do, and works the way you think`,
+                    type: 'Startup | <b>Founder: Product + Design + Engineering</b> | AI Canvas | Desktop App',
+                    date: '2025 – Present',
+                    purpose: `<span class="bold">Personal Project → Startup</span> | Founded Sep 2026, launched end of Sep 2026
                         <br>
-                        Official Website: <span class='hyperlink' onclick="window.open('https://lino.one')">lino.one</span>`,
+                        Website: <span class='hyperlink' onclick="window.open('https://lino.one')">lino.one</span>
+                        <br>
+                        Started as: <span class='hyperlink' onclick="window.location.href='template.html?work=lino'">Lino, a 2024 prototype</span>`,
                     description: `
-                    Lino is an AI canvas for visual thinking — an infinite, spatial workspace for your ideas, notes, and research, with an AI agent that acts directly on them. It is designed to preserve human context, offering a minimalist visual playground to shape raw ideas into reality.
+                    Lino is an AI canvas: one infinite workspace for your notes, links, images, sketches, tables and the small apps you build with AI, with an AI that works on the same canvas you do.
                     <br><br>
-                    Stop building static workflows and copying notes back and forth. Lino replaces fragmented tools, providing a unified thinking and working partner that understands your ideas and executes complex tasks natively.
+                    It started as my personal project in late 2025, became a company in September 2026 and launched at the end of that month. I lead it end to end, from what it should be to how it looks, feels and runs. It is available for macOS, with Windows in beta and iOS on the way.
                     `,
                     content: `
                         <div class="full-image">
-                            <div style="display: flex; justify-content: center; align-items: center;">
-                                <iframe style="width: 100%; aspect-ratio: 16/9; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);"
-                                src="https://lino.one" 
-                                frameborder="0" allowfullscreen></iframe>
-                            </div>
+                            <video style="width: 100%; height: auto; border-radius: 8px;" src="../../Assets/Works/Lino App/hero-demo.mp4" poster="../../Assets/Works/Lino App/hero-demo-poster.webp" autoplay muted loop playsinline></video>
+                        </div>
+                        <p class="work-discription">
+                            A musician is preparing a show called <i>Standing Waves</i>. The moodboard, recordings, set notes and research are already on one canvas. They ask Lino AI to "make the live visual for my show", and it builds an interactive visual from those notes. Nothing had to be pasted in or explained.
+                        </p>
+
+                        <div class="h2">
+                            <p>Where it started</p>
+                        </div>
+                        <p class="work-discription">
+                            The idea goes back to a 2024 course project with Paul Pangaro (<span class="hyperlink" onclick="window.location.href='template.html?work=lino'">see the prototype</span>). It started from Vannevar Bush's Memex and his idea of <span class="bold">trails</span>, the links between pieces of knowledge, and argued that knowledge is a web of concepts, content, context and associations rather than a pile of notes.
+                            <br><br>
+                            Then AI changed the question. If a model could see that web, it could stop being a chat box you paste into and start working inside your ideas. That is what I set out to build.
+                        </p>
+
+                        <div class="h2">
+                            <p>The problem</p>
+                        </div>
+                        <p class="work-discription">
+                            Thinking today is split across too many places: notes in one app, references in a browser, plans in a calendar, and the AI in a chat window that starts from an empty prompt every time. The person carries the context between them by copying and re-explaining.
+                            <br><br>
+                            The prompt box also changes who is in charge. You end up thinking about how to phrase things for the machine instead of about what you want. Lino starts from the opposite belief: <span class="bold">you belong at the center of creation. Creativity should never start with a prompt box; it starts with your intent.</span>
+                        </p>
+
+                        <div class="h3">
+                            <p>Intent Engineering</p>
+                        </div>
+                        <p class="work-discription">
+                            I wrote this idea up in <span class="hyperlink" onclick="window.open('https://medium.com/@gochris/intent-engineering-42af3438bdc5')">Intent Engineering: Why "Making People Better Thinkers" is the Ultimate Endgame of Tools</span> (400+ claps on Medium). It follows the line from Vannevar Bush, Ted Nelson and Alan Kay to the AI era. Once machines can do the execution, the bottleneck is the person's own thinking, so the endgame of tools is to make people better thinkers. Lino is my attempt at that tool.
+                        </p>
+
+                        <div class="h2">
+                            <p>Key design decisions</p>
                         </div>
 
-                        <p class="work-discription">
-                            Lino is a startup product currently in active beta. It is an AI canvas for visual thinking — an infinite spatial canvas for your ideas, notes, and research, with an AI agent that acts directly on them. Visit the live platform at <span class="hyperlink" onclick="window.open('https://lino.one')">lino.one</span>.
-                        </p>
-                        
-                        <div class="h2">
-                            <p>Infinite Canvas & Spatial Context</p>
+                        <div class="h3">
+                            <p>1. Every idea is an object, in any form</p>
                         </div>
                         <p class="work-discription">
-                            Lino provides an infinite, spatial workspace to map out notes, evidence, and research. Traditional linear chat boxes fail to capture structural connections. On the infinite canvas, you never lose context, and neither does the AI, keeping your thoughts in a state of pure flow.
+                            Cards, Links, Images, Sketches, Tables, and Sparks (small interactive apps you build with AI). Each is an object in its own right, not a block inside a page. The same object can sit on several canvases and be mentioned inside other cards, so an idea is written once and reused.
                         </p>
                         <div class="full-image">
-                            <img src="https://www.lino.one/demo.webp" alt="Lino Infinite Canvas Workspace">
+                            <img src="../../Assets/Works/Lino App/artifacts.webp" alt="Cards, Links, Images and Sketches, Tables and Sparks">
                         </div>
-                        
-                        <div class="h2">
-                            <p>Interactive Playground & Sparks</p>
+
+                        <div class="h3">
+                            <p>2. One canvas, shared by you and the AI</p>
                         </div>
                         <p class="work-discription">
-                            Your canvas is now a playground. Create interactive mini-apps in seconds. From drum study notes that become playable kits to market charts that render as interactive timelines, Lino turns static notes into active computational tools.
+                            Labeled connections show how ideas relate, which brings Bush's trails back as something you can see. Lino AI reads the same canvas, so when you ask "what's my essay still missing?" it answers from what you've built.
+                        </p>
+                        <div class="half-image">
+                            <img src="../../Assets/Works/Lino App/canvas.webp" alt="Connected cards on the canvas">
+                            <img src="../../Assets/Works/Lino App/lino-ai.webp" alt="Lino AI proposing an essay outline">
+                        </div>
+
+                        <div class="h3">
+                            <p>3. Your work stays yours</p>
+                        </div>
+                        <p class="work-discription">
+                            Every change Lino AI makes goes through one path and ends in a review card that lists what changed. New things land right away; edits to what you wrote can wait for your approval. Everything can be undone from that card, and anything you mark "Hide from AI" is never shown to the model.
+                        </p>
+
+                        <div class="h3">
+                            <p>4. Never start from a blank page</p>
+                        </div>
+                        <p class="work-discription">
+                            A blank canvas is as hard to start from as a blank prompt. Lino brings in what you already have, such as your projects, browser profiles, calendars and what other AIs know about you. You say what you want to work on, and it sets up the canvas from there.
                         </p>
                         <div class="full-image">
-                            <img src="https://www.lino.one/demo1.webp" alt="Lino Interactive Sparks and Timelines">
+                            <img src="../../Assets/Works/Lino App/get-started.webp" alt="Bring everything in, tell Lino AI what you want, keep creating">
                         </div>
+
+                        <div class="h3">
+                            <p>5. The rest of your work, beside the canvas</p>
+                        </div>
+                        <p class="work-discription">
+                            A side panel keeps reading, browsing and planning next to the canvas. Drag a quote out of a PDF or hold ⌥ to snip a figure, drag an image in from the web, or open your calendar next to the work it's for.
+                        </p>
+                        <div class="full-image">
+                            <img src="../../Assets/Works/Lino App/while-you-work-read.webp" alt="Reading a PDF beside the canvas">
+                        </div>
+                        <div class="half-image">
+                            <img src="../../Assets/Works/Lino App/while-you-work-browse.webp" alt="Browsing the web beside the canvas">
+                            <img src="../../Assets/Works/Lino App/while-you-work-plan.webp" alt="Planning the day beside the canvas">
+                        </div>
+
+                        <div class="h2">
+                            <p>Building it</p>
+                        </div>
+                        <p class="work-discription">
+                            I designed and built Lino myself, about 3,000 commits since late 2025. The hard parts were less the canvas than what sits under it:
+                            <br><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bold">An agent you can trust:</span> tools, permissions and a sandbox, with every change reviewable and undoable<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bold">Sparks:</span> AI-generated apps that run on the canvas and can read the cards around them<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bold">Sync:</span> across devices, and two-way with plain Markdown files on disk
+                        </p>
+
+                        <div class="h2">
+                            <p>What's next</p>
+                        </div>
+                        <p class="work-discription">
+                            The <span class="hyperlink" onclick="window.open('https://lino.one/roadmap')">roadmap</span> has five lines:
+                            <br><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bold">Intent Engineering:</span> structures on the canvas that carry and sharpen your intent<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bold">Intelligent Execution:</span> meeting notes and image generation<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bold">Open Collaboration:</span> shareable Sparks and Skills, and a place to publish them<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bold">Effortless Input:</span> a web app, a mobile app, a browser clipper and voice input<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bold">Seamless Integration:</span> more imports, starting with Notion
+                        </p>
                     `
                 },
                 {
@@ -1293,6 +1375,9 @@ const worksData = {
                     <br>
                     <br>
                     Lino is a personal knowledge management system, a search engine and a new way to interact with AIs (LLMs).
+                    <br>
+                    <br>
+                    This prototype later grew into <span class='hyperlink' onclick="window.location.href='template.html?work=lino-app'">Lino, the AI canvas startup</span>.
                     `,
                     content: `
                         <div class="full-image">
@@ -1373,17 +1458,27 @@ const worksData = {
                             <br>
                             This complex structure creates a perfect storm. 
                             Each piece of information doesn't exist in isolation - it's connected to countless others through invisible threads.
-
                         </p>
-
+                        <div class="h2">
+                            <p>
+                                The prototype
+                            </p>
                         </div>
-
-
-
-
-                        
-
-                    `  // 保持空的content
+                        <p class="work-discription">
+                            So I designed Lino around that web. A small card floats above whatever you're reading. Select a name in a PDF, say Vannevar Bush, and it becomes a card that AI can fill in. Select a word inside that card, and it becomes a card of its own. Every new concept is linked automatically, back to its source and to the cards around it, so the web grows as you read.
+                        </p>
+                        <div class="half-image">
+                            <img src="../../Assets/Works/Lino/11.webp" alt="A Vannevar Bush card with its linked concepts">
+                        </div>
+                        <div class="h2">
+                            <p>
+                                What came next
+                            </p>
+                        </div>
+                        <p class="work-discription">
+                            The idea didn't stay a prototype. A year later it became <span class="hyperlink" onclick="window.location.href='template.html?work=lino-app'">Lino</span>, an AI canvas. The core ideas carried over: cards became Concept Cards, the automatic links became connections you can see on the canvas, and the floating card became Quick Entry. What changed is the AI. It no longer just fills in one card; it works on the whole web of ideas with you.
+                        </p>
+                    `
                 },
             ]
         },
