@@ -60,7 +60,7 @@ body.is-map .bar { position: fixed; inset: 0 0 auto 0; margin: 0 }
 :is(.switch button, .glyph-btn, .mapicon, .cover, .book, .peel, .ufo):focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
 
 /* ---------- intro ---------- */
-main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transition: opacity .3s ease, transform .45s var(--ease) }
+main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transition: opacity .3s ease }
 .intro { display: grid; justify-items: center; text-align: center; gap: 12px; margin-bottom: 44px }
 .intro h1 { margin: 0; text-wrap: balance; font-weight: 500; font-size: clamp(30px, 3.9vw, 48px); line-height: 1.1; letter-spacing: -.025em }
 .intro h1 em { font-family: var(--font-accent); font-style: normal; font-weight: 400; letter-spacing: 0 }
@@ -130,7 +130,8 @@ body.is-map #map { clip-path: none }
 /* Under the page it is a shade darker, so the uncovered corner reads as a layer beneath. */
 #map::before { content: ""; position: absolute; inset: 0; background: rgba(60,50,30,.06); pointer-events: none; transition: opacity .4s }
 body.is-map #map::before { opacity: 0 }
-body.is-map main { opacity: 0; transform: scale(.985); pointer-events: none }
+/* Fade only: scaling main would move the cells while glyphs are flying into them. */
+body.is-map main { opacity: 0; pointer-events: none }
 html:has(body.is-map) { overflow: hidden }
 .plane { position: relative; width: 100%; height: 100%; max-width: 1240px; margin-inline: auto }
 

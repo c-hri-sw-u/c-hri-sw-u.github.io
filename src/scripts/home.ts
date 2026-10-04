@@ -89,7 +89,7 @@ export function initHome() {
     const mx = (to.x - from.x) * 0.5, my = (to.y - from.y) * 0.5 - 40;
     return [
       { transform: `translate(0,0) scale(${s0})` },
-      { transform: `translate(${mx}px, ${my}px) scale(${((s0 + s1) / 2) * 1.25})`, offset: 0.55 },
+      { transform: `translate(${mx}px, ${my}px) scale(${((s0 + s1) / 2) * 1.12})`, offset: 0.55 },
       { transform: `translate(${to.x - from.x}px, ${to.y - from.y}px) scale(${s1})` },
     ];
   }
@@ -132,14 +132,17 @@ export function initHome() {
     pv.classList.remove('show');
     const all = [...plane.querySelectorAll<HTMLElement>('.mapicon')];
     if (reduce) { all.forEach(b => b.classList.remove('on')); document.body.classList.remove('is-map'); setPeel(rest()); return; }
-    const flights = workCards().filter(c => inView(c.getBoundingClientRect())).map(c => {
-      const id = c.dataset.id!, t = iconTarget(id), g = c.querySelector<HTMLElement>('.glyph-btn')!, r = g.getBoundingClientRect();
-      const box = { left: t.x - r.width / 2, top: t.y - r.height / 2, width: r.width, height: r.height };
-      return { g, r, t, el: glyphFlyer(c, box) };
-    });
+    // Measure the map icons while the map is up, but the cells only after it is gone: leaving map mode
+    // puts the header back in the flow (and the scrollbar back), which moves the cells.
+    const from = new Map(all.map(b => [b.dataset.id!, iconTarget(b.dataset.id!)]));
     all.forEach(b => b.classList.remove('on'));
     document.body.classList.remove('is-map');
     peelBack();
+    const flights = workCards().filter(c => inView(c.getBoundingClientRect())).map(c => {
+      const t = from.get(c.dataset.id!)!, g = c.querySelector<HTMLElement>('.glyph-btn')!, r = g.getBoundingClientRect();
+      const box = { left: t.x - r.width / 2, top: t.y - r.height / 2, width: r.width, height: r.height };
+      return { g, r, t, el: glyphFlyer(c, box) };
+    });
     flights.forEach(({ g, r, t, el }, n) => {
       g.style.visibility = 'hidden';
       const a = el.animate(arc(t, { x: r.left + r.width / 2, y: r.top + r.height / 2 }, t.w / r.width, 1),
