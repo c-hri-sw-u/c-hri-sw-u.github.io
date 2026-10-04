@@ -262,8 +262,34 @@ function inhabitants(plane: HTMLElement, reduce: boolean) {
   });
 
   // UFO: click and it lifts off, then settles back.
+  // UFO (public/ufo-and-footer.js): it wobbles, lifts and drops back while its shadow spreads.
+  // A second click soon after sends it higher.
   const ufo = document.getElementById('ufo')!;
-  ufo.addEventListener('click', () => { ufo.classList.add('up'); setTimeout(() => ufo.classList.remove('up'), 1400); });
+  const ufoImg = ufo.querySelector<HTMLElement>('img')!, ufoShadow = ufo.querySelector<HTMLElement>('.ufo-shadow')!;
+  let ufoBusy = false, ufoLast = 0;
+  function lift(height: number, steps: number, hold: number, spread: string) {
+    ufoBusy = true;
+    let n = 0;
+    const t = setInterval(() => {
+      ufoImg.style.rotate = n % 2 ? '-10deg' : '3deg';
+      if (++n >= steps) { clearInterval(t); ufoImg.style.rotate = '0deg'; }
+    }, 100);
+    ufoImg.style.translate = `0 -${height}px`;
+    Object.assign(ufoShadow.style, { opacity: '.6', transform: spread });
+    setTimeout(() => {
+      ufoImg.style.translate = '0 0';
+      Object.assign(ufoShadow.style, { opacity: '0', transform: 'scale(0)' });
+      setTimeout(() => { ufoBusy = false; }, 300);
+    }, hold);
+  }
+  const ufoGo = () => {
+    if (ufoBusy || reduce) return;
+    const again = Date.now() - ufoLast < 2500;
+    ufoLast = Date.now();
+    if (again) lift(80, 12, 800, 'scale(3, 1.5)'); else lift(30, 10, 600, 'scale(1.4, .7)');
+  };
+  ufo.addEventListener('click', ufoGo);
+  addEventListener('keydown', e => { if (e.code === 'ShiftLeft' && document.body.classList.contains('is-map')) ufoGo(); });
 
   // Forests: click one and every tree turns over, coniferous ↔ deciduous (public/tree-flip.js).
   plane.querySelectorAll<HTMLElement>('.forest').forEach(f => f.addEventListener('click', () => {
