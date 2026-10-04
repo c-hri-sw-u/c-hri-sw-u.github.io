@@ -94,26 +94,32 @@ export function initHome() {
     ];
   }
 
-  // `peeled`: the page was already peeled away, so the icons are showing and nothing needs to fly.
-  function goMap(focusId?: string, peeled = false) {
+  // `peeling`: the page is being peeled away; the glyphs fly while the map sweeps in, and
+  // is-map (which drops the clip) only lands once the peel has finished.
+  let landTimer = 0;
+  function goMap(focusId?: string, peeling = false) {
     if (mode === 'map' && document.body.classList.contains('is-map')) return;
     mode = 'map'; setPressed();
     history.replaceState(null, '', '#map');
     const cards = workCards().filter(c => inView(c.getBoundingClientRect()));
     const starts = cards.map(c => [c, c.querySelector('.glyph-btn')!.getBoundingClientRect()] as const);
-    document.body.classList.add('is-map');
-    document.body.classList.remove('peeking');
+    if (peeling) landTimer = window.setTimeout(() => document.body.classList.add('is-map'), reduce ? 0 : 520);
+    else document.body.classList.add('is-map');
     const all = [...plane.querySelectorAll<HTMLElement>('.mapicon')];
-    if (reduce || peeled) { all.forEach(b => b.classList.add('on')); return; }
     const flying = new Set(cards.map(c => c.dataset.id));
+    // Icons already showing in the lifted corner stay put; the flying ones hide until their glyph lands.
+    if (peeling) all.forEach(b => b.classList.toggle('on', !flying.has(b.dataset.id)));
+    document.body.classList.remove('peeking');
+    if (reduce) { all.forEach(b => b.classList.add('on')); return; }
     let k = 0;
-    all.forEach(b => { if (!flying.has(b.dataset.id)) setTimeout(() => b.classList.add('on'), 380 + k++ * 30); });
+    if (!peeling) all.forEach(b => { if (!flying.has(b.dataset.id)) setTimeout(() => b.classList.add('on'), 380 + k++ * 30); });
     starts.forEach(([card, r], n) => {
-      const id = card.dataset.id!, t = iconTarget(id);
+      const id = card.dataset.id!, t = iconTarget(id), g = card.querySelector<HTMLElement>('.glyph-btn')!;
       const el = glyphFlyer(card, r);
+      g.style.visibility = 'hidden';
       const a = el.animate(arc({ x: r.left + r.width / 2, y: r.top + r.height / 2 }, t, 1, t.w / r.width),
         { duration: 760, delay: n * 40, easing: EASE, fill: 'forwards' });
-      a.onfinish = () => { iconEl(id).classList.add('on'); el.remove(); };
+      a.onfinish = () => { iconEl(id).classList.add('on'); el.remove(); g.style.visibility = ''; };
     });
     if (focusId) setTimeout(() => { const b = iconEl(focusId); b.focus({ preventScroll: true }); showPreview(b); }, 900);
   }
@@ -121,6 +127,7 @@ export function initHome() {
   function goList() {
     if (mode === 'list') return;
     mode = 'list'; setPressed();
+    clearTimeout(landTimer);
     history.replaceState(null, '', location.pathname);
     pv.classList.remove('show');
     const all = [...plane.querySelectorAll<HTMLElement>('.mapicon')];
@@ -151,9 +158,8 @@ export function initHome() {
   const setPeel = (px: number) => root.style.setProperty('--peel', px + 'px');
   function peelOpen() {
     root.classList.remove('peeling');
-    document.body.classList.add('peeking');
     setPeel(full());
-    setTimeout(() => goMap(undefined, true), reduce ? 0 : 480);
+    goMap(undefined, true);
   }
   function peelBack() {
     root.classList.add('peeling');
