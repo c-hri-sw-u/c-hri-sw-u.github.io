@@ -44,4 +44,5 @@ export const links = {
   playground: '/playground.html',
   email: 'cwu14932@gmail.com',
   fullMap: '/map.html',
+  medium: 'https://medium.com/@gochris',
 };

@@ -59,8 +59,14 @@ export function glyphPath(icon: Pick<Icon, 'shape' | 'fill' | 'dashed' | 'skewed
   return `<path d="${shapePath(icon.shape)}"${tf} fill="${fill}" stroke="var(--ink)" stroke-width="1.2"${dash}/>`;
 }
 
-export function glyph(icon: Pick<Icon, 'shape' | 'fill' | 'dashed' | 'skewed'>): string {
-  return `<svg viewBox="-20 -20 40 40" aria-hidden="true">${glyphPath(icon)}</svg>`;
+/** The work's code (stage letter + order, e.g. "E2") written inside the glyph, as on the legacy map. */
+export function glyphCode(icon: Pick<Icon, 'fill'>, code: string): string {
+  const fill = icon.fill === 'black' ? 'var(--paper)' : 'var(--ink)';
+  return `<text x="0" y="0.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-family="Quicksand, sans-serif" font-weight="600" fill="${fill}">${code}</text>`;
+}
+
+export function glyph(icon: Pick<Icon, 'shape' | 'fill' | 'dashed' | 'skewed'>, code?: string): string {
+  return `<svg viewBox="-20 -20 40 40" aria-hidden="true">${glyphPath(icon)}${code ? glyphCode(icon, code) : ''}</svg>`;
 }
 
 export const SHAPE_TEXT: Record<Shape, string> = {

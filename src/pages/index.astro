@@ -1,6 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import '../styles/home.css';
+import MapView from '../components/MapView.astro';
 import { glyph, glyphPath, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
 import { selected, concepts, links, type Cell } from '../data/home';
 
@@ -9,24 +10,20 @@ const works = (await getCollection('works')).sort((a, b) =>
   a.data.stage.localeCompare(b.data.stage) || a.data.order - b.data.order || a.data.seq - b.data.seq);
 const byId = Object.fromEntries(works.map(w => [w.id, w]));
 const onHome = new Set([...selected, ...concepts].map(c => c.id));
-const latestId = works[works.length - 1].id;
+// The legacy identifier: stage letter + order within the stage (A1 is the first undergraduate project).
+const codeOf = (w: CollectionEntry<'works'>) => `${w.data.stage}${w.data.order}`;
 
-let linePaths = '';
+let miniLines = '';
 for (let i = 0; i < works.length - 1; i++) {
-  const a = works[i].data, b = works[i + 1].data;
-  const dash = a.stage !== b.stage ? ' class="dash"' : '';
-  linePaths += `<path${dash} d="M${a.icon.position[0]} ${a.icon.position[1]}L${b.icon.position[0]} ${b.icon.position[1]}"/>`;
+  const a = works[i].data.icon.position, b = works[i + 1].data.icon.position;
+  miniLines += `<path class="l${works[i].data.stage !== works[i + 1].data.stage ? ' d' : ''}" d="M${a[0]} ${a[1]}L${b[0]} ${b[1]}"/>`;
 }
-// The 2024 Lino prototype and the 2026 product are one story: a faint thick line ties them.
-if (byId['lino'] && byId['lino-app']) {
-  const a = byId['lino'].data.icon.position, b = byId['lino-app'].data.icon.position;
-  linePaths += `<path d="M${a[0]} ${a[1]}L${b[0]} ${b[1]}" style="stroke-width:3;opacity:.12"/>`;
-}
-const miniLines = linePaths.replace(/class="dash"/g, 'class="l d"').replace(/<path d=/g, '<path class="l" d=').replace(/ style="[^"]*"/g, '');
 const miniIcons = works.map(w => `<g transform="translate(${w.data.icon.position[0]} ${w.data.icon.position[1]}) scale(.13)">${glyphPath(w.data.icon)}</g>`).join('');
 
 const iconOf = (c: Cell) => byId[c.id].data.icon as Icon;
+const yearOf = (c: Cell) => byId[c.id].data.date.match(/\d{4}/)?.[0] ?? '';
 const legendShapes = ['circle', 'square', 'star4rounded', 'star6', 'star6rounded', 'star8rounded'] as const;
+const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i + 1))];
 ---
 <!doctype html>
 <html lang="en">
@@ -38,11 +35,14 @@ const legendShapes = ['circle', 'square', 'star4rounded', 'star6', 'star6rounded
   <link rel="icon" type="image/svg+xml" href="/icon/walking.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Poppins:wght@400;500&family=Shrikhand&display=swap">
 </head>
 <body>
 <header class="bar">
-  <a class="wordmark" href="/">Yixi (Chris) Wu</a>
+  <a class="wordmark" href="/" aria-label="Yixi (Chris) Wu, home">
+    <span class="walker" id="walker" aria-hidden="true">{walkFrames.map((f, i) => <img src={`/icon/walking/walking-${f}.svg`} alt="" class:list={[{ on: i === 0 }]} />)}</span>
+    <span>Yixi (Chris) Wu</span>
+  </a>
   <div class="switch" role="group" aria-label="View">
     <button id="toList" aria-pressed="true">Selected</button>
     <button id="toMap" aria-pressed="false"><span class="mini-glyph" set:html={glyph({ shape: 'star8rounded', fill: 'black', dashed: false, skewed: false })} />Map</button>
@@ -51,34 +51,38 @@ const legendShapes = ['circle', 'square', 'star4rounded', 'star6', 'star6rounded
     <a href={links.resume} target="_blank" rel="noopener">Resume</a>
     <a href={links.playground}>Playground</a>
     <a href={`mailto:${links.email}`}>Email</a>
+    <a class="book top-book" href={links.medium} target="_blank" rel="noopener" aria-label="Notes on Medium" title="Notes on Medium">
+      <img class="b-closed" src="/icon/Notebook-closed.svg" alt="" /><img class="b-semi" src="/icon/Notebook-semiopen.svg" alt="" /><img class="b-open" src="/icon/Notebook-open.svg" alt="" />
+    </a>
   </nav>
 </header>
 
 <main id="top">
   <section class="intro">
-    <h1>Hi, I'm Chris. Founder of <em>Lino</em>.</h1>
+    <h1>Hi, I'm Chris.<br>Founder of <em>Lino</em>.</h1>
     <p>Design engineer working across software, hardware and space.</p>
   </section>
 
   {[{ cells: selected, cls: 'grid', label: 'Selected works' }, { cells: concepts, cls: 'shelf', label: 'Concepts' }].map(({ cells, cls, label }, gi) => (
     <Fragment>
-      {gi === 1 && <div class="concepts-head sec-head"><h2>Concepts</h2><p>Designed, not built</p></div>}
+      {gi === 1 && <div class="concepts-head"><h2>Concepts</h2><p>Designed, not built</p></div>}
       <section class={cls} aria-label={label}>
         {cells.map(c => (
           <article class:list={['card', { lead: c.lead }]} data-id={c.id}>
             <a class="cover" href={byId[c.id].data.legacyUrl} aria-label={`${c.name}: ${c.what}`}></a>
             <button class="glyph-btn" data-id={c.id} aria-label={`Show ${c.name} on the map`}>
-              <Fragment set:html={glyph(iconOf(c))} />
+              <Fragment set:html={glyph(iconOf(c), codeOf(byId[c.id]))} />
               <span class="tip">{describe(iconOf(c))}<small>Click to see where it sits on the map</small></span>
             </button>
+            <span class="coord" aria-hidden="true">{iconOf(c).position[0]} · {iconOf(c).position[1]}</span>
             <div class="media">
               {c.moments.map((m, i) => m.kind === 'video'
                 ? <video class:list={[{ on: i === 0, flat: m.flat }]} src={m.src} poster={m.src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload={i === 0 ? 'auto' : 'none'} autoplay={i === 0} aria-hidden="true"></video>
                 : <img class:list={[{ on: i === 0, flat: m.flat }]} src={m.src} alt="" loading={c.lead ? 'eager' : 'lazy'} decoding="async" />)}
             </div>
             <div class="cap">
-              <div class="what">{c.name} <span>/ {c.what}</span>{c.moments.length > 1 && <span class="dots">{c.moments.map((_, i) => <i class:list={[{ on: i === 0 }]}></i>)}</span>}</div>
-              <div class="how">{c.how}</div>
+              <div class="what"><b>{c.name}</b> {c.what}{c.moments.length > 1 && <span class="dots">{c.moments.map((_, i) => <i class:list={[{ on: i === 0 }]}></i>)}</span>}</div>
+              <div class="how">{c.how} · {yearOf(c)}</div>
             </div>
           </article>
         ))}
@@ -86,7 +90,7 @@ const legendShapes = ['circle', 'square', 'star4rounded', 'star6', 'star6rounded
           <article class="card maptile" id="mapTile">
             <button class="cover" aria-label={`Open the map of all ${works.length} works`}></button>
             <div class="media"><svg class="mini" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true" set:html={miniLines + miniIcons}></svg></div>
-            <div class="cap"><div class="what">All {works.length} works <span>/ the map</span></div><div class="how">Enter →</div></div>
+            <div class="cap"><div class="what"><b>All {works.length} works</b> on the map</div><div class="how">Enter →</div></div>
           </article>
         )}
       </section>
@@ -94,29 +98,13 @@ const legendShapes = ['circle', 'square', 'star4rounded', 'star6', 'star6rounded
   ))}
 
   <footer class="foot">
-    <span>© Yixi (Chris) Wu</span>
-    <a class="full-map" href={links.fullMap}>Open the original full map →</a>
+    <span>© 2026 Yixi(Chris) Wu</span>
+    <a href={links.fullMap}>Original map →</a>
   </footer>
 </main>
 
-<section id="map" aria-label={`Map of all ${works.length} works`}>
-  <div class="plane" id="plane">
-    <span class="axis ax-top">Digital</span><span class="axis ax-bot">Physical</span>
-    <span class="axis ax-l">Reality</span><span class="axis ax-r">Vision</span>
-    <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" set:html={linePaths}></svg>
-    {works.map(w => (
-      <button class:list={['mapicon', { feat: onHome.has(w.id) }]} data-id={w.id} data-title={w.data.listTitle}
-        data-date={w.data.date} data-preview={w.data.preview} data-url={w.data.legacyUrl}
-        style={`left:${w.data.icon.position[0]}%;top:${w.data.icon.position[1]}%`} aria-label={w.data.listTitle}>
-        <Fragment set:html={glyph(w.data.icon)} />
-        <span class="lbl">{w.data.listTitle}</span>
-        {w.id === latestId && <span class="now">I’m into this now</span>}
-      </button>
-    ))}
-    <div class="preview" id="preview"><img alt=""><div><b></b><span></span></div></div>
-  </div>
-  <a class="map-full" href={links.fullMap}>Original map, with filters →</a>
-</section>
+<MapView works={works} onHome={onHome} codeOf={codeOf} />
+
 <details class="legend" id="legend">
   <summary>How to read the icons</summary>
   <div class="rows">
@@ -124,9 +112,12 @@ const legendShapes = ['circle', 'square', 'star4rounded', 'star6', 'star6rounded
     <Fragment set:html={glyph({ shape: 'circle', fill: 'black', dashed: false, skewed: false })} /><span>Solid fill: finished project</span>
     <Fragment set:html={glyph({ shape: 'circle', fill: 'white', dashed: true, skewed: false })} /><span>Dashed: unfinished</span>
     <Fragment set:html={glyph({ shape: 'square', fill: 'black', dashed: false, skewed: true })} /><span>Skewed: less serious, weirder</span>
-    <span></span><span class="dim">Up = digital, down = physical. Left = reality, right = vision.</span>
+    <span></span><span class="dim">A undergraduate, B gap year, C–D graduate, E Lino. Up is digital, down is physical; left is reality, right is vision.</span>
   </div>
 </details>
+
+<!-- The physical way in: the page's bottom-right corner is folded back and the map shows underneath. Drag it or click it. -->
+<button class="peel" id="peel" aria-label="Peel back the page to see the map"><i class="flap"></i></button>
 
 <script>
   import { initHome } from '../scripts/home';
