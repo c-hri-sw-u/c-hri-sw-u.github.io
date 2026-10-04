@@ -74,7 +74,7 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
               <Fragment set:html={glyph(iconOf(c), codeOf(byId[c.id]))} />
               <span class="tip">{describe(iconOf(c))}<small>Click to see where it sits on the map</small></span>
             </button>
-            <span class="coord" aria-hidden="true">{iconOf(c).position[0]} · {iconOf(c).position[1]}</span>
+            <span class="coord" aria-hidden="true"><i class="xh"></i><span><em>x</em>{iconOf(c).position[0]}</span><span><em>y</em>{iconOf(c).position[1]}</span></span>
             <div class="media">
               {c.moments.map((m, i) => m.kind === 'video'
                 ? <video class:list={[{ on: i === 0, flat: m.flat }]} src={m.src} poster={m.src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload={i === 0 ? 'auto' : 'none'} autoplay={i === 0} aria-hidden="true"></video>

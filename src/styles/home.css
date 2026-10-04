@@ -61,10 +61,10 @@ body.is-map .bar { position: fixed; inset: 0 0 auto 0; margin: 0 }
 
 /* ---------- intro ---------- */
 main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transition: opacity .3s ease, transform .45s var(--ease) }
-.intro { display: grid; gap: 12px; margin-bottom: 40px }
-.intro h1 { margin: 0; font-weight: 500; font-size: clamp(30px, 3.9vw, 48px); line-height: 1.1; letter-spacing: -.025em }
+.intro { display: grid; justify-items: center; text-align: center; gap: 12px; margin-bottom: 44px }
+.intro h1 { margin: 0; text-wrap: balance; font-weight: 500; font-size: clamp(30px, 3.9vw, 48px); line-height: 1.1; letter-spacing: -.025em }
 .intro h1 em { font-style: normal }
-.intro p { margin: 0; color: var(--muted); font-size: clamp(14.5px, 1.3vw, 17px); font-weight: 400 }
+.intro p { margin: 0; text-wrap: balance; color: var(--muted); font-size: clamp(14.5px, 1.3vw, 17px); font-weight: 400 }
 
 /* ---------- cells ---------- */
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
@@ -73,10 +73,17 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 @media (hover: hover) { .card:hover { border-color: rgba(17,17,17,.32) } .card:hover .media :is(img, video) { transform: translateY(-2px) } }
 .card.lead { grid-column: span 2; grid-row: span 2; aspect-ratio: auto }
 .card .cover { position: absolute; inset: 0; z-index: 1; border-radius: inherit; border: 0; padding: 0; background: none; cursor: pointer }
-.glyph-btn { position: absolute; top: 12px; left: 12px; z-index: 2; border: 0; background: none; padding: 0; width: 24px; height: 24px; cursor: pointer }
+.glyph-btn { position: absolute; top: 12px; left: 12px; z-index: 2; border: 0; background: none; padding: 0; width: 32px; height: 32px; cursor: pointer }
 .glyph-btn svg { width: 100%; height: 100%; overflow: visible; display: block; transition: transform .25s var(--ease) }
 .glyph-btn:hover svg { transform: scale(1.15) }
-.coord { position: absolute; top: 16px; right: 14px; z-index: 2; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; pointer-events: none }
+/* Where the work sits on the map, written like a survey mark: a crosshair, then x and y. */
+.coord { position: absolute; top: 21px; right: 14px; z-index: 2; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; line-height: 1; letter-spacing: .02em;
+  color: var(--fg); font-variant-numeric: tabular-nums; pointer-events: none }
+.coord em { font-style: normal; color: var(--muted); opacity: .7; margin-right: 3px }
+.xh { position: relative; width: 11px; height: 11px; border: 1px solid var(--muted); border-radius: 50% }
+.xh::before, .xh::after { content: ""; position: absolute; background: var(--muted) }
+.xh::before { left: 50%; top: -3px; bottom: -3px; width: 1px; margin-left: -.5px }
+.xh::after { top: 50%; left: -3px; right: -3px; height: 1px; margin-top: -.5px }
 .tip { display: none; position: absolute; left: 0; top: calc(100% + 8px); width: 240px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--card); color: var(--fg);
   font-size: 12.5px; font-weight: 400; line-height: 1.4; text-align: left; z-index: 20; box-shadow: 0 0 10px var(--shadow) }
 .tip small { display: block; margin-top: 6px; color: var(--muted); font-size: 12px }
@@ -245,8 +252,8 @@ body.is-map .peel { pointer-events: none; opacity: 0 }
   .card { border-radius: 8px }
   .media { padding: 26% 9% 6% }
   .card.lead .media { padding: 14% 8% 6% }
-  .glyph-btn { top: 7px; left: 7px; width: 24px; height: 24px }
-  .coord { top: 10px; right: 10px; font-size: 10.5px }
+  .glyph-btn { top: 8px; left: 8px; width: 26px; height: 26px }
+  .coord { top: 15px; right: 10px; font-size: 10px; gap: 5px } .xh { display: none }
   .cap { padding: 7px 9px 9px; font-size: 11.5px }
   .cap .how, .dots { display: none }
   .cap .what { font-size: 0 } .cap .what b { font-size: 11.5px }
