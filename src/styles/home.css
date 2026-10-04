@@ -1,4 +1,4 @@
-/* Quiet and exact on the homepage: hairline-scratched paper from the legacy map, white cells with
+/* Quiet and exact on the homepage: a plain ground, white cells with
    faint rules, Poppins for words and a mono for the cartographic details (codes, coordinates).
    The map underneath keeps the legacy map's own voice (Quicksand, bubbles, inhabitants).
    Layout: a three-column grid of selected works (one cell each, Lino as the 2x2 lead), a short
@@ -53,7 +53,7 @@ body.is-map .bar { position: fixed; inset: 0 0 auto 0; margin: 0 }
 .links-top a { text-decoration: none; color: var(--muted); transition: color .2s }
 .links-top a:hover { color: var(--fg) }
 .book { position: relative; display: inline-block; width: 20px; height: 20px; opacity: .9 }
-.links-top .book { top: -7px } /* the notebook drawing sits at the bottom of its square */
+.links-top .book { top: -5px } /* the notebook drawing sits at the bottom of its square */
 .book img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0 }
 .book .b-closed { opacity: 1 }
 .book:hover .b-closed { opacity: 0 } .book:hover .b-open { opacity: 1 }
