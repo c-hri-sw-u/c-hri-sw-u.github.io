@@ -1,0 +1,66 @@
+---
+// Lino's review card, rebuilt small: what Lino AI changed, each change undoable,
+// and edits to the person's own writing held for approval.
+const rows = [
+  { kind: 'new', what: 'Created card', obj: 'Essay outline' },
+  { kind: 'new', what: 'Created card', obj: 'Third places' },
+  { kind: 'new', what: 'Connected', obj: 'Loneliness survey → Third places' },
+  { kind: 'edit', what: 'Edited your card', obj: 'Ending, draft 2' },
+];
+---
+<div class="review" data-review>
+  <div class="review-head">
+    <span>Lino AI · 4 changes</span>
+    <button type="button" data-all>Undo all</button>
+  </div>
+  <ul>
+    {rows.map(r => (
+      <li class:list={[r.kind, { pending: r.kind === 'edit' }]}>
+        <span class="mark" aria-hidden="true">{r.kind === 'edit' ? '~' : '+'}</span>
+        <span class="txt"><b>{r.what}</b>{r.obj}</span>
+        {r.kind === 'edit'
+          ? <span class="acts"><button type="button" data-approve>Approve</button><button type="button" data-undo>Reject</button></span>
+          : <span class="acts"><button type="button" data-undo>Undo</button></span>}
+      </li>
+    ))}
+  </ul>
+  <p class="review-foot" data-foot>Your edit is waiting for you.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-review]').forEach(card => {
+    const foot = card.querySelector<HTMLElement>('[data-foot]')!;
+    const rows = [...card.querySelectorAll<HTMLLIElement>('li')];
+    const sync = () => {
+      const undone = rows.filter(r => r.classList.contains('undone')).length;
+      const pending = rows.some(r => r.classList.contains('pending'));
+      foot.textContent = undone === rows.length ? 'Back to exactly what you had.'
+        : pending ? 'Your edit is waiting for you.'
+        : undone ? `${undone} undone. Nothing else touched.` : 'All kept.';
+      card.querySelector<HTMLButtonElement>('[data-all]')!.textContent = undone === rows.length ? 'Redo all' : 'Undo all';
+    };
+    rows.forEach(r => {
+      const undo = r.querySelector<HTMLButtonElement>('[data-undo]')!;
+      const approve = r.querySelector<HTMLButtonElement>('[data-approve]');
+      undo.addEventListener('click', () => {
+        const off = r.classList.toggle('undone');
+        r.classList.remove('pending');
+        undo.textContent = off ? (approve ? 'Restore' : 'Redo') : (approve ? 'Reject' : 'Undo');
+        if (approve) approve.hidden = true;
+        sync();
+      });
+      approve?.addEventListener('click', () => { r.classList.remove('pending'); approve.hidden = true; undo.textContent = 'Undo'; sync(); });
+    });
+    card.querySelector('[data-all]')!.addEventListener('click', () => {
+      const all = rows.every(r => r.classList.contains('undone'));
+      rows.forEach(r => {
+        r.classList.toggle('undone', !all);
+        r.classList.remove('pending');
+        const approve = r.querySelector<HTMLButtonElement>('[data-approve]');
+        if (approve) approve.hidden = true;
+        r.querySelector<HTMLButtonElement>('[data-undo]')!.textContent = all ? 'Undo' : (approve ? 'Restore' : 'Redo');
+      });
+      sync();
+    });
+  });
+</script>

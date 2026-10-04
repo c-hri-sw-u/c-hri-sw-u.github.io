@@ -9,6 +9,9 @@ import { selected, concepts, links, type Cell } from '../data/home';
 const works = (await getCollection('works')).sort((a, b) =>
   a.data.stage.localeCompare(b.data.stage) || a.data.order - b.data.order || a.data.seq - b.data.seq);
 const byId = Object.fromEntries(works.map(w => [w.id, w]));
+// Works with a narrative detail page link there; the rest keep their legacy page.
+const detailIds = new Set((await getCollection('details')).map(d => d.id));
+const hrefOf = (id: string) => detailIds.has(id) ? `/works/${id}` : byId[id].data.legacyUrl;
 const onHome = new Set([...selected, ...concepts].map(c => c.id));
 // The legacy identifier: stage letter + order within the stage (A1 is the first undergraduate project).
 const codeOf = (w: CollectionEntry<'works'>) => `${w.data.stage}${w.data.order}`;
@@ -63,8 +66,8 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
       <section class={cls} aria-label={label}>
         {cells.map(c => (
           <article class:list={['card', { lead: c.lead }]} data-id={c.id}>
-            {byId[c.id].data.legacyUrl
-              ? <a class="cover" href={byId[c.id].data.legacyUrl} aria-label={`${c.name}: ${c.what}`}></a>
+            {hrefOf(c.id)
+              ? <a class="cover" href={hrefOf(c.id)} aria-label={`${c.name}: ${c.what}`}></a>
               : <div class="cover" style="cursor:default"></div>}
             <button class="glyph-btn" data-id={c.id} aria-label={`Show ${c.name} on the map`}>
               <Fragment set:html={glyph(iconOf(c), codeOf(byId[c.id]))} />

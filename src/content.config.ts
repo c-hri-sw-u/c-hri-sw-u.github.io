@@ -26,4 +26,27 @@ const works = defineCollection({
   }),
 });
 
-export const collections = { works };
+// Narrative detail pages, one file per work (same id as in works). One line of text per screen;
+// the order of `scenes` is the order of the page. Media live in public/media/works/<id>.
+const link = z.object({ href: z.string(), label: z.string() });
+const details = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/details' }),
+  schema: z.object({
+    opener: z.array(z.string()).length(3),
+    scenes: z.array(z.object({
+      line: z.string(),
+      note: z.string().optional(),
+      media: z.union([z.string(), z.array(z.string())]).optional(), // several stills cross-fade
+      alt: z.string().optional(),
+      tone: z.enum(['paper', 'ink']).default('paper'),
+      year: z.string().optional(),
+      interactive: z.enum(['review-card']).optional(),
+      link: link.optional(),
+      wide: z.boolean().default(false),
+    })),
+    colophon: z.array(z.object({ k: z.string(), v: z.string(), href: z.string().optional() })),
+    next: z.string().optional(),
+  }),
+});
+
+export const collections = { works, details };

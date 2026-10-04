@@ -1,0 +1,130 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import '../../styles/detail.css';
+import ReviewCard from '../../components/interactive/ReviewCard.astro';
+import { glyph } from '../../lib/glyph';
+
+// One page per work that has a narrative in src/content/details. Works without one keep their legacy page.
+export async function getStaticPaths() {
+  const details = await getCollection('details');
+  return details.map(d => ({ params: { id: d.id } }));
+}
+
+const { id } = Astro.params;
+const detail = (await getEntry('details', id))!;
+const work = (await getEntry('works', id))!;
+const { opener, scenes, colophon, next } = detail.data;
+
+const detailIds = new Set((await getCollection('details')).map(d => d.id));
+const hrefOf = (wid: string, legacy?: string) => detailIds.has(wid) ? `/works/${wid}` : legacy;
+
+// The Index overlay keeps the legacy sidebar's grouping: newest stage first.
+const works = (await getCollection('works')).sort((a, b) =>
+  b.data.stage.localeCompare(a.data.stage) || a.data.order - b.data.order || a.data.seq - b.data.seq);
+const stages = [...new Set(works.map(w => w.data.stage))].map(s => ({ s, items: works.filter(w => w.data.stage === s) }));
+const STAGE_NAME: Record<string, string> = { E: 'Lino', D: 'Graduate, year two', C: 'Graduate, year one', B: 'Gap year', A: 'Undergraduate' };
+
+const nextWork = next ? await getEntry('works', next) : undefined;
+const name = work.data.listTitle.replace(/\s*\(.*\)$/, '');
+const isVideo = (src: string) => src.endsWith('.mp4');
+const total = scenes.length + 1;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{name} · Yixi (Chris) Wu</title>
+  <meta name="description" content={work.data.subtitle}>
+  <link rel="icon" type="image/svg+xml" href="/icon/walking.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500&display=swap">
+</head>
+<body>
+<header class="d-bar">
+  <a class="home" href="/"><span aria-hidden="true">←</span> Yixi (Chris) Wu</a>
+  <button class="index-btn" id="openIndex" type="button" aria-haspopup="dialog">Index</button>
+</header>
+
+<main class="story" id="story">
+  <section class="scene gate" data-tone="paper">
+    <div class="stack">
+      <p class="kicker r"><span class="glyph" set:html={glyph(work.data.icon)} />{name}</p>
+      <div class="lines">
+        {opener.map((l, i) => <p class:list={['line', 'r', { em: i === opener.length - 1 }]}>{l}</p>)}
+      </div>
+      <button class="begin r" id="begin" type="button">Begin</button>
+    </div>
+  </section>
+
+  {scenes.map((sc, i) => {
+    const list = sc.media ? [sc.media].flat() : [];
+    return (
+      <section class:list={['scene', { 'text-only': !list.length && !sc.interactive }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
+        <div class:list={['stack', { wide: sc.wide }]}>
+          {list.length > 0 && (
+            <figure class:list={['r', { fade: list.length > 1 }]}>
+              {list.map((src, j) => isVideo(src)
+                ? <video src={src} poster={src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload="metadata" aria-label={sc.alt}></video>
+                : <img class:list={[{ on: j === 0 }]} src={src} alt={j === 0 ? (sc.alt ?? '') : ''} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
+            </figure>
+          )}
+          {sc.interactive === 'review-card' && <div class="r"><ReviewCard /></div>}
+          <p class="line r">{sc.line}</p>
+          {sc.note && <p class="note r">{sc.note}</p>}
+          {sc.link && <p class="r"><a class="go" href={sc.link.href} target={sc.link.href.startsWith('http') ? '_blank' : undefined} rel="noopener">{sc.link.label} →</a></p>}
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="scene colophon" data-tone="paper" data-n={pad(total)}>
+    <div class="stack">
+      <dl class="r">
+        {colophon.map(c => <Fragment><dt>{c.k}</dt><dd>{c.href ? <a href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener">{c.v}</a> : c.v}</dd></Fragment>)}
+      </dl>
+      {nextWork && (
+        <a class="next r" href={hrefOf(nextWork.id, nextWork.data.legacyUrl)}>
+          <span class="glyph" set:html={glyph(nextWork.data.icon)} />
+          <span><small>Next</small>{nextWork.data.listTitle}</span>
+        </a>
+      )}
+    </div>
+  </section>
+</main>
+
+<div class="year" id="year" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true" data-total={pad(total)}></div>
+
+<dialog class="index" id="index" aria-label="All works">
+  <div class="index-inner">
+    <button class="close" id="closeIndex" type="button">Close</button>
+    {stages.map(({ s, items }) => (
+      <section>
+        <h2><b>{s}</b>{STAGE_NAME[s] ?? ''}</h2>
+        <ul>
+          {items.map(w => {
+            const href = hrefOf(w.id, w.data.legacyUrl);
+            return (
+              <li class:list={[{ here: w.id === id }]}>
+                {href
+                  ? <a href={href}><span class="glyph" set:html={glyph(w.data.icon)} />{w.data.listTitle}<em>{w.data.date}</em></a>
+                  : <span class="plain"><span class="glyph" set:html={glyph(w.data.icon)} />{w.data.listTitle}<em>{w.data.date}</em></span>}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))}
+    <p class="index-foot"><a href="/">Selected works</a> · <a href="/map.html">Original map</a></p>
+  </div>
+</dialog>
+
+<script>
+  import { initDetail } from '../../scripts/detail';
+  initDetail();
+</script>
+</body>
+</html>

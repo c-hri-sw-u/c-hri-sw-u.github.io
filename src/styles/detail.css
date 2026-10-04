@@ -1,0 +1,176 @@
+/* Detail pages: one sentence per screen, scroll-snapped. Same ground and mono as the homepage;
+   the sentences are set in a quiet serif so the page reads like being told a story.
+   A scene can switch the ground to ink for a statement; the change is part of the narrative,
+   so the page keeps its own two tones rather than following the viewer's theme. */
+:root {
+  --paper-bg: #f4f3f0;
+  --paper-fg: #111111;
+  --paper-dim: #6d6b66;
+  --paper-line: rgba(17, 17, 17, .12);
+  --ink-bg: #111111;
+  --ink-fg: #ecebe7;
+  --ink-dim: #8d8a83;
+  --ink-line: rgba(236, 235, 231, .16);
+  --card: #ffffff;
+  --signal: #e2477a; /* Lino's connection pink */
+
+  --bg: var(--paper-bg);
+  --fg: var(--paper-fg);
+  --dim: var(--paper-dim);
+  --line: var(--paper-line);
+
+  --font-line: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-name: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: light;
+}
+body[data-tone="ink"] { --bg: var(--ink-bg); --fg: var(--ink-fg); --dim: var(--ink-dim); --line: var(--ink-line); color-scheme: dark }
+
+* { box-sizing: border-box }
+html { scroll-snap-type: y mandatory; background: var(--paper-bg) }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-line);
+  -webkit-font-smoothing: antialiased; transition: background-color .8s ease, color .8s ease;
+}
+a { color: inherit }
+button { font: inherit; color: inherit }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px }
+
+/* ---------- bar ---------- */
+.d-bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 20; display: flex; justify-content: space-between; align-items: center;
+  padding: calc(18px + env(safe-area-inset-top, 0px)) 24px 0; pointer-events: none;
+}
+.d-bar > * { pointer-events: auto }
+.home { font-family: var(--font-name); font-weight: 500; font-size: 13.5px; text-decoration: none; color: var(--dim); transition: color .2s }
+.home:hover { color: var(--fg) }
+.index-btn {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase;
+  background: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; color: var(--dim);
+  transition: color .2s, border-color .2s;
+}
+.index-btn:hover { color: var(--fg); border-color: currentColor }
+
+/* ---------- scenes ---------- */
+.scene {
+  min-height: 100svh; scroll-snap-align: start; display: grid; place-items: center;
+  padding: 13svh 20px 14svh;
+}
+.stack { width: min(100%, 960px); display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3.4svh, 36px); text-align: center }
+.line {
+  margin: 0; max-width: 22ch; text-wrap: balance;
+  font-size: clamp(26px, 4vw, 44px); font-weight: 300; line-height: 1.18; letter-spacing: -.01em;
+}
+.text-only .line { font-size: clamp(30px, 5vw, 58px); max-width: 20ch }
+.line.em { font-style: italic }
+.note, .kicker {
+  margin: 0; max-width: 56ch; font-family: var(--font-mono); font-size: 11.5px; line-height: 1.7;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--dim); text-wrap: balance;
+}
+.kicker { display: inline-flex; align-items: center; gap: 10px; letter-spacing: .24em }
+.glyph { display: inline-block; width: 16px; height: 16px; flex: none }
+.glyph svg { width: 100%; height: 100%; display: block; overflow: visible }
+.lines { display: flex; flex-direction: column; gap: .7em; align-items: center }
+.begin {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase;
+  background: none; border: 1px solid currentColor; border-radius: 999px; padding: 11px 22px; cursor: pointer;
+  transition: background .25s, color .25s;
+}
+.begin:hover { background: var(--fg); color: var(--bg) }
+.go { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px }
+
+figure { margin: 0; width: 100%; display: grid; justify-items: center }
+figure > * { grid-area: 1 / 1 }
+figure img, figure video {
+  display: block; max-width: 100%; max-height: 54svh; width: auto; height: auto;
+  border-radius: 6px; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.28);
+}
+.wide figure img, .wide figure video { max-height: 62svh }
+figure.fade img { opacity: 0; transition: opacity .9s ease }
+figure.fade img.on { opacity: 1 }
+
+/* ---------- review card (Lino) ---------- */
+.review {
+  width: min(100%, 420px); background: var(--card); color: var(--paper-fg); border-radius: 12px; text-align: left;
+  border: 1px solid var(--paper-line); box-shadow: 0 24px 60px -30px rgba(0,0,0,.3); font-family: var(--font-mono); font-size: 12px;
+}
+.review-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--paper-line); color: var(--paper-dim) }
+.review ul { list-style: none; margin: 0; padding: 6px 0 }
+.review li { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 14px; transition: opacity .3s }
+.review .mark { color: var(--signal); font-weight: 500 }
+.review .txt { min-width: 0; line-height: 1.45 }
+.review .txt b { display: block; font-weight: 500 }
+.review li.undone { opacity: .38 }
+.review li.undone .txt { text-decoration: line-through }
+.review li.pending .mark { animation: blink 1.4s ease-in-out infinite }
+@keyframes blink { 50% { opacity: .2 } }
+.review button { border: 1px solid var(--paper-line); background: none; border-radius: 6px; padding: 4px 9px; font-size: 11px; cursor: pointer; color: var(--paper-fg) }
+.review button:hover { border-color: var(--paper-fg) }
+.review .acts { display: flex; gap: 6px }
+.review-foot { margin: 0; padding: 10px 14px 12px; border-top: 1px solid var(--paper-line); color: var(--paper-dim) }
+
+/* ---------- colophon ---------- */
+.colophon dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 16px 32px; margin: 0; text-align: left; width: min(100%, 560px) }
+.colophon dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); padding-top: 5px }
+.colophon dd { margin: 0; font-size: 18px; font-weight: 300; line-height: 1.45 }
+.colophon dd a { text-underline-offset: 3px; text-decoration-thickness: 1px }
+.next { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; padding: 14px 22px; border: 1px solid var(--line); border-radius: 999px; font-size: 18px; transition: border-color .2s }
+.next:hover { border-color: currentColor }
+.next small { display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); text-align: left }
+
+/* ---------- corner counters ---------- */
+.year, .progress {
+  position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 10;
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .12em; color: var(--dim); font-variant-numeric: tabular-nums;
+}
+.year { left: 24px; opacity: 0; transition: opacity .4s }
+.year.on { opacity: 1 }
+.progress { right: 24px }
+
+/* ---------- index ---------- */
+.index {
+  width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; border: 0; padding: 0;
+  background: var(--paper-bg); color: var(--paper-fg); font-family: var(--font-name);
+}
+.index::backdrop { background: rgba(17, 17, 17, .2) }
+.index-inner {
+  max-width: 980px; margin: 0 auto; padding: calc(64px + env(safe-area-inset-top, 0px)) 24px 48px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 36px 40px; align-content: start;
+}
+.index .close { position: fixed; top: calc(18px + env(safe-area-inset-top, 0px)); right: 24px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 1px solid var(--paper-line); border-radius: 999px; padding: 6px 14px; cursor: pointer }
+.index h2 { margin: 0 0 12px; font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-dim); display: flex; gap: 10px }
+.index h2 b { color: var(--paper-fg); font-weight: 500 }
+.index ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px }
+.index li a, .index li .plain { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 7px 0; text-decoration: none; font-size: 14.5px; font-weight: 500; border-bottom: 1px solid var(--paper-line) }
+.index li .plain { color: var(--paper-dim) }
+.index li a:hover { color: var(--signal) }
+.index li.here a { text-decoration: underline; text-underline-offset: 4px }
+.index li em { font-style: normal; font-family: var(--font-mono); font-size: 10.5px; color: var(--paper-dim); white-space: nowrap }
+.index-foot { grid-column: 1 / -1; margin: 0; font-size: 13px; color: var(--paper-dim) }
+
+/* ---------- reveal ----------
+   Without JS everything is visible. With JS each scene eases in once, line by line. */
+html.js .scene .r { opacity: 0; transform: translateY(12px); transition: opacity 1s ease, transform 1s var(--ease) }
+html.js .scene.on .r { opacity: 1; transform: none }
+html.js .scene.on .stack > .r:nth-child(2) { transition-delay: .35s }
+html.js .scene.on .stack > .r:nth-child(3) { transition-delay: .7s }
+html.js .scene.on .stack > .r:nth-child(4) { transition-delay: 1.05s }
+html.js .gate.on .lines .r:nth-child(1) { transition-delay: .3s }
+html.js .gate.on .lines .r:nth-child(2) { transition-delay: 1.3s }
+html.js .gate.on .lines .r:nth-child(3) { transition-delay: 2.3s }
+html.js .gate.on .stack > .begin.r { transition-delay: 3.2s }
+
+@media (max-width: 600px) {
+  .scene { padding-inline: 16px }
+  .d-bar { padding-inline: 16px }
+  .year { left: 16px } .progress { right: 16px }
+  figure img, figure video { max-height: 46svh }
+  .colophon dl { grid-template-columns: 1fr; gap: 4px }
+  .colophon dd { margin-bottom: 12px }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .scene .r { opacity: 1; transform: none; transition: none }
+  body, figure.fade img { transition: none }
+  .review li.pending .mark { animation: none }
+}
