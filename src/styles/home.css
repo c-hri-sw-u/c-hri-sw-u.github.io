@@ -192,6 +192,7 @@ html:has(body.is-map) { overflow: hidden }
 .ufo.up img { transform: translateY(-30px) rotate(-10deg) }
 .ufo.up .ufo-shadow { transform: scale(1.4, .7) }
 
+.map-book { position: absolute; z-index: 4; width: 30px; height: 30px; transform: translate(-50%, -50%); opacity: .8 }
 .preview { position: absolute; z-index: 8; width: 240px; padding: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 8px 24px rgba(0,0,0,.06);
   pointer-events: none; opacity: 0; transition: opacity .15s }
 .preview.show { opacity: 1 }

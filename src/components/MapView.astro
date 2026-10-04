@@ -1,6 +1,6 @@
 ---
 // The map of every work: hairline axes, coded glyphs and their path, drawn in the homepage's quiet
-// style. A few inhabitants from the legacy map (public/map.html) stay: a forest, a kiwi, a UFO, the compass.
+// style. A few inhabitants from the legacy map (public/map.html) stay: two forests, a kiwi, a UFO, the notebook (Medium), the compass.
 import type { CollectionEntry } from 'astro:content';
 import { glyph } from '../lib/glyph';
 import { links } from '../data/home';
@@ -28,6 +28,7 @@ if (byId['lino'] && byId['lino-app']) {
 // Forests, as the rows of trees in public/tree-flip.js.
 const forests = [
   { rows: [2, 3, 2, 6, 5, 4, 5], x: 18.5, y: 40, tree: 'Coniferous' },
+  { rows: [2, 3, 2, 5, 3], x: 27, y: 31, tree: 'Deciduous' },
 ];
 const kiwiLines = [
   "I'm a kiwi bird. Ask me anything.",
@@ -70,6 +71,9 @@ const kiwiLines = [
     </div>
     <button class="ufo" id="ufo" style="left:85%;top:89%" aria-label="A UFO"><img src="/icon/UFO Flying.svg" alt="" /><i class="ufo-shadow"></i></button>
 
+    <a class="book map-book" href={links.medium} target="_blank" rel="noopener" style="left:8%;top:68%" aria-label="Notes on Medium" title="Notes on Medium">
+      <img class="b-closed" src="/icon/Notebook-closed.svg" alt="" /><img class="b-open" src="/icon/Notebook-open.svg" alt="" />
+    </a>
     <div class="preview" id="preview"><img alt=""><div><b></b><span></span></div></div>
   </div>
 
