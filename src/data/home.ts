@@ -30,6 +30,8 @@ export const selected: Cell[] = [
     moments: [vid('banana-scan'), vid('banana-optimize', true), img('banana-shell', true)] },
   { id: 'bread-reader', name: 'breadReader', what: 'Toaster that reads poems', how: 'Hardware hack',
     moments: [img('bread-exhibit'), img('bread-hack')] },
+  { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
+    moments: [vid('risee-orbit'), vid('risee-actions')] },
 ];
 
 export const concepts: Cell[] = [
@@ -37,6 +39,8 @@ export const concepts: Cell[] = [
     moments: [vid('pgos-creation'), vid('pgos-spatial')] },
   { id: 'rethinking-rabbit-r1', name: 'Rabbit R1', what: 'Agent-first device', how: 'UX',
     moments: [vid('r1-agent'), img('r1-memory')] },
+  { id: 'lifeo', name: 'Lifeo', what: 'Learn language from your life', how: 'iOS app design',
+    moments: [img('lifeo-trio', true)] },
 ];
 
 export const links = {

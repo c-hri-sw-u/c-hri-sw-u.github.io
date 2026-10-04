@@ -64,7 +64,8 @@ export function initHome() {
     const b = (e.target as Element).closest<HTMLElement>('.mapicon');
     if (!b) { pv.classList.remove('show'); armed = null; return; }
     if (armed !== b.dataset.id && matchMedia('(hover: none)').matches) { armed = b.dataset.id!; showPreview(b); return; }
-    location.href = b.dataset.url!;
+    if (b.dataset.url) location.href = b.dataset.url;
+    else showPreview(b);
   });
 
   // ---------- Selected ↔ Map ----------
@@ -200,7 +201,6 @@ export function initHome() {
 
   toMap.addEventListener('click', () => goMap());
   toList.addEventListener('click', () => goList());
-  document.getElementById('mapTile')!.addEventListener('click', () => goMap());
   document.querySelectorAll<HTMLElement>('.glyph-btn').forEach(b =>
     b.addEventListener('click', e => { e.preventDefault(); goMap(b.dataset.id); }));
   addEventListener('keydown', e => { if (e.key === 'Escape' && mode === 'map') goList(); });

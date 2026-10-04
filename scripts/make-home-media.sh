@@ -35,3 +35,9 @@ clip  "$W/Playground OS/1.gif" pgos-creation 6
 clip  "$W/Playground OS/4.gif" pgos-spatial 4
 clip  "$W/Rethinking Rabbit R1/3.gif" r1-agent 7.9
 still "$W/Rethinking Rabbit R1/1.webp" r1-memory
+clip  "$W/Risee/1.gif" risee-orbit 12
+clip  "$W/Risee/2.gif" risee-actions 12
+# Lifeo: three phone screens side by side, on transparency.
+ffmpeg -nostdin -v error -y -i "$W/Lifeo/1.png" -i "$W/Lifeo/2.png" -i "$W/Lifeo/3.png" -filter_complex \
+  "[0]scale=402:874[a];[a]pad=442:874:0:0:color=0x00000000[a2];[1]pad=442:874:0:0:color=0x00000000[b2];[a2][b2][2]hstack=inputs=3,scale=900:-2:flags=lanczos" \
+  -frames:v 1 -c:v libwebp -q:v 75 "$OUT/lifeo-trio.webp"

@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import '../styles/home.css';
 import MapView from '../components/MapView.astro';
-import { glyph, glyphPath, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
+import { glyph, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
 import { selected, concepts, links, type Cell } from '../data/home';
 
 // Chronological path through every work, the same order the legacy map draws its lines in.
@@ -13,12 +13,6 @@ const onHome = new Set([...selected, ...concepts].map(c => c.id));
 // The legacy identifier: stage letter + order within the stage (A1 is the first undergraduate project).
 const codeOf = (w: CollectionEntry<'works'>) => `${w.data.stage}${w.data.order}`;
 
-let miniLines = '';
-for (let i = 0; i < works.length - 1; i++) {
-  const a = works[i].data.icon.position, b = works[i + 1].data.icon.position;
-  miniLines += `<path class="l${works[i].data.stage !== works[i + 1].data.stage ? ' d' : ''}" d="M${a[0]} ${a[1]}L${b[0]} ${b[1]}"/>`;
-}
-const miniIcons = works.map(w => `<g transform="translate(${w.data.icon.position[0]} ${w.data.icon.position[1]}) scale(.13)">${glyphPath(w.data.icon)}</g>`).join('');
 
 const iconOf = (c: Cell) => byId[c.id].data.icon as Icon;
 const yearOf = (c: Cell) => byId[c.id].data.date.match(/\d{4}/)?.[0] ?? '';
@@ -69,7 +63,9 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
       <section class={cls} aria-label={label}>
         {cells.map(c => (
           <article class:list={['card', { lead: c.lead }]} data-id={c.id}>
-            <a class="cover" href={byId[c.id].data.legacyUrl} aria-label={`${c.name}: ${c.what}`}></a>
+            {byId[c.id].data.legacyUrl
+              ? <a class="cover" href={byId[c.id].data.legacyUrl} aria-label={`${c.name}: ${c.what}`}></a>
+              : <div class="cover" style="cursor:default"></div>}
             <button class="glyph-btn" data-id={c.id} aria-label={`Show ${c.name} on the map`}>
               <Fragment set:html={glyph(iconOf(c), codeOf(byId[c.id]))} />
               <span class="tip">{describe(iconOf(c))}<small>Click to see where it sits on the map</small></span>
@@ -87,13 +83,6 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
             </div>
           </article>
         ))}
-        {gi === 0 && (
-          <article class="card maptile" id="mapTile">
-            <button class="cover" aria-label={`Open the map of all ${works.length} works`}></button>
-            <div class="media"><svg class="mini" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true" set:html={miniLines + miniIcons}></svg></div>
-            <div class="cap"><div class="what"><b>All {works.length} works</b> on the map</div><div class="how">Enter →</div></div>
-          </article>
-        )}
       </section>
     </Fragment>
   ))}
