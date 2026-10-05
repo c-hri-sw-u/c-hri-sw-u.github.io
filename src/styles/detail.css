@@ -1,0 +1,395 @@
+/* Detail pages: one sentence per screen, scroll-snapped. Same ground and mono as the homepage;
+   the sentences are set in a quiet serif so the page reads like being told a story.
+   A scene can switch the ground to ink for a statement; the change is part of the narrative,
+   so the page keeps its own two tones rather than following the viewer's theme. */
+:root {
+  --paper-bg: #f4f3f0;
+  --paper-fg: #111111;
+  --paper-dim: #6d6b66;
+  --paper-line: rgba(17, 17, 17, .12);
+  --ink-bg: #111111;
+  --ink-fg: #ecebe7;
+  --ink-dim: #8d8a83;
+  --ink-line: rgba(236, 235, 231, .16);
+  --card: #ffffff;
+  --ink: #111111;   /* the work glyphs, drawn as on the homepage */
+  --paper: #ffffff;
+  --font-code: var(--font-mono);
+  --signal: #e2477a; /* Lino's connection pink */
+
+  --bg: var(--paper-bg);
+  --fg: var(--paper-fg);
+  --dim: var(--paper-dim);
+  --line: var(--paper-line);
+
+  --font-line: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-name: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: light;
+}
+body[data-tone="ink"] { --bg: var(--ink-bg); --fg: var(--ink-fg); --dim: var(--ink-dim); --line: var(--ink-line); color-scheme: dark }
+
+* { box-sizing: border-box }
+html { scroll-snap-type: y mandatory; background: var(--paper-bg) }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-line);
+  -webkit-font-smoothing: antialiased; transition: background-color .8s ease, color .8s ease;
+}
+a { color: inherit }
+button { font: inherit; color: inherit }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px }
+
+/* ---------- bar ---------- */
+.d-bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 20; display: flex; justify-content: space-between; align-items: center;
+  padding: calc(18px + env(safe-area-inset-top, 0px)) 24px 0; pointer-events: none;
+}
+.d-bar > * { pointer-events: auto }
+.home { font-family: var(--font-name); font-weight: 500; font-size: 13.5px; text-decoration: none; color: var(--dim); transition: color .2s }
+.home:hover { color: var(--fg) }
+.index-btn {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .02em;
+  background: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; color: var(--dim);
+  transition: color .2s, border-color .2s;
+}
+.index-btn:hover { color: var(--fg); border-color: currentColor }
+
+/* ---------- scenes ---------- */
+.scene {
+  min-height: 100svh; scroll-snap-align: start; display: grid; place-items: center;
+  padding: 11svh 20px 12svh;
+}
+.stack { width: min(100%, 960px); display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3.4svh, 36px); text-align: center }
+.line {
+  margin: 0; max-width: 22ch; text-wrap: balance;
+  font-size: clamp(26px, 4vw, 44px); font-weight: 300; line-height: 1.18; letter-spacing: -.01em;
+}
+.text-only .line { font-size: clamp(30px, 5vw, 58px); max-width: 20ch }
+/* A line may hold a break (\n in the Markdown), so two sentences each start on their own line. */
+.line { white-space: pre-line }
+.line.em { font-style: italic }
+/* A product's own icon, set inline before its name. */
+.app-icon { display: inline-block; width: 1.05em; height: 1.05em; margin-right: .14em; vertical-align: -.17em }
+.lead { margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 300; line-height: 1.25; color: var(--dim) }
+.big .line { font-size: clamp(48px, 9vw, 128px); font-weight: 400; line-height: 1; letter-spacing: -.03em; max-width: none }
+.note, .kicker {
+  margin: 0; max-width: 52ch; font-family: var(--font-name); font-size: 14px; font-weight: 400; line-height: 1.55;
+  color: var(--dim); text-wrap: balance;
+}
+.caption { max-width: 64ch; font-family: var(--font-name); font-size: 12.5px; line-height: 1.5; color: var(--dim); text-wrap: balance; margin-top: calc(-1 * clamp(8px, 1.6svh, 18px)) }
+.footnote { font-family: var(--font-name); font-size: 11.5px; line-height: 1.5; color: var(--dim); opacity: .8 }
+.kicker { display: inline-flex; align-items: center; gap: 12px; font-weight: 500; color: var(--fg) }
+.glyph { display: inline-block; width: 16px; height: 16px; flex: none }
+.glyph svg { width: 100%; height: 100%; display: block; overflow: visible }
+.badge { width: 32px; height: 32px }
+.stack > * { margin: 0 }
+.lines { display: flex; flex-direction: column; gap: .7em; align-items: center }
+.begin {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .02em;
+  background: none; border: 1px solid currentColor; border-radius: 999px; padding: 11px 22px; cursor: pointer;
+  transition: background .25s, color .25s;
+}
+.begin:hover { background: var(--fg); color: var(--bg) }
+.go { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px }
+
+/* A wide scene with a video gives it more of the screen; the video opens full screen on click. */
+.stack.wide:has(video) { width: min(100%, 1320px) }
+.wide:has(video) .line { max-width: 34ch }
+.wide:has(video) .caption { max-width: 90ch }
+.scene:has(video) { padding-block: 7svh 8svh }
+figure video { cursor: zoom-in }
+figure { margin: 0; width: 100%; display: grid; justify-items: center }
+figure > * { grid-area: 1 / 1 }
+figure img, figure video {
+  display: block; max-width: 100%; max-height: var(--max, 54svh); width: auto; height: auto;
+  border-radius: 6px; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.28);
+}
+/* A site, shown as its homepage: the cover with its address underneath, the whole card a link. */
+.site a {
+  display: flex; flex-direction: column; width: min(100%, 720px); text-decoration: none; overflow: hidden;
+  background: var(--card); color: var(--paper-fg); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.28); transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.site a:hover { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 32px 70px -28px rgba(0,0,0,.34) }
+.site img { width: 100%; height: auto; max-height: calc(var(--max, 54svh) - 52px); object-fit: cover; object-position: top; border-radius: 0; box-shadow: none }
+.site-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; height: 52px; padding: 0 20px; border-top: 1px solid var(--paper-line); font-family: var(--font-name); font-size: 13.5px }
+.site-foot b { font-weight: 500 }
+.site-foot span { color: var(--paper-dim); transition: color .2s }
+.site a:hover .site-foot span { color: var(--paper-fg) }
+figure.cutout img { border-radius: 0; box-shadow: none }
+figure.fade img { opacity: 0; transition: opacity .9s ease }
+figure.fade img.on { opacity: 1 }
+
+/* ---------- backdrop ----------
+   A hairline drawing behind a scene's words; it draws itself in when the scene arrives. */
+.scene:has(.backdrop) { position: relative; overflow: hidden }
+.scene:has(.backdrop) .stack { position: relative }
+.backdrop { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none }
+.backdrop path { fill: none; stroke: var(--dim); stroke-opacity: .45; stroke-width: 1.3; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke }
+.backdrop .sheet { fill: var(--bg) }
+html.js .backdrop path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease) }
+html.js .scene.on .backdrop path { stroke-dashoffset: 0 }
+html.js .scene.on .backdrop .obj:nth-of-type(1) path { transition-delay: .9s }
+html.js .scene.on .backdrop .obj:nth-of-type(2) path { transition-delay: 1.2s }
+html.js .scene.on .backdrop .obj:nth-of-type(3) path { transition-delay: 1.5s }
+html.js .scene.on .backdrop .obj:nth-of-type(4) path { transition-delay: 1.8s }
+.backdrop.inline { display: none }
+@media (max-width: 600px) {
+  .backdrop.desk:not(.inline) { display: none }
+  .backdrop.inline { display: block; position: static; width: 100%; height: auto }
+}
+.drawing { width: clamp(240px, 46svh, 420px); height: auto; overflow: visible }
+.drawing path { fill: none; stroke: var(--fg); stroke-opacity: .55; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke }
+.drawing text { font-family: var(--font-name); font-size: 15px; fill: var(--dim); text-anchor: middle }
+html.js .drawing path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s var(--ease) }
+html.js .drawing text { opacity: 0; transition: opacity .8s ease 1.2s }
+html.js .scene.on .drawing path { stroke-dashoffset: 0 }
+html.js .scene.on .drawing text { opacity: 1 }
+html.js .scene.on .drawing .obj:nth-of-type(1) path { transition-delay: .7s }
+html.js .scene.on .drawing .obj:nth-of-type(2) path { transition-delay: 1.1s }
+html.js .scene.on .drawing .obj:nth-of-type(3) path { transition-delay: 1.5s }
+/* The reasons diagram grows upward from three soft overlapping circles, one level after another, all in the page's serif. */
+.drawing.reasons { width: min(100%, 940px, calc(56svh * 1000 / 520)) }
+.drawing.reasons.narrow-only { display: none; width: min(100%, 360px, calc(58svh * 400 / 640)) }
+@media (max-width: 640px) { .drawing.reasons.wide-only { display: none } .drawing.reasons.narrow-only { display: block } }
+.reasons text { font-family: var(--font-line); fill: var(--dim); font-size: 17px }
+.reasons path { stroke-opacity: .35 }
+.reasons .v { font-size: 14px; fill: var(--fg); fill-opacity: .75 }
+.reasons .term { font-size: 30px; fill: var(--fg); font-weight: 300 }
+.reasons .mid { font-size: 22px; fill: var(--fg); font-weight: 300 }
+.reasons.narrow-only .term { font-size: 24px } .reasons.narrow-only .mid { font-size: 19px } .reasons.narrow-only text.aside { font-size: 14px }
+.reasons .dot { stroke: none; mix-blend-mode: multiply; transform-box: fill-box; transform-origin: center }
+.reasons .dot.w { fill: #a7a49d; fill-opacity: .45 }
+.reasons .dot.f { fill: #e7a3bf; fill-opacity: .55 }
+.reasons .dot.c { fill: #edcf8a; fill-opacity: .6 }
+html.js .reasons .dot { opacity: 0; transition: opacity 1s ease, transform 1.4s var(--ease) }
+html.js .reasons .dot.w { transform: translateY(-14px) } html.js .reasons .dot.f { transform: translate(-14px, 10px) } html.js .reasons .dot.c { transform: translate(14px, 10px) }
+html.js .scene.on .reasons .dot { opacity: 1; transform: none; transition-delay: .2s }
+html.js .scene.on .reasons .lv0 text { transition-delay: 1s }
+html.js .scene.on .reasons .lv1 path { transition-delay: 1.3s } html.js .scene.on .reasons .lv1 text { transition-delay: 1.9s }
+html.js .scene.on .reasons .lv2 path { transition-delay: 2.1s } html.js .scene.on .reasons .lv2 text { transition-delay: 2.6s }
+html.js .scene.on .reasons .lv3 path { transition-delay: 2.9s } html.js .scene.on .reasons .lv3 text { transition-delay: 3.4s }
+html.js .scene.on .reasons .lv4 path { transition-delay: 3.6s } html.js .scene.on .reasons .lv4 text { transition-delay: 4.1s }
+html.js .scene.on .reasons .lv5 path { transition-delay: 4.3s } html.js .scene.on .reasons .lv5 text { transition-delay: 4.8s }
+/* The balance tips toward the person once it has drawn: 8° on the beam, the pans riding its ends. */
+.balance .beam, .balance .pan { transform-box: view-box; transform-origin: 300px 60px; transition: transform 2.2s cubic-bezier(.45, 0, .2, 1) 1.8s }
+.scene.on .balance .beam { transform: rotate(-8deg) }
+.scene.on .balance .pan.left { transform: translate(2px, 26px) }
+.scene.on .balance .pan.right { transform: translate(-2px, -26px) }
+
+/* ---------- equation and facts ----------
+   An equation sets its terms one per row with the signs small between them, arriving in turn.
+   Facts stand side by side, each a short heading over a sentence. */
+.equation { display: flex; flex-direction: column; align-items: center; gap: .1em }
+.equation p { margin: 0 }
+.equation .term { font-size: clamp(26px, 3.4vw, 44px); font-weight: 300; line-height: 1.15; letter-spacing: -.01em }
+.equation .sign { font-size: clamp(16px, 1.6vw, 22px); color: var(--dim); line-height: 1.5 }
+.equation .result { font-size: clamp(44px, 7vw, 96px); font-weight: 400; letter-spacing: -.03em; margin-top: .1em }
+html.js .scene.on .equation .r:nth-child(1) { transition-delay: .3s }
+html.js .scene.on .equation .r:nth-child(2) { transition-delay: .8s }
+html.js .scene.on .equation .r:nth-child(3) { transition-delay: 1.1s }
+html.js .scene.on .equation .r:nth-child(4) { transition-delay: 1.6s }
+html.js .scene.on .equation .r:nth-child(5) { transition-delay: 1.9s }
+html.js .scene.on .equation .r:nth-child(6) { transition-delay: 2.4s }
+html.js .scene.on .equation .r:nth-child(7) { transition-delay: 2.7s }
+html.js .gate.on .stack > .begin.r:last-child { transition-delay: 3.2s }
+.facts { width: min(100%, 1080px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; text-align: left }
+.fact { border-top: 1px solid var(--line); padding-top: 18px }
+.fact h3 { margin: 0 0 12px; font-size: clamp(24px, 2.6vw, 34px); font-weight: 300; line-height: 1.15; letter-spacing: -.01em }
+.fact p { margin: 0; font-family: var(--font-name); font-size: 16px; line-height: 1.55; color: var(--dim) }
+html.js .scene.on .facts .fact:nth-child(2) { transition-delay: .5s }
+html.js .scene.on .facts .fact:nth-child(3) { transition-delay: 1s }
+@media (max-width: 600px) { .facts { grid-template-columns: 1fr; gap: 22px } .fact h3 { margin-bottom: 6px } }
+
+/* ---------- pair ---------- */
+/* Two stills side by side, the second set a little lower, each sliding up in turn. */
+figure.pair { display: flex; gap: clamp(14px, 3vw, 44px); align-items: flex-start; justify-content: center; height: var(--max, 54svh) }
+figure.pair img { width: auto; height: 90%; max-height: none; max-width: none; border-radius: 10px; box-shadow: 0 18px 40px -18px rgba(0,0,0,.35) }
+figure.pair img:nth-child(2) { margin-top: calc(var(--max, 54svh) * .1) }
+html.js .scene figure.pair img { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform 1s cubic-bezier(.2,.8,.2,1) }
+html.js .scene.on figure.pair img { opacity: 1; transform: none }
+html.js .scene.on figure.pair img:nth-child(1) { transition-delay: .2s }
+html.js .scene.on figure.pair img:nth-child(2) { transition-delay: .55s }
+@media (max-width: 640px) { figure.pair { height: auto; width: 100% } figure.pair img { height: auto; width: 46%; aspect-ratio: auto } figure.pair img:nth-child(2) { margin-top: 10% } }
+
+/* ---------- gallery ---------- */
+/* A loose pile of snapshots: each photo has its own place and tilt, and they drop in one by one. */
+figure.gallery { position: relative; display: block; width: min(100%, calc(var(--max, 54svh) * 1.7)); aspect-ratio: 16 / 9 }
+figure.gallery img { position: absolute; width: var(--s, 28%); height: auto; max-height: none; aspect-ratio: 1; object-fit: cover;
+  left: var(--x); top: var(--y); padding: clamp(4px, .5vw, 8px); background: #fff; border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 14px 30px -12px rgba(0,0,0,.28); transform: rotate(var(--r));
+  transition: opacity .7s ease, transform .9s cubic-bezier(.2,.8,.2,1) }
+figure.gallery img:nth-child(1) { --x: 3%;  --y: 3%;  --r: -5deg; z-index: 2 }
+figure.gallery img:nth-child(2) { --x: 34%; --y: 0%;  --r: 3deg;  z-index: 1 }
+figure.gallery img:nth-child(3) { --x: 66%; --y: 5%;  --r: -2deg; z-index: 3 }
+figure.gallery img:nth-child(4) { --x: 13%; --y: 47%; --r: 4deg;  z-index: 4 }
+figure.gallery img:nth-child(5) { --x: 43%; --y: 43%; --r: -4deg; z-index: 5 }
+figure.gallery img:nth-child(6) { --x: 72%; --y: 49%; --r: 6deg;  z-index: 6 }
+html.js .scene figure.gallery img { opacity: 0; transform: translateY(-18px) rotate(calc(var(--r) * 2.5)) scale(1.08) }
+html.js .scene.on figure.gallery img { opacity: 1; transform: rotate(var(--r)) }
+html.js .scene.on figure.gallery img:nth-child(1) { transition-delay: .2s }
+html.js .scene.on figure.gallery img:nth-child(2) { transition-delay: .45s }
+html.js .scene.on figure.gallery img:nth-child(3) { transition-delay: .7s }
+html.js .scene.on figure.gallery img:nth-child(4) { transition-delay: .95s }
+html.js .scene.on figure.gallery img:nth-child(5) { transition-delay: 1.2s }
+html.js .scene.on figure.gallery img:nth-child(6) { transition-delay: 1.45s }
+@media (max-width: 640px) {
+  figure.gallery { width: min(100%, calc(var(--max, 54svh) * .75)); aspect-ratio: 3 / 4 }
+  figure.gallery img:nth-child(1) { --x: 2%;  --y: 2%; --s: 50% }
+  figure.gallery img:nth-child(2) { --x: 50%; --y: 5%; --s: 50% }
+  figure.gallery img:nth-child(3) { --x: 4%;  --y: 33%; --s: 50% }
+  figure.gallery img:nth-child(4) { --x: 48%; --y: 36%; --s: 50% }
+  figure.gallery img:nth-child(5) { --x: 3%;  --y: 63%; --s: 50% }
+  figure.gallery img:nth-child(6) { --x: 50%; --y: 62%; --s: 50% }
+}
+
+/* ---------- decode (Bread Reader) ----------
+   A scan line passes down the scanned slice and leaves its letters behind; the letters dim, and the found
+   words surface on the pores one after another. Cells are 0.6em by 1em, so the box is cols × 0.6 by rows. */
+figure.decode { display: block }
+.decode-box { position: relative; container-type: inline-size; aspect-ratio: calc(var(--cols) * .6) / var(--rows); width: min(100%, calc(var(--max, 54svh) * var(--cols) * .6 / var(--rows))); margin: 0 auto }
+.decode-box > * { position: absolute }
+.decode .scan { inset: 0; width: 100%; height: 100%; max-height: none; border-radius: 4px; box-shadow: 0 24px 60px -28px rgba(0,0,0,.28) }
+.decode .letters { inset: 0; color: var(--fg); opacity: .3 }
+.decode pre { margin: 0; font: 400 calc(100cqw / (var(--cols) * .6)) / 1 var(--font-mono); letter-spacing: 0; white-space: pre; text-align: left }
+.decode .word {
+  left: calc(var(--c) * 100% / var(--cols)); top: calc(var(--r) * 100% / var(--rows));
+  font: 500 calc(100cqw / (var(--cols) * .6)) / 1 var(--font-mono); color: var(--fg); background: var(--bg); padding: 0 .3ch; margin-left: -.3ch;
+}
+.decode .scan, .decode .beam { display: none }
+html.js .decode .scan, html.js .decode .beam { display: block }
+html.js .decode .scan { clip-path: inset(0 0 0 0) }
+html.js .decode .letters { opacity: 1; clip-path: inset(0 0 100% 0) }
+html.js .decode .word { opacity: 0 }
+html.js .decode .beam { left: -2%; right: -2%; top: 0; height: 1px; background: var(--fg); opacity: 0 }
+html.js .scene.on .decode .scan { animation: decode-scan 2.8s linear .9s both }
+html.js .scene.on .decode .letters { animation: decode-letters 2.8s linear .9s both, decode-dim 1.2s ease 4s both }
+html.js .scene.on .decode .beam { animation: decode-beam 2.8s linear .9s both }
+html.js .scene.on .decode .word { animation: decode-word .7s ease both; animation-delay: calc(4.6s + var(--k) * .22s) }
+@keyframes decode-scan { to { clip-path: inset(100% 0 0 0) } }
+@keyframes decode-letters { to { clip-path: inset(0 0 0 0) } }
+@keyframes decode-dim { from { opacity: 1 } to { opacity: .3 } }
+@keyframes decode-beam { 0% { top: 0; opacity: .7 } 96% { opacity: .7 } 100% { top: 100%; opacity: 0 } }
+@keyframes decode-word { from { opacity: 0 } to { opacity: 1 } }
+
+/* ---------- poem ----------
+   As the machine printed it: the printout's mono, found words in bold, stanzas arriving in turn. */
+.poem { columns: 2; column-gap: clamp(32px, 6vw, 88px); text-align: left; font-family: var(--font-mono); font-size: clamp(13px, 1.25vw, 15.5px); line-height: 1.6; color: var(--dim) }
+.poem p { margin: 0 0 1.2em; break-inside: avoid }
+.poem b { font-weight: 500; color: var(--fg) }
+html.js .scene.on .poem .r:nth-child(2) { transition-delay: .3s }
+html.js .scene.on .poem .r:nth-child(3) { transition-delay: .6s }
+html.js .scene.on .poem .r:nth-child(4) { transition-delay: .9s }
+html.js .scene.on .poem .r:nth-child(5) { transition-delay: 1.2s }
+html.js .scene.on .stack:has(> .poem) > .line.r { transition-delay: 1.8s }
+html.js .scene.on .stack:has(> .poem) > .note.r { transition-delay: 2.2s }
+/* An opener that is a poem the work wrote: one column, larger, a line at a time like a printout. */
+.opener-poem { columns: 1; font-size: clamp(15px, 1.7vw, 21px); line-height: 1.75 }
+.opener-poem p { margin: 0 }
+html.js .gate.on .opener-poem .r:nth-child(1) { transition-delay: .3s }
+html.js .gate.on .opener-poem .r:nth-child(2) { transition-delay: .7s }
+html.js .gate.on .opener-poem .r:nth-child(3) { transition-delay: 1.1s }
+html.js .gate.on .opener-poem .r:nth-child(4) { transition-delay: 1.5s }
+html.js .gate.on .opener-poem .r:nth-child(5) { transition-delay: 1.9s }
+html.js .gate.on .stack:has(> .opener-poem) > .note.r { transition-delay: 2.8s }
+@media (max-width: 600px) { .poem { columns: 1; font-size: 12.5px; line-height: 1.5 } .poem p { margin-bottom: .9em } .opener-poem { font-size: 14.5px; line-height: 1.7 } .opener-poem p { margin: 0 } }
+
+/* ---------- inventory ---------- */
+.inventory { list-style: none; padding: 0; width: min(100%, 720px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; text-align: left; font-family: var(--font-name); font-size: 15px; line-height: 1.4 }
+.scene:has(.inventory) { padding-block: 8svh 9svh }
+.inventory li { padding: 11px 0; border-top: 1px solid var(--line) }
+/* A lone last item closes the list across both columns. */
+.inventory li:last-child:nth-child(odd) { grid-column: 1 / -1; text-align: center }
+.inventory small { display: block; margin-top: 3px; font-size: 12.5px; font-weight: 400; line-height: 1.45; color: var(--dim) }
+html.js .scene .inventory li { opacity: 0; transform: translateY(6px); transition: opacity .6s ease, transform .6s var(--ease) }
+html.js .scene.on .inventory li { opacity: 1; transform: none }
+@media (max-width: 600px) { .inventory { grid-template-columns: 1fr; font-size: 14px } .inventory li { padding: 7px 0 } .inventory small { font-size: 12px; margin-top: 1px } .inventory li:last-child:nth-child(odd) { text-align: left } }
+
+/* ---------- colophon ---------- */
+/* The list is only as wide as its longest line, so it centres on its own text and lines up with Next below it.
+   Labels sit on the baseline of their values. */
+.colophon dl { display: grid; grid-template-columns: max-content minmax(0, max-content); align-items: baseline; gap: 16px 32px; margin: 0; text-align: left; width: fit-content; max-width: min(100%, 560px) }
+.colophon dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em; color: var(--dim) }
+.colophon dd { margin: 0; font-size: 18px; font-weight: 300; line-height: 1.45 }
+.colophon dd a { text-underline-offset: 3px; text-decoration-thickness: 1px }
+.next { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; padding: 14px 22px; border: 1px solid var(--line); border-radius: 999px; font-size: 18px; transition: border-color .2s }
+.next:hover { border-color: currentColor }
+.next > span:last-child { text-align: left }
+.next small { display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .02em; color: var(--dim); text-align: left }
+
+/* ---------- corner counters ---------- */
+.year, .progress {
+  position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 10;
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .12em; color: var(--dim); font-variant-numeric: tabular-nums;
+}
+.year { left: 24px; opacity: 0; transition: opacity .4s }
+.year.on { opacity: 1 }
+.progress { right: 24px }
+
+/* ---------- index ---------- */
+.index {
+  width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; border: 0; padding: 0;
+  background: var(--paper-bg); color: var(--paper-fg); font-family: var(--font-name);
+}
+.index::backdrop { background: rgba(17, 17, 17, .2) }
+.index-inner {
+  max-width: 980px; margin: 0 auto; padding: calc(64px + env(safe-area-inset-top, 0px)) 24px 48px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 36px 40px; align-content: start;
+}
+.index .close { position: fixed; top: calc(18px + env(safe-area-inset-top, 0px)); right: 24px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .02em; background: none; border: 1px solid var(--paper-line); border-radius: 999px; padding: 6px 14px; cursor: pointer }
+.index h2 { margin: 0 0 12px; font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: .02em; color: var(--paper-dim); display: flex; gap: 10px }
+.index h2 b { color: var(--paper-fg); font-weight: 500 }
+.index ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px }
+.index li a, .index li .plain { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 7px 0; text-decoration: none; font-size: 14.5px; font-weight: 500; border-bottom: 1px solid var(--paper-line) }
+.index li .plain { color: var(--paper-dim) }
+.index li a:hover { color: var(--signal) }
+.index li.here a { text-decoration: underline; text-underline-offset: 4px }
+.index li em { font-style: normal; font-family: var(--font-mono); font-size: 10.5px; color: var(--paper-dim); white-space: nowrap }
+.index-foot { grid-column: 1 / -1; margin: 0; font-size: 13px; color: var(--paper-dim) }
+
+/* ---------- reveal ----------
+   Without JS everything is visible. With JS each scene eases in once, line by line. */
+html.js .scene .r { opacity: 0; transform: translateY(12px); transition: opacity 1s ease, transform 1s var(--ease) }
+html.js .scene.on .r { opacity: 1; transform: none }
+html.js .scene.on .stack > .r:nth-child(2) { transition-delay: .35s }
+html.js .scene.on .stack > .r:nth-child(3) { transition-delay: .7s }
+html.js .scene.on .stack > .r:nth-child(4) { transition-delay: 1.05s }
+html.js .gate.on .lines .r:nth-child(1) { transition-delay: .3s }
+html.js .gate.on .lines .r:nth-child(2) { transition-delay: 1.3s }
+html.js .gate.on .lines .r:nth-child(3) { transition-delay: 2.3s }
+html.js .gate.on .stack > .begin.r { transition-delay: 3.2s }
+
+@media (max-width: 600px) {
+  .scene { padding-inline: 16px }
+  .scene:has(.inventory) { padding-block: 8svh 7svh }
+  .d-bar { padding-inline: 16px }
+  .year { left: 16px } .progress { right: 16px }
+  .colophon dl { grid-template-columns: 1fr; gap: 4px }
+  .colophon dd { margin-bottom: 12px }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .scene .inventory li { opacity: 1; transform: none; transition: none }
+  html.js .scene .r { opacity: 1; transform: none; transition: none }
+  html.js .backdrop path, html.js .drawing path { stroke-dashoffset: 0; transition: none }
+  html.js .drawing text { opacity: 1; transition: none } .balance .beam, .balance .pan { transition: none } html.js .reasons .dot { opacity: 1; transform: none; transition: none }
+  body, figure.fade img { transition: none }
+  html.js .decode .scan, html.js .decode .beam { display: none } html.js .scene .decode .letters { clip-path: none; opacity: .3; animation: none } html.js .scene .decode .word { opacity: 1; animation: none }
+}
+
+/* ---------- Banana Exoskeleton ----------
+   The opener's bananas sit on the paper with no frame. The outlines of a hundred bananas draw in one after another,
+   faint, so their shared arc shows where they pile up; with `fit` a ring of points then shrinks onto it. */
+figure.loose img, figure.loose video { border-radius: 0; box-shadow: none; cursor: default }
+.gate figure.loose > * { max-height: min(var(--max, 46svh), 46svh) }
+/* A name set large next to a photo keeps to one line. */
+.big .stack.wide:not(:has(video)) { width: min(100%, 1320px) }
+.drawing.bananas { width: min(100%, 900px, calc(38svh * 584 / 357)) }
+.drawing.bananas.fit { width: min(100%, 560px, 40svh) }
+.bananas .outlines path { stroke-opacity: .2; stroke-width: 1 }
+.bananas.fit .outlines path { stroke-opacity: .13 }
+html.js .bananas .outlines path { transition: stroke-dashoffset 1.2s var(--ease) calc(.3s + var(--k) * 14ms) }
+.bananas .ring polygon { fill: none; stroke: var(--signal); stroke-width: 1.4; stroke-linejoin: round; vector-effect: non-scaling-stroke; marker: url(#vertex) }
+html.js .bananas .ring { opacity: 0; transition: opacity .8s ease 1s }
+html.js .scene.on .bananas .ring { opacity: 1 }
+@media (prefers-reduced-motion: reduce) { html.js .bananas .ring { opacity: 1; transition: none } }

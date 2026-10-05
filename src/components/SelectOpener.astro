@@ -1,0 +1,75 @@
+---
+// Risee's opener is its own gesture: a word gets selected, then a ring of action capsules turns in around it.
+// lead: the sentence before the word; word: the selected word; actions: the capsules.
+interface Props { lead: string; word: string; actions: string[] }
+const { lead, word, actions } = Astro.props;
+---
+<div class="sel-open">
+  <p class="sel-lead r">{lead}</p>
+  <p class="sel-stage">
+    <span class="sel-word"><span class="sel-hl" aria-hidden="true"></span><span class="sel-text">{word}</span></span>
+    {actions.map(a => <span class="sel-pill" aria-hidden="true">{a}</span>)}
+  </p>
+</div>
+
+<style is:global>
+  .sel-open { display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 2svh, 20px) }
+  .sel-lead { margin: 0; font-size: clamp(22px, 3vw, 36px); font-weight: 300; line-height: 1.2; letter-spacing: -.01em; max-width: 24ch; text-wrap: balance }
+  .sel-stage { position: relative; margin: 0; padding: clamp(64px, 11svh, 104px) 0 clamp(16px, 3svh, 28px) }
+  .sel-word { position: relative; display: inline-block; font-size: clamp(52px, 8vw, 104px); font-weight: 400; line-height: 1; letter-spacing: -.03em; padding: 0 .06em }
+  .sel-text { position: relative }
+  .sel-hl { position: absolute; inset: -.04em 0 -.1em; background: #b3d4fc; transform-origin: left center; transform: scaleX(0); transition: transform .7s cubic-bezier(.6,0,.3,1) }
+  .gate.on .sel-hl { transform: none; transition-delay: 1.1s }
+  .sel-pill {
+    position: absolute; left: 50%; top: 50%; white-space: nowrap; pointer-events: none;
+    font-family: var(--font-name); font-size: clamp(11px, 1.1vw, 13.5px); font-weight: 500; color: #f4f3f0;
+    background: #1c1c1c; border-radius: 999px; padding: .5em 1.05em; box-shadow: 0 6px 18px -8px rgba(0,0,0,.45);
+    opacity: 0; transform: translate(-50%, -50%);
+  }
+  html:not(.js) .sel-hl { transform: none }
+  html:not(.js) .sel-pill { display: none }
+  html.js .gate:has(.sel-open).on .lines .r { transition-delay: 3.4s }
+  html.js .gate:has(.sel-open).on .stack > .begin.r { transition-delay: 4.2s }
+</style>
+
+<script>
+  // Each capsule travels along an ellipse around the word and settles on the upper arc, one after another.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for (const stage of document.querySelectorAll<HTMLElement>('.sel-stage')) {
+    const word = stage.querySelector<HTMLElement>('.sel-word')!;
+    const pills = [...stage.querySelectorAll<HTMLElement>('.sel-pill')];
+    const n = pills.length;
+    // Final angles spread over the upper arc (screen y grows downward, so the top is negative sine).
+    const finalA = pills.map((_, i) => Math.PI * (1.12 + 0.76 * (n === 1 ? .5 : i / (n - 1))));
+    let started = false;
+    const place = (i: number, a: number, o: number) => {
+      const rx = word.offsetWidth / 2 + Math.min(70, word.offsetHeight * .55);
+      const ry = word.offsetHeight / 2 + Math.min(62, word.offsetHeight * (innerWidth < 640 ? 1 : .62));
+      const cy = word.offsetTop + word.offsetHeight / 2 - stage.offsetHeight / 2;
+      const x = Math.cos(a) * rx, y = Math.sin(a) * ry + cy;
+      pills[i].style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+      pills[i].style.opacity = String(o);
+    };
+    const settle = () => pills.forEach((_, i) => place(i, finalA[i], 1));
+    const run = () => {
+      if (started) return; started = true;
+      if (reduce) { settle(); return; }
+      const t0 = performance.now() + 1900, dur = 1500, gap = 110, sweep = 1.1;
+      const tick = (t: number) => {
+        let done = true;
+        pills.forEach((_, i) => {
+          const k = Math.max(0, Math.min(1, (t - t0 - i * gap) / dur));
+          if (k < 1) done = false;
+          const e = 1 - (1 - k) ** 3;
+          place(i, finalA[i] - sweep * (1 - e), Math.min(1, k * 2.2));
+        });
+        if (!done) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const gate = stage.closest('.gate')!;
+    new MutationObserver(() => { if (gate.classList.contains('on')) run(); }).observe(gate, { attributes: true, attributeFilter: ['class'] });
+    if (gate.classList.contains('on')) run();
+    addEventListener('resize', () => { if (started) settle(); });
+  }
+</script>

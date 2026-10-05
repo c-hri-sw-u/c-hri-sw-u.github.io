@@ -1,0 +1,112 @@
+{
+ "cols": 52,
+ "rows": 34,
+ "grid": [
+  "                                                    ",
+  "                                                    ",
+  "    AADPSTRPSSPMPMNLJMQOQLMJAACA                    ",
+  "   HQSSSUQRJQRZXZZYZWYXWYVRVUZYXRJAADFAAA           ",
+  "  AQONNOUOQQPTWPNRTTRWUVWTQMQQUZZZZZZYZQOAA         ",
+  "  AULTQMSJGRPNWVNUMZXZUPJMNPTTSRSWXTRNJTZYHA        ",
+  "  AMKPRSQHAELTRQQLSXULJQQOKPQTOMRQQJLQOKTVYJA       ",
+  "  AKLOPLNPVNGRRJNOOKIALNRSQLOQLMQPKPNLLLRNWZFA      ",
+  "  AIHENPRLHMKRUJLKLPNLMJQPMGLNRQRNRSRRQMQXOWRA      ",
+  "  ADHHORPSPLOMPTPOMNIHGNPLOOIKGIISSOPQMMQURZXHA     ",
+  "  AIMRPTMQSIJHNRGLIGKKGMMKEIGEEDCKKOUQOMJOLXZKA     ",
+  "  AIOHRONELPLGIQKNFLMHHCGHFABDGFGGNNMPKQHNSVZHA     ",
+  "   JMNSMPORGJJLINNJHEACCGKIADAAFEFMTLSLTKQRXRA      ",
+  "   JOBFJQGOOHKHKNSPGDFACEQPONOLJIHNNOOIUUUQWA       ",
+  "   CSBGMKOLNHMKHNOJKNKKDAPMKNPKIAPRNRXYZYYSA        ",
+  "   ATALQJROKPNONMPPOJKFIHLJILMMHKLLKTWZXYSA         ",
+  "   ANBOQLNTQLNJLHMHOKJKIGKPIELNOOJPXVZZYVA          ",
+  "   LIEPOPILSKNHPHIQRPHONIPRHJMGOPVXWTZZA            ",
+  "  AOILNONIOKJKNMJJMNOINNCNKQPJJOSWQWZYWBAA          ",
+  "  AKDHQMOMRUROPLONRIIOLKJMPJOSQFMSTWZTQXZVEA        ",
+  "  AQFNGIGMFTNKJOSOLBJLNMOHPPQJLONMNGTUTTXWSPA       ",
+  "  AHOFDJHOHPRJOQLIMINOPLKPPIOIMSRSPMRTTTTXWRGA      ",
+  "  AKEAJMJHLOPPJJGLRKOILPMMOKJHLKNLGNMNKJNSTRMA      ",
+  "  ANCAGODGHGOPOGIILMJKEFNCDFNGLMMHMOONMNNKLPSAA     ",
+  "  ANCGKCIAIDFMRKMMLHHMHKGEAHHKEFGKOLLONQMMLPOAA     ",
+  "  AJFKPADEFLCFKKJJKHGFHHJMEDAFKIFNMLMGLNOPNNQAA     ",
+  "  AKAGOKADAGGEEIOPOFACGHIGIHEKJLJJMMMKEQLJPQIA      ",
+  "  AMDLNKHFIHIIDGDJGDADGIKIJGIJEKFIQRPIJMEQNTFA      ",
+  "  AQAFFHLEIDCGDIFDFHGAEHHLJGGHHIFKMNIKOMRPSLA       ",
+  "  AQLDOLLFEDJDGOJGGEEGCEIFJFGKHFMMNONJRUZUSA        ",
+  "  AMVSQPRLOOLLEOMOOGIGEHKAGDEFDHJNNSSPRTMAA         ",
+  "    ACDEHIEJGHFDAAACIJGKIKNIHHJKIMNQNCAAA           ",
+  "                                                    ",
+  "                                                    "
+ ],
+ "words": [
+  {
+   "w": "ON",
+   "r": 6,
+   "c": 9
+  },
+  {
+   "w": "FEMALE",
+   "r": 7,
+   "c": 18
+  },
+  {
+   "w": "HEAD",
+   "r": 12,
+   "c": 19
+  },
+  {
+   "w": "GILL",
+   "r": 12,
+   "c": 27
+  },
+  {
+   "w": "LIFE",
+   "r": 14,
+   "c": 22
+  },
+  {
+   "w": "CHAFF",
+   "r": 14,
+   "c": 29
+  },
+  {
+   "w": "DECIDE",
+   "r": 20,
+   "c": 16
+  },
+  {
+   "w": "DEAD",
+   "r": 24,
+   "c": 7
+  },
+  {
+   "w": "BILL",
+   "r": 25,
+   "c": 26
+  },
+  {
+   "w": "HIGH",
+   "r": 26,
+   "c": 6
+  },
+  {
+   "w": "BEAM",
+   "r": 26,
+   "c": 18
+  },
+  {
+   "w": "FEED",
+   "r": 28,
+   "c": 10
+  },
+  {
+   "w": "FALL",
+   "r": 28,
+   "c": 19
+  },
+  {
+   "w": "BELL",
+   "r": 30,
+   "c": 23
+  }
+ ]
+}

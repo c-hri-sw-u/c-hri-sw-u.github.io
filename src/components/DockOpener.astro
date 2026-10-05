@@ -1,0 +1,45 @@
+---
+// Playground OS opens on its dock: the four parts a playground and the OS share, as the buttons the prototype floats
+// over the kitchen. lead: the sentence above; parts: the buttons, in the dock's order.
+interface Props { lead: string; parts: string[] }
+const { lead, parts } = Astro.props;
+// The dock's own icons, redrawn as strokes in a 20-unit box.
+const ICON: Record<string, string> = {
+  Space: '<path d="M2 10 10 6l8 4-8 4Z" fill="currentColor" stroke="none"/>',
+  Materials: '<path d="M3 17 16 4M9 11l-5-4M12 8l1-5"/>',
+  Tools: '<path d="M3 17l7-7M10 10c1-3 3.5-6 7.5-7.5C16 6.5 13 9 10 10Z"/>',
+  Equipments: '<path d="M4 6h12M10 6v11M7 17h6M4 6v4M16 6v4M10 3v3"/>',
+};
+---
+<div class="dock-open">
+  <p class="dock-lead r">{lead}</p>
+  <p class="dock r">
+    {parts.map(part => (
+      <span class="dock-cap">
+        <svg class="dock-icon" viewBox="0 0 20 20" aria-hidden="true" set:html={ICON[part] ?? ''} />
+        {part}
+      </span>
+    ))}
+  </p>
+</div>
+
+<style is:global>
+  .dock-open { display: flex; flex-direction: column; align-items: center; gap: clamp(22px, 4svh, 40px) }
+  .dock-lead { margin: 0; font-size: clamp(30px, 4.6vw, 56px); font-weight: 300; line-height: 1.15; letter-spacing: -.01em; max-width: 24ch; text-wrap: balance }
+  /* Warm, glassy, like the dock floating over the kitchen in the prototype. */
+  .dock {
+    margin: 0; display: grid; grid-template-columns: repeat(4, auto); gap: 6px; padding: 7px; border-radius: 999px;
+    background: linear-gradient(180deg, #9a8a76, #7e6f5d); color: #fbf6ef;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 22px 44px -22px rgba(60,40,20,.55);
+    font-family: var(--font-name); font-size: clamp(14px, 1.6vw, 18px); font-weight: 500;
+  }
+  .dock-cap { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .62em 1.15em .62em .95em; border-radius: 999px; background: rgba(255,255,255,.1); white-space: nowrap }
+  .dock-icon { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round }
+  @media (max-width: 560px) {
+    .dock { grid-template-columns: repeat(2, minmax(0, 1fr)); border-radius: 26px; width: min(100%, 340px) }
+    .dock-cap { padding-inline: .9em }
+  }
+  /* The dock comes in after the question. */
+  html.js .gate:has(.dock-open).on .dock-open .dock.r { transition-delay: .8s }
+  html.js .gate:has(.dock-open).on .stack > .begin.r { transition-delay: 2.2s }
+</style>

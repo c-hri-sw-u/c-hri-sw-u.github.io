@@ -1,0 +1,118 @@
+---
+// Rethinking Rabbit R1 opens on its own gesture: the device shows one answer, then its wheel turns through the others.
+// lead: the sentence above; answer: the one reply shown first; rest: the reply the wheel stops on (it turns two past it,
+// then back, as a thumb would); replies: the wheel, in order.
+interface Props { lead: string; answer: string; rest: string; replies: string[] }
+const { lead, answer, rest, replies } = Astro.props;
+const start = replies.indexOf(answer);
+// Where a reply sits at distance d from the pointer, in its own em: one pitch per reply, plus a little room around the
+// centre one, which is shown larger. The script uses the same numbers while the wheel turns.
+const PITCH = 1.42, ROOM = .3;
+const pos = (i: number) => { const d = i - start, a = Math.abs(d); return `--a:${a};--y:${d * PITCH + Math.sign(d) * Math.min(a, 1) * ROOM}`; };
+---
+<div class="wh-open">
+  <p class="wh-lead r">{lead}</p>
+  <div class="wh-device r" role="img" aria-label={`A Rabbit R1 whose wheel turns through replies: ${replies.join(', ')}`} data-start={start} data-rest={replies.indexOf(rest)}>
+    <img class="wh-body" src="/media/works/rethinking-rabbit-r1/device.webp" alt="" width="544" height="533" decoding="async" />
+    <div class="wh-screen">
+      <ul class="wh-drum" aria-hidden="true">
+        {replies.map((r, i) => <li class="wh-pill" style={pos(i)}>{r}</li>)}
+      </ul>
+      <span class="wh-tip" aria-hidden="true"></span>
+    </div>
+    <span class="wh-roller" aria-hidden="true"></span>
+  </div>
+</div>
+
+<style is:global>
+  .wh-open { display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3.4svh, 34px) }
+  .wh-lead { margin: 0; font-size: clamp(22px, 3vw, 36px); font-weight: 300; line-height: 1.2; letter-spacing: -.01em; max-width: 24ch; text-wrap: balance }
+  /* The device is the R1 as rendered in the project (scripts/r1-device.py builds it); the replies are live text laid over
+     its screen. The box is 32em wide and keeps the image's ratio; the screen and wheel are placed in its percentages. */
+  .wh-device { position: relative; width: 32em; aspect-ratio: 544 / 533; max-width: 100%; font-size: clamp(8.4px, 2.4vw, 12.5px) }
+  .wh-body { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 1.4em 2em rgba(120,30,0,.28)) }
+  .wh-screen { position: absolute; left: 3.31%; top: 3%; width: 68.75%; height: 93.43%; overflow: hidden; border-radius: 1.7em }
+  .wh-drum { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none }
+  /* Every reply sits on the line the wheel points at, moved by --y and drawn smaller and darker by --a, its distance from
+     it. All of it is transform, opacity and colour, so the turn stays smooth on a phone. --k fades in all but the centre. */
+  .wh-drum { --k: 1 }
+  html.js .wh-drum { --k: 0 }
+  .wh-pill {
+    position: absolute; right: 1.73em; top: 40%; white-space: nowrap;
+    font-family: var(--font-name); font-size: 1.36em; font-weight: 400; line-height: 1; color: #111;
+    padding: .38em .78em .42em; border-radius: 999px;
+    background: color-mix(in srgb, #ffffff calc(max(0%, 100% - var(--a) * 17%)), #2c2c2c);
+    transform: translateY(calc(-50% + var(--y) * 1em)) scale(calc(1 - .18 * min(var(--a), 1) - .03 * max(var(--a) - 1, 0)));
+    transform-origin: right center; will-change: transform;
+    opacity: calc((1 - var(--a) * .17) * max(var(--k), 1 - min(var(--a), 1)));
+  }
+  .wh-tip { position: absolute; right: .55em; top: 40%; width: 0; height: 0; transform: translateY(-50%); border: .55em solid transparent; border-right-color: #fff; border-left-width: 0 }
+  /* The wheel's cylinder: ridges slide over it as it turns, showing more the faster it goes. */
+  .wh-roller {
+    position: absolute; left: 76.9%; top: 32.2%; width: 16.9%; height: 17.2%; border-radius: .7em; mix-blend-mode: multiply; opacity: 0;
+    background: repeating-linear-gradient(to bottom, rgba(70,0,0,.9) 0 .1em, transparent .1em .8em) 0 var(--turn, 0em);
+  }
+  /* The device fades in where it stands; rising into place made it look as if it jumped. */
+  html.js .scene .wh-open .wh-device.r { transform: none }
+  @media (max-width: 420px) { .wh-pill { right: 1.32em } }
+  html.js .gate:has(.wh-open).on .stack > .wh-open .wh-device.r { transition-delay: .6s }
+  html.js .gate:has(.wh-open).on .wh-lead.r { transition-delay: .3s }
+  html.js .gate:has(.wh-open).on .lines .r { transition-delay: 6s }
+  html.js .gate:has(.wh-open).on .stack > .begin.r { transition-delay: 6.7s }
+  .gate:has(.wh-open) .lines .line.em { font-size: clamp(22px, 2.8vw, 32px) }
+  .gate:has(.wh-open) .stack { gap: clamp(14px, 2.6svh, 28px) }
+</style>
+
+<script>
+  // One answer first; then the others fade in around it, and the wheel turns in one continuous motion: it runs two replies
+  // past where it rests, then eases back, as a thumb would. Drawn frame by frame, so nothing restarts between replies.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const PITCH = 1.42, ROOM = .3;
+  const clamp = (x: number) => Math.max(0, Math.min(1, x));
+  const inOutSine = (u: number) => (1 - Math.cos(Math.PI * u)) / 2;
+  const inOutCubic = (u: number) => u < .5 ? 4 * u ** 3 : 1 - (-2 * u + 2) ** 3 / 2;
+  for (const dev of document.querySelectorAll<HTMLElement>('.wh-device')) {
+    const drum = dev.querySelector<HTMLElement>('.wh-drum')!;
+    const roller = dev.querySelector<HTMLElement>('.wh-roller')!;
+    const pills = [...dev.querySelectorAll<HTMLElement>('.wh-pill')];
+    const start = +dev.dataset.start!, rest = +dev.dataset.rest!;
+    const dir = Math.sign(rest - start) || 1;
+    const far = Math.max(0, Math.min(pills.length - 1, rest + dir * 2));
+    const place = (pos: number, k: number, speed: number) => {
+      drum.style.setProperty('--k', k.toFixed(3));
+      pills.forEach((p, i) => {
+        const d = i - pos, a = Math.abs(d);
+        p.style.setProperty('--a', a.toFixed(3));
+        p.style.setProperty('--y', (d * PITCH + Math.sign(d) * Math.min(a, 1) * ROOM).toFixed(3));
+      });
+      roller.style.setProperty('--turn', `${((start - pos) * .8).toFixed(3)}em`);
+      roller.style.opacity = String(Math.min(.28, speed * .09));
+    };
+    // The timeline, in ms from when the opener appears.
+    const at = (t: number) => {
+      const k = inOutSine(clamp((t - 2300) / 600));
+      let pos = start;
+      if (t >= 3000) pos = start + (far - start) * inOutSine(clamp((t - 3000) / 1700));
+      if (t >= 4900) pos = far + (rest - far) * inOutCubic(clamp((t - 4900) / 900));
+      return { k, pos };
+    };
+    let started = false;
+    const run = () => {
+      if (started) return; started = true;
+      if (reduce) { place(rest, 1, 0); return; }
+      const t0 = performance.now();
+      let last = at(0).pos, lastT = 0;
+      const tick = (now: number) => {
+        const t = now - t0, { k, pos } = at(t);
+        const speed = t > lastT ? Math.abs(pos - last) / (t - lastT) * 1000 : 0;
+        place(pos, k, speed);
+        last = pos; lastT = t;
+        if (t < 5900) requestAnimationFrame(tick); else place(rest, 1, 0);
+      };
+      requestAnimationFrame(tick);
+    };
+    const gate = dev.closest('.gate')!;
+    new MutationObserver(() => { if (gate.classList.contains('on')) run(); }).observe(gate, { attributes: true, attributeFilter: ['class'] });
+    if (gate.classList.contains('on')) run();
+  }
+</script>

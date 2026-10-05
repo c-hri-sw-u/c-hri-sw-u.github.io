@@ -1,0 +1,287 @@
+/* Quiet and exact on the homepage: a plain ground, white cells with
+   faint rules, Poppins for words and a mono for the cartographic details (codes, coordinates).
+   The map underneath speaks the same way, with a few inhabitants kept from the legacy map.
+   Layout: a three-column grid of selected works (one cell each, Lino as the 2x2 lead), a short
+   Concepts shelf, and the map underneath the page, reachable by the switch or by peeling the corner. */
+:root {
+  --paper-bg: #f4f3f0;   /* the legacy map's ground */
+  --card: #ffffff;
+  --ink: #111111;
+  --paper: #ffffff;      /* glyph white fill */
+  --fg: #111111;
+  --muted: #6d6b66;
+  --hair: rgba(17, 17, 17, .9);
+  --line: rgba(17, 17, 17, .11);
+  --shadow: rgba(0, 0, 0, .10);
+  --font-body: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --font-nav: var(--font-body);
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-accent: "Shrikhand", Georgia, serif;
+  --font-code: var(--font-mono);
+  --ease: cubic-bezier(.65, 0, .2, 1);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box }
+@property --peel { syntax: '<length>'; inherits: true; initial-value: 0px }
+@property --mpeel { syntax: '<length>'; inherits: true; initial-value: 0px }
+html { background: var(--paper-bg); color: var(--fg); transition: --peel .5s var(--ease), --mpeel .5s var(--ease) }
+html.peeling { transition: none }
+body { background: transparent }
+body { margin: 0; font-family: var(--font-body); font-size: 14.5px; line-height: 1.55; -webkit-font-smoothing: antialiased; padding-inline: 24px }
+a { color: inherit }
+button { font: inherit; color: inherit }
+
+/* ---------- header ----------
+   No bar: the name and links sit on the page and scroll away with it. Only the switch stays, floating.
+   The top-left corner of the page is dog-eared, and the map shows underneath (see "the folded corner"). */
+.bar { position: relative; z-index: 50; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+  margin-inline: -24px; padding: 18px 28px 0 84px }
+body.is-map .bar { position: fixed; inset: 0 0 auto 0; margin: 0 }
+.wordmark { justify-self: start; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; font-size: 14px; letter-spacing: -.005em; text-decoration: none }
+.walker { position: relative; width: 22px; height: 22px; flex: none; top: -2px } /* the figure sits low in its frame */
+.walker img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; filter: invert(1) } /* the frames are drawn white */
+.walker img.on { opacity: 1 }
+.switch { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); z-index: 52;
+  display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px;
+  background: color-mix(in srgb, var(--card) 86%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 4px 18px rgba(0,0,0,.06) }
+.switch button { border: 0; background: none; padding: 4px 14px; border-radius: 999px; cursor: pointer; font-size: 12.5px; font-weight: 500; color: var(--muted); display: inline-flex; align-items: center; gap: 6px }
+.switch button[aria-pressed="true"] { background: var(--ink); color: var(--paper) }
+.switch button[aria-pressed="true"] .mini-glyph path { fill: var(--paper); stroke: var(--paper) }
+.mini-glyph { display: inline-block; width: 11px; height: 11px }
+.mini-glyph svg { width: 100%; height: 100%; display: block }
+.links-top { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: 22px; font-size: 13px }
+.links-top a { text-decoration: none; color: var(--muted); transition: color .2s }
+.links-top a:hover { color: var(--fg) }
+.book { position: relative; display: inline-block; width: 20px; height: 20px; opacity: .9 }
+.links-top .book { top: -5px } /* the notebook drawing sits at the bottom of its square */
+.book img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0 }
+.book .b-closed { opacity: 1 }
+.book:hover .b-closed { opacity: 0 } .book:hover .b-open { opacity: 1 }
+:is(.switch button, .glyph-btn, .mapicon, .cover, .book, .peel, .ufo):focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+
+/* ---------- intro ---------- */
+main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transition: opacity .3s ease }
+.intro { display: grid; justify-items: center; text-align: center; gap: 12px; margin-bottom: 44px }
+.intro h1 { margin: 0; text-wrap: balance; font-weight: 500; font-size: clamp(30px, 3.9vw, 48px); line-height: 1.1; letter-spacing: -.025em }
+.intro h1 em { font-family: var(--font-accent); font-style: normal; font-weight: 400; letter-spacing: 0 }
+.intro p { margin: 0; text-wrap: balance; color: var(--muted); font-size: clamp(14.5px, 1.3vw, 17px); font-weight: 400 }
+
+/* ---------- cells ---------- */
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
+.card { position: relative; display: grid; grid-template-rows: minmax(0, 1fr) auto; aspect-ratio: 1 / 1; min-width: 0; overflow: hidden;
+  background: var(--card); border: 1px solid var(--line); border-radius: 4px; transition: border-color .3s }
+@media (hover: hover) { .card:hover { border-color: rgba(17,17,17,.32) } .card:hover .media :is(img, video) { transform: translateY(-2px) } }
+.card.lead { grid-column: span 2; grid-row: span 2; aspect-ratio: auto }
+.card .cover { position: absolute; inset: 0; z-index: 1; border-radius: inherit; border: 0; padding: 0; background: none; cursor: pointer }
+.glyph-btn { position: absolute; top: 12px; left: 12px; z-index: 2; border: 0; background: none; padding: 0; width: 32px; height: 32px; cursor: pointer }
+.glyph-btn svg { width: 100%; height: 100%; overflow: visible; display: block; transition: transform .25s var(--ease) }
+.glyph-btn:hover svg { transform: scale(1.15) }
+/* Where the work sits on the map, written like a survey mark: a crosshair, then x and y. */
+.coord { position: absolute; top: 21px; right: 14px; z-index: 2; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; line-height: 1; letter-spacing: .02em;
+  color: var(--fg); font-variant-numeric: tabular-nums; pointer-events: none }
+/* At rest a cell shows only its badge and name; the coordinates and the caption come in on hover or focus. */
+.name { position: absolute; top: 12px; left: 52px; right: 120px; z-index: 2; height: 32px; display: flex; align-items: center; font-size: 13.5px; font-weight: 500; letter-spacing: -.005em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none }
+.card[data-id] :is(.coord, .cap) { opacity: 0; transition: opacity .25s ease }
+.card[data-id]:is(:hover, :focus-within) :is(.coord, .cap) { opacity: 1 }
+@media (hover: none) { .card[data-id] .cap, .card[data-id] .coord { display: none } }
+.coord em { font-style: normal; color: var(--muted); opacity: .7; margin-right: 3px }
+.xh { position: relative; width: 11px; height: 11px; border: 1px solid var(--muted); border-radius: 50% }
+.xh::before, .xh::after { content: ""; position: absolute; background: var(--muted) }
+.xh::before { left: 50%; top: -3px; bottom: -3px; width: 1px; margin-left: -.5px }
+.xh::after { top: 50%; left: -3px; right: -3px; height: 1px; margin-top: -.5px }
+.tip { display: none; position: absolute; left: 0; top: calc(100% + 8px); width: 240px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--card); color: var(--fg);
+  font-size: 12.5px; font-weight: 400; line-height: 1.4; text-align: left; z-index: 20; box-shadow: 0 0 10px var(--shadow) }
+.tip small { display: block; margin-top: 6px; color: var(--muted); font-size: 12px }
+.glyph-btn:hover .tip, .glyph-btn:focus-visible .tip { display: block }
+
+.media { position: relative; min-height: 0; display: grid; grid-template: minmax(0, 100%) / minmax(0, 100%); place-items: center; padding: 15% 10% 9% }
+.card.lead .media { padding: 9% 8% 6% }
+.media :is(img, video) { grid-area: 1 / 1; max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; border-radius: 6px; outline: 1px solid var(--line); outline-offset: -1px;
+  opacity: 0; transition: opacity .9s ease, transform .6s var(--ease) }
+.media :is(img, video).on { opacity: 1 }
+.media :is(img, video).flat { outline: 0; border-radius: 0 }
+
+.cap { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; min-width: 0; padding: 10px 14px 12px; font-size: 13px; line-height: 1.3 }
+.cap .what { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted) }
+.cap .what b { color: var(--fg); font-weight: 500; margin-right: 4px }
+.cap .how { color: var(--muted); white-space: nowrap; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .02em }
+.dots { display: inline-flex; gap: 4px; margin-left: 8px; vertical-align: middle }
+.dots i { width: 4px; height: 4px; border-radius: 50%; background: var(--line); transition: background .3s }
+.dots i.on { background: var(--ink) }
+
+
+.concepts-head { display: flex; align-items: baseline; gap: 12px; margin: 64px 0 16px }
+.concepts-head h2 { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -.01em }
+.concepts-head p { margin: 0; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em }
+.shelf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
+
+.foot { margin-top: 72px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em }
+.foot a { text-decoration: none }
+.foot a:hover { text-decoration: underline }
+
+/* ---------- the map ---------- */
+#map { position: fixed; inset: 0; z-index: 40; padding: calc(84px + env(safe-area-inset-top, 0px)) 40px calc(110px + env(safe-area-inset-bottom, 0px));
+  background: var(--paper-bg);
+  clip-path: polygon(0 0, var(--peel) 0, 0 var(--peel)) }
+/* In map mode the map has its own dog-eared corner, and the page shows underneath it. */
+body.is-map #map { clip-path: none;
+  -webkit-mask-image: linear-gradient(135deg, transparent calc(var(--mpeel) * .7071), #000 calc(var(--mpeel) * .7071));
+  mask-image: linear-gradient(135deg, transparent calc(var(--mpeel) * .7071), #000 calc(var(--mpeel) * .7071)) }
+/* Under the page it is a shade darker, so the uncovered corner reads as a layer beneath. */
+#map::before { content: ""; position: absolute; inset: 0; background: rgba(60,50,30,.06); pointer-events: none; transition: opacity .4s }
+body.is-map #map::before { opacity: 0 }
+/* The page stays put under the map (it shows through the map's folded corner); it just stops taking clicks. */
+body.is-map main { pointer-events: none }
+html:has(body.is-map) { overflow: hidden }
+.plane { position: relative; width: 100%; height: 100%; max-width: 1240px; margin-inline: auto }
+
+.axes { position: absolute; inset: 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); pointer-events: none }
+.axes i { position: absolute; background: rgba(17,17,17,.22) }
+.ax-h { left: 90px; right: 90px; top: 50%; height: 1px }
+.ax-v { top: 26px; bottom: 26px; left: 50%; width: 1px }
+.axes span { position: absolute; white-space: nowrap }
+.ax-l { left: 0; top: 50%; transform: translateY(-50%) }
+.ax-r { right: 0; top: 50%; transform: translateY(-50%) }
+.ax-t { top: 0; left: 50%; transform: translateX(-50%); display: grid; justify-items: center; line-height: 1 }
+.ax-b { bottom: 0; left: 50%; transform: translateX(-50%); display: grid; justify-items: center; line-height: 1 }
+.ax-t b { font-weight: 400; transform: rotate(90deg) } .ax-b b { font-weight: 400; transform: rotate(-90deg) }
+
+.deco { position: absolute; inset: 0; opacity: .28 }
+.forest { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; cursor: help }
+.trow { display: flex }
+.trow img { width: 18px; height: 18px; transition: transform .06s }
+.trow img.flip { transform: rotateY(150deg) }
+.parthenon { position: absolute; left: 17%; top: 88%; width: calc(2.4vw + 30px); transform: translate(-50%, -50%) rotate(-26deg); clip-path: inset(4% 0 10% 0) }
+.trow .gap { width: 15px; height: 18px }
+
+.links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none }
+.links path { fill: none; stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; opacity: .35 }
+.links path.dash { stroke-width: 1; stroke-dasharray: 4 5; opacity: .45 }
+.links path.tie { stroke-width: 1; stroke-dasharray: 1 4; opacity: .3 }
+
+.mapicon { position: absolute; z-index: 3; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 0; padding: 0; background: none; cursor: pointer;
+  opacity: 0; transform: scale(.4); transition: opacity .35s, transform .45s cubic-bezier(.2,.9,.3,1.3) }
+.mapicon svg { width: 100%; height: 100%; overflow: visible; display: block }
+.mapicon.on, body.peeking .mapicon { opacity: 1; transform: none }
+@media (hover: hover) { .mapicon.on:hover { transform: scale(1.2); z-index: 6 } }
+
+.bubble { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none;
+  background: var(--card); padding: 5px 9px; border: 1px solid var(--line); border-radius: 4px; font-size: 12px; font-weight: 400; color: var(--fg) }
+.bubble.now { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted) }
+.bubble.now { animation: bob 5s infinite ease-in-out }
+@keyframes bob { 0%, 80%, 100% { translate: 0 0 } 85% { translate: 0 -6px } 90% { translate: 0 0 } 95% { translate: 0 -3px } }
+
+.kiwi { position: absolute; z-index: 4; transform: translate(-50%, -50%); cursor: help; transition: left .25s linear, top .25s linear }
+.kiwi-body { position: relative; display: block; width: 30px; height: 30px; transform: scale(.85) }
+.kiwi-body img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0 }
+.kiwi-body { opacity: .8 }
+.kiwi-body .k0 { opacity: 1 }
+.kiwi.walking .k0 { opacity: 0 } .kiwi.walking .kb { opacity: 1 } .kiwi.walking.step1 .k1 { opacity: 1 } .kiwi.walking.step2 .k2 { opacity: 1 }
+.kiwi.left .kiwi-body { transform: scale(.85) scaleX(-1) }
+.kiwi .say { left: 0; transform: none; opacity: 0; transition: opacity .2s; white-space: normal; width: max-content; max-width: 200px }
+.kiwi:hover .say, .kiwi.talking .say { opacity: 1 }
+
+.ufo { position: absolute; z-index: 4; width: 32px; height: 32px; padding: 0; border: 0; background: none; transform: translate(-50%, -50%); cursor: help }
+.ufo img { position: relative; z-index: 1; width: 100%; height: 100%; display: block; opacity: .75; transition: translate .25s }
+/* A soft round shadow that spreads as the UFO lifts (sizes from public/ufo-and-footer.js). */
+.ufo-shadow { position: absolute; left: 50%; top: calc(50% + 3px); width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,0,0,.57) 0%, rgba(0,0,0,0) 100%); opacity: 0; transform: scale(0); transition: all .3s ease-in-out; pointer-events: none }
+
+.map-book { position: absolute; z-index: 4; width: 30px; height: 30px; transform: translate(-50%, -50%); opacity: .8 }
+.preview { position: absolute; z-index: 8; width: 240px; padding: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  pointer-events: none; opacity: 0; transition: opacity .15s }
+.preview.show { opacity: 1 }
+.preview img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; border-radius: 2px; background: var(--paper-bg) }
+.preview div { padding-top: 8px; font-size: 13px; line-height: 1.35 }
+.preview b { display: block; font-weight: 500 }
+.preview em { display: none }
+.preview span { color: var(--muted); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .02em }
+
+.compass { position: absolute; left: 40px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 50%; background: var(--card) }
+/* As on the legacy map (public/compass.js): the arrowhead points at the pointer and slides outward the
+   farther away the pointer is; N rides along at the centre. */
+.needle { position: absolute; inset: -10%; transition: transform .2s ease-out }
+.needle i { position: absolute; left: 50%; top: 43%; width: 60%; height: 60%; margin: -30% 0 0 -30%; background: var(--ink);
+  clip-path: polygon(50% 100%, 30% 78%, 50% 82%, 70% 78%); transition: top .1s ease-in-out }
+.needle span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-mono); font-size: 9px; line-height: 1; color: var(--fg) }
+.map-foot { position: absolute; right: 40px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); margin: 0; display: grid; justify-items: end; gap: 6px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em }
+.map-foot a { color: var(--muted); text-decoration: none }
+.map-foot a:hover { color: var(--fg) }
+
+/* Bottom right, just above the copyright line. */
+.legend { position: fixed; right: 40px; bottom: calc(45px + env(safe-area-inset-bottom, 0px)); z-index: 45; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--muted); visibility: hidden }
+body.is-map .legend { visibility: visible }
+.legend summary { cursor: pointer; list-style: none; text-transform: uppercase }
+.legend summary:hover { color: var(--fg) }
+.legend summary::-webkit-details-marker { display: none }
+.legend .rows { position: absolute; bottom: calc(100% + 10px); right: 0; width: 320px; display: grid; grid-template-columns: 22px 1fr; gap: 6px 10px; align-items: center;
+  background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 12px; font-family: var(--font-body); font-size: 12.5px; letter-spacing: 0; color: var(--fg); box-shadow: 0 8px 24px rgba(0,0,0,.06) }
+.legend svg { width: 20px; height: 20px; overflow: visible }
+.legend .dim { color: var(--muted) }
+
+.fly { position: fixed; z-index: 60; pointer-events: none; will-change: transform }
+.fly svg { width: 100%; height: 100%; overflow: visible; display: block }
+
+/* ---------- the folded corner ----------
+   The page's top-left corner is dog-eared; --peel is the length of the fold's legs. The flap is the
+   back of the sheet, mirrored across the fold, so it lies in the far half of the square. */
+.peel { position: fixed; left: 0; top: 0; z-index: 55; width: var(--peel, 0px); height: var(--peel, 0px); padding: 0; border: 0; background: none; cursor: grab; touch-action: none }
+.peel:active { cursor: grabbing }
+.flap { position: absolute; inset: 0; filter: drop-shadow(2px 2px 5px rgba(0,0,0,.10)) }
+.flap::before { content: ""; position: absolute; inset: 0; clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(315deg, #ffffff 0%, #fbfaf8 60%, #efede8 100%) }
+.flap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top left, transparent calc(50% - .5px), rgba(17,17,17,.14) 50%, transparent calc(50% + .5px)) }
+body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .card.lead { grid-row: span 1; aspect-ratio: 16 / 10 }
+  .grid > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* five cells after the lead: the odd one out spans the row */
+  .grid > .card:last-child .media { padding: 9% 16% 4% }
+}
+@media (max-width: 600px) {
+  body { padding-inline: 14px }
+  .bar { grid-template-columns: auto 1fr; margin-inline: -14px; padding: 14px 14px 0 58px }
+  .wordmark span:last-child { display: none }
+  .links-top { gap: 14px; font-size: 12.5px }
+  .bar .switch { top: auto; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 70; box-shadow: 0 6px 20px var(--shadow) }
+  .links-top { grid-column: 2 }
+  main { padding-block: 44px 96px }
+  .grid, .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px }
+  .card { border-radius: 8px }
+  .media { padding: 26% 9% 6% }
+  .card.lead .media { padding: 14% 8% 6% }
+  :is(.grid, .shelf) > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* three concepts: the third spans the row */
+  :is(.grid, .shelf) > .card:last-child .media { padding: 12% 18% 4% }
+  .glyph-btn { top: 8px; left: 8px; width: 26px; height: 26px }
+  .coord { top: 15px; right: 10px; font-size: 10px; gap: 5px } .xh { display: none }
+  .cap { padding: 7px 9px 9px; font-size: 11.5px }
+  .name { top: 8px; left: 40px; right: 10px; height: 26px; font-size: 12px }
+  .tip { display: none !important }
+  #map { padding: calc(70px + env(safe-area-inset-top, 0px)) 16px calc(150px + env(safe-area-inset-bottom, 0px)) }
+  .mapicon { width: 28px; height: 28px; margin: -14px 0 0 -14px }
+  .ax-l, .ax-r { display: none } .ax-h { left: 0; right: 0 }
+  .trow img { width: 15px; height: 15px }
+.trow .gap { width: 12px; height: 15px }
+  .bubble { font-size: 12px; padding: 4px 9px }
+  .forest[data-forest="1"] { display: none } /* on a narrow map the two forests run into each other */
+  .bubble.now { bottom: auto; top: calc(100% + 8px) } /* above, it would sit on Risee */
+  .mapicon.armed { transform: scale(1.25); z-index: 6 }
+  /* The preview becomes a sheet above the switch, tapped to open the work. */
+  .preview { position: fixed; inset: auto 16px calc(84px + env(safe-area-inset-bottom, 0px)) 16px !important; width: auto; z-index: 75;
+    display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; align-items: center; border-radius: 10px; box-shadow: 0 8px 28px var(--shadow);
+    transform: translateY(10px); transition: opacity .2s, transform .25s }
+  .preview.show { transform: none; pointer-events: auto }
+  body:has(.preview.show) :is(.legend, .map-foot, .compass) { opacity: 0; pointer-events: none }
+  .preview div { padding: 0 }
+  .preview span { display: block; margin-top: 2px }
+  .preview em { display: inline-block; margin-top: 8px; font-style: normal; font-size: 12.5px; font-weight: 500 }
+  .compass { left: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px }
+  .map-foot { right: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); font-size: 10px }
+  .legend { right: 16px; bottom: calc(94px + env(safe-area-inset-bottom, 0px)) }
+  .legend .rows { width: min(320px, calc(100vw - 32px)) }
+}
+@media (prefers-reduced-motion: reduce) { * { transition-duration: 0s !important; animation: none !important } }

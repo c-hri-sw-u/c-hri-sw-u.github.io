@@ -1,0 +1,15 @@
+---
+// Bread Reader reading a slice: a scan line passes down the scanned bread and leaves its letters behind
+// (each cell's shade, darkest A to lightest Z); then the words the machine found surface on its pores,
+// in the order the poem uses them. Grid and scan come from scripts/bread-decode.py.
+import data from './decode-grid.json';
+const { cols, rows, grid, words } = data;
+---
+<figure class="decode r" aria-label="A scanned slice of bread turns into a grid of letters, and words appear in its pores: on, female, head, gill, life, chaff, decide, dead, bill, high, beam, feed, fall, bell">
+  <div class="decode-box" style={`--cols:${cols};--rows:${rows}`}>
+    <img class="scan" src="/media/works/bread-reader/scan.webp" alt="" decoding="async" />
+    <div class="letters"><pre aria-hidden="true">{grid.join('\n')}</pre></div>
+    {words.map((w, k) => <b class="word" aria-hidden="true" style={`--c:${w.c};--r:${w.r};--k:${k}`}>{w.w}</b>)}
+    <span class="beam" aria-hidden="true"></span>
+  </div>
+</figure>

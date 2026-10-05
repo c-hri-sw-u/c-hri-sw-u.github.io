@@ -1,0 +1,17 @@
+{
+  "name": "c-hri-sw-u-github-io",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "extract-works": "node scripts/extract-works.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.3.5"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

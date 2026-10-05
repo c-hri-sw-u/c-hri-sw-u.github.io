@@ -1,0 +1,25 @@
+---
+// A desk in perspective behind the "portable workstation" scene: a few things lie on it, drawn in
+// the same hairline as the page's rules. Coordinates follow a 2000 × 1135 screen.
+// On a phone it sits under the words instead (inline), cropped to the desk itself.
+const { inline = false } = Astro.props;
+---
+<svg class:list={['backdrop desk', { inline }]} viewBox={inline ? '0 150 2000 935' : '0 0 2000 1135'} preserveAspectRatio={inline ? 'xMidYMid meet' : 'xMidYMid slice'} aria-hidden="true">
+  <path pathLength="1" d="M0 700 L480 180 H1520 L2000 700" />
+  <g class="obj">
+    <path pathLength="1" d="M 150 820 L 330 760 L 410 1000 L 230 1060 Z" />
+    <path pathLength="1" class="sheet" d="M 200 790 L 380 720 L 470 970 L 280 1040 Z" />
+    <path pathLength="1" d="M 245 829.5 L 353 787.5 M 255.8 859.5 L 363.8 817.5 M 266.6 889.5 L 374.6 847.5 M 277.4 919.5 L 340.4 895" />
+  </g>
+  <g class="obj">
+    <path pathLength="1" d="M1512 260 V310 A28 8 0 0 0 1568 310 V260 M1568 272 C1590 272 1590 300 1568 300" />
+    <path pathLength="1" d="M1512 260 A28 8 0 0 1 1568 260 A28 8 0 0 1 1512 260 Z" />
+  </g>
+  <g class="obj">
+    <path pathLength="1" d="M1300 882 L1405 931 L1419.9 941.8 L1402.1 937.3 L1297.1 888.3 Z" />
+  </g>
+  <g class="obj">
+    <path pathLength="1" d="M1610 845 L1740 868 L1715 960 L1585 935 Z" />
+    <path pathLength="1" d="M1585 935 V948 L1715 973 V960 M1715 973 L1740 881 V868 M1630 849 L1605 939" />
+  </g>
+</svg>

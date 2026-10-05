@@ -1,0 +1,119 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import '../styles/home.css';
+import MapView from '../components/MapView.astro';
+import { glyph, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
+import { selected, concepts, links, type Cell } from '../data/home';
+
+// Chronological path through every work, the same order the legacy map draws its lines in.
+const works = (await getCollection('works')).sort((a, b) =>
+  a.data.stage.localeCompare(b.data.stage) || a.data.order - b.data.order || a.data.seq - b.data.seq);
+const byId = Object.fromEntries(works.map(w => [w.id, w]));
+// Works with a narrative detail page link there; the rest keep their legacy page.
+const detailIds = new Set((await getCollection('details')).map(d => d.id));
+const hrefOf = (id: string) => detailIds.has(id) ? `/works/${id}` : byId[id].data.legacyUrl;
+const onHome = new Set([...selected, ...concepts].map(c => c.id));
+// The legacy identifier: stage letter + order within the stage (A1 is the first undergraduate project).
+const codeOf = (w: CollectionEntry<'works'>) => `${w.data.stage}${w.data.order}`;
+
+
+const iconOf = (c: Cell) => byId[c.id].data.icon as Icon;
+const yearOf = (c: Cell) => byId[c.id].data.date.match(/\d{4}/)?.[0] ?? '';
+const legendShapes = ['circle', 'square', 'star4rounded', 'star6', 'star6rounded', 'star8rounded'] as const;
+const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i + 1))];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Yixi (Chris) Wu · Design engineer</title>
+  <meta name="description" content="Yixi (Chris) Wu, design engineer and founder of Lino. Work across software, hardware and space.">
+  <link rel="icon" type="image/svg+xml" href="/icon/walking.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Shrikhand&display=swap">
+</head>
+<body>
+<header class="bar">
+  <a class="wordmark" href="/" aria-label="Yixi (Chris) Wu, home">
+    <span class="walker" id="walker" aria-hidden="true">{walkFrames.map((f, i) => <img src={`/icon/walking/walking-${f}.svg`} alt="" class:list={[{ on: i === 0 }]} />)}</span>
+    <span>Yixi (Chris) Wu</span>
+  </a>
+  <div class="switch" role="group" aria-label="View">
+    <button id="toList" aria-pressed="true">Selected</button>
+    <button id="toMap" aria-pressed="false"><span class="mini-glyph" set:html={glyph({ shape: 'star8rounded', fill: 'black', dashed: false, skewed: false })} />Map</button>
+  </div>
+  <nav class="links-top">
+    <a href={links.resume} target="_blank" rel="noopener">Resume</a>
+    <a href={links.playground}>Playground</a>
+    <a href={`mailto:${links.email}`}>Email</a>
+    <a class="book top-book" href={links.medium} target="_blank" rel="noopener" aria-label="Notes on Medium" title="Notes on Medium">
+      <img class="b-closed" src="/icon/Notebook-closed.svg" alt="" /><img class="b-semi" src="/icon/Notebook-semiopen.svg" alt="" /><img class="b-open" src="/icon/Notebook-open.svg" alt="" />
+    </a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="intro">
+    <h1>Hi, I'm Chris.<br>Founder of <em>Lino</em>.</h1>
+    <p>Design engineer working across software, hardware and space.</p>
+  </section>
+
+  {[{ cells: selected, cls: 'grid', label: 'Selected works' }, { cells: concepts, cls: 'shelf', label: 'Concepts' }].map(({ cells, cls, label }, gi) => (
+    <Fragment>
+      {gi === 1 && <div class="concepts-head"><h2>Concepts</h2><p>Designed, not built</p></div>}
+      <section class={cls} aria-label={label}>
+        {cells.map(c => (
+          <article class:list={['card', { lead: c.lead }]} data-id={c.id}>
+            {hrefOf(c.id)
+              ? <a class="cover" href={hrefOf(c.id)} aria-label={`${c.name}: ${c.what}`}></a>
+              : <div class="cover" style="cursor:default"></div>}
+            <button class="glyph-btn" data-id={c.id} aria-label={`Show ${c.name} on the map`}>
+              <Fragment set:html={glyph(iconOf(c), codeOf(byId[c.id]))} />
+              <span class="tip">{describe(iconOf(c))}<small>Click to see where it sits on the map</small></span>
+            </button>
+            <span class="name" aria-hidden="true">{c.name}</span>
+            <span class="coord" aria-hidden="true"><i class="xh"></i><span><em>x</em>{iconOf(c).position[0]}</span><span><em>y</em>{iconOf(c).position[1]}</span></span>
+            <div class="media">
+              {c.moments.map((m, i) => m.kind === 'video'
+                ? <video class:list={[{ on: i === 0, flat: m.flat }]} src={m.src} poster={m.src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload={i === 0 ? 'auto' : 'none'} autoplay={i === 0} aria-hidden="true"></video>
+                : <img class:list={[{ on: i === 0, flat: m.flat }]} src={m.src} alt="" loading={c.lead ? 'eager' : 'lazy'} decoding="async" />)}
+            </div>
+            <div class="cap">
+              <div class="what">{c.what}{c.moments.length > 1 && <span class="dots">{c.moments.map((_, i) => <i class:list={[{ on: i === 0 }]}></i>)}</span>}</div>
+              <div class="how">{c.how} · {yearOf(c)}</div>
+            </div>
+          </article>
+        ))}
+      </section>
+    </Fragment>
+  ))}
+
+  <footer class="foot">
+    <span>© 2026 Yixi(Chris) Wu</span>
+  </footer>
+</main>
+
+<MapView works={works} onHome={onHome} codeOf={codeOf} hrefOf={hrefOf} />
+
+<details class="legend" id="legend">
+  <summary>How to read the icons</summary>
+  <div class="rows">
+    {legendShapes.map(s => <Fragment><Fragment set:html={glyph({ shape: s, fill: 'white', dashed: false, skewed: false })} /><span>{SHAPE_TEXT[s]}</span></Fragment>)}
+    <Fragment set:html={glyph({ shape: 'circle', fill: 'black', dashed: false, skewed: false })} /><span>Solid fill: finished project</span>
+    <Fragment set:html={glyph({ shape: 'circle', fill: 'white', dashed: true, skewed: false })} /><span>Dashed: unfinished</span>
+    <Fragment set:html={glyph({ shape: 'square', fill: 'black', dashed: false, skewed: true })} /><span>Skewed: less serious, weirder</span>
+    <span></span><span class="dim">A undergraduate, B gap year, C–D graduate, E Lino. Up is digital, down is physical; left is reality, right is vision.</span>
+  </div>
+</details>
+
+<!-- The physical way in: the page's top-left corner is dog-eared and the map shows underneath. Drag it or click it. -->
+<button class="peel" id="peel" aria-label="Peel back the page to see the map"><i class="flap"></i></button>
+
+<script>
+  import { initHome } from '../scripts/home';
+  initHome();
+</script>
+</body>
+</html>
