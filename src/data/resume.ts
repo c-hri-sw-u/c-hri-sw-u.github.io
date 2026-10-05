@@ -21,12 +21,12 @@ export const person = {
 
 // The one project told in full, above everything else.
 export const lino = {
-  name: 'Lino', role: 'Founder', when: 'Dec 2025 – now', href: 'https://lino.one',
-  lede: 'An AI workspace where a person and an agent share one canvas: the person builds the intent, the agent works inside it. Launched on macOS, September 2026.',
+  name: 'Lino', role: 'Founder: product, design and engineering', when: 'Dec 2025 – now', href: 'https://lino.one',
+  lede: 'One canvas that people and agents share, with shared context and memory, so the agent works inside the person’s intent. Knowledge base, infinite canvas, personal agent and projects in one portable workstation. Launched on macOS, September 2026.',
   lines: [
-    '**Agent harness, from scratch.** Canvas-aware context and memory, 50+ tools, subagents, skills, a sandboxed shell, and edits the person reviews before they land.',
-    '**The whole product, end to end.** Canvas, editor, databases, sync, onboarding, pricing, website: about 3,000 commits and 990 test files.',
-    '**Intent Engineering.** The essay behind it: as agents get faster, the bottleneck is how quickly people can form a good intent.',
+    '**Product.** Philosophy (Intent Engineering, augmenting human intellect), positioning, target users, competitive landscape, roadmap, and a system of concepts: Card, Sketch, Spark, Connection, Proposal.',
+    '**Agent engineering.** Context and harness engineering, user and canvas memory, tool and skill design, permission modes, human-in-the-loop review.',
+    '**Everything else.** Design system, infinite canvas, rich-text editor, table views, sync, subscriptions, onboarding, website, analytics, pricing. About 3,000 commits.',
   ],
 };
 
