@@ -31,6 +31,9 @@ still lino-app "Lino App/lino-ai.webp"               lino-ai
 clip  piko "Piko/IMG_2013.MOV"                       caught
 clip  piko "Piko/6.gif"                              moods
 still piko "Piko/17.webp"                            inside
+clip  piko "Piko/4.gif"                              system
+# flow.webp: the transparent interaction flow (3.png) flattened onto white and trimmed to the chart
+ffmpeg -nostdin -v error -y -f lavfi -i color=white:s=3893x2014 -i "$SRC/Piko/3.png" -filter_complex "[0][1]overlay,crop=2740:1900:730:60,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/piko/flow.webp"
 # koala.webp: Piko/14.webp keyed to a transparent ground by hand (black around the puppet, nose kept, bottom faded)
 still piko "Piko/2.webp"                             concept
 sq() { # id, source, name: a centred square crop, for a gallery

@@ -21,16 +21,26 @@ scenes:
     line: "a wearable AI companion"
     big: true
     tone: ink
-    note: "A team project for Building User-Focused Sensing Systems at Carnegie Mellon, spring 2025"
+    note: "A team prototype for Building User-Focused Sensing Systems at Carnegie Mellon, spring 2025"
     media: /media/works/piko/koala.webp
     alt: "Piko, a koala hand puppet"
     cutout: true
     year: "2025"
   - line: "It catches you doomscrolling, and gently interrupts."
     caption: "Recorded with our prototype."
-    note: "Tap it once to explain yourself; it listens and answers. In public, a double tap keeps it quiet and sends a note to your phone instead."
+    note: "It wiggles, makes a small sound, and waits for your excuse"
     media: /media/works/piko/caught.mp4
     alt: "Piko reacts while its wearer scrolls on a phone, and he puts the phone down"
+    year: "2025"
+  - line: "Its camera watches your hands, not your face."
+    note: "A vision model trained on 300+ photos spots the phone and the scrolling thumb. Your excuse goes to Gemini, which decides how Piko feels about it. Two Raspberry Pis share the work: one listens and speaks, the other moves."
+    media: /media/works/piko/system.mp4
+    alt: "Piko's system: two Raspberry Pis, a camera on the phone, voice through Google Cloud, notifications to the phone"
+    year: "2025"
+  - line: "One tap to talk. Two taps for quiet."
+    note: "It works on a desk or on you. In quiet mode it still notices, but only sends a note to your phone."
+    media: /media/works/piko/flow.webp
+    alt: "Piko's interaction flow: set up, choose a placement, normal and quiet modes, tap once to talk"
     year: "2025"
   - line: "I designed its moods and its behaviors."
     note: "Curious tilts, happy clapping, shy greetings, angry shaking, each with its own sound"
