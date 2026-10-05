@@ -2,7 +2,7 @@
 opener:
   - "When AI agents started getting good, I got anxious."
   - "If they can do the thinking work, what is left for us?"
-  - "This page is my answer."
+  - "This product is my answer."
 scenes:
   - line: "So I went looking for what only people have."
   - line: "I found intent."
