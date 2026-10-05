@@ -26,7 +26,7 @@ export const selected: Cell[] = [
   { id: 'space-self-log', name: 'Thesis', what: 'Egocentric vision for personal AI', how: 'Swift + agent memory',
     moments: [img('thesis-floorplan', true), img('thesis-flow', true)] },
   { id: 'piko', name: 'Piko', what: 'Wearable companion', how: 'Hardware + CV + LLM',
-    moments: [vid('piko-shoulder'), vid('piko-gestures'), img('piko-parts')] },
+    moments: [img('piko-parts')] },
   { id: 'banana-exoskeleton', name: 'Banana Exoskeleton', what: 'Fits any banana', how: 'Computational design',
     moments: [vid('banana-scan'), vid('banana-optimize', true), img('banana-shell', true)] },
   { id: 'bread-reader', name: 'breadReader', what: 'Toaster that reads poems', how: 'Hardware hack',
