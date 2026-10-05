@@ -130,7 +130,7 @@
 - **4–6 屏**：背景 → 我做了什么 → 一两组关键图 → 结果。图多的项目用 `gallery` 或 `pair`。
 - **只用已有字段**：不加组件、线条画、动效。
 - **文案以旧版原文和图里的文字为基础**，精简改写，不重新构思叙事。图里常有原文没写的关键事实（日期、奖项、工具），要逐张读出来。
-- **colophon** 写清角色和贡献、团队、课程或比赛、老师、年份。
+- **colophon** 写清角色和贡献、团队、课程或比赛、老师、年份。角色只写做了哪些部分，不写百分比。
 - **哪些作品做简版**：Aurora House、Go Above or Below、Parade with Gods、Vive Towers、T1、ReCurv、Hill Making、Lino、MOREDANCE。Lino 单独做，不并入 Lino App。Boba Bubble Trouble 移到 playground，不做详情页。
 - **playground 里的实验**不做详情页，放在 playground 页面上，一项一张卡片。
 - 以后哪个简版要升级成完整版，只需要换开场、补叙事，结构不用推翻。

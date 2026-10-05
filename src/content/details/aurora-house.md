@@ -35,7 +35,7 @@ scenes:
     cutout: true
     year: "2022"
 colophon:
-  - { k: "Role", v: "Led the interior design group. Plan development 60%, detail design 20%, facade design 30%, construction 30%, procurement 40%." }
+  - { k: "Role", v: "Led the interior design group; worked on the plan, details, facade, construction and procurement" }
   - { k: "Team", v: "Technical University of Denmark and Soochow University" }
   - { k: "Competition", v: "Solar Decathlon China 2021" }
   - { k: "Instructors", v: "Dr. Wang Sining, Dr. Han Dongchen" }
