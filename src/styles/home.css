@@ -206,12 +206,13 @@ html:has(body.is-map) { overflow: hidden }
 .map-foot a { color: var(--muted); text-decoration: none }
 .map-foot a:hover { color: var(--fg) }
 
-.legend { position: fixed; left: 112px; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); z-index: 45; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--muted); visibility: hidden }
+/* Bottom right, just above the copyright line. */
+.legend { position: fixed; right: 40px; bottom: calc(45px + env(safe-area-inset-bottom, 0px)); z-index: 45; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--muted); visibility: hidden }
 body.is-map .legend { visibility: visible }
 .legend summary { cursor: pointer; list-style: none; text-transform: uppercase }
 .legend summary:hover { color: var(--fg) }
 .legend summary::-webkit-details-marker { display: none }
-.legend .rows { position: absolute; bottom: calc(100% + 10px); left: 0; width: 320px; display: grid; grid-template-columns: 22px 1fr; gap: 6px 10px; align-items: center;
+.legend .rows { position: absolute; bottom: calc(100% + 10px); right: 0; width: 320px; display: grid; grid-template-columns: 22px 1fr; gap: 6px 10px; align-items: center;
   background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 12px; font-family: var(--font-body); font-size: 12.5px; letter-spacing: 0; color: var(--fg); box-shadow: 0 8px 24px rgba(0,0,0,.06) }
 .legend svg { width: 20px; height: 20px; overflow: visible }
 .legend .dim { color: var(--muted) }
@@ -263,7 +264,7 @@ body.is-map .peel { pointer-events: none; opacity: 0 }
   .bubble { font-size: 12px; padding: 4px 9px }
   .compass { left: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px }
   .map-foot { right: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); font-size: 10px }
-  .legend { left: 16px; bottom: calc(132px + env(safe-area-inset-bottom, 0px)) }
+  .legend { right: 16px; bottom: calc(94px + env(safe-area-inset-bottom, 0px)) }
   .legend .rows { width: min(320px, calc(100vw - 32px)) }
 }
 @media (prefers-reduced-motion: reduce) { * { transition-duration: 0s !important; animation: none !important } }
