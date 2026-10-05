@@ -68,7 +68,7 @@ scenes:
       - { t: "A system of concepts", d: "Concept (Alias, Variable), Card, Sketch, Spark, Connection, Proposal" }
       - { t: "Agent engineering", d: "Context engineering, harness engineering, user + canvas memory, tool and skill design, permission modes, human-in-the-loop review" }
       - { t: "Frontend engineering", d: "UI/UX design, design system, infinite canvas, rich-text editor, table views" }
-      - { t: "Backend engineering", d: "Cross-device sync, authentication, cloud storage, subscriptions" }
+      - { t: "Backend engineering", d: "Cross-device sync, subscriptions" }
       - { t: "Onboarding", d: "First-run flow, guided tutorials, user activation" }
       - { t: "The website", d: "Landing page, documentation, blog, SEO, localization" }
       - { t: "Product analytics", d: "Event tracking, funnels, retention" }
