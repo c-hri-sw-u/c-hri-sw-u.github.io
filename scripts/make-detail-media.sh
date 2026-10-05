@@ -37,7 +37,8 @@ sq() { # id, source, name: a centred square crop, for a gallery
   mkdir -p "$OUT/$1"
   ffmpeg -nostdin -v error -y -i "$SRC/$2" -vf "crop='min(iw,ih)':'min(iw,ih)',scale=800:800:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/$1/$3.webp"
 }
-sq    piko "Piko/9.webp"                             fan-1
+# fan-1: the lower half of 9.webp, the koala on the chest without the face
+mkdir -p "$OUT/piko" && ffmpeg -nostdin -v error -y -i "$SRC/Piko/9.webp" -vf "crop=1450:1450:1080:2105,scale=800:800:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/piko/fan-1.webp"
 sq    piko "Piko/8.webp"                             fan-2
 sq    piko "Piko/12.webp"                            fan-3
 sq    piko "Piko/13.webp"                            fan-4
