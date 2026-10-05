@@ -26,3 +26,10 @@ still lino-app "Lino App/artifacts.webp"             objects
 still lino-app "Lino App/canvas.webp"                canvas
 still lino-app "Lino App/lino-ai.webp"               lino-ai
 # site.webp is a 1440×900 screenshot of the lino.one homepage (from the lino repo's website_minimal), not built here.
+
+# Piko
+clip  piko "Piko/IMG_2013.MOV"                       caught
+clip  piko "Piko/6.gif"                              moods
+still piko "Piko/1.webp"                             venn
+still piko "Piko/9.webp"                             worn
+still piko "Piko/17.webp"                            inside

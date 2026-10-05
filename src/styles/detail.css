@@ -143,6 +143,9 @@ html.js .drawing path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: s
 html.js .drawing text { opacity: 0; transition: opacity .8s ease 1.2s }
 html.js .scene.on .drawing path { stroke-dashoffset: 0 }
 html.js .scene.on .drawing text { opacity: 1 }
+html.js .scene.on .drawing .obj:nth-of-type(1) path { transition-delay: .7s }
+html.js .scene.on .drawing .obj:nth-of-type(2) path { transition-delay: 1.1s }
+html.js .scene.on .drawing .obj:nth-of-type(3) path { transition-delay: 1.5s }
 /* The balance tips toward the person once it has drawn: 8° on the beam, the pans riding its ends. */
 .balance .beam, .balance .pan { transform-box: view-box; transform-origin: 300px 60px; transition: transform 2.2s cubic-bezier(.45, 0, .2, 1) 1.8s }
 .scene.on .balance .beam { transform: rotate(-8deg) }

@@ -4,6 +4,7 @@ import '../../styles/detail.css';
 import { glyph } from '../../lib/glyph';
 import Desk from '../../components/Desk.astro';
 import Balance from '../../components/Balance.astro';
+import Shelf from '../../components/Shelf.astro';
 
 // One page per work that has a narrative in src/content/details. Works without one keep their legacy page.
 export async function getStaticPaths() {
@@ -69,6 +70,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         {sc.backdrop === 'desk' && <Desk />}
         <div class:list={['stack', { wide: sc.wide }]}>
           {sc.drawing === 'balance' && <Balance />}
+          {sc.drawing === 'shelf' && <Shelf />}
           {list.length > 0 && (
             <figure class:list={['r', { fade: list.length > 1 }]}>
               {list.map((src, j) => isVideo(src)

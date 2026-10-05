@@ -51,7 +51,7 @@ const details = defineCollection({
       wide: z.boolean().default(false),
       icon: z.string().optional(), // drawn where the line says [icon]
       backdrop: z.enum(['desk']).optional(), // a line drawing behind the words
-      drawing: z.enum(['balance']).optional(), // a line drawing above the words
+      drawing: z.enum(['balance', 'shelf']).optional(), // a line drawing above the words
     })),
     colophon: z.array(z.object({ k: z.string(), v: z.string(), href: z.string().optional() })),
     next: z.string().optional(),
