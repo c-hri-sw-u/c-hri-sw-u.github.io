@@ -45,8 +45,10 @@ scenes:
     round: 0.037
     alt: "Lino AI proposing an essay outline from the cards"
     year: "2026"
-  - line: "I build for the beautiful human."
-    note: "Agents should make people better thinkers, not think for them"
+  - lead: "Unlike most agents, Lino holds on to one idea"
+    line: "Beautiful human"
+    big: true
+    note: "AI should make people better thinkers, not think for them"
     tone: ink
   - line: "Augmenting human intellect was the dream of the computing pioneers."
     note: "Vannevar Bush, Ted Nelson, Douglas Engelbart, Alan Kay"
