@@ -6,13 +6,18 @@ opener:
 scenes:
   - line: "So I went looking for what only people have."
   - line: "I found intent."
-    note: "Knowing what we want, and why. It is what sets us apart from AI, and the strongest tool we have."
-  - line: "I called the idea Intent Engineering."
-    note: "When agents take on the thinking work, one problem stays ours: our attention is limited, and we still have to work out what we want."
+    note: "AI has no intent of its own. Once the car can drive itself, the only question left is where you want to go."
+  - line: "I called the work around it Intent Engineering."
+    note: "As agents run faster, the slowest link is how quickly people can form a good intent"
     tone: ink
     link: { href: "https://medium.com/@gochris/intent-engineering-42af3438bdc5", label: "Read it on Medium" }
-  - line: "Intent isn't a prompt. You build it, one idea at a time."
-  - line: "I had started on that in 2024, with a prototype."
+  - line: "Intent is a tension: the gap between what is and what could be."
+    note: "It comes from your emotions, desires, values and taste"
+  - line: "It never arrives finished. It changes as you make things."
+    note: "A sculptor's idea before the first strike is never the idea behind the last"
+  - line: "A chat box can't hold that. It needs a space for thought."
+    note: "Room for scattered fragments, ideas side by side, and connections everywhere"
+  - line: "I had started building one in 2024."
     note: "Cards that collect themselves while you read, inspired by Vannevar Bush's Memex"
     media: /media/works/lino-app/prototype-card.webp
     alt: "A Memex card linked to a Vannevar Bush card, from the 2024 prototype"
@@ -47,8 +52,8 @@ scenes:
   - line: "I build for the beautiful human."
     note: "Agents should make people better thinkers, not think for them"
     tone: ink
-  - line: "Augmenting human intelligence was the dream of the computing pioneers."
-    note: "Vannevar Bush, Ted Nelson, Alan Kay"
+  - line: "Augmenting human intellect was the dream of the computing pioneers."
+    note: "Vannevar Bush, Ted Nelson, Douglas Engelbart, Alan Kay"
     tone: ink
   - line: "I want Lino to be the best, and the last, interface between people and agents."
   - line: "About 3,000 commits since late 2025."
