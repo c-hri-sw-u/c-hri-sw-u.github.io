@@ -319,3 +319,20 @@ html.js .gate.on .stack > .begin.r { transition-delay: 3.2s }
   html.js .drawing text { opacity: 1; transition: none } .balance .beam, .balance .pan { transition: none } html.js .reasons .dot { opacity: 1; transform: none; transition: none }
   body, figure.fade img { transition: none }
 }
+
+/* ---------- Banana Exoskeleton ----------
+   Media shot on white melt into the paper. The outlines of a hundred bananas draw in one after another,
+   faint, so their shared arc shows where they pile up; with `fit` a ring of points then shrinks onto it. */
+figure.blend img, figure.blend video { border-radius: 0; box-shadow: none; mix-blend-mode: multiply; cursor: default }
+.gate figure.blend video { max-height: min(var(--max, 46svh), 46svh) }
+/* A name set large next to a photo keeps to one line. */
+.big .stack.wide:not(:has(video)) { width: min(100%, 1320px) }
+.drawing.bananas { width: min(100%, 900px, calc(38svh * 584 / 357)) }
+.drawing.bananas.fit { width: min(100%, 560px, 40svh) }
+.bananas .outlines path { stroke-opacity: .2; stroke-width: 1 }
+.bananas.fit .outlines path { stroke-opacity: .13 }
+html.js .bananas .outlines path { transition: stroke-dashoffset 1.2s var(--ease) calc(.3s + var(--k) * 14ms) }
+.bananas .ring polygon { fill: none; stroke: var(--signal); stroke-width: 1.4; stroke-linejoin: round; vector-effect: non-scaling-stroke; marker: url(#vertex) }
+html.js .bananas .ring { opacity: 0; transition: opacity .8s ease 1s }
+html.js .scene.on .bananas .ring { opacity: 1 }
+@media (prefers-reduced-motion: reduce) { html.js .bananas .ring { opacity: 1; transition: none } }

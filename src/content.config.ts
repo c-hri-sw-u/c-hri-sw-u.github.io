@@ -35,6 +35,8 @@ const details = defineCollection({
     opener: z.array(z.string()).min(1),
     // lines: sentences read in turn, the last in italics. equation: terms joined by × or =, one per row.
     openerStyle: z.enum(['lines', 'equation']).default('lines'),
+    openerMedia: z.string().optional(), // a loop above the opening lines, shot on white and multiplied onto the paper
+    openerAlt: z.string().optional(),
     scenes: z.array(z.object({
       lead: z.string().optional(),                                   // a quieter line above a big one
     line: z.string().optional(),
@@ -58,7 +60,7 @@ const details = defineCollection({
       cutout: z.boolean().default(false), // a cut-out with a transparent ground: no frame, no shadow
       icon: z.string().optional(), // drawn where the line says [icon]
       backdrop: z.enum(['desk']).optional(), // a line drawing behind the words
-      drawing: z.enum(['balance', 'reasons']).optional(), // a line drawing above the words
+      drawing: z.enum(['balance', 'reasons', 'bananas', 'fit']).optional(), // a line drawing above the words
     })),
     colophon: z.array(z.object({ k: z.string(), v: z.string(), href: z.string().optional() })),
     next: z.string().optional(),

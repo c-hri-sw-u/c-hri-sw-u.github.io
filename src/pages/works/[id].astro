@@ -5,6 +5,7 @@ import { glyph } from '../../lib/glyph';
 import Desk from '../../components/Desk.astro';
 import Balance from '../../components/Balance.astro';
 import Reasons from '../../components/Reasons.astro';
+import Bananas from '../../components/Bananas.astro';
 
 // One page per work that has a narrative in src/content/details. Works without one keep their legacy page.
 export async function getStaticPaths() {
@@ -15,7 +16,9 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const detail = (await getEntry('details', id))!;
 const work = (await getEntry('works', id))!;
-const { opener, openerStyle, scenes, colophon, next } = detail.data;
+const { opener, openerStyle, openerMedia, openerAlt, scenes, colophon, next } = detail.data;
+// Drawings that take the place of media: the scene is not text-only, and it gets the wide stack.
+const FIGURES = ['reasons', 'bananas', 'fit'];
 const isSign = (t: string) => t === '×' || t === '=';
 
 const detailIds = new Set((await getCollection('details')).map(d => d.id));
@@ -57,6 +60,11 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <section class="scene gate" data-tone="paper">
     <div class="stack">
       <p class="kicker r"><span class="glyph badge" set:html={glyph(work.data.icon, codeOf(work))} />{name}</p>
+      {openerMedia && (
+        <figure class="r blend">
+          <video src={openerMedia} poster={openerMedia.replace('.mp4', '-poster.jpg')} muted loop playsinline autoplay preload="auto" aria-label={openerAlt}></video>
+        </figure>
+      )}
       {openerStyle === 'equation'
         ? <div class="equation">{opener.map(t => <p class:list={['r', isSign(t) ? 'sign' : 'term']}>{t}</p>)}</div>
         : <div class="lines">
@@ -69,11 +77,13 @@ const pad = (n: number) => String(n).padStart(2, '0');
   {scenes.map((sc, i) => {
     const list = sc.media ? [sc.media].flat() : [];
     return (
-      <section class:list={['scene', { 'text-only': !list.length && !sc.card && sc.drawing !== 'reasons', big: sc.big, wide: !!sc.facts || sc.drawing === 'reasons' }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
+      <section class:list={['scene', { 'text-only': !list.length && !sc.card && !FIGURES.includes(sc.drawing ?? ''), big: sc.big, wide: !!sc.facts || FIGURES.includes(sc.drawing ?? '') }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
         {sc.backdrop === 'desk' && <Desk />}
         <div class:list={['stack', { wide: sc.wide }]}>
           {sc.drawing === 'balance' && <Balance />}
           {sc.drawing === 'reasons' && <Reasons />}
+          {sc.drawing === 'bananas' && <Bananas />}
+          {sc.drawing === 'fit' && <Bananas fit />}
           {list.length > 0 && (
             <figure class:list={['r', { fade: list.length > 1 && !sc.gallery && !sc.pair, gallery: sc.gallery, pair: sc.pair, cutout: sc.cutout }]}>
               {list.map((src, j) => isVideo(src)

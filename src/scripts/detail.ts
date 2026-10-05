@@ -36,6 +36,12 @@ export function initDetail() {
       setYear(s.dataset.year);
       progEl.textContent = s.dataset.n ? `${s.dataset.n} / ${progEl.dataset.total}` : '';
       if (video) { video.currentTime = 0; video.play().catch(() => {}); }
+      // SVG animations in a drawing start once, the first time their scene arrives.
+      s.querySelectorAll<SVGAnimationElement>('animate:not(.ran)').forEach(a => {
+        a.classList.add('ran');
+        if (reduce) a.parentElement!.setAttribute(a.getAttribute('attributeName')!, a.getAttribute('values')!.split(';').pop()!);
+        else setTimeout(() => a.beginElement(), 1600);
+      });
     }
   }, { threshold: 0.55 });
   scenes.forEach(s => io.observe(s));
