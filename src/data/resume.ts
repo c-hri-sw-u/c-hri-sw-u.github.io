@@ -12,6 +12,7 @@ export const person = {
   contact: [
     { label: 'c-hri-sw-u.github.io', href: 'https://c-hri-sw-u.github.io' },
     { label: 'cwu14932@gmail.com', href: 'mailto:cwu14932@gmail.com' },
+    { label: '+1 878 600 1596', href: 'tel:+18786001596' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/' },
   ],
   about: 'Trained as an architect, now designing and building AI products, in software and hardware.',
