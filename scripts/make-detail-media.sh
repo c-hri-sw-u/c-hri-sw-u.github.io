@@ -190,3 +190,12 @@ still glance-t1 "T1/1.webp"                             brief
 still glance-t1 "T1/4.webp"                             dock
 still glance-t1 "T1/5.webp"                             faces
 still glance-t1 "T1/6.webp"                             bodies
+
+# ReCurv (short page)
+still recurv "ReCurv/1-0.webp"                          home
+still recurv "ReCurv/1-7.webp"                          game
+# system, curve: transparent boards, kept transparent
+for p in "1-5 system" "1-6 curve"; do
+  set -- $p
+  ffmpeg -nostdin -v error -y -i "$SRC/ReCurv/$1.webp" -vf "scale='min(1600,iw)':-2:flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/recurv/$2.webp"
+done
