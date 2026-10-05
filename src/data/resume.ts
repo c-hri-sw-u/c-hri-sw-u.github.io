@@ -25,7 +25,6 @@ export const lino = {
   lede: 'An AI workspace where a person and an agent share one canvas: the person builds the intent, the agent works inside it. Launched on macOS, September 2026.',
   lines: [
     '**Agent harness, from scratch.** Canvas-aware context and memory, 50+ tools, subagents, skills, a sandboxed shell, and edits the person reviews before they land.',
-    '**Evals.** A benchmark graded by verifiers, not by another model, comparing the harness with a reference coding CLI on the same model.',
     '**The whole product, end to end.** Canvas, editor, databases, sync, onboarding, pricing, website: about 3,000 commits and 990 test files.',
     '**Intent Engineering.** The essay behind it: as agents get faster, the bottleneck is how quickly people can form a good intent.',
   ],
@@ -73,7 +72,7 @@ export const education: Entry[] = [
 ];
 
 export const skills: { t: string; d: string }[] = [
-  { t: 'AI', d: 'Agent harnesses, context and memory, tool design, evals, LLM and VLM APIs, computer vision' },
+  { t: 'AI', d: 'Agent harnesses, context and memory, tool design, LLM and VLM APIs, computer vision' },
   { t: 'Engineering', d: 'TypeScript, React, Electron, Swift, Python, Supabase' },
   { t: 'Design', d: 'Interaction, design systems, motion, prototyping, Figma' },
   { t: 'Physical', d: 'Raspberry Pi, Arduino, sensors, Rhino + Grasshopper, 3D printing' },
