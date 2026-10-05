@@ -124,3 +124,20 @@ clip  playground-os "Playground OS/1.gif"            context
 clip  playground-os "Playground OS/2.gif"            community
 clip  playground-os "Playground OS/6.gif"            program
 clip  playground-os "Playground OS/5.gif"            run
+
+# Witness (the master's thesis; the id stays space-self-log)
+# Sources were cut from the SpaceSelfLog repo's visualization/: photo-wall.jpg and plan-heat.png from the two poster
+# exports (poster2_export.jpg, poster1_export.jpg), frame-0424-1459.png from preview_frames_2026-04-24/frame_0119.png
+# (the blurred thumbnail of the log entry the opener quotes), device-* and manga-* from assets/img.
+W="$SRC/SpaceSelfLog"; mkdir -p "$OUT/space-self-log"
+ffmpeg -nostdin -v error -y -i "$W/frame-0424-1459.png" -vf "scale=640:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/space-self-log/frame.webp"
+for d in side front; do # the neck mount, on its transparent ground
+  ffmpeg -nostdin -v error -y -i "$W/device-$d.png" -vf "scale=-2:'min(1100,ih)':flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/device-$d.webp"
+done
+# wall: kept wider than the usual 1600px, so each frame in a strip stays a frame
+ffmpeg -nostdin -v error -y -i "$W/photo-wall.jpg" -vf "scale=2000:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/wall.webp"
+python3 scripts/clear-white.py "$W/plan-heat.png" "$OUT/space-self-log/plan.webp" 0 0 1690 1230 1600
+# manga: the three pages it drew, side by side on the page's ink (#111)
+ffmpeg -nostdin -v error -y -i "$W/manga-1.jpg" -i "$W/manga-2.jpg" -i "$W/manga-3.jpg" -filter_complex \
+  "[0]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[a];[1]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[b];[2]format=rgb24[c];[a][b][c]hstack=3,scale=2000:-2:flags=lanczos" \
+  -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/manga.webp"

@@ -207,6 +207,7 @@ html.js .scene.on .facts .fact:nth-child(3) { transition-delay: 1s }
 figure.pair { display: flex; gap: clamp(14px, 3vw, 44px); align-items: flex-start; justify-content: center; height: var(--max, 54svh) }
 figure.pair img { width: auto; height: 90%; max-height: none; max-width: none; border-radius: 10px; box-shadow: 0 18px 40px -18px rgba(0,0,0,.35) }
 figure.pair img:nth-child(2) { margin-top: calc(var(--max, 54svh) * .1) }
+figure.pair.cutout img { border-radius: 0; box-shadow: none }
 html.js .scene figure.pair img { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform 1s cubic-bezier(.2,.8,.2,1) }
 html.js .scene.on figure.pair img { opacity: 1; transform: none }
 html.js .scene.on figure.pair img:nth-child(1) { transition-delay: .2s }
@@ -393,3 +394,18 @@ html.js .bananas .outlines path { transition: stroke-dashoffset 1.2s var(--ease)
 html.js .bananas .ring { opacity: 0; transition: opacity .8s ease 1s }
 html.js .scene.on .bananas .ring { opacity: 1 }
 @media (prefers-reduced-motion: reduce) { html.js .bananas .ring { opacity: 1; transition: none } }
+
+/* ---------- file ----------
+   A text file the work wrote, quoted as it is: its name on a tab, the lines in mono, # comments dimmed. A line it got wrong
+   carries a wavy underline, the way an editor marks a mistake. */
+figure.file { display: block; width: fit-content; max-width: min(100%, 720px); text-align: left; background: var(--card); color: var(--paper-fg); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.28); overflow: hidden }
+figure.file figcaption { padding: 10px 16px; border-bottom: 1px solid var(--paper-line); font-family: var(--font-mono); font-size: 11.5px; color: var(--paper-dim) }
+figure.file pre { margin: 0; padding: 14px 16px 16px; font: 400 12.5px/1.6 var(--font-mono); white-space: pre-wrap; overflow-wrap: anywhere }
+figure.file pre > * { display: block }
+figure.file pre > * + * { margin-top: .55em }
+figure.file .h, figure.file i { color: var(--paper-dim); font-style: normal }
+figure.file mark { background: none; color: inherit; text-decoration: underline wavy var(--signal); text-decoration-thickness: 1.5px; text-underline-offset: 4px; text-decoration-skip-ink: none }
+html.js .scene figure.file mark { text-decoration-color: transparent; transition: text-decoration-color .8s ease 1.4s }
+html.js .scene.on figure.file mark { text-decoration-color: var(--signal) }
+@media (max-width: 600px) { figure.file pre { font-size: 11px; padding: 12px 12px 14px } figure.file figcaption { padding-inline: 12px } }
+@media (prefers-reduced-motion: reduce) { html.js .scene figure.file mark { text-decoration-color: var(--signal); transition: none } }

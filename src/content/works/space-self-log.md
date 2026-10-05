@@ -1,8 +1,8 @@
 ---
-title: "Physical-World Observation for Personal AI Agent Personalization"
-listTitle: "Physical-World Observation (Thesis)"
-subtitle: "Integrating Continuous Egocentric Vision into Local Agent Memory Systems"
-type: "Thesis Project | System Design + Autoethnographic Research | Personal AI Agent | Egocentric Vision"
+title: "Witness"
+listTitle: "Witness"
+subtitle: "A personal AI agent that can see the physical world, and what it came to believe about me"
+type: "Master's Thesis | Agent System + HCI Research | Personal AI Agent | Egocentric Vision | Agent Memory"
 date: "2026 Spring"
 stage: "E"
 order: 1

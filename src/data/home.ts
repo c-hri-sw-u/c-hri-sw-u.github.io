@@ -23,7 +23,7 @@ export const selected: Cell[] = [
   { id: 'lino-app', lead: true, name: 'Lino', what: 'AI canvas for visual thinking', how: 'Startup · design + code',
     // The product demo and the lino.one site, shared with the Lino App detail page.
     moments: [{ src: '/media/works/lino-app/hero.mp4', kind: 'video' }] },
-  { id: 'space-self-log', name: 'Thesis', what: 'Egocentric vision for personal AI', how: 'Swift + agent memory',
+  { id: 'space-self-log', name: 'Witness', what: 'A personal agent that can see', how: 'Agent memory + egocentric vision',
     moments: [img('thesis-floorplan', true), img('thesis-flow', true)] },
   { id: 'piko', name: 'Piko', what: 'Wearable companion', how: 'Hardware + CV + LLM',
     moments: [img('piko-parts')] },

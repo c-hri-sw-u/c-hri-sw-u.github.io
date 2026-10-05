@@ -5,7 +5,7 @@
 - **判断**：叙事、事实、措辞。代码里读不出来，靠这份文档传下去。
 - **形式**：结构、开场、媒体、动效、排版。代码注释里也有，这里集中说清。
 
-参考页：Risee、Lifeo、Piko、Banana Exoskeleton、Bread Reader、Lino App、Rethinking Rabbit R1、Playground OS。拿不准时，先看它们怎么做。
+参考页：Risee、Lifeo、Piko、Banana Exoskeleton、Bread Reader、Lino App、Rethinking Rabbit R1、Playground OS、Witness。拿不准时，先看它们怎么做。
 
 ## 1. 文件在哪
 
@@ -65,6 +65,7 @@
 | Lifeo | `context` | 一句话里的标签轮换（语言、地点、话题） |
 | Rethinking Rabbit R1 | `wheel` | R1 先只给一个回答，然后滚轮转出其他可能 |
 | Playground OS | `dock` | 问句加 OS 的四个按钮 |
+| Witness | `log` | agent 写下的一条观察：模糊的画面、字段、它的推断 |
 
 - **能直接展示作品的交互，就别额外加变换。** Playground OS 原本让"沙子"翻成 "Materials"，删掉了，直接显示四个按钮。
 - **用作品自己的素材，** 不要用代码画一个近似版。R1 的开场原本用 CSS 画机身，看起来像示意图，后来换成项目自己的渲染图，屏幕上的回答再用真文字叠上去（`scripts/r1-device.py`）。
@@ -79,7 +80,8 @@
 - `note`：小字说明。`caption`：紧贴在图下面的图注。`footnote`：最后一行小字，配合大句里的 `*`。
 - `media`：一张图或一段视频；多张图默认会交替淡入淡出。`pair: true` 两张并排，`gallery: true` 几张摊开。
 - `cutout: true`：透明底的图，不加框和阴影。`wide: true`：给图更多宽度。`round`：图里自带圆角时，按宽度比例补上圆角。
-- `drawing`：线条画，现有 `balance`、`reasons`、`bananas`、`fit`、`decode`、`sizes`。
+- `drawing`：线条画，现有 `balance`、`reasons`、`bananas`、`fit`、`decode`、`sizes`、`capture`、`tiers`。
+- `file`：原样引用一个文本文件（文件名 + 行）。`#` 开头的行和 ` # ` 后面的注释变淡；以 `! ` 开头的行加波浪下划线，表示它写错了（Witness 的 OpenClaw 工作区和 physical-pattern.md）。
 - `facts`、`equation`、`list`、`poem`、`card`、`link`、`icon`、`backdrop`：见注释和已有页面。
 - `tone`：`paper`（默认）或 `ink`。`year`：左下角的年份，相邻两屏年份不同时会滚动过去（Playground OS 从 1972 滚到 2024）。
 - 页尾：`colophon` 写角色、团队、课程、年份、工具、原型链接、状态；`next` 指向下一个作品。
@@ -120,4 +122,4 @@
 3. 有动画的开场，逐帧记录元素位置，确认没有多余的来回位移。
 4. 对照旧版原文核对事实：课程、老师、合作者、年份、链接。
 5. 自己补的说法列给作者确认。
-6. 首页卡片的名字和 `listTitle` 一致，`next` 串起来没有断。现在的顺序：Risee → Lifeo → Rethinking Rabbit R1 → Playground OS → Lino App → Thesis；Piko → Banana Exoskeleton → Bread Reader → Thesis。
+6. 首页卡片的名字和 `listTitle` 一致，`next` 串起来没有断。现在的顺序：Risee → Lifeo → Rethinking Rabbit R1 → Playground OS → Lino App → Witness → Piko；Piko → Banana Exoskeleton → Bread Reader → Witness。
