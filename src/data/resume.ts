@@ -54,11 +54,13 @@ export const projects: Project[] = [
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
     line: 'A wearable AI companion. I did its concept, hardware and interactions.' },
   { name: 'Banana Exoskeleton', href: 'https://c-hri-sw-u.github.io/works/banana-exoskeleton', meta: '2025 · team of 2',
-    line: 'A case that fits any banana. I traced 1,400 bananas with YOLO and built the optimizer.' },
+    line: 'A case for any banana: I traced 1,400 with YOLO and wrote the optimizer.' },
   { name: 'Risee', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
     line: 'LLM actions on any selected text, in a ring around the cursor. I use it daily.' },
-  { name: 'Rabbit R1 and Playground OS', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concepts',
-    line: 'An AI device built around conversation; a computer that works like a playground.' },
+  { name: 'Rethinking Rabbit R1', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concept',
+    line: 'Redesigned the AI device around conversation instead of ask-and-answer: you see what it draws on and choose how much it remembers.' },
+  { name: 'Playground OS', href: 'https://c-hri-sw-u.github.io/works/playground-os', meta: '2024 · solo concept',
+    line: 'An OS for creation, not consumption: build small programs with an agent.' },
 ];
 
 export const education = [
