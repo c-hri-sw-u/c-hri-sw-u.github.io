@@ -34,8 +34,9 @@ const details = defineCollection({
   schema: z.object({
     opener: z.array(z.string()).min(1),
     // lines: sentences read in turn, the last in italics. equation: terms joined by × or =, one per row.
-    openerStyle: z.enum(['lines', 'equation', 'poem']).default('lines'),
-    openerNote: z.string().optional(), // poem: a quiet line under it, saying who wrote it
+    // selection: [lead, the selected word, ...capsules] (Risee). context: words and "a|b|c" tags (Lifeo).
+    openerStyle: z.enum(['lines', 'equation', 'poem', 'selection', 'context']).default('lines'),
+    openerNote: z.string().optional(), // poem: a quiet line under it, saying who wrote it; selection / context: an italic line under it
     openerMedia: z.string().optional(), // a loop above the opening lines: an mp4, or an animated image with a transparent ground
     openerAlt: z.string().optional(),
     scenes: z.array(z.object({

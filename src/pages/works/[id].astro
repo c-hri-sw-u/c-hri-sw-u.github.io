@@ -8,6 +8,8 @@ import Reasons from '../../components/Reasons.astro';
 import Bananas from '../../components/Bananas.astro';
 import Decode from '../../components/Decode.astro';
 import Poem from '../../components/Poem.astro';
+import SelectOpener from '../../components/SelectOpener.astro';
+import ContextOpener from '../../components/ContextOpener.astro';
 
 // One page per work that has a narrative in src/content/details. Works without one keep their legacy page.
 export async function getStaticPaths() {
@@ -71,7 +73,10 @@ const pad = (n: number) => String(n).padStart(2, '0');
       )}
       {openerStyle === 'poem' && <div class="poem opener-poem">{opener.map(l => <p class="r">{l.split(/\*\*(.+?)\*\*/).map((t, j) => j % 2 ? <b>{t}</b> : t)}</p>)}</div>}
       {openerStyle === 'poem' && openerNote && <p class="note r">{openerNote}</p>}
-      {openerStyle === 'poem' ? null : openerStyle === 'equation'
+      {openerStyle === 'selection' && <SelectOpener lead={opener[0]} word={opener[1]} actions={opener.slice(2)} />}
+      {openerStyle === 'context' && <ContextOpener parts={opener} />}
+      {(openerStyle === 'selection' || openerStyle === 'context') && openerNote && <div class="lines"><p class="line r em">{openerNote}</p></div>}
+      {openerStyle === 'poem' || openerStyle === 'selection' || openerStyle === 'context' ? null : openerStyle === 'equation'
         ? <div class="equation">{opener.map(t => <p class:list={['r', isSign(t) ? 'sign' : 'term']}>{t}</p>)}</div>
         : <div class="lines">
             {opener.map((l, i) => <p class:list={['line', 'r', { em: i === opener.length - 1 }]}>{l}</p>)}

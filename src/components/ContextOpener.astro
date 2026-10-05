@@ -1,0 +1,44 @@
+---
+// Lifeo's opener speaks in its own grammar: a sentence whose words are tags you can swap.
+// parts: plain words, or choices joined by "|" that take turns in one tag. The last choice stays.
+interface Props { parts: string[] }
+const { parts } = Astro.props;
+---
+<p class="ctx-open r">
+  {parts.map(p => p.includes('|')
+    ? <span class="ctx-tag">{p.split('|').map((c, i, all) => <span class:list={['ctx-opt', { on: i === 0 }]} aria-hidden={i === all.length - 1 ? undefined : 'true'}>{c}</span>)}</span>
+    : <span class="ctx-word">{p}</span>)}
+</p>
+
+<style is:global>
+  .ctx-open { margin: 0; max-width: 18ch; font-size: clamp(30px, 4.6vw, 58px); font-weight: 300; line-height: 1.5; letter-spacing: -.01em; text-wrap: balance }
+  .ctx-word { margin: 0 .12em }
+  .ctx-tag {
+    display: inline-grid; vertical-align: .08em; margin: 0 .12em; padding: .14em .5em .18em; border-radius: 999px;
+    background: rgba(17,17,17,.07); font-family: var(--font-name); font-size: .62em; font-weight: 400; line-height: 1.2; letter-spacing: 0;
+  }
+  .ctx-opt { grid-area: 1 / 1; text-align: center; opacity: 0; transform: translateY(.3em); transition: opacity .45s ease, transform .55s cubic-bezier(.2,.7,.2,1) }
+  .ctx-opt.on { opacity: 1; transform: none }
+  html.js .gate:has(.ctx-open).on .stack > .begin.r { transition-delay: 5.6s }
+  .gate:has(.ctx-open) .lines .line.em { font-size: clamp(22px, 2.8vw, 32px) }
+  html.js .gate:has(.ctx-open).on .lines .r { transition-delay: 4.8s }
+</style>
+
+<script>
+  // The tags change together a few times, then rest on the last set.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for (const p of document.querySelectorAll<HTMLElement>('.ctx-open')) {
+    const tags = [...p.querySelectorAll<HTMLElement>('.ctx-tag')].map(t => [...t.querySelectorAll<HTMLElement>('.ctx-opt')]);
+    const steps = Math.max(...tags.map(t => t.length));
+    const show = (k: number) => tags.forEach(opts => opts.forEach((o, i) => o.classList.toggle('on', i === Math.min(k, opts.length - 1))));
+    let started = false;
+    const run = () => {
+      if (started) return; started = true;
+      if (reduce) { show(steps - 1); return; }
+      for (let k = 1; k < steps; k++) setTimeout(() => show(k), 1300 + k * 1500);
+    };
+    const gate = p.closest('.gate')!;
+    new MutationObserver(() => { if (gate.classList.contains('on')) run(); }).observe(gate, { attributes: true, attributeFilter: ['class'] });
+    if (gate.classList.contains('on')) run();
+  }
+</script>

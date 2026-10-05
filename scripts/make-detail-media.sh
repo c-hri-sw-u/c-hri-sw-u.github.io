@@ -81,3 +81,16 @@ for i in 1 2 3 4 5; do
 done
 # scan.webp and the decode grid: the poster's scanned slice with its markings painted out, by scripts/bread-decode.py
 python3 scripts/bread-decode.py > /dev/null
+
+# Risee (sources copied from the v1be.online project images)
+clip  risee "Risee/1.gif"                            orbit
+clip  risee "Risee/2.gif"                            actions
+clip  risee "Risee/widget.gif"                       widget
+still risee "Risee/settings.png"                     settings
+mkdir -p "$OUT/risee" && ffmpeg -nostdin -v error -y -i "$SRC/Risee/icon.png" -vf "scale=128:128:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 90 "$OUT/risee/app-icon.webp"
+
+# Lifeo (1: the context composer over stickers, 2: the map, 3: the context sentence)
+still lifeo "Lifeo/1.png"                            hero
+still lifeo "Lifeo/2.png"                            map
+still lifeo "Lifeo/3.png"                            context
+mkdir -p "$OUT/lifeo" && ffmpeg -nostdin -v error -y -i "$SRC/Lifeo/icon.png" -vf "scale=128:128:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 90 "$OUT/lifeo/app-icon.webp"
