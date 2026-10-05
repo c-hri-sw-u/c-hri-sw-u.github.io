@@ -31,14 +31,10 @@ scenes:
     wide: true
     year: "2024"
   - line: "Back then, we used AI one way: ask, then wait."
-    note: "I called it A–A: Ask–Answer, or Ask–Act. We gave the input, and waited for the output."
+    note: "I called it A–⁠A: Ask–⁠Answer, or Ask–⁠Act. It answers what you ask, but never shows you what you didn’t think to ask."
     media: /media/works/rethinking-rabbit-r1/ask-answer.webp
     alt: "Providing input, an arrow, waiting for output, above a neural network"
     cutout: true
-    year: "2024"
-  - line: "Monet could never paint his water lilies by prompt."
-    tone: ink
-    note: "Nor could Shakespeare write sonnets with predictive text. When we only ask and wait, creativity, autonomy and diversity suffer."
     year: "2024"
   - line: "What’s missing is conversation."
     caption: "Gordon Pask’s Conversation Theory, 1976."
