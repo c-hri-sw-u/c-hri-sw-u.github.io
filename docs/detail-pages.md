@@ -5,7 +5,7 @@
 - **判断**：叙事、事实、措辞。代码里读不出来，靠这份文档传下去。
 - **形式**：结构、开场、媒体、动效、排版。代码注释里也有，这里集中说清。
 
-参考页：Risee、Lifeo、Piko、Banana Exoskeleton、Bread Reader、Lino App、Rethinking Rabbit R1、Playground OS。拿不准时，先看它们怎么做。
+详情页分两种：**完整版**给首页 selected 和 concepts 里的作品，**简版**给 map 上的其他作品（见第 12 节）。完整版的参考页是 Risee、Lifeo、Piko、Banana Exoskeleton、Bread Reader、Lino App、Rethinking Rabbit R1、Playground OS，简版的参考页是 Aurora House。拿不准时，先看它们怎么做。
 
 ## 1. 文件在哪
 
@@ -121,3 +121,17 @@
 4. 对照旧版原文核对事实：课程、老师、合作者、年份、链接。
 5. 自己补的说法列给作者确认。
 6. 首页卡片的名字和 `listTitle` 一致，`next` 串起来没有断。现在的顺序：Risee → Lifeo → Rethinking Rabbit R1 → Playground OS → Lino App → Thesis；Piko → Banana Exoskeleton → Bread Reader → Thesis。
+
+## 12. 简版（map 上的其他作品）
+
+完整版每页都要定制开场、重新构思叙事，代价大，也只有最好的作品才配得上。map 上的其他作品做简版：用同一套模板和视觉，读起来是同一个网站，但只写 Markdown，不写新代码。第 3、4 节（事实与时间、措辞）照样适用。
+
+- **开场**：一律 `lines` 加 `openerMedia`，即一张代表图加一两句话，说清这个项目是什么，最后一句是斜体。不做定制开场。
+- **4–6 屏**：背景 → 我做了什么 → 一两组关键图 → 结果。图多的项目用 `gallery` 或 `pair`。
+- **只用已有字段**：不加组件、线条画、动效。
+- **文案以旧版原文和图里的文字为基础**，精简改写，不重新构思叙事。图里常有原文没写的关键事实（日期、奖项、工具），要逐张读出来。
+- **colophon** 写清角色和贡献、团队、课程或比赛、老师、年份。
+- **哪些作品做简版**：Aurora House、Go Above or Below、Parade with Gods、Vive Towers、T1、ReCurv、Hill Making、Lino、MOREDANCE。Lino 单独做，不并入 Lino App。Boba Bubble Trouble 移到 playground，不做详情页。
+- **playground 里的实验**不做详情页，放在 playground 页面上，一项一张卡片。
+- 以后哪个简版要升级成完整版，只需要换开场、补叙事，结构不用推翻。
+
