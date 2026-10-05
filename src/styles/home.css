@@ -130,11 +130,12 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .play-head .all { margin-left: auto; color: var(--muted); font-size: 12.5px; text-decoration: none; white-space: nowrap }
 .play-head .all:hover { color: var(--fg) }
 
-.foot { margin-top: 72px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em }
+.foot { margin-top: 88px; display: flex; flex-direction: column; align-items: center; gap: 22px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em }
 .foot a { text-decoration: none }
 .foot a:hover { text-decoration: underline }
 /* The top bar's links again, at the end of the page, for whoever read this far */
-.foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px }
+.foot-links { order: -1; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 36px; color: var(--fg); font-family: var(--font-body); font-size: clamp(17px, 1.6vw, 21px); font-weight: 500; letter-spacing: -.01em }
+@media (max-width: 600px) { .foot-links { gap: 8px 24px } }
 
 /* ---------- the map ---------- */
 #map { position: fixed; inset: 0; z-index: 40; padding: calc(84px + env(safe-area-inset-top, 0px)) 40px calc(110px + env(safe-area-inset-bottom, 0px));
