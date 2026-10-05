@@ -21,7 +21,8 @@ const vid = (name: string, flat = false): Moment => ({ src: `/media/home/${name}
 
 export const selected: Cell[] = [
   { id: 'lino-app', lead: true, name: 'Lino', what: 'AI canvas for visual thinking', how: 'Startup · design + code',
-    moments: [img('lino-canvas-dark'), img('lino-canvas-light'), vid('lino-2024')] },
+    // The product demo and the lino.one site, shared with the Lino App detail page.
+    moments: [{ src: '/media/works/lino-app/hero.mp4', kind: 'video' }, { src: '/media/works/lino-app/site.webp', kind: 'image' }] },
   { id: 'space-self-log', name: 'Thesis', what: 'Egocentric vision for personal AI', how: 'Swift + agent memory',
     moments: [img('thesis-floorplan', true), img('thesis-flow', true)] },
   { id: 'piko', name: 'Piko', what: 'Wearable companion', how: 'Hardware + CV + LLM',

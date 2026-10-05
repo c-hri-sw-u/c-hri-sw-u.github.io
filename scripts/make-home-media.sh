@@ -18,9 +18,6 @@ still() { # source, name
 }
 
 W=Assets/Works
-still "$W/Lino App/4.png" lino-canvas-dark
-still "$W/Lino App/3.png" lino-canvas-light
-clip  "$W/Lino/2.gif" lino-2024 8
 still "$W/SpaceSelfLog/results_3.webp" thesis-floorplan
 still "$W/SpaceSelfLog/results_1.webp" thesis-flow
 clip  "$W/Piko/IMG_2013.MOV" piko-shoulder 4.7

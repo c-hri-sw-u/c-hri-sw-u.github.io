@@ -25,6 +25,13 @@ export function initHome() {
       else el.pause();
     }
   }
+  // Videos that have wrapped around at least once since they were shown.
+  const looped = new WeakSet<HTMLVideoElement>();
+  document.querySelectorAll<HTMLVideoElement>('.media > video').forEach(v => {
+    let last = 0;
+    v.addEventListener('timeupdate', () => { if (v.currentTime < last) looped.add(v); last = v.currentTime; });
+    v.addEventListener('play', () => { if (v.currentTime < 0.2) { looped.delete(v); last = 0; } });
+  });
   workCards().forEach((card, n) => {
     const frames = [...card.querySelectorAll('.media > img, .media > video')];
     const dots = [...card.querySelectorAll('.dots i')];
@@ -32,6 +39,9 @@ export function initHome() {
     let i = 0;
     const step = () => {
       if (card.matches(':hover') || mode === 'map' || document.hidden) return;
+      // A video moment plays through once before the cell moves on (long demos are not cut off).
+      const cur = frames[i];
+      if (cur instanceof HTMLVideoElement && !cur.paused && cur.duration && !looped.has(cur) && cur.currentTime < cur.duration - 4.2) return;
       show(frames[i], false); dots[i]?.classList.remove('on');
       i = (i + 1) % frames.length;
       show(frames[i], true); dots[i]?.classList.add('on');
