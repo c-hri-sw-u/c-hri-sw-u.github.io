@@ -22,11 +22,8 @@ scenes:
     alt: "A tablet, a hand with a wristband, and glasses with an earpiece: gesture, idiosyncratic speech, telephone"
     cutout: true
     year: "1972"
-  - line: "I read it as three needs: an environment, undo, and help."
-    note: "An environment to grow in. Undo, so you dare to explore. Help, for when you’re stuck."
-    media: /media/works/playground-os/grow.webp
-    alt: "My diagram: personal computing, something that helps you grow and that you grow with, needs an environment, effective undo and effective help"
-    cutout: true
+  - line: "We got the tablet. We forgot the dream."
+    note: "Fifty years on, our screens are made for scrolling, watching and buying. Far more is consumed on them than created."
     year: "2024"
   - lead: "So I designed"
     line: "Playground OS"

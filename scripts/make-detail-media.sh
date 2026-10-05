@@ -115,10 +115,9 @@ still rethinking-rabbit-r1 "Rethinking Rabbit R1/1.webp"   keynote
 python3 scripts/r1-device.py
 
 # Playground OS
-# children, dynabook: Alan Kay's drawings without the captions under them; grow, playground, devices: my diagram and sketches
+# children, dynabook: Alan Kay's drawings without the captions under them; playground, devices: my sketches
 python3 scripts/clear-white.py "$SRC/Playground OS/1-6.webp" "$OUT/playground-os/children.webp" 60 80 740 540
 python3 scripts/clear-white.py "$SRC/Playground OS/1-7.webp" "$OUT/playground-os/dynabook.webp" 60 55 815 645
-python3 scripts/clear-white.py "$SRC/Playground OS/1-1.webp" "$OUT/playground-os/grow.webp" 60 110 1170 1025 1200
 python3 scripts/clear-white.py "$SRC/Playground OS/1-5.webp" "$OUT/playground-os/playground.webp" 0 0 1508 916 1400
 python3 scripts/clear-white.py "$SRC/Playground OS/1-3.webp" "$OUT/playground-os/devices.webp" 0 0 1343 866 1200
 clip  playground-os "Playground OS/1.gif"            context
