@@ -89,7 +89,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
           )}
           {sc.caption && <p class="caption r">{sc.caption}</p>}
           {sc.lead && <p class="lead r">{sc.lead}</p>}
-          {sc.equation && <div class="equation">{sc.equation.map(t => <p class:list={['r', isSign(t) ? 'sign' : 'term']}>{t}</p>)}</div>}
+          {sc.equation && <div class="equation">{sc.equation.map((t, k, all) => <p class:list={['r', isSign(t) ? 'sign' : 'term', { result: all[k - 1] === '=' }]}>{t}</p>)}</div>}
           {sc.facts && <div class="facts">{sc.facts.map(f => <div class="fact r"><h3>{f.t}</h3><p>{f.d}</p></div>)}</div>}
           {sc.line && <p class="line r">{sc.icon && sc.line.includes('[icon]')
             ? <Fragment>{sc.line.split('[icon]')[0]}<img class="app-icon" src={sc.icon} alt="" />{sc.line.split('[icon]')[1]}</Fragment>
