@@ -25,7 +25,6 @@ still lino-app "Lino/11.webp"                        prototype-card
 still lino-app "Lino App/artifacts.webp"             objects
 still lino-app "Lino App/canvas.webp"                canvas
 still lino-app "Lino App/lino-ai.webp"               lino-ai
-still lino-app "Lino App/get-started.webp"           get-started
 still lino-app "Lino App/while-you-work-read.webp"   beside-read
 still lino-app "Lino App/while-you-work-browse.webp" beside-browse
 still lino-app "Lino App/while-you-work-plan.webp"   beside-plan
