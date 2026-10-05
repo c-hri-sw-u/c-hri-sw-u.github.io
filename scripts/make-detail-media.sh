@@ -216,3 +216,7 @@ python3 scripts/clear-white.py "$SRC/Lino/11.webp" "$OUT/lino/cards.webp"
 python3 scripts/clear-white.py "$SRC/Lino/9.webp" "$OUT/lino/web.webp"
 # memex: Bush's article and the Memex desk, without the caption band under them
 mkdir -p "$OUT/lino" && ffmpeg -nostdin -v error -y -i "$SRC/Lino/6.webp" -vf "crop=2400:876:0:0,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/lino/memex.webp"
+
+# MOREDANCE (short page)
+python3 scripts/clear-white.py "$SRC/MOREDANCE/1.webp" "$OUT/more-dance/device.webp" 60 150 1080 860
+clip  more-dance "MOREDANCE/1.gif"                      parts
