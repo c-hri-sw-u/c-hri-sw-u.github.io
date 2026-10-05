@@ -46,4 +46,5 @@ sq    piko "Piko/8.webp"                             fan-2
 sq    piko "Piko/12.webp"                            fan-3
 sq    piko "Piko/13.webp"                            fan-4
 sq    piko "Piko/19.webp"                            fan-5
-sq    piko "Piko/Snipaste_2025-05-12_17-16-30.png"   fan-6
+# fan-6: the upper right of the screenshot, closer on the koala
+ffmpeg -nostdin -v error -y -i "$SRC/Piko/Snipaste_2025-05-12_17-16-30.png" -vf "crop=777:777:345:0,scale=800:800:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/piko/fan-6.webp"

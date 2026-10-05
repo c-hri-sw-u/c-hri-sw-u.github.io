@@ -64,15 +64,6 @@ scenes:
     alt: "Classmates wearing Piko"
     gallery: true
     year: "2025"
-  - equation:
-      - "Wearable device"
-      - "×"
-      - "AI companion"
-      - "×"
-      - "Fashion item"
-      - "="
-      - "Piko"
-    tone: ink
 colophon:
   - { k: "Role", v: "Ideation, hardware prototyping, interactive mechanics, interaction design" }
   - { k: "Team", v: "Ashveen Banga, Leo Liu, Narayan Ashanahalli" }
