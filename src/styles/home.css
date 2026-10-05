@@ -269,9 +269,8 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .trow img { width: 15px; height: 15px }
 .trow .gap { width: 12px; height: 15px }
   .bubble { font-size: 12px; padding: 4px 9px }
+  .forest[data-forest="1"] { display: none } /* on a narrow map the two forests run into each other */
   .bubble.now { bottom: auto; top: calc(100% + 8px) } /* above, it would sit on Risee */
-  /* Fingers need more than the 28px glyph: an invisible 44px target around each icon. */
-  .mapicon::after { content: ''; position: absolute; inset: -8px }
   .mapicon.armed { transform: scale(1.25); z-index: 6 }
   /* The preview becomes a sheet above the switch, tapped to open the work. */
   .preview { position: fixed; inset: auto 16px calc(84px + env(safe-area-inset-bottom, 0px)) 16px !important; width: auto; z-index: 75;

@@ -84,13 +84,24 @@ export function initHome() {
   plane.addEventListener('pointerout', e => {
     if ((e.target as Element).closest('.mapicon') && e.pointerType === 'mouse') pv.classList.remove('show');
   });
+  // A fingertip is wider than a glyph, and some glyphs sit close together: on touch, take the
+  // icon whose centre is nearest the tap, if one is within reach.
+  function nearestIcon(x: number, y: number) {
+    let best: HTMLElement | null = null, bestD = 26;
+    plane.querySelectorAll<HTMLElement>('.mapicon').forEach(m => {
+      const r = m.getBoundingClientRect(), d = Math.hypot(r.left + r.width / 2 - x, r.top + r.height / 2 - y);
+      if (d < bestD) { bestD = d; best = m; }
+    });
+    return best;
+  }
   plane.addEventListener('click', e => {
-    const b = (e.target as Element).closest<HTMLElement>('.mapicon');
+    const touch = matchMedia('(hover: none)').matches;
+    const b = touch ? nearestIcon(e.clientX, e.clientY) : (e.target as Element).closest<HTMLElement>('.mapicon');
     // On a phone the preview is a sheet above the switch: tapping it opens the work.
     if ((e.target as Element).closest('#preview')) { if (armed) location.href = iconEl(armed).dataset.url || ''; return; }
     plane.querySelector('.mapicon.armed')?.classList.remove('armed');
     if (!b) { pv.classList.remove('show'); armed = null; return; }
-    if (armed !== b.dataset.id && matchMedia('(hover: none)').matches) { armed = b.dataset.id!; b.classList.add('armed'); showPreview(b); return; }
+    if (armed !== b.dataset.id && touch) { armed = b.dataset.id!; b.classList.add('armed'); showPreview(b); return; }
     if (b.dataset.url) location.href = b.dataset.url;
     else showPreview(b);
   });
