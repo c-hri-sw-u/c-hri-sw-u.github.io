@@ -38,7 +38,7 @@ const rows = fields.map(f => { const i = f.indexOf(':'); return { k: f.slice(0, 
   }
   /* The entry comes in the way the log writes it: the frame, then one field after another, then what it made of them. */
   html.js .gate:has(.log-open) .log-open .r { transition: opacity .7s ease }
-  html.js .gate:has(.log-open) .log-open .r:not(.log-lead) { transform: none }
+  html.js .gate:has(.log-open) .log-open .r { transform: none }
   html.js .gate:has(.log-open).on .log-frame { transition-delay: .7s }
   html.js .gate:has(.log-open).on .log-stamp { transition-delay: 1.1s }
   html.js .gate:has(.log-open).on .log-fields dl > div:nth-of-type(1) { transition-delay: 1.5s }

@@ -12,20 +12,24 @@ const ramp = (from: number, until: number) => {
 const triggers = [{ t: 92, label: 'I stand up' }, { t: 214, label: 'someone speaks' }];
 const ticks = [0, 20, 40, 60, 80, ...ramp(92, 205), ...ramp(214, T)];
 const y = 64, h = 34;
+// Each tick draws at its moment along the strip, so the strip fills in time order.
+const at = (t: number) => (0.5 + (t / T) * 2.4).toFixed(2);
 ---
 <svg class="drawing capture r" viewBox="0 0 420 150" aria-hidden="true">
-  <path class="axis" pathLength="1" d={`M${X0 - 8} ${y + h} H${X0 + W + 8}`} />
-  {ticks.map((t, i) => (
-    <path class="tick" pathLength="1" d={`M${x(t)} ${y + h} v${-h}`} style={`transition-delay:${(0.5 + (t / T) * 2.4).toFixed(2)}s`} />
-  ))}
-  {triggers.map(({ t, label }, i) => (
-    <g class="trig" style={`--d:${(0.5 + (t / T) * 2.4).toFixed(2)}s`}>
+  <g class="obj">
+    <path class="axis" pathLength="1" d={`M${X0 - 8} ${y + h} H${X0 + W + 8}`} />
+    {ticks.map(t => (
+      <path class="tick" pathLength="1" d={`M${x(t)} ${y + h} v${-h}`} style={`transition-delay:${at(t)}s`} />
+    ))}
+    <text class="gap" x={x(40)} y={y + h + 26}>quiet: every 20 s</text>
+    <text class="gap" x={x(232)} y={y + h + 26}>then every 3 s</text>
+  </g>
+  {triggers.map(({ t, label }) => (
+    <g class="obj trig" style={`--d:${at(t)}s`}>
       <path pathLength="1" d={`M${x(t)} ${y - 26} v14 m-4 -5 l4 5 l4 -5`} />
       <text x={x(t)} y={y - 34}>{label}</text>
     </g>
   ))}
-  <text class="gap" x={x(40)} y={y + h + 26}>quiet: every 20 s</text>
-  <text class="gap" x={x(232)} y={y + h + 26}>then every 3 s</text>
 </svg>
 
 <style is:global>
@@ -38,8 +42,9 @@ const y = 64, h = 34;
   @media (max-width: 600px) { .capture text { font-size: 14.5px } }
   .capture .trig text { fill: var(--fg) }
   .capture .trig path { stroke: var(--signal); stroke-opacity: 1 }
-  html.js .scene.on .capture .trig path { transition-delay: var(--d) }
-  html.js .scene.on .capture .trig text { transition-delay: var(--d) }
-  html.js .scene.on .capture .gap { transition-delay: 3s }
-  html.js .scene.on .capture .tick { transition-duration: .35s }
+  /* Its own timing, over the shared .drawing .obj delays. */
+  html.js .scene.on .drawing.capture .obj.trig path, html.js .scene.on .drawing.capture .obj.trig text { transition-delay: var(--d) }
+  html.js .scene.on .drawing.capture .obj .gap { transition-delay: 3s }
+  html.js .scene.on .drawing.capture .obj .axis { transition-delay: .3s }
+  html.js .scene.on .drawing.capture .obj .tick { transition-duration: .35s }
 </style>

@@ -165,12 +165,12 @@ ffmpeg -nostdin -v error -y -i "$W/frame-0424-1459.png" -vf "scale=640:-2:flags=
 for d in side front; do # the neck mount, on its transparent ground
   ffmpeg -nostdin -v error -y -i "$W/device-$d.png" -vf "scale=-2:'min(1100,ih)':flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/device-$d.webp"
 done
-# wall: kept wider than the usual 1600px, so each frame in a strip stays a frame
-ffmpeg -nostdin -v error -y -i "$W/photo-wall.jpg" -vf "scale=2000:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/wall.webp"
+# wall: a slice of the photo wall, lifted off its white poster
+python3 scripts/clear-white.py "$W/photo-wall.jpg" "$OUT/space-self-log/wall.webp" 0 0 2394 1334 1600
 python3 scripts/clear-white.py "$W/plan-heat.png" "$OUT/space-self-log/plan.webp" 0 0 1690 1230 1600
 # manga: the three pages it drew, side by side on the page's ink (#111)
 ffmpeg -nostdin -v error -y -i "$W/manga-1.jpg" -i "$W/manga-2.jpg" -i "$W/manga-3.jpg" -filter_complex \
-  "[0]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[a];[1]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[b];[2]format=rgb24[c];[a][b][c]hstack=3,scale=2000:-2:flags=lanczos" \
+  "[0]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[a];[1]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[b];[2]format=rgb24[c];[a][b][c]hstack=3,scale=1600:-2:flags=lanczos" \
   -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/manga.webp"
 
 # Vive Towers (short page)
