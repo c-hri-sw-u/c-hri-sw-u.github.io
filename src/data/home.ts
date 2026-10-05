@@ -23,6 +23,8 @@ export const selected: Cell[] = [
   { id: 'lino-app', lead: true, name: 'Lino', what: 'AI canvas for visual thinking', how: 'Startup · design + code',
     // The product demo and the lino.one site, shared with the Lino App detail page.
     moments: [{ src: '/media/works/lino-app/hero.mp4', kind: 'video' }] },
+  { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
+    moments: [vid('risee-orbit')] },
   { id: 'space-self-log', name: 'Witness', what: 'A personal agent that can see', how: 'Agent memory + egocentric vision',
     moments: [img('thesis-floorplan', true), img('thesis-flow', true)] },
   { id: 'piko', name: 'Piko', what: 'Wearable companion', how: 'Hardware + CV + LLM',
@@ -31,8 +33,6 @@ export const selected: Cell[] = [
     moments: [img('banana-shell')] },
   { id: 'bread-reader', name: 'Bread Reader', what: 'Toaster that reads poems', how: 'Hardware hack',
     moments: [img('bread-cover')] },
-  { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
-    moments: [vid('risee-orbit')] },
 ];
 
 export const concepts: Cell[] = [
