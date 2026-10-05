@@ -37,7 +37,7 @@ export const experiments: Experiment[] = [
     id: 'rehears',
     name: 'Rehears',
     icon: m('rehears-icon.webp'),
-    meta: '2026 · Web app, made in an afternoon',
+    meta: '2026 · Web app, made in an afternoon; no longer online',
     line: 'Rehearse your lines alone: it reads every other part aloud, and stops when it’s your turn.',
     media: { src: m('rehears.webp'), alt: 'Rehearsal mode: a line from Catherine in Proof, with play and skip controls' },
     more: [
@@ -47,7 +47,6 @@ export const experiments: Experiment[] = [
     ],
     moreMedia: { src: m('rehears-setup.webp'), alt: 'Setting up a rehearsal: choosing your role, and a voice for every character' },
     credit: 'Design and development, solo',
-    links: [{ href: 'https://rehears.vercel.app/', label: 'Try it' }],
   },
   {
     id: 'rotfix',
