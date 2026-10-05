@@ -94,6 +94,18 @@ figure img, figure video {
   display: block; max-width: 100%; max-height: var(--max, 54svh); width: auto; height: auto;
   border-radius: 6px; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.28);
 }
+/* A site, shown as its homepage: the cover with its address underneath, the whole card a link. */
+.site a {
+  display: flex; flex-direction: column; width: min(100%, 720px); text-decoration: none; overflow: hidden;
+  background: var(--card); color: var(--paper-fg); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.28); transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.site a:hover { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 32px 70px -28px rgba(0,0,0,.34) }
+.site img { width: 100%; height: auto; max-height: calc(var(--max, 54svh) - 52px); object-fit: cover; object-position: top; border-radius: 0; box-shadow: none }
+.site-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; height: 52px; padding: 0 20px; border-top: 1px solid var(--paper-line); font-family: var(--font-name); font-size: 13.5px }
+.site-foot b { font-weight: 500 }
+.site-foot span { color: var(--paper-dim); transition: color .2s }
+.site a:hover .site-foot span { color: var(--paper-fg) }
 figure.fade img { opacity: 0; transition: opacity .9s ease }
 figure.fade img.on { opacity: 1 }
 

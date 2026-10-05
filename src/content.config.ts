@@ -46,6 +46,7 @@ const details = defineCollection({
       list: z.array(z.string()).optional(), // a short inventory under the line
       round: z.number().optional(), // corner radius baked into the image, as a share of its width
       link: link.optional(),
+      card: z.object({ href: z.string(), image: z.string(), title: z.string(), label: z.string() }).optional(), // a site, shown as its cover
       wide: z.boolean().default(false),
     })),
     colophon: z.array(z.object({ k: z.string(), v: z.string(), href: z.string().optional() })),

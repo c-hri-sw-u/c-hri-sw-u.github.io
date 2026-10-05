@@ -57,7 +57,7 @@ scenes:
   - line: "Lino launched at the end of September 2026."
     note: "macOS now, Windows in beta, iOS on the way"
     year: "2026"
-    link: { href: "https://lino.one", label: "lino.one" }
+    card: { href: "https://lino.one", image: "/media/works/lino-app/site.webp", title: "lino.one", label: "Download Lino for free" }
   - line: "“The best way to predict the future is to invent it.”"
     note: "Alan Kay"
     tone: ink

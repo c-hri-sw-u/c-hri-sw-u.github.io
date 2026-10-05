@@ -25,3 +25,4 @@ still lino-app "Lino/11.webp"                        prototype-card
 still lino-app "Lino App/artifacts.webp"             objects
 still lino-app "Lino App/canvas.webp"                canvas
 still lino-app "Lino App/lino-ai.webp"               lino-ai
+# site.webp is a 1440×900 screenshot of the lino.one homepage (from the lino repo's website_minimal), not built here.
