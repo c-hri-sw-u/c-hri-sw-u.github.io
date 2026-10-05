@@ -66,7 +66,7 @@ scenes:
       - { t: "Product philosophy", d: "Intent Engineering, human-centered AI, augmenting human intellect" }
       - { t: "Product strategy", d: "Positioning, target users, competitive landscape, roadmap" }
       - { t: "A system of concepts", d: "Concept (Alias, Variable), Card, Sketch, Spark, Connection, Proposal" }
-      - { t: "Agent engineering", d: "Context engineering, user + canvas memory, tool and skill design, background agents, permission modes, human-in-the-loop review" }
+      - { t: "Agent engineering", d: "Context engineering, harness engineering, user + canvas memory, tool and skill design, permission modes, human-in-the-loop review" }
       - { t: "Frontend engineering", d: "UI/UX design, design system, infinite canvas, rich-text editor, table views" }
       - { t: "Backend engineering", d: "Cross-device sync, authentication, cloud storage, subscriptions" }
       - { t: "Onboarding", d: "First-run flow, guided tutorials, user activation" }
