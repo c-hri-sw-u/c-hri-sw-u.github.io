@@ -28,6 +28,8 @@ clip  "$W/Banana Exoskeleton/11.gif" banana-optimize 8
 still "$W/Banana Exoskeleton/0.png" banana-shell
 still "$W/breadReader/3.webp" bread-exhibit
 still "$W/breadReader/11.webp" bread-hack
+# The homepage cover, cropped to 3:4 as on the legacy page.
+ffmpeg -nostdin -v error -y -i "$W/breadReader/1.webp" -vf "crop='min(iw,ih*3/4)':'min(ih,iw*4/3)',scale=720:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 70 "$OUT/bread-cover.webp"
 clip  "$W/Playground OS/1.gif" pgos-creation 6
 clip  "$W/Playground OS/4.gif" pgos-spatial 4
 clip  "$W/Rethinking Rabbit R1/3.gif" r1-agent 7.9
