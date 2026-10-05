@@ -14,7 +14,10 @@ scenes:
     year: "2025"
   - line: "So we moved the companion onto the body."
     caption: "My concept sketches."
-    media: /media/works/piko/concept.webp
+    media:
+      - /media/works/piko/concept-1.webp
+      - /media/works/piko/concept-2.webp
+    pair: true
     alt: "Concept sketches of a fuzzy companion worn on the shoulder and chest"
     year: "2025"
   - lead: "Meet Piko,"
@@ -50,7 +53,7 @@ scenes:
     year: "2025"
   - line: "I designed, modeled and 3D-printed its skeleton."
     caption: "Iterations of Piko's inner structure."
-    note: "It had to fit inside the fur, move the head and arms, hold the electronics, open easily for debugging, and survive being worn every day"
+    note: "It had to fit inside the fur, move the head and arms, hold the electronics, open easily for debugging, and survive being worn every day. It took many iterations."
     media: /media/works/piko/inside.webp
     alt: "Generations of Piko's 3D-printed parts, and the assembled skeleton"
     year: "2025"

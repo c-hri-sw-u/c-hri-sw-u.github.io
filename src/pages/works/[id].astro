@@ -73,10 +73,10 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <div class:list={['stack', { wide: sc.wide }]}>
           {sc.drawing === 'balance' && <Balance />}
           {list.length > 0 && (
-            <figure class:list={['r', { fade: list.length > 1 && !sc.gallery, gallery: sc.gallery, cutout: sc.cutout }]}>
+            <figure class:list={['r', { fade: list.length > 1 && !sc.gallery && !sc.pair, gallery: sc.gallery, pair: sc.pair, cutout: sc.cutout }]}>
               {list.map((src, j) => isVideo(src)
                 ? <video data-round={sc.round} src={src} poster={src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload="metadata" aria-label={sc.alt}></video>
-                : <img class:list={[{ on: j === 0 }]} data-round={sc.round} src={src} alt={j === 0 || sc.gallery ? (sc.alt ?? '') : ''} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
+                : <img class:list={[{ on: j === 0 }]} data-round={sc.round} src={src} alt={j === 0 || sc.gallery || sc.pair ? (sc.alt ?? '') : ''} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
             </figure>
           )}
           {sc.card && (

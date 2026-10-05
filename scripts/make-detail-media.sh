@@ -29,21 +29,23 @@ still lino-app "Lino App/lino-ai.webp"               lino-ai
 
 # Piko
 clip  piko "Piko/IMG_2013.MOV"                       caught
-# moods: 6.gif with its white margin trimmed
-ffmpeg -nostdin -v error -y -i "$SRC/Piko/6.gif" -vf "crop=1024:500:28:42,fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart -an "$OUT/piko/moods.mp4"
+# moods: 6.gif with its white margin trimmed and replaced by an even one
+ffmpeg -nostdin -v error -y -i "$SRC/Piko/6.gif" -vf "crop=1024:500:28:42,pad=1072:548:24:24:white,fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart -an "$OUT/piko/moods.mp4"
 ffmpeg -nostdin -v error -y -i "$OUT/piko/moods.mp4" -frames:v 1 -q:v 3 "$OUT/piko/moods-poster.jpg"
 still piko "Piko/17.webp"                            inside
 clip  piko "Piko/4.gif"                              system
 # flow.webp: the transparent interaction flow (3.png) flattened onto white, trimmed to the chart, then given a white margin
 ffmpeg -nostdin -v error -y -f lavfi -i color=white:s=3893x2014 -i "$SRC/Piko/3.png" -filter_complex "[0][1]overlay,crop=2740:1900:730:60,pad=iw*1.24:ih*1.3:(ow-iw)/2:(oh-ih)/2:white,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/piko/flow.webp"
 # koala.webp: Piko/14.webp keyed to a transparent ground by hand (black around the puppet, nose kept, bottom faded)
-still piko "Piko/2.webp"                             concept
+# concept-1/2: the two sketched photos cut out of the 2.png slide (frames and the story bar left out)
+ffmpeg -nostdin -v error -y -i "$SRC/Piko/2.png" -vf "crop=432:774:396:138" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/piko/concept-1.webp"
+ffmpeg -nostdin -v error -y -i "$SRC/Piko/2.png" -vf "crop=460:708:1076:204" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/piko/concept-2.webp"
 sq() { # id, source, name: a centred square crop, for a gallery
   mkdir -p "$OUT/$1"
   ffmpeg -nostdin -v error -y -i "$SRC/$2" -vf "crop='min(iw,ih)':'min(iw,ih)',scale=800:800:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/$1/$3.webp"
 }
-# fan-1: the lower half of 9.webp, the koala on the chest without the face
-mkdir -p "$OUT/piko" && ffmpeg -nostdin -v error -y -i "$SRC/Piko/9.webp" -vf "crop=1450:1450:1080:2105,scale=800:800:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/piko/fan-1.webp"
+# fan-1: the lower half of 9.webp, the koala on the chest, down from the chin
+mkdir -p "$OUT/piko" && ffmpeg -nostdin -v error -y -i "$SRC/Piko/9.webp" -vf "crop=1700:1700:950:1858,scale=800:800:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/piko/fan-1.webp"
 sq    piko "Piko/8.webp"                             fan-2
 sq    piko "Piko/12.webp"                            fan-3
 sq    piko "Piko/13.webp"                            fan-4

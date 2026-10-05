@@ -40,6 +40,7 @@ const details = defineCollection({
     line: z.string().optional(),
       equation: z.array(z.string()).optional(), // terms and × / = signs, one per row, like the equation opener
       facts: z.array(z.object({ t: z.string(), d: z.string() })).optional(), // side-by-side columns
+      pair: z.boolean().default(false), // two stills side by side, staggered
       gallery: z.boolean().default(false), // several stills shown together in a grid, not in turn
     big: z.boolean().default(false),                               // a name or statement set large
       note: z.string().optional(),

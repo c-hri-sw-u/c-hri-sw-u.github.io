@@ -177,23 +177,32 @@ html.js .scene.on .facts .fact:nth-child(2) { transition-delay: .5s }
 html.js .scene.on .facts .fact:nth-child(3) { transition-delay: 1s }
 @media (max-width: 600px) { .facts { grid-template-columns: 1fr; gap: 22px } .fact h3 { margin-bottom: 6px } }
 
+/* ---------- pair ---------- */
+/* Two stills side by side, the second set a little lower, each sliding up in turn. */
+figure.pair { display: flex; gap: clamp(14px, 3vw, 44px); align-items: flex-start; justify-content: center; height: var(--max, 54svh) }
+figure.pair img { width: auto; height: 90%; max-height: none; max-width: none; border-radius: 10px; box-shadow: 0 18px 40px -18px rgba(0,0,0,.35) }
+figure.pair img:nth-child(2) { margin-top: calc(var(--max, 54svh) * .1) }
+html.js .scene figure.pair img { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform 1s cubic-bezier(.2,.8,.2,1) }
+html.js .scene.on figure.pair img { opacity: 1; transform: none }
+html.js .scene.on figure.pair img:nth-child(1) { transition-delay: .2s }
+html.js .scene.on figure.pair img:nth-child(2) { transition-delay: .55s }
+@media (max-width: 640px) { figure.pair { height: auto; width: 100% } figure.pair img { height: auto; width: 46%; aspect-ratio: auto } figure.pair img:nth-child(2) { margin-top: 10% } }
+
 /* ---------- gallery ---------- */
-/* A loose pile of snapshots: each photo has its own place, size and tilt, and they drop in one by one. */
+/* A loose pile of snapshots: each photo has its own place and tilt, and they drop in one by one. */
 figure.gallery { position: relative; display: block; width: min(100%, calc(var(--max, 54svh) * 1.7)); aspect-ratio: 16 / 9 }
-figure.gallery img { position: absolute; width: var(--s); height: auto; max-height: none; aspect-ratio: 1; object-fit: cover;
+figure.gallery img { position: absolute; width: var(--s, 28%); height: auto; max-height: none; aspect-ratio: 1; object-fit: cover;
   left: var(--x); top: var(--y); padding: clamp(4px, .5vw, 8px); background: #fff; border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 14px 30px -12px rgba(0,0,0,.28); transform: rotate(var(--r));
   transition: opacity .7s ease, transform .9s cubic-bezier(.2,.8,.2,1) }
-figure.gallery img:hover { transform: rotate(0deg) scale(1.04); z-index: 9 }
-figure.gallery img:nth-child(1) { --x: 3%;  --y: 3%;  --s: 29%; --r: -5deg; z-index: 2 }
-figure.gallery img:nth-child(2) { --x: 34%; --y: 0%;  --s: 27%; --r: 3deg;  z-index: 1 }
-figure.gallery img:nth-child(3) { --x: 66%; --y: 5%;  --s: 30%; --r: -2deg; z-index: 3 }
-figure.gallery img:nth-child(4) { --x: 13%; --y: 47%; --s: 27%; --r: 4deg;  z-index: 4 }
-figure.gallery img:nth-child(5) { --x: 43%; --y: 43%; --s: 28%; --r: -4deg; z-index: 5 }
-figure.gallery img:nth-child(6) { --x: 72%; --y: 49%; --s: 25%; --r: 6deg;  z-index: 6 }
+figure.gallery img:nth-child(1) { --x: 3%;  --y: 3%;  --r: -5deg; z-index: 2 }
+figure.gallery img:nth-child(2) { --x: 34%; --y: 0%;  --r: 3deg;  z-index: 1 }
+figure.gallery img:nth-child(3) { --x: 66%; --y: 5%;  --r: -2deg; z-index: 3 }
+figure.gallery img:nth-child(4) { --x: 13%; --y: 47%; --r: 4deg;  z-index: 4 }
+figure.gallery img:nth-child(5) { --x: 43%; --y: 43%; --r: -4deg; z-index: 5 }
+figure.gallery img:nth-child(6) { --x: 72%; --y: 49%; --r: 6deg;  z-index: 6 }
 html.js .scene figure.gallery img { opacity: 0; transform: translateY(-18px) rotate(calc(var(--r) * 2.5)) scale(1.08) }
 html.js .scene.on figure.gallery img { opacity: 1; transform: rotate(var(--r)) }
-html.js .scene.on figure.gallery img:hover { transform: rotate(0deg) scale(1.04) }
 html.js .scene.on figure.gallery img:nth-child(1) { transition-delay: .2s }
 html.js .scene.on figure.gallery img:nth-child(2) { transition-delay: .45s }
 html.js .scene.on figure.gallery img:nth-child(3) { transition-delay: .7s }
