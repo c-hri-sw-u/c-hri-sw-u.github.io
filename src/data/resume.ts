@@ -60,7 +60,7 @@ export const education: Entry[] = [
   },
   {
     when: '2023', what: 'Soochow University', role: 'Bachelor’s in Architecture',
-    lines: ['Started in landscape architecture.'],
+    lines: [],
   },
 ];
 
