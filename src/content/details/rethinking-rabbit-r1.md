@@ -30,8 +30,8 @@ scenes:
     cutout: true
     wide: true
     year: "2024"
-  - line: "Today we use AI one way: ask, then wait."
-    note: "I call it A–A: Ask–Answer, or Ask–Act. We give the input, and wait for the output."
+  - line: "Back then, we used AI one way: ask, then wait."
+    note: "I called it A–A: Ask–Answer, or Ask–Act. We gave the input, and waited for the output."
     media: /media/works/rethinking-rabbit-r1/ask-answer.webp
     alt: "Providing input, an arrow, waiting for output, above a neural network"
     cutout: true
@@ -63,15 +63,17 @@ scenes:
   - line: "Each step plays to what the R1 is good at."
     note: "Sensors and the network to gather context. A small screen made for exploring the world, not for scrolling. A wheel and a button for the hand."
     year: "2024"
-  - line: "You see what it draws on."
+  - line: "You see what it draws on.*"
     caption: "Process Visualization and Fluid Widgets."
     note: "Vision, GPS, voice and memory sit on the screen as widgets, linked as they feed what it says, each lighting up in turn."
+    footnote: "* Well before “context engineering” became a term, in June 2025"
     media: /media/works/rethinking-rabbit-r1/process.mp4
     alt: "The R1 screen with Vision, GPS, Voice and Memory widgets joined by dotted lines, highlighting in turn"
     year: "2024"
-  - line: "You choose how much it remembers."
+  - line: "You choose how much it remembers.*"
     caption: "Memory Switch."
     note: "A tab at the edge of the screen slides between short and long memory, and sets how far back it reaches: off, a day, a week, two weeks, a month."
+    footnote: "* Before memory became standard: Gemini, ChatGPT and Claude began recalling past chats only in 2025"
     media: /media/works/rethinking-rabbit-r1/memory.mp4
     alt: "A tab slides out from the screen’s edge with long and short memory, a range from a day to a month, and usage"
     year: "2024"
