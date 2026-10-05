@@ -45,8 +45,8 @@ scenes:
     round: 0.037
     alt: "Lino AI proposing an essay outline from the cards"
     year: "2026"
-  - lead: "Unlike most agents, Lino holds on to one idea"
-    line: "Beautiful human"
+  - lead: "Unlike most agents, Lino is"
+    line: "Built for humans"
     big: true
     note: "AI should make people better thinkers, not think for them"
     tone: ink
