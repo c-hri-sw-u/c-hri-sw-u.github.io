@@ -29,7 +29,7 @@ export const selected: Cell[] = [
     moments: [img('piko-parts')] },
   { id: 'banana-exoskeleton', name: 'Banana Exoskeleton', what: 'Fits any banana', how: 'Computational design',
     moments: [img('banana-shell')] },
-  { id: 'bread-reader', name: 'breadReader', what: 'Toaster that reads poems', how: 'Hardware hack',
+  { id: 'bread-reader', name: 'Bread Reader', what: 'Toaster that reads poems', how: 'Hardware hack',
     moments: [img('bread-cover')] },
   { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
     moments: [vid('risee-orbit'), vid('risee-actions')] },

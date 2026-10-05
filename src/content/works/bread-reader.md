@@ -1,6 +1,6 @@
 ---
-title: "breadReader"
-listTitle: "breadReader"
+title: "Bread Reader"
+listTitle: "Bread Reader"
 subtitle: ""
 type: "Product + Interaction | Design + Development | Hacking + Unmaking | Discursive Design"
 date: "2024 Fall"
