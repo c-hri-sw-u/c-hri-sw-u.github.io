@@ -22,10 +22,10 @@ export const person = {
 // The one project told in full, above everything else. The lede says what the product is; the lines say what I did.
 export const lino = {
   name: 'Lino', role: 'Solo founder', when: 'Dec 2025 – now', href: 'https://lino.one',
-  lede: 'An AI workspace where documents, databases and sketches live on one canvas, and an agent works alongside you on it. Launched on macOS in September 2026; Windows in beta.',
+  lede: 'An AI workspace where documents, databases and sketches share one canvas with an agent. Launched on macOS in September 2026; Windows in beta.',
   lines: [
     'Designed and built the whole product alone: interaction model, design system, desktop app and agent. About **3,000 commits**.',
-    'Designed how the agent works: context and memory drawn from the canvas, tools and skills, permission modes, and edits proposed for the person to approve.',
+    'Designed how people and the agent work together on the canvas: its changes arrive as proposals the person checks off and applies, new objects wait in an inbox for the person to place, and every paragraph and cell records whether a person or the AI wrote it.',
     'Ran the launch and the business: positioning, pricing and AI credits, onboarding, website and docs, analytics.',
     'Wrote four essays on [Intent Engineering](https://medium.com/@gochris), the idea behind the product.',
   ],
@@ -42,7 +42,7 @@ export const research: Entry[] = [
   },
   {
     when: '2025', what: 'Interactive Structures Lab, Carnegie Mellon', role: 'Research Assistant',
-    lines: ['Contributed to research on constraint-driven adaptive surfaces, for a human–robot interaction project.'],
+    lines: ['Constraint-driven adaptive surfaces, for a human–robot interaction project.'],
   },
 ];
 
@@ -73,7 +73,8 @@ export const education: Entry[] = [
 ];
 
 export const skills: { t: string; d: string }[] = [
-  { t: 'AI', d: 'Agents (context, memory, tools, permissions), LLM and VLM APIs, computer vision' },
+  { t: 'AI', d: 'Human–AI interaction, agent design (context, memory, tools), LLM and VLM APIs' },
+  { t: 'ML', d: 'With sensors (gesture recognition); in production (recommendation system)' },
   { t: 'Engineering', d: 'TypeScript, React, Electron, Swift, Python, Supabase' },
   { t: 'Design', d: 'Interaction design, design systems, prototyping, Figma' },
   { t: 'Physical', d: 'Raspberry Pi, Arduino, sensors, Rhino + Grasshopper, 3D printing' },
