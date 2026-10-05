@@ -42,6 +42,7 @@ const details = defineCollection({
       alt: z.string().optional(),
       tone: z.enum(['paper', 'ink']).default('paper'),
       year: z.string().optional(),
+      list: z.array(z.string()).optional(), // a short inventory under the line
       round: z.number().optional(), // corner radius baked into the image, as a share of its width
       link: link.optional(),
       wide: z.boolean().default(false),

@@ -52,9 +52,6 @@ scenes:
     note: "Vannevar Bush, Ted Nelson, Douglas Engelbart, Alan Kay"
     tone: ink
   - line: "I want Lino to be the best, and the last, interface between people and agents."
-  - line: "About 3,000 commits since late 2025."
-    note: "Designed and built by me"
-    year: "2026"
   - line: "Lino launched at the end of September 2026."
     note: "macOS now, Windows in beta, iOS on the way"
     year: "2026"
@@ -62,10 +59,21 @@ scenes:
   - line: "“The best way to predict the future is to invent it.”"
     note: "Alan Kay"
     tone: ink
+  - line: "So I invented it, all of it."
+    list:
+      - "Product and interaction design"
+      - "Agent engineering: tools, permissions, a sandbox"
+      - "A system of concepts: cards, connections, Sparks, Quick Entry, review cards"
+      - "The canvas, sync and the backend"
+      - "Onboarding"
+      - "The website and the posters"
+      - "Analytics"
+      - "The business model"
+    note: "About 3,000 commits since late 2025"
+    tone: ink
 colophon:
   - { k: "Role", v: "Founder: product, design and engineering" }
   - { k: "Years", v: "2025 – present" }
-  - { k: "Under the hood", v: "An agent with tools, permissions and a sandbox. Sparks that read the cards around them. Sync across devices and two-way with Markdown files." }
   - { k: "Writing", v: "Intent Engineering and other essays", href: "https://medium.com/@gochris" }
   - { k: "Roadmap", v: "Five lines, from Intent Engineering to integrations", href: "https://lino.one/roadmap" }
   - { k: "Started as", v: "Lino, a 2024 prototype", href: "/template.html?work=lino" }

@@ -72,6 +72,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
           )}
           {sc.lead && <p class="lead r">{sc.lead}</p>}
           <p class="line r">{sc.line}</p>
+          {sc.list && <ul class="inventory r">{sc.list.map(item => <li>{item}</li>)}</ul>}
           {sc.note && <p class="note r">{sc.note}</p>}
           {sc.link && <p class="r"><a class="go" href={sc.link.href} target={sc.link.href.startsWith('http') ? '_blank' : undefined} rel="noopener">{sc.link.label} →</a></p>}
         </div>

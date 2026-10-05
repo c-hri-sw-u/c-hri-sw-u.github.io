@@ -39,6 +39,11 @@ export function initDetail() {
     }
   }, { threshold: 0.55 });
   scenes.forEach(s => io.observe(s));
+  // Inventory items arrive one after another, after the line above them.
+  document.querySelectorAll<HTMLElement>('.inventory li').forEach(li => {
+    const k = [...li.parentElement!.children].indexOf(li);
+    li.style.transitionDelay = `${0.8 + k * 0.12}s`;
+  });
 
   // Several stills in one scene cross-fade while it is on screen.
   document.querySelectorAll<HTMLElement>('figure.fade').forEach(fig => {
