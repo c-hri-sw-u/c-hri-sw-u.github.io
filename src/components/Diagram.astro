@@ -104,12 +104,16 @@ const arcs = Array.from({ length: n }, (_, i) => {
   @media (max-width: 560px) {
     .dg-cycle { width: min(100%, 360px); aspect-ratio: auto }
     .dg-cycle svg, .dg-center { display: none }
-    .dg-cycle ol { position: relative; display: grid; row-gap: 12px; padding-left: 16px }
-    .dg-cycle ol::before { content: ""; position: absolute; left: 0; top: 7px; bottom: 7px; width: 14px; border: 1px solid var(--fg); border-right: 0; border-radius: 10px 0 0 10px; opacity: .45 }
-    .dg-cycle ol::after { content: ""; position: absolute; left: 7px; top: 3.5px; width: 7px; height: 7px; border-top: 1px solid var(--fg); border-right: 1px solid var(--fg); transform: rotate(45deg); opacity: .6 }
+    .dg-cycle ol { position: relative; display: grid; row-gap: 12px; padding-left: 16px; color: var(--fg) }
     .dg-cycle li { position: relative; left: auto !important; top: auto !important; transform: none; width: auto; max-width: none; padding-left: 16px; text-align: left; font-size: 16px }
     .dg-cycle li::before { content: ""; position: absolute; left: -2px; top: 4px; width: 7px; height: 7px; border-radius: 50%; background: var(--bg); border: 1px solid var(--fg) }
     .dg-cycle li:not(:last-child)::after { content: ""; position: absolute; left: 2px; top: 11px; bottom: -16px; width: 1px; background: var(--fg); opacity: .45 }
+    /* the return bracket, drawn in a piece per item: from the last dot, up the left, back into the first dot */
+    .dg-cycle li > b::before { content: ""; position: absolute; left: -16px; top: 0; bottom: -12px; width: 5px; border-left: 1px solid currentColor; opacity: .45 }
+    .dg-cycle li:first-child > b::before { top: 8.5px; border-top: 1px solid currentColor; border-top-left-radius: 5px }
+    .dg-cycle li:last-child > b::before { bottom: auto; height: 8.5px; border-bottom: 1px solid currentColor; border-bottom-left-radius: 5px }
+    .dg-cycle li:only-child > b::before { display: none }
+    .dg-cycle li:first-child > b::after { content: ""; position: absolute; left: -15px; top: 5.5px; width: 6px; height: 6px; border-top: 1px solid currentColor; border-right: 1px solid currentColor; transform: rotate(45deg); opacity: .6 }
     .dg-cycle small { font-size: 12px }
     html.js .dg-cycle li { transform: translateY(6px) }
     html.js .scene.on .dg-cycle li { transform: none; transition-delay: calc(.3s + var(--k) * .14s) }
