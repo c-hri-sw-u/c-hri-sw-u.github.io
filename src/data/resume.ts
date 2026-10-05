@@ -9,7 +9,7 @@ export interface Work { name: string; when: string; tag: string; line: string; h
 export const person = {
   name: 'Yixi (Chris) Wu',
   title: 'Design engineer and founder of Lino',
-  line: 'I design and build agents that make people better thinkers, not ones that think for them.',
+  line: 'I design and build AI products end to end, from interaction to production code. Most recently Lino, an AI canvas I took from idea to launch, solo.',
   contact: [
     { label: 'cwu14932@gmail.com', href: 'mailto:cwu14932@gmail.com' },
     { label: 'c-hri-sw-u.github.io', href: 'https://c-hri-sw-u.github.io' },
@@ -21,7 +21,7 @@ export const person = {
 
 // The one project told in full, above everything else.
 export const lino = {
-  name: 'Lino', role: 'Founder: product, design and engineering', when: 'Dec 2025 – now', href: 'https://lino.one',
+  name: 'Lino', role: 'Solo founder: product, design and engineering', when: 'Dec 2025 – now', href: 'https://lino.one',
   lede: 'One canvas that people and agents share, with shared context and memory, so the agent works inside the person’s intent. Knowledge base, infinite canvas, personal agent and projects in one portable workstation. Launched on macOS, September 2026.',
   lines: [
     '**Product.** Philosophy (Intent Engineering, augmenting human intellect), positioning, target users, competitive landscape, roadmap, and a system of concepts: Card, Sketch, Spark, Connection, Proposal.',
