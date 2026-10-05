@@ -1,0 +1,11 @@
+---
+// A poem as the machine printed it: stanzas in the mono of the printout, the words found in the bread in bold.
+// Each stanza is a list of lines; **word** marks a found word.
+const { stanzas } = Astro.props as { stanzas: string[][] };
+const parts = (line: string) => line.split(/\*\*(.+?)\*\*/);
+---
+<div class="poem">
+  {stanzas.map(st => (
+    <p class="r">{st.map((line, i) => <Fragment>{i > 0 && <br />}{parts(line).map((t, j) => j % 2 ? <b>{t}</b> : t)}</Fragment>)}</p>
+  ))}
+</div>

@@ -242,6 +242,48 @@ html.js .scene.on figure.gallery img:nth-child(6) { transition-delay: 1.45s }
   figure.gallery img:nth-child(6) { --x: 50%; --y: 62%; --s: 50% }
 }
 
+/* ---------- decode (Bread Reader) ----------
+   A scan line passes down the scanned slice and leaves its letters behind; the letters dim, and the found
+   words surface on the pores one after another. Cells are 0.6em by 1em, so the box is cols × 0.6 by rows. */
+figure.decode { display: block }
+.decode-box { position: relative; container-type: inline-size; aspect-ratio: calc(var(--cols) * .6) / var(--rows); width: min(100%, calc(var(--max, 54svh) * var(--cols) * .6 / var(--rows))); margin: 0 auto }
+.decode-box > * { position: absolute }
+.decode .scan { inset: 0; width: 100%; height: 100%; max-height: none; border-radius: 4px; box-shadow: 0 24px 60px -28px rgba(0,0,0,.28) }
+.decode .letters { inset: 0; color: var(--fg); opacity: .3 }
+.decode pre { margin: 0; font: 400 calc(100cqw / (var(--cols) * .6)) / 1 var(--font-mono); letter-spacing: 0; white-space: pre; text-align: left }
+.decode .word {
+  left: calc(var(--c) * 100% / var(--cols)); top: calc(var(--r) * 100% / var(--rows));
+  font: 500 calc(100cqw / (var(--cols) * .6)) / 1 var(--font-mono); color: var(--fg); background: var(--bg); padding: 0 .3ch; margin-left: -.3ch;
+}
+.decode .scan, .decode .beam { display: none }
+html.js .decode .scan, html.js .decode .beam { display: block }
+html.js .decode .scan { clip-path: inset(0 0 0 0) }
+html.js .decode .letters { opacity: 1; clip-path: inset(0 0 100% 0) }
+html.js .decode .word { opacity: 0 }
+html.js .decode .beam { left: -2%; right: -2%; top: 0; height: 1px; background: var(--fg); opacity: 0 }
+html.js .scene.on .decode .scan { animation: decode-scan 2.8s linear .9s both }
+html.js .scene.on .decode .letters { animation: decode-letters 2.8s linear .9s both, decode-dim 1.2s ease 4s both }
+html.js .scene.on .decode .beam { animation: decode-beam 2.8s linear .9s both }
+html.js .scene.on .decode .word { animation: decode-word .7s ease both; animation-delay: calc(4.6s + var(--k) * .22s) }
+@keyframes decode-scan { to { clip-path: inset(100% 0 0 0) } }
+@keyframes decode-letters { to { clip-path: inset(0 0 0 0) } }
+@keyframes decode-dim { from { opacity: 1 } to { opacity: .3 } }
+@keyframes decode-beam { 0% { top: 0; opacity: .7 } 96% { opacity: .7 } 100% { top: 100%; opacity: 0 } }
+@keyframes decode-word { from { opacity: 0 } to { opacity: 1 } }
+
+/* ---------- poem ----------
+   As the machine printed it: the printout's mono, found words in bold, stanzas arriving in turn. */
+.poem { columns: 2; column-gap: clamp(32px, 6vw, 88px); text-align: left; font-family: var(--font-mono); font-size: clamp(13px, 1.25vw, 15.5px); line-height: 1.6; color: var(--dim) }
+.poem p { margin: 0 0 1.2em; break-inside: avoid }
+.poem b { font-weight: 500; color: var(--fg) }
+html.js .scene.on .poem .r:nth-child(2) { transition-delay: .3s }
+html.js .scene.on .poem .r:nth-child(3) { transition-delay: .6s }
+html.js .scene.on .poem .r:nth-child(4) { transition-delay: .9s }
+html.js .scene.on .poem .r:nth-child(5) { transition-delay: 1.2s }
+html.js .scene.on .stack:has(> .poem) > .line.r { transition-delay: 1.8s }
+html.js .scene.on .stack:has(> .poem) > .note.r { transition-delay: 2.2s }
+@media (max-width: 600px) { .poem { columns: 1; font-size: 12.5px; line-height: 1.5 } .poem p { margin-bottom: .9em } }
+
 /* ---------- inventory ---------- */
 .inventory { list-style: none; padding: 0; width: min(100%, 720px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; text-align: left; font-family: var(--font-name); font-size: 15px; line-height: 1.4 }
 .scene:has(.inventory) { padding-block: 8svh 9svh }
@@ -318,6 +360,7 @@ html.js .gate.on .stack > .begin.r { transition-delay: 3.2s }
   html.js .backdrop path, html.js .drawing path { stroke-dashoffset: 0; transition: none }
   html.js .drawing text { opacity: 1; transition: none } .balance .beam, .balance .pan { transition: none } html.js .reasons .dot { opacity: 1; transform: none; transition: none }
   body, figure.fade img { transition: none }
+  html.js .decode .scan, html.js .decode .beam { display: none } html.js .scene .decode .letters { clip-path: none; opacity: .3; animation: none } html.js .scene .decode .word { opacity: 1; animation: none }
 }
 
 /* ---------- Banana Exoskeleton ----------

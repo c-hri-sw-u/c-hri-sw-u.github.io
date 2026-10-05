@@ -66,3 +66,16 @@ still banana-exoskeleton "Banana Exoskeleton/4.png"           ring
 still banana-exoskeleton "Banana Exoskeleton/13.png"          to-3d
 # cases: the three cases with their black ground lifted to the page's ink (#111)
 ffmpeg -nostdin -v error -y -i "$SRC/Banana Exoskeleton/14.png" -vf "scale=1600:-2:flags=lanczos,lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/banana-exoskeleton/cases.webp"
+
+# Bread Reader
+still bread-reader "breadReader/6.webp"              studio
+still bread-reader "breadReader/9.webp"              parts
+still bread-reader "breadReader/1.webp"              machine
+still bread-reader "breadReader/11.webp"             push
+still bread-reader "breadReader/2.webp"              wall
+# sketch-1..5: the five hack sketches, each fitted onto the same white sheet so they cross-fade in place
+for i in 1 2 3 4 5; do
+  ffmpeg -nostdin -v error -y -i "$SRC/breadReader/0-$i.webp" -vf "scale=1040:820:force_original_aspect_ratio=decrease:flags=lanczos,pad=1120:900:(ow-iw)/2:(oh-ih)/2:white" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/bread-reader/sketch-$i.webp"
+done
+# scan.webp and the decode grid: the poster's scanned slice with its markings painted out, by scripts/bread-decode.py
+python3 scripts/bread-decode.py > /dev/null

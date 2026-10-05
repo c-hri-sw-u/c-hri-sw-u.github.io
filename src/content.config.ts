@@ -60,7 +60,8 @@ const details = defineCollection({
       cutout: z.boolean().default(false), // a cut-out with a transparent ground: no frame, no shadow
       icon: z.string().optional(), // drawn where the line says [icon]
       backdrop: z.enum(['desk']).optional(), // a line drawing behind the words
-      drawing: z.enum(['balance', 'reasons', 'bananas', 'fit']).optional(), // a line drawing above the words
+      drawing: z.enum(['balance', 'reasons', 'bananas', 'fit', 'decode']).optional(), // a line drawing above the words (decode: Bread Reader's scan)
+      poem: z.array(z.array(z.string())).optional(), // stanzas of lines, **word** in bold, set above the line
     })),
     colophon: z.array(z.object({ k: z.string(), v: z.string(), href: z.string().optional() })),
     next: z.string().optional(),
