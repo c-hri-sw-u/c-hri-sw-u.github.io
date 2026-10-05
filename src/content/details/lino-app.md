@@ -4,7 +4,7 @@ opener:
   - "If they can do the thinking work, what is left for us?"
   - "This product is my answer."
 scenes:
-  - line: "I went looking for what only people have."
+  - line: "I went looking for what only humans have."
   - line: "I found intent."
     note: "Knowing what we want, and why. It is what sets us apart from AI, and the strongest tool we have."
   - lead: "I called the work around it"
@@ -13,8 +13,8 @@ scenes:
     note: "As agents run faster, the slowest link is how quickly people can form a good intent"
     tone: ink
     link: { href: "https://medium.com/@gochris/intent-engineering-42af3438bdc5", label: "Read it on Medium" }
-  - line: "Intent doesn't fit in a chat box. It needs a space for thought."
-    note: "Room for scattered fragments, ideas side by side, and connections everywhere"
+  - line: "Intent doesn't fit in a chat box. It needs a space to grow."
+    note: "A place to discover it, develop it, and let it evolve"
   - line: "I had started building one in 2024."
     note: "Cards that collect themselves while you read, inspired by Vannevar Bush's Memex"
     media: /media/works/lino-app/prototype-card.webp
