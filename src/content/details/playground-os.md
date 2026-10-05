@@ -45,7 +45,7 @@ scenes:
       - { t: "Equipments → Programs", d: "Like a slide: built before, or left unfinished, ready to use or change" }
     year: "2024"
   - line: "It knows where you are, and what you’re doing."
-    caption: "Context recognition, in a kitchen. A mixed-reality view, in the visual language of Apple’s visionOS."
+    caption: "Context recognition, in a kitchen, seen through an XR device."
     note: "It sees you’re making dinner, remembers you like trying new things, and asks what you’ll cook tonight."
     media: /media/works/playground-os/context.mp4
     alt: "Over a kitchen counter, the OS says it looks like you are preparing dinner and asks what you plan to make"
