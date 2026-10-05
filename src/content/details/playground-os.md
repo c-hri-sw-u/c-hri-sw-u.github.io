@@ -62,11 +62,12 @@ scenes:
     alt: "Photos of dishes and posts from other cooks float over the counter, with an invitation to join #Chinese Dishes"
     wide: true
     year: "2024"
-  - line: "You build a program by snapping blocks together, with an agent."
+  - line: "You build a program by snapping blocks together, with an agent.*"
     caption: "Programming, with an AI agent."
     note: "A camera feeds an Ingredient Inspector, and its ingredients meet Chinese recipes in a Smart Filter. Worried about spice? The agent suggests adding your health data and preferences."
     media: /media/works/playground-os/program.mp4
     alt: "Blocks for Camera, Ingredient Inspector, Chinese recipes and Smart Filter are wired together over the counter"
+    footnote: "* Before today’s idea of an agent took shape: Anthropic’s “Building effective agents” came out that December, Operator and Claude Code in early 2025"
     wide: true
     year: "2024"
   - line: "Then you run it, right there on the counter."
