@@ -135,6 +135,6 @@
 - **文案以旧版原文和图里的文字为基础**，精简改写，不重新构思叙事。图里常有原文没写的关键事实（日期、奖项、工具），要逐张读出来。
 - **colophon** 写清角色和贡献、团队、课程或比赛、老师、年份。角色只写做了哪些部分，不写百分比。
 - **哪些作品做简版**：Aurora House、Go Above or Below、Parade with Gods、Vive Towers、T1、ReCurv、Hill Making、Lino、MOREDANCE。Lino 单独做，不并入 Lino App。Boba Bubble Trouble 移到 playground，不做详情页。
-- **playground 里的实验**不做详情页，放在 playground 页面上，一项一张卡片。
+- **playground 里的实验**不做详情页：`/playground/` 一页（`src/pages/playground.astro`，数据在 `src/data/playground.ts`），一项一张卡片，"More" 在原地展开两三句和第二张图。只放自己想做、做出来了的东西，不放课程作业和复刻。现在是 RotFix、A Walk with Shooting Star、Boba Bubble Trouble。Boba 仍留在 map 上（保住 D 组的编号），点开去它的卡片。链接都写 `/playground/`（带斜杠），不带斜杠可能落到旧的 `playground.html`，它只负责跳转。
 - 以后哪个简版要升级成完整版，只需要换开场、补叙事，结构不用推翻。
 

@@ -1,0 +1,140 @@
+---
+// Playground: small things made to try an idea. One page, a card per experiment (src/data/playground.ts), in the detail
+// pages' paper and serif, scrolled normally. "More" opens a card in place; nothing here has a page of its own.
+import { experiments } from '../data/playground';
+const isVideo = (src: string) => src.endsWith('.mp4');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Playground · Yixi (Chris) Wu</title>
+  <meta name="description" content="Small things Yixi (Chris) Wu made to try an idea.">
+  <link rel="icon" type="image/svg+xml" href="/icon/walking.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500&display=swap">
+</head>
+<body>
+<header class="pg-bar">
+  <a class="home" href="/"><span aria-hidden="true">←</span> Yixi (Chris) Wu</a>
+</header>
+
+<main class="pg">
+  <section class="pg-intro">
+    <h1>Playground</h1>
+    <p>Small things I made to try an idea.</p>
+  </section>
+
+  {experiments.map(x => (
+    <article class="pg-card" id={x.id}>
+      <figure class="pg-media">
+        {isVideo(x.media.src)
+          ? <video src={x.media.src} poster={x.media.src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload="metadata" aria-label={x.media.alt}></video>
+          : <img src={x.media.src} alt={x.media.alt} loading="lazy" decoding="async" />}
+      </figure>
+      <div class="pg-text">
+        <p class="pg-meta">{x.meta}</p>
+        <h2>{x.icon && <img class="pg-icon" src={x.icon} alt="" />}{x.name}</h2>
+        <p class="pg-line">{x.line}</p>
+        <details>
+          <summary>More</summary>
+          {x.more.map(p => <p>{p}</p>)}
+          {x.moreMedia && (
+            <figure class="pg-more-media">
+              {isVideo(x.moreMedia.src)
+                ? <video src={x.moreMedia.src} poster={x.moreMedia.src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload="none" aria-label={x.moreMedia.alt}></video>
+                : <img src={x.moreMedia.src} alt={x.moreMedia.alt} loading="lazy" decoding="async" />}
+            </figure>
+          )}
+        </details>
+        <p class="pg-credit">{x.credit}</p>
+        {x.links && <p class="pg-links">{x.links.map(l => <a href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>)}</p>}
+      </div>
+    </article>
+  ))}
+
+  <p class="pg-foot"><a href="/">Selected works</a> · <a href="/map.html">Original map</a></p>
+</main>
+
+<style is:global>
+  :root {
+    --bg: #f4f3f0; --fg: #111111; --dim: #6d6b66; --line: rgba(17, 17, 17, .12);
+    --font-line: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --font-name: "Poppins", "Helvetica Neue", Arial, sans-serif;
+    --ease: cubic-bezier(.2, .7, .2, 1);
+    color-scheme: light;
+  }
+  * { box-sizing: border-box }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-line); -webkit-font-smoothing: antialiased }
+  a { color: inherit }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px }
+
+  .pg-bar { padding: calc(18px + env(safe-area-inset-top, 0px)) 24px 0 }
+  .home { font-family: var(--font-name); font-weight: 500; font-size: 13.5px; text-decoration: none; color: var(--dim); transition: color .2s }
+  .home:hover { color: var(--fg) }
+
+  .pg { width: min(100% - 48px, 1080px); margin: 0 auto; padding: 6svh 0 10svh; display: grid; gap: clamp(48px, 9svh, 96px) }
+  .pg-intro { text-align: center; display: grid; gap: 10px }
+  .pg-intro h1 { margin: 0; font-size: clamp(44px, 7vw, 88px); font-weight: 400; line-height: 1; letter-spacing: -.03em }
+  .pg-intro p { margin: 0; font-size: clamp(20px, 2.4vw, 26px); font-weight: 300; color: var(--dim) }
+
+  /* a card: the media on the left, the words on the right; one column on a phone */
+  .pg-card { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; padding-top: clamp(28px, 5svh, 48px); border-top: 1px solid var(--line) }
+  .pg-media, .pg-more-media { margin: 0 }
+  .pg-media img, .pg-media video, .pg-more-media img, .pg-more-media video { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.28) }
+  .pg-text { display: grid; gap: 14px; min-width: 0 }
+  .pg-text > * { margin: 0 }
+  .pg-meta { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .02em; color: var(--dim) }
+  .pg-text h2 { display: flex; align-items: center; gap: .3em; font-size: clamp(30px, 3.6vw, 44px); font-weight: 400; line-height: 1.05; letter-spacing: -.02em }
+  .pg-icon { width: 1em; height: 1em; border-radius: .22em; flex: none }
+  .pg-line { font-size: clamp(19px, 1.9vw, 23px); font-weight: 300; line-height: 1.35 }
+  details { font-family: var(--font-name); font-size: 15px; line-height: 1.6; color: var(--dim) }
+  details > p { margin: 12px 0 0 }
+  summary { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; list-style: none; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .02em; color: var(--fg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; transition: border-color .2s }
+  summary::-webkit-details-marker { display: none }
+  summary::after { content: "+"; font-size: 13px; line-height: 1 }
+  details[open] summary::after { content: "−" }
+  summary:hover { border-color: currentColor }
+  .pg-more-media { margin-top: 16px }
+  .pg-credit { font-family: var(--font-name); font-size: 13px; color: var(--dim) }
+  .pg-links { display: flex; flex-wrap: wrap; gap: 8px 18px }
+  .pg-links a { font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px }
+  .pg-foot { margin: 0; text-align: center; font-family: var(--font-name); font-size: 13px; color: var(--dim) }
+
+  @media (max-width: 760px) {
+    .pg { width: calc(100% - 32px) }
+    .pg-bar { padding-inline: 16px }
+    .pg-card { grid-template-columns: 1fr }
+  }
+
+  /* cards ease in once as they arrive */
+  html.js .pg-card { opacity: 0; transform: translateY(14px); transition: opacity .9s ease, transform .9s var(--ease) }
+  html.js .pg-card.on { opacity: 1; transform: none }
+  @media (prefers-reduced-motion: reduce) { html.js .pg-card { opacity: 1; transform: none; transition: none } }
+</style>
+
+<script>
+  // Cards ease in as they arrive; their clips play only while on screen, and a clip under "More" plays once it opens.
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver(entries => {
+    for (const en of entries) {
+      const card = en.target as HTMLElement;
+      if (en.isIntersecting) card.classList.add('on');
+      card.querySelectorAll('video').forEach(v => {
+        const shown = en.isIntersecting && (!v.closest('details') || (v.closest('details') as HTMLDetailsElement).open);
+        if (shown) v.play().catch(() => {}); else v.pause();
+      });
+    }
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.pg-card').forEach(c => io.observe(c));
+  document.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => {
+    const v = d.querySelector('video');
+    if (!v) return;
+    if (d.open) { v.currentTime = 0; v.play().catch(() => {}); } else v.pause();
+  }));
+</script>
+</body>
+</html>

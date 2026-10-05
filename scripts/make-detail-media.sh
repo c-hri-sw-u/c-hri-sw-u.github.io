@@ -216,3 +216,23 @@ mkdir -p "$OUT/lino" && ffmpeg -nostdin -v error -y -i "$SRC/Lino/6.webp" -vf "c
 # MOREDANCE (short page)
 python3 scripts/clear-white.py "$SRC/MOREDANCE/1.webp" "$OUT/more-dance/device.webp" 60 150 1080 860
 clip  more-dance "MOREDANCE/1.gif"                      parts
+
+# Playground (one page, a card per experiment, in public/media/playground)
+PG=public/media/playground
+mkdir -p "$PG"
+pgclip() { # source, name
+  ffmpeg -nostdin -v error -y -i "$1" -vf "fps=30,scale='min(1200,iw)':-2:flags=lanczos,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart -an "$PG/$2.mp4"
+  ffmpeg -nostdin -v error -y -i "$PG/$2.mp4" -frames:v 1 -q:v 3 "$PG/$2-poster.jpg"
+}
+pgstill() { # source, name
+  ffmpeg -nostdin -v error -y -i "$1" -vf "scale='min(1400,iw)':-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$PG/$2.webp"
+}
+pgclip  "$SRC/../Playgrounds/RotFix/2.gif"                     rotfix-lock
+# its first frame is nearly black: take the poster from the moment the reflection box is up
+ffmpeg -nostdin -v error -y -ss 4 -i "$PG/rotfix-lock.mp4" -frames:v 1 -q:v 3 "$PG/rotfix-lock-poster.jpg"
+pgclip  "$SRC/../Playgrounds/RotFix/1.gif"                     rotfix-chat
+ffmpeg -nostdin -v error -y -i "$SRC/../Playgrounds/RotFix/icon.png" -vf "scale=96:96:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 90 "$PG/rotfix-icon.webp"
+pgstill "$SRC/../Playgrounds/Walk With Shooting Star/1.png"    shooting-star
+pgstill "$SRC/../Playgrounds/Walk With Shooting Star/2.jpg"    shooting-star-fetch
+pgstill "$SRC/Boba Bubble Trouble/3.webp"                      boba
+pgstill "$SRC/Boba Bubble Trouble/5.webp"                      boba-fruit

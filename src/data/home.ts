@@ -46,7 +46,7 @@ export const concepts: Cell[] = [
 
 export const links = {
   resume: '/Assets/cv.pdf',
-  playground: '/playground.html',
+  playground: '/playground/', // with the slash: /playground alone can resolve to the old playground.html, which forwards here
   email: 'cwu14932@gmail.com',
   fullMap: '/map.html',
   medium: 'https://medium.com/@gochris',
