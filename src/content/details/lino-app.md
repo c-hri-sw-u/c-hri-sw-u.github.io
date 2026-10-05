@@ -45,6 +45,13 @@ scenes:
     round: 0.037
     alt: "Lino AI proposing an essay outline from the cards"
     year: "2026"
+  - line: "Four kinds of tools, in one canvas."
+    list:
+      - { t: "Personal knowledge base", d: "Built on connections, beyond backlinks" }
+      - { t: "Infinite canvas", d: "Cards, databases and sketches on one surface, the smoothest in its class" }
+      - { t: "Personal agent", d: "An AI that works inside your canvas" }
+      - { t: "Project management with agents", d: "Tasks today, Lino Teams coming soon" }
+    year: "2026"
   - lead: "Unlike most agents, Lino is"
     line: "Built for humans"
     big: true
@@ -55,7 +62,7 @@ scenes:
     tone: ink
   - line: "I want Lino to be the best, and the last, interface between people and agents."
   - line: "Lino launched at the end of September 2026."
-    note: "macOS now, Windows in beta, iOS on the way"
+    note: "macOS now, Windows in beta, iOS and the web app on the way"
     year: "2026"
     card: { href: "https://lino.one", image: "/media/works/lino-app/site.webp", title: "lino.one", label: "Download Lino for free" }
   - line: "“The best way to predict the future is to invent it.”"
