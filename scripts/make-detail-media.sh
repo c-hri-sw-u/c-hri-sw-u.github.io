@@ -125,6 +125,15 @@ clip  playground-os "Playground OS/2.gif"            community
 clip  playground-os "Playground OS/6.gif"            program
 clip  playground-os "Playground OS/5.gif"            run
 
+# Aurora House (a short page: the house, its system, the build, AR on site, the result)
+still aurora-house "Aurora House/5-0.webp"           house
+still aurora-house "Aurora House/5-10.webp"          team
+# system, awards: the module diagram and the three awards lifted off their white sheets
+python3 scripts/clear-white.py "$SRC/Aurora House/5-8.webp" "$OUT/aurora-house/system.webp" 0 0 2481 2054 1600
+python3 scripts/clear-white.py "$SRC/Aurora House/5-3.webp" "$OUT/aurora-house/awards.webp" 0 0 1612 935 1400
+# ar: the facade seen through the HoloLens, its tiles coloured by angle (the upper photo of 5-5)
+ffmpeg -nostdin -v error -y -i "$SRC/Aurora House/5-5.webp" -vf "crop=1629:752:732:1493,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/aurora-house/ar.webp"
+
 # Witness (the master's thesis; the id stays space-self-log)
 # Sources were cut from the SpaceSelfLog repo's visualization/: photo-wall.jpg and plan-heat.png from the two poster
 # exports (poster2_export.jpg, poster1_export.jpg), frame-0424-1459.png from preview_frames_2026-04-24/frame_0119.png
