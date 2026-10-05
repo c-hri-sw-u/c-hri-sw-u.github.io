@@ -33,4 +33,4 @@ clip  piko "Piko/6.gif"                              moods
 still piko "Piko/1.webp"                             venn
 still piko "Piko/9.webp"                             worn
 still piko "Piko/17.webp"                            inside
-still piko "Piko/14.webp"                            koala
+# koala.webp: Piko/14.webp keyed to a transparent ground by hand (black around the puppet, nose kept, bottom faded)

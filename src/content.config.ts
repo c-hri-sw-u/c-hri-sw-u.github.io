@@ -49,7 +49,7 @@ const details = defineCollection({
       footnote: z.string().optional(), // set small, last, for an asterisk in the line
       card: z.object({ href: z.string(), image: z.string(), title: z.string(), label: z.string() }).optional(), // a site, shown as its cover
       wide: z.boolean().default(false),
-      cutout: z.boolean().default(false), // a cut-out on black: no frame, blended into an ink ground
+      cutout: z.boolean().default(false), // a cut-out with a transparent ground: no frame, no shadow
       icon: z.string().optional(), // drawn where the line says [icon]
       backdrop: z.enum(['desk']).optional(), // a line drawing behind the words
       drawing: z.enum(['balance', 'shelf']).optional(), // a line drawing above the words
