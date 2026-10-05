@@ -73,9 +73,9 @@ scenes:
   - line: "One afternoon I was gone for hours.\nWhen I came back, it asked if I’d been climbing."
     note: "I hadn’t said a word. It put together the gap in its record, the rhythm of my weeks and the climbing questions I had once asked it. It was right."
     year: "2026"
-  - lead: "It was just as sure when it was wrong. One day it messaged me:"
+  - lead: "It was just as sure when it was wrong.\nOne day it messaged me:"
     line: "“You are cleaning the refrigerator coils.”\nI was only reorganizing my fridge."
-    note: "It had seen me crouch by the open door, and found a reason for it. Vision models are built to find meaning. In an ordinary moment, they find one anyway."
+    note: "It misread what it saw, then explained it. Vision models mistake one thing for another, and they are built to find meaning, so even an ordinary moment gets one."
     tone: ink
     year: "2026"
   - line: "Summarized again and again, it became a habit of mine."
@@ -91,7 +91,7 @@ scenes:
   - lead: "What living with it taught me"
     line: "An agent that sees needs judgment, and a memory you can check."
     list:
-      - { t: "Let ordinary moments stay ordinary", d: "Most frames mean nothing. It should ask before turning one into a habit" }
+      - { t: "Treat what it sees as a guess", d: "It mistakes things, misreads what I do, and reads too much into daily life. A guess should stay a guess until it sees it again or I confirm it" }
       - { t: "Trace every belief", d: "Each line of the profile should lead back to the frames behind it, so a wrong one can be found and undone" }
       - { t: "Correct it by talking", d: "No one reviews 157 hours of frames. Feedback has to come in conversation" }
       - { t: "Remember what it said", d: "When it spoke first, it repeated itself. It needs to know what it already sent, and what went unanswered" }

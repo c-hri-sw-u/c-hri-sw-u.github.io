@@ -66,8 +66,8 @@ button { font: inherit; color: inherit }
   font-size: clamp(26px, 4vw, 44px); font-weight: 300; line-height: 1.18; letter-spacing: -.01em;
 }
 .text-only .line { font-size: clamp(30px, 5vw, 58px); max-width: 20ch }
-/* A line may hold a break (\n in the Markdown), so two sentences each start on their own line. */
-.line { white-space: pre-line }
+/* A line or a lead may hold a break (\n in the Markdown), so two sentences each start on their own line. */
+.line, .lead { white-space: pre-line }
 .line.em { font-style: italic }
 /* A product's own icon, set inline before its name. */
 .app-icon { display: inline-block; width: 1.05em; height: 1.05em; margin-right: .14em; vertical-align: -.17em }
