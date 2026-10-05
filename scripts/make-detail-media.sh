@@ -172,3 +172,13 @@ python3 scripts/clear-white.py "$W/plan-heat.png" "$OUT/space-self-log/plan.webp
 ffmpeg -nostdin -v error -y -i "$W/manga-1.jpg" -i "$W/manga-2.jpg" -i "$W/manga-3.jpg" -filter_complex \
   "[0]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[a];[1]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[b];[2]format=rgb24[c];[a][b][c]hstack=3,scale=2000:-2:flags=lanczos" \
   -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/manga.webp"
+
+# Vive Towers (short page)
+# tower: the opener is shown at most ~46% of the screen high, so 1400px tall is plenty
+ffmpeg -nostdin -v error -y -i "$SRC/Vive Towers/2-0.webp" -vf "scale=-2:1400:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/vive-towers/tower.webp"
+still vive-towers "Vive Towers/2-12.webp"               garden
+still vive-towers "Vive Towers/2-13.webp"               window
+still vive-towers "Vive Towers/2-1.webp"                story
+# system: the consensus loop, off its white sheet; spaces: the four elevations, on their own grey sheet
+python3 scripts/clear-white.py "$SRC/Vive Towers/2-3.webp" "$OUT/vive-towers/system.webp" 0 0 2432 3255 1200
+still vive-towers "Vive Towers/2-4.webp"                spaces
