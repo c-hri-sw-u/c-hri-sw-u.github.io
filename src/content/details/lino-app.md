@@ -5,6 +5,7 @@ opener:
   - "This product is my answer."
 scenes:
   - line: "I went looking for what only humans have."
+    drawing: balance
   - line: "I found intent."
     note: "Knowing what we want, and why. It is what sets us apart from AI, and the strongest tool we have."
   - lead: "I called the work around it"

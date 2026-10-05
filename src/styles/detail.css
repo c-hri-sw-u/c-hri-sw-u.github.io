@@ -130,7 +130,19 @@ html.js .scene.on .backdrop .obj:nth-of-type(1) path { transition-delay: .9s }
 html.js .scene.on .backdrop .obj:nth-of-type(2) path { transition-delay: 1.2s }
 html.js .scene.on .backdrop .obj:nth-of-type(3) path { transition-delay: 1.5s }
 html.js .scene.on .backdrop .obj:nth-of-type(4) path { transition-delay: 1.8s }
-@media (max-width: 600px) { .backdrop { display: none } }
+@media (max-width: 600px) { .backdrop.desk { display: none } }
+.drawing { width: clamp(240px, 46svh, 420px); height: auto; overflow: visible }
+.drawing path { fill: none; stroke: var(--fg); stroke-opacity: .55; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke }
+.drawing text { font-family: var(--font-name); font-size: 15px; fill: var(--dim); text-anchor: middle }
+html.js .drawing path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s var(--ease) }
+html.js .drawing text { opacity: 0; transition: opacity .8s ease 1.2s }
+html.js .scene.on .drawing path { stroke-dashoffset: 0 }
+html.js .scene.on .drawing text { opacity: 1 }
+/* The balance tips toward the person once it has drawn: 8° on the beam, the pans riding its ends. */
+.balance .beam, .balance .pan { transform-box: view-box; transform-origin: 300px 60px; transition: transform 2.2s cubic-bezier(.45, 0, .2, 1) 1.8s }
+.scene.on .balance .beam { transform: rotate(-8deg) }
+.scene.on .balance .pan.left { transform: translate(2px, 26px) }
+.scene.on .balance .pan.right { transform: translate(-2px, -26px) }
 
 /* ---------- inventory ---------- */
 .inventory { list-style: none; padding: 0; width: min(100%, 720px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; text-align: left; font-family: var(--font-name); font-size: 15px; line-height: 1.4 }
@@ -205,6 +217,7 @@ html.js .gate.on .stack > .begin.r { transition-delay: 3.2s }
 @media (prefers-reduced-motion: reduce) {
   html.js .scene .inventory li { opacity: 1; transform: none; transition: none }
   html.js .scene .r { opacity: 1; transform: none; transition: none }
-  html.js .backdrop path { stroke-dashoffset: 0; transition: none }
+  html.js .backdrop path, html.js .drawing path { stroke-dashoffset: 0; transition: none }
+  html.js .drawing text { opacity: 1; transition: none } .balance .beam, .balance .pan { transition: none }
   body, figure.fade img { transition: none }
 }
