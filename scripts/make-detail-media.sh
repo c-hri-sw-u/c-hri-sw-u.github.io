@@ -145,6 +145,17 @@ python3 scripts/clear-white.py "$SRC/Go Above or Below/4-5.webp" "$OUT/go-above-
 python3 scripts/clear-white.py "$SRC/Go Above or Below/4-8.webp" "$OUT/go-above-or-below/idea.webp" 0 0 2480 700 1600
 python3 scripts/clear-white.py "$SRC/Go Above or Below/4-9.webp" "$OUT/go-above-or-below/section.webp" 0 0 1630 1686 1100
 
+# Parade with Gods (short page: the trip, then the three rounds of a tug-of-war between village and city)
+still parade-with-gods "Parade with Gods/1-0.webp"      village
+still parade-with-gods "Parade with Gods/1-9.webp"      fieldwork
+still parade-with-gods "Parade with Gods/1-15.webp"     zones
+ffmpeg -nostdin -v error -y -i "$SRC/Parade with Gods/1-12.webp" -vf "scale=1100:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/parade-with-gods/invasion.webp"
+# parade, disneyland: the procession and the Guanyin–Mickey pair, off their white sheets
+python3 scripts/clear-white.py "$SRC/Parade with Gods/1-4.webp" "$OUT/parade-with-gods/parade.webp" 0 0 2481 1212 1600
+python3 scripts/clear-white.py "$SRC/Parade with Gods/1-8.webp" "$OUT/parade-with-gods/disneyland.webp"
+# light: the shrine of light structures on black, its ground lifted to the page's ink (#111)
+ffmpeg -nostdin -v error -y -i "$SRC/Parade with Gods/1-1.webp" -vf "lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/parade-with-gods/light.webp"
+
 # Witness (the master's thesis; the id stays space-self-log)
 # Sources were cut from the SpaceSelfLog repo's visualization/: photo-wall.jpg and plan-heat.png from the two poster
 # exports (poster2_export.jpg, poster1_export.jpg), frame-0424-1459.png from preview_frames_2026-04-24/frame_0119.png
@@ -161,3 +172,13 @@ python3 scripts/clear-white.py "$W/plan-heat.png" "$OUT/space-self-log/plan.webp
 ffmpeg -nostdin -v error -y -i "$W/manga-1.jpg" -i "$W/manga-2.jpg" -i "$W/manga-3.jpg" -filter_complex \
   "[0]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[a];[1]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[b];[2]format=rgb24[c];[a][b][c]hstack=3,scale=1600:-2:flags=lanczos" \
   -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/manga.webp"
+
+# Vive Towers (short page)
+# tower: the opener is shown at most ~46% of the screen high, so 1400px tall is plenty
+ffmpeg -nostdin -v error -y -i "$SRC/Vive Towers/2-0.webp" -vf "scale=-2:1400:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/vive-towers/tower.webp"
+still vive-towers "Vive Towers/2-12.webp"               garden
+still vive-towers "Vive Towers/2-13.webp"               window
+still vive-towers "Vive Towers/2-1.webp"                story
+# system: the consensus loop, off its white sheet; spaces: the four elevations, on their own grey sheet
+python3 scripts/clear-white.py "$SRC/Vive Towers/2-3.webp" "$OUT/vive-towers/system.webp" 0 0 2432 3255 1200
+still vive-towers "Vive Towers/2-4.webp"                spaces
