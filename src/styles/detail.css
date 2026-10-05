@@ -88,10 +88,10 @@ button { font: inherit; color: inherit }
 .begin:hover { background: var(--fg); color: var(--bg) }
 .go { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px }
 
-/* A wide scene gives its media more of the screen; a video opens full screen on click. */
-.stack.wide { width: min(100%, 1320px) }
-.wide .line { max-width: 34ch }
-.wide .caption { max-width: 90ch }
+/* A wide scene with a video gives it more of the screen; the video opens full screen on click. */
+.stack.wide:has(video) { width: min(100%, 1320px) }
+.wide:has(video) .line { max-width: 34ch }
+.wide:has(video) .caption { max-width: 90ch }
 .scene:has(video) { padding-block: 7svh 8svh }
 figure video { cursor: zoom-in }
 figure { margin: 0; width: 100%; display: grid; justify-items: center }
