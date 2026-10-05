@@ -70,7 +70,8 @@ export function initDetail() {
       let words = 0;
       for (const c of stack.children) if (c !== fig) words += (c as HTMLElement).offsetHeight + gap;
       const room = vh - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - words;
-      fig.style.setProperty('--max', `${Math.max(140, Math.min(room, vh * 0.7))}px`);
+      const cap = fig.querySelector('video') ? 0.8 : 0.7;
+      fig.style.setProperty('--max', `${Math.max(140, Math.min(room, vh * cap))}px`);
     }
     document.querySelectorAll<HTMLElement>('[data-round]').forEach(m => {
       if (m.offsetWidth) m.style.borderRadius = `${m.offsetWidth * +m.dataset.round!}px`;
@@ -81,6 +82,11 @@ export function initDetail() {
   document.fonts?.ready.then(fit);
   document.querySelectorAll('figure img, figure video').forEach(m =>
     m.addEventListener(m.tagName === 'VIDEO' ? 'loadedmetadata' : 'load', fit));
+
+  document.querySelectorAll<HTMLVideoElement>('figure video').forEach(v => v.addEventListener('click', () => {
+    const w = v as HTMLVideoElement & { webkitEnterFullscreen?: () => void };
+    if (v.requestFullscreen) v.requestFullscreen().catch(() => {}); else w.webkitEnterFullscreen?.();
+  }));
 
   document.getElementById('begin')?.addEventListener('click', () =>
     scenes[1]?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
