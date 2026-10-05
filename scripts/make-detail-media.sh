@@ -208,3 +208,11 @@ python3 scripts/clear-white.py "$SRC/Hill Making/3-8.webp" "$OUT/hill-making/spa
 python3 scripts/clear-white.py "$SRC/Hill Making/3-13.webp" "$OUT/hill-making/stone.webp" 0 0 2481 1407 1600
 # transcoding: painting to emotions to rendering (the faded band on its right cut off), on black lifted to the page's ink (#111)
 ffmpeg -nostdin -v error -y -i "$SRC/Hill Making/3-6.webp" -vf "crop=3600:1381:0:0,scale=1600:-2:flags=lanczos,lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/hill-making/transcoding.webp"
+
+# Lino (short page; the 2024 prototype that later became Lino App)
+clip  lino "Lino/1.gif"                                 card
+still lino "Lino/7.webp"                                notes
+python3 scripts/clear-white.py "$SRC/Lino/11.webp" "$OUT/lino/cards.webp"
+python3 scripts/clear-white.py "$SRC/Lino/9.webp" "$OUT/lino/web.webp"
+# memex: Bush's article and the Memex desk, without the caption band under them
+mkdir -p "$OUT/lino" && ffmpeg -nostdin -v error -y -i "$SRC/Lino/6.webp" -vf "crop=2400:876:0:0,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/lino/memex.webp"
