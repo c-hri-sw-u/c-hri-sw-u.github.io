@@ -33,8 +33,8 @@ scenes:
     round: 0.037
     alt: "Connected cards on the canvas"
     year: "2026"
-  - line: "Every idea is an object you can see and move."
-    note: "Cards, links, images, sketches, tables and Sparks, small apps you build with AI"
+  - line: "Every idea becomes a tool for thought."
+    note: "Cards, links, images, sketches, tables and Sparks (small apps you build with AI), each one helping your intent take shape"
     media: /media/works/lino-app/objects.webp
     alt: "Cards, links, images and sketches, tables and Sparks"
     year: "2026"
