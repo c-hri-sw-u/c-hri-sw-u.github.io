@@ -1,6 +1,6 @@
 ---
 // The map of every work: hairline axes, coded glyphs and their path, drawn in the homepage's quiet
-// style. A few inhabitants from the legacy map (public/map.html) stay: two forests, a kiwi, a UFO, the notebook (Medium), the compass.
+// style. A few inhabitants from the legacy map (public/map.html) stay: two forests, a kiwi, a UFO, the notebook (Medium), the compass; plus the Parthenon's plan where the path begins.
 import type { CollectionEntry } from 'astro:content';
 import { glyph } from '../lib/glyph';
 import { links } from '../data/home';
@@ -53,6 +53,8 @@ const kiwiLines = [
           {f.rows.map(r => <div class="trow">{r === 0 ? <span class="gap"></span> : Array.from({ length: r }, () => <img src={`/icon/${f.tree} Tree.svg`} alt="" />)}</div>)}
         </div>
       ))}
+      <!-- The Parthenon's plan, under the start of the path: where I came from (trained as an architect). -->
+      <img class="parthenon" src="/icon/Parthenon Top View.svg" alt="" title="Where I came from" />
     </div>
 
     <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" set:html={linePaths}></svg>

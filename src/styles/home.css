@@ -155,6 +155,7 @@ html:has(body.is-map) { overflow: hidden }
 .trow { display: flex }
 .trow img { width: 18px; height: 18px; transition: transform .06s }
 .trow img.flip { transform: rotateY(150deg) }
+.parthenon { position: absolute; left: 17%; top: 88%; width: calc(2.4vw + 30px); transform: translate(-50%, -50%) rotate(-26deg); clip-path: inset(4% 0 10% 0) }
 .trow .gap { width: 15px; height: 18px }
 
 .links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none }
@@ -264,7 +265,8 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   #map { padding: calc(70px + env(safe-area-inset-top, 0px)) 16px calc(150px + env(safe-area-inset-bottom, 0px)) }
   .mapicon { width: 28px; height: 28px; margin: -14px 0 0 -14px }
   .ax-l, .ax-r { display: none } .ax-h { left: 0; right: 0 }
-  .trow img { width: 15px; height: 15px } .trow .gap { width: 12px; height: 15px }
+  .trow img { width: 15px; height: 15px } .parthenon { position: absolute; left: 17%; top: 88%; width: calc(2.4vw + 30px); transform: translate(-50%, -50%) rotate(-26deg); clip-path: inset(4% 0 10% 0) }
+.trow .gap { width: 12px; height: 15px }
   .bubble { font-size: 12px; padding: 4px 9px }
   .compass { left: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px }
   .map-foot { right: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); font-size: 10px }
