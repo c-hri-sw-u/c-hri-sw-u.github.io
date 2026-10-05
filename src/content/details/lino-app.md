@@ -22,7 +22,7 @@ scenes:
     year: "2024"
     link: { href: "/template.html?work=lino", label: "See the prototype" }
   - line: "It became Lino, one canvas that people and agents share."
-    note: "A musician built this canvas for a show, note by note. Lino AI makes the live visual from their thinking."
+    note: "Scenario: a musician built this canvas for a show, note by note. Lino AI makes the live visual from their thinking."
     media: /media/works/lino-app/hero.mp4
     alt: "A musician's canvas for a show; Lino AI builds the live visual from their notes"
     year: "2026"
