@@ -3,7 +3,7 @@
 // style. A few inhabitants from the legacy map (public/map.html) stay: two forests, a kiwi, a UFO, the notebook (Medium), the compass; plus the Parthenon's plan where the path begins.
 import type { CollectionEntry } from 'astro:content';
 import { glyph } from '../lib/glyph';
-import { links } from '../data/home';
+import { links, coverOf } from '../data/home';
 
 interface Props {
   works: CollectionEntry<'works'>[];
@@ -61,7 +61,7 @@ const kiwiLines = [
 
     {works.map(w => (
       <button class:list={['mapicon', { feat: onHome.has(w.id) }]} data-id={w.id} data-title={w.data.listTitle}
-        data-date={w.data.date} data-preview={w.data.preview} data-url={hrefOf(w.id)}
+        data-date={w.data.date} data-preview={coverOf(w.id) ?? w.data.preview} data-url={hrefOf(w.id)}
         style={`left:${w.data.icon.position[0]}%;top:${w.data.icon.position[1]}%`} aria-label={`${codeOf(w)} ${w.data.listTitle}`}>
         <Fragment set:html={glyph(w.data.icon, codeOf(w))} />
         {w.id === latestId && <span class="bubble now">I’m into this now</span>}

@@ -1,0 +1,85 @@
+// The resume, at /resume/ (src/pages/resume.astro). Edit it here: the page and the PDF are both made from this file.
+// The PDF is printed from the built page by scripts/resume-pdf.mjs when the site deploys. Keep it to one Letter page:
+// after a change, run `npm run build && npm run resume-pdf` and check the PDF still has one page.
+// In any line, [words](url) is a link. Keep each line to one fact.
+
+export interface Entry { org: string; icon?: string; href?: string; site?: string; when: string; role: string; lines: string[] }
+export interface Project { name: string; icon?: string; href?: string; meta: string; line: string }
+
+export const person = {
+  name: 'Yixi (Chris) Wu',
+  title: 'Design engineer · Founder of Lino',
+  contact: [
+    { label: 'c-hri-sw-u.github.io', href: 'https://c-hri-sw-u.github.io' },
+    { label: 'cwu14932@gmail.com', href: 'mailto:cwu14932@gmail.com' },
+    { label: '+1 878 600 1596', href: 'tel:+18786001596' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/' },
+  ],
+  about: 'Trained as an architect, now designing and building AI products, in software and hardware.',
+};
+
+export const work: Entry[] = [
+  {
+    org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', href: 'https://lino.one', site: 'lino.one', when: 'Dec 2025 – Present', role: 'Solo Founder',
+    lines: [
+      'I design, build and run Lino: an AI workspace that puts documents, databases and sketches on one canvas, with an agent.',
+      'Designed how people and the agent work together: its edits arrive as proposals to review, and every paragraph records who wrote it.',
+      'Launched on macOS in September 2026, Windows in beta. About 3,000 commits.',
+      'Wrote [four essays](https://medium.com/@gochris) on the idea behind it, Intent Engineering.',
+    ],
+  },
+  {
+    org: 'Glance (Veryloving, Inc.)', when: 'Jun – Aug 2024', role: 'AI Product Design Intern',
+    lines: [
+      'Designed T1, AI earphones whose case has a face and docks into a desktop robot.',
+      'Presented it to investors and partners at CES.',
+    ],
+  },
+];
+
+export const research: Entry[] = [
+  {
+    org: 'Carnegie Mellon University', href: 'https://c-hri-sw-u.github.io/works/space-self-log', when: 'Spring 2026', role: 'Master’s Thesis: Witness',
+    lines: [
+      'Built a system that lets a personal agent see: a Swift capture app, a vision-language pipeline and a three-tier memory.',
+      'Lived with it for 157 hours and found where it fails: it misreads scenes and states them as fact.',
+    ],
+  },
+  {
+    org: 'Carnegie Mellon University', when: '2025', role: 'Research Assistant',
+    lines: ['WHY Research Lab & L4C; Interactive Structures Lab.'],
+  },
+];
+
+export const projects: Project[] = [
+  { name: 'Risee', icon: '/media/works/risee/app-icon-ios.webp', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
+    line: 'LLM actions on any selected text, in a ring around the cursor. I use it daily.' },
+  { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
+    line: 'A wearable AI companion. I did its concept, hardware and interactions.' },
+  { name: 'Rethinking Rabbit R1', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concept',
+    line: 'Redesigned the AI device around conversation instead of ask-and-answer: you see what it draws on and choose how much it remembers.' },
+  { name: 'Playground OS', href: 'https://c-hri-sw-u.github.io/works/playground-os', meta: '2024 · solo concept',
+    line: 'An OS for creation, not consumption: build small programs with an agent.' },
+];
+
+export const education = [
+  { school: 'Carnegie Mellon University', degree: 'Master of Advanced Architectural Design (STEM)', when: '2024 – 2026',
+    note: 'Generative AI, Machine Learning, ML in Production, Sensing Systems, Interaction Design' },
+  { school: 'Soochow University', degree: 'Bachelor of Architecture', when: '2023' },
+];
+
+export const skills: { t: string; d: string }[] = [
+  { t: 'AI', d: 'Human–AI interaction, agent design (context, memory, tools), LLM and VLM APIs' },
+  { t: 'ML', d: 'With sensors (gesture recognition); in production (recommendation system)' },
+  { t: 'Engineering', d: 'TypeScript, React, Electron, Swift, Python, Supabase' },
+  { t: 'Design', d: 'Interaction design, design systems, prototyping, Figma' },
+  { t: 'Physical', d: 'Raspberry Pi, Arduino, sensors, Rhino + Grasshopper, 3D printing' },
+];
+
+export const honors: { t: string; when: string }[] = [
+  { t: 'Frank-Ratchye Further Fund', when: '’26' },
+  { t: 'Judge’s Choice, Red Robot Hackathon, CMU', when: '’24' },
+  { t: 'Best Future Designer, Solar Decathlon China', when: '’21' },
+];
+
+export const languages = 'English, Mandarin (native)';

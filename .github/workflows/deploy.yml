@@ -25,6 +25,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # The resume's PDF is printed from the built page, so it always matches it
+      - run: npx playwright install --with-deps chromium
+      - run: npm run resume-pdf
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

@@ -13,6 +13,7 @@ npm run build    # static site in dist/
 - `src/data/home.ts`: which works are on the homepage and the moments each cell cycles through.
 - `src/content/works/*.md`: one file per work (icon, map position, dates). Generated once from the legacy `works.js` by `npm run extract-works`.
 - `src/content/details/*.md`: the narrative detail pages (`/works/<id>`). Read `docs/detail-pages.md` before making or changing one.
+- `src/data/resume.ts`: the resume at `/resume/`. Its PDF (`/Yixi-Chris-Wu-Resume.pdf`, also served at the old `/Assets/cv.pdf`) is printed from the built page by `npm run resume-pdf`, which the deploy workflow runs after the build. It must stay one Letter page; the script stops if it doesn't.
 - `src/data/playground.ts`: the Playground page (`/playground/`), a card per experiment. The old `public/playground.html` forwards there.
 - `scripts/make-home-media.sh`: rebuilds the small homepage media in `public/media/home` from `public/Assets` (needs ffmpeg).
 - `public/`: copied to the site as is. It holds the original map (`map.html`), the legacy work pages (`template.html?work=…`), Contact and all `Assets/`.
