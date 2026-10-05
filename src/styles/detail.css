@@ -55,7 +55,7 @@ button { font: inherit; color: inherit }
 /* ---------- scenes ---------- */
 .scene {
   min-height: 100svh; scroll-snap-align: start; display: grid; place-items: center;
-  padding: 13svh 20px 14svh;
+  padding: 11svh 20px 12svh;
 }
 .stack { width: min(100%, 960px); display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3.4svh, 36px); text-align: center }
 .line {
@@ -64,6 +64,8 @@ button { font: inherit; color: inherit }
 }
 .text-only .line { font-size: clamp(30px, 5vw, 58px); max-width: 20ch }
 .line.em { font-style: italic }
+.lead { margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 300; line-height: 1.25; color: var(--dim) }
+.big .line { font-size: clamp(48px, 9vw, 128px); font-weight: 400; line-height: 1; letter-spacing: -.03em; max-width: none }
 .note, .kicker {
   margin: 0; max-width: 52ch; font-family: var(--font-name); font-size: 14px; font-weight: 400; line-height: 1.55;
   color: var(--dim); text-wrap: balance;
@@ -83,32 +85,11 @@ button { font: inherit; color: inherit }
 figure { margin: 0; width: 100%; display: grid; justify-items: center }
 figure > * { grid-area: 1 / 1 }
 figure img, figure video {
-  display: block; max-width: 100%; max-height: 54svh; width: auto; height: auto;
+  display: block; max-width: 100%; max-height: var(--max, 54svh); width: auto; height: auto;
   border-radius: 6px; box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.28);
 }
-.wide figure img, .wide figure video { max-height: 62svh }
 figure.fade img { opacity: 0; transition: opacity .9s ease }
 figure.fade img.on { opacity: 1 }
-
-/* ---------- review card (Lino) ---------- */
-.review {
-  width: min(100%, 420px); background: var(--card); color: var(--paper-fg); border-radius: 12px; text-align: left;
-  border: 1px solid var(--paper-line); box-shadow: 0 24px 60px -30px rgba(0,0,0,.3); font-family: var(--font-mono); font-size: 12px;
-}
-.review-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--paper-line); color: var(--paper-dim) }
-.review ul { list-style: none; margin: 0; padding: 6px 0 }
-.review li { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 14px; transition: opacity .3s }
-.review .mark { color: var(--signal); font-weight: 500 }
-.review .txt { min-width: 0; line-height: 1.45 }
-.review .txt b { display: block; font-weight: 500 }
-.review li.undone { opacity: .38 }
-.review li.undone .txt { text-decoration: line-through }
-.review li.pending .mark { animation: blink 1.4s ease-in-out infinite }
-@keyframes blink { 50% { opacity: .2 } }
-.review button { border: 1px solid var(--paper-line); background: none; border-radius: 6px; padding: 4px 9px; font-size: 11px; cursor: pointer; color: var(--paper-fg) }
-.review button:hover { border-color: var(--paper-fg) }
-.review .acts { display: flex; gap: 6px }
-.review-foot { margin: 0; padding: 10px 14px 12px; border-top: 1px solid var(--paper-line); color: var(--paper-dim) }
 
 /* ---------- colophon ---------- */
 .colophon dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 16px 32px; margin: 0; text-align: left; width: min(100%, 560px) }
@@ -165,12 +146,10 @@ html.js .gate.on .stack > .begin.r { transition-delay: 3.2s }
   .scene { padding-inline: 16px }
   .d-bar { padding-inline: 16px }
   .year { left: 16px } .progress { right: 16px }
-  figure img, figure video { max-height: 46svh }
   .colophon dl { grid-template-columns: 1fr; gap: 4px }
   .colophon dd { margin-bottom: 12px }
 }
 @media (prefers-reduced-motion: reduce) {
   html.js .scene .r { opacity: 1; transform: none; transition: none }
   body, figure.fade img { transition: none }
-  .review li.pending .mark { animation: none }
 }

@@ -34,13 +34,15 @@ const details = defineCollection({
   schema: z.object({
     opener: z.array(z.string()).length(3),
     scenes: z.array(z.object({
-      line: z.string(),
+      lead: z.string().optional(),                                   // a quieter line above a big one
+    line: z.string(),
+    big: z.boolean().default(false),                               // a name or statement set large
       note: z.string().optional(),
       media: z.union([z.string(), z.array(z.string())]).optional(), // several stills cross-fade
       alt: z.string().optional(),
       tone: z.enum(['paper', 'ink']).default('paper'),
       year: z.string().optional(),
-      interactive: z.enum(['review-card']).optional(),
+      round: z.number().optional(), // corner radius baked into the image, as a share of its width
       link: link.optional(),
       wide: z.boolean().default(false),
     })),

@@ -52,6 +52,31 @@ export function initDetail() {
     }, 2600);
   });
 
+  // Media take whatever height the screen has left after the words, so a scene never outgrows it.
+  // Images with rounded corners baked in get a radius that matches them at the size they are shown.
+  const fit = () => {
+    const vh = innerHeight;
+    for (const s of scenes) {
+      const fig = s.querySelector<HTMLElement>('figure');
+      if (!fig) continue;
+      const stack = s.querySelector<HTMLElement>('.stack')!;
+      const cs = getComputedStyle(s);
+      const gap = parseFloat(getComputedStyle(stack).rowGap) || 0;
+      let words = 0;
+      for (const c of stack.children) if (c !== fig) words += (c as HTMLElement).offsetHeight + gap;
+      const room = vh - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - words;
+      fig.style.setProperty('--max', `${Math.max(140, Math.min(room, vh * 0.7))}px`);
+    }
+    document.querySelectorAll<HTMLElement>('[data-round]').forEach(m => {
+      if (m.offsetWidth) m.style.borderRadius = `${m.offsetWidth * +m.dataset.round!}px`;
+    });
+  };
+  fit();
+  addEventListener('resize', fit);
+  document.fonts?.ready.then(fit);
+  document.querySelectorAll('figure img, figure video').forEach(m =>
+    m.addEventListener(m.tagName === 'VIDEO' ? 'loadedmetadata' : 'load', fit));
+
   document.getElementById('begin')?.addEventListener('click', () =>
     scenes[1]?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
 

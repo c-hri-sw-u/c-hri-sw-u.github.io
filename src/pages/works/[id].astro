@@ -1,7 +1,6 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import '../../styles/detail.css';
-import ReviewCard from '../../components/interactive/ReviewCard.astro';
 import { glyph } from '../../lib/glyph';
 
 // One page per work that has a narrative in src/content/details. Works without one keep their legacy page.
@@ -62,16 +61,16 @@ const pad = (n: number) => String(n).padStart(2, '0');
   {scenes.map((sc, i) => {
     const list = sc.media ? [sc.media].flat() : [];
     return (
-      <section class:list={['scene', { 'text-only': !list.length && !sc.interactive }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
+      <section class:list={['scene', { 'text-only': !list.length, big: sc.big }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
         <div class:list={['stack', { wide: sc.wide }]}>
           {list.length > 0 && (
             <figure class:list={['r', { fade: list.length > 1 }]}>
               {list.map((src, j) => isVideo(src)
-                ? <video src={src} poster={src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload="metadata" aria-label={sc.alt}></video>
-                : <img class:list={[{ on: j === 0 }]} src={src} alt={j === 0 ? (sc.alt ?? '') : ''} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
+                ? <video data-round={sc.round} src={src} poster={src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload="metadata" aria-label={sc.alt}></video>
+                : <img class:list={[{ on: j === 0 }]} data-round={sc.round} src={src} alt={j === 0 ? (sc.alt ?? '') : ''} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
             </figure>
           )}
-          {sc.interactive === 'review-card' && <div class="r"><ReviewCard /></div>}
+          {sc.lead && <p class="lead r">{sc.lead}</p>}
           <p class="line r">{sc.line}</p>
           {sc.note && <p class="note r">{sc.note}</p>}
           {sc.link && <p class="r"><a class="go" href={sc.link.href} target={sc.link.href.startsWith('http') ? '_blank' : undefined} rel="noopener">{sc.link.label} →</a></p>}

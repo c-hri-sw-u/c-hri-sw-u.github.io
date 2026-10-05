@@ -4,10 +4,12 @@ opener:
   - "If they can do the thinking work, what is left for us?"
   - "This product is my answer."
 scenes:
-  - line: "So I went looking for what only people have."
+  - line: "I went looking for what only people have."
   - line: "I found intent."
     note: "Knowing what we want, and why. It is what sets us apart from AI, and the strongest tool we have."
-  - line: "I called the work around it Intent Engineering."
+  - lead: "I called the work around it"
+    line: "Intent Engineering"
+    big: true
     note: "As agents run faster, the slowest link is how quickly people can form a good intent"
     tone: ink
     link: { href: "https://medium.com/@gochris/intent-engineering-42af3438bdc5", label: "Read it on Medium" }
@@ -20,7 +22,7 @@ scenes:
     year: "2024"
     link: { href: "/template.html?work=lino", label: "See the prototype" }
   - line: "It became Lino, one canvas that people and agents share."
-    note: "A musician built this canvas for a show, one recording and note at a time. When they ask for the live visual, Lino AI works from their thinking."
+    note: "A musician built this canvas for a show, note by note. Lino AI makes the live visual from their thinking."
     media: /media/works/lino-app/hero.mp4
     alt: "A musician's canvas for a show; Lino AI builds the live visual from their notes"
     year: "2026"
@@ -28,6 +30,7 @@ scenes:
   - line: "Shared context. Shared memory."
     note: "Everything you put on the canvas, the agent can see. Nothing to paste in or explain again."
     media: /media/works/lino-app/canvas.webp
+    round: 0.037
     alt: "Connected cards on the canvas"
     year: "2026"
   - line: "Every idea is an object you can see and move."
@@ -39,11 +42,8 @@ scenes:
   - line: "The agent reads the same canvas you do."
     note: "So it can answer “what's my essay still missing?” from what you have built"
     media: /media/works/lino-app/lino-ai.webp
+    round: 0.037
     alt: "Lino AI proposing an essay outline from the cards"
-    year: "2026"
-  - line: "And everything it changes, you can see and undo."
-    note: "People who use Lino say this is why they trust it more than a chat window. Try it."
-    interactive: review-card
     year: "2026"
   - line: "I build for the beautiful human."
     note: "Agents should make people better thinkers, not think for them"
