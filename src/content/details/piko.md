@@ -18,6 +18,9 @@ scenes:
     line: "a wearable AI companion"
     big: true
     tone: ink
+    media: /media/works/piko/koala.webp
+    alt: "Piko, a koala hand puppet"
+    cutout: true
     year: "2025"
   - line: "Think of it as a live Labubu sitting on your shoulder."
     note: "A koala hand puppet outside; sensors, a camera, motors and an LLM inside"
@@ -39,10 +42,11 @@ scenes:
     year: "2025"
   - line: "In public, a double tap makes it quiet."
     note: "No moves, no sounds, just a gentle notification on your phone"
-  - line: "Inside the koala: two computers, two motors, one camera."
-    note: "One Raspberry Pi listens and thinks, the other moves. They talk over small HTTP requests."
+  - line: "I designed, modeled and 3D-printed its skeleton."
+    caption: "Iterations of Piko's inner structure."
+    note: "Again and again, until two computers, two motors and a camera fit inside a hand puppet and could still move its head and arms"
     media: /media/works/piko/inside.webp
-    alt: "Exploded view of Piko's 3D-printed skeleton and electronics"
+    alt: "Generations of Piko's 3D-printed parts, and the assembled skeleton"
     wide: true
   - line: "I built its body and its behavior."
     list:
