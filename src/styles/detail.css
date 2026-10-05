@@ -148,8 +148,8 @@ html.js .scene.on .drawing .obj:nth-of-type(1) path { transition-delay: .7s }
 html.js .scene.on .drawing .obj:nth-of-type(2) path { transition-delay: 1.1s }
 html.js .scene.on .drawing .obj:nth-of-type(3) path { transition-delay: 1.5s }
 /* The reasons diagram grows upward from three soft overlapping circles, one level after another, all in the page's serif. */
-.drawing.reasons { width: min(100%, 940px, calc(64svh * 1000 / 520)) }
-.drawing.reasons.narrow-only { display: none; width: min(100%, 360px, calc(68svh * 400 / 640)) }
+.drawing.reasons { width: min(100%, 940px, calc(56svh * 1000 / 520)) }
+.drawing.reasons.narrow-only { display: none; width: min(100%, 360px, calc(58svh * 400 / 640)) }
 @media (max-width: 640px) { .drawing.reasons.wide-only { display: none } .drawing.reasons.narrow-only { display: block } }
 .reasons text { font-family: var(--font-line); fill: var(--dim); font-size: 17px }
 .reasons path { stroke-opacity: .35 }
