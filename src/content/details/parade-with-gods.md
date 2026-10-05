@@ -30,6 +30,7 @@ scenes:
     media: /media/works/parade-with-gods/disneyland.webp
     alt: "A drawing of Guanyin on a lotus, an arrow, and Mickey Mouse"
     cutout: true
+    crisp: true
     year: "2023"
   - line: "Each god’s domain became a theme for village life."
     diagram:

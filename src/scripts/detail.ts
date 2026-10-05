@@ -79,6 +79,9 @@ export function initDetail() {
       const cap = fig.querySelector('video') ? 0.8 : 0.7;
       fig.style.setProperty('--max', `${Math.max(140, Math.min(room, vh * cap))}px`);
     }
+    document.querySelectorAll<HTMLImageElement>('figure.crisp img').forEach(m => {
+      if (m.naturalWidth) m.style.maxWidth = `min(100%, ${m.naturalWidth / 2}px)`;
+    });
     document.querySelectorAll<HTMLElement>('[data-round]').forEach(m => {
       if (m.offsetWidth) m.style.borderRadius = `${m.offsetWidth * +m.dataset.round!}px`;
     });
