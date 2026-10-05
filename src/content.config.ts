@@ -46,6 +46,7 @@ const details = defineCollection({
       list: z.array(z.union([z.string(), z.object({ t: z.string(), d: z.string() })])).optional(), // an item, or an item with its examples // a short inventory under the line
       round: z.number().optional(), // corner radius baked into the image, as a share of its width
       link: link.optional(),
+      footnote: z.string().optional(), // set small, last, for an asterisk in the line
       card: z.object({ href: z.string(), image: z.string(), title: z.string(), label: z.string() }).optional(), // a site, shown as its cover
       wide: z.boolean().default(false),
       icon: z.string().optional(), // drawn where the line says [icon]
