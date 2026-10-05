@@ -65,7 +65,7 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .intro { display: grid; justify-items: center; text-align: center; gap: 12px; margin-bottom: 44px }
 .intro h1 { margin: 0; text-wrap: balance; font-weight: 500; font-size: clamp(30px, 3.9vw, 48px); line-height: 1.1; letter-spacing: -.025em }
 .intro h1 em { font-family: var(--font-accent); font-style: normal; font-weight: 400; letter-spacing: 0 }
-.intro .keep { white-space: nowrap } /* on a phone the headline breaks after the comma, not inside the name */
+.intro .keep { white-space: nowrap } /* on a phone the headline breaks between its sentences, not inside the name */
 .intro p { margin: 0; text-wrap: balance; color: var(--muted); font-size: clamp(14.5px, 1.3vw, 17px); font-weight: 400 }
 
 /* ---------- cells ---------- */
