@@ -149,9 +149,9 @@ python3 scripts/clear-white.py "$SRC/Go Above or Below/4-9.webp" "$OUT/go-above-
 still parade-with-gods "Parade with Gods/1-0.webp"      village
 still parade-with-gods "Parade with Gods/1-9.webp"      fieldwork
 ffmpeg -nostdin -v error -y -i "$SRC/Parade with Gods/1-12.webp" -vf "scale=1100:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/parade-with-gods/invasion.webp"
-# parade, disneyland: the procession and the Guanyin–Mickey pair, off their white sheets
+# parade: the procession, off its white sheet. disneyland: the Guanyin–Mickey pair is too small a source, so it is traced
 python3 scripts/clear-white.py "$SRC/Parade with Gods/1-4.webp" "$OUT/parade-with-gods/parade.webp" 0 0 2481 1212 1600
-python3 scripts/clear-white.py "$SRC/Parade with Gods/1-8.webp" "$OUT/parade-with-gods/disneyland.webp"
+python3 scripts/trace-disneyland.py "$SRC/Parade with Gods/1-8.webp" "$OUT/parade-with-gods/disneyland.svg"
 # light: the shrine of light structures on black, its ground lifted to the page's ink (#111)
 ffmpeg -nostdin -v error -y -i "$SRC/Parade with Gods/1-1.webp" -vf "lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/parade-with-gods/light.webp"
 

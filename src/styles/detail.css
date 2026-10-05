@@ -118,6 +118,7 @@ figure img, figure video {
 .site-foot span { color: var(--paper-dim); transition: color .2s }
 .site a:hover .site-foot span { color: var(--paper-fg) }
 figure.cutout img { border-radius: 0; box-shadow: none }
+figure[style*='--w'] img { width: min(100%, var(--w)) }
 figure.fade img { opacity: 0; transition: opacity .9s ease }
 figure.fade img.on { opacity: 1 }
 

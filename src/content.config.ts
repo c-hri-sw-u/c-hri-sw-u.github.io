@@ -63,7 +63,7 @@ const details = defineCollection({
       card: z.object({ href: z.string(), image: z.string(), title: z.string(), label: z.string() }).optional(), // a site, shown as its cover
       wide: z.boolean().default(false),
       cutout: z.boolean().default(false), // a cut-out with a transparent ground: no frame, no shadow
-      crisp: z.boolean().default(false), // a small source: never shown wider than half its pixels, so it stays sharp
+      width: z.number().optional(), // the widest the media is shown, in px
       icon: z.string().optional(), // drawn where the line says [icon]
       backdrop: z.enum(['desk']).optional(), // a line drawing behind the words
       // a simple diagram written as data, for facts buried in a dense board (see src/components/Diagram.astro)

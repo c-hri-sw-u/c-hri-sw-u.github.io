@@ -27,10 +27,10 @@ scenes:
   - lead: "Round 3"
     line: "Learning from Disneyland."
     note: "Temples and theme parks both turn a way of life into a story you walk through. After Robert Venturi, I borrowed three of Disneyland’s methods: zone mapping, a system of symbols, and low materiality."
-    media: /media/works/parade-with-gods/disneyland.webp
+    media: /media/works/parade-with-gods/disneyland.svg
     alt: "A drawing of Guanyin on a lotus, an arrow, and Mickey Mouse"
     cutout: true
-    crisp: true
+    width: 520
     year: "2023"
   - line: "Each god’s domain became a theme for village life."
     diagram:
