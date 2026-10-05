@@ -199,3 +199,12 @@ for p in "1-5 system" "1-6 curve"; do
   set -- $p
   ffmpeg -nostdin -v error -y -i "$SRC/ReCurv/$1.webp" -vf "scale='min(1600,iw)':-2:flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/recurv/$2.webp"
 done
+
+# Hill Making (short page)
+still hill-making "Hill Making/3-0.webp"                painting
+still hill-making "Hill Making/3-2.webp"                visit
+# spaces, stone: the five spaces and the touch stone, off their white sheets
+python3 scripts/clear-white.py "$SRC/Hill Making/3-8.webp" "$OUT/hill-making/spaces.webp" 0 0 2480 2401 1300
+python3 scripts/clear-white.py "$SRC/Hill Making/3-13.webp" "$OUT/hill-making/stone.webp" 0 0 2481 1407 1600
+# transcoding: painting to emotions to rendering (the faded band on its right cut off), on black lifted to the page's ink (#111)
+ffmpeg -nostdin -v error -y -i "$SRC/Hill Making/3-6.webp" -vf "crop=3600:1381:0:0,scale=1600:-2:flags=lanczos,lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/hill-making/transcoding.webp"
