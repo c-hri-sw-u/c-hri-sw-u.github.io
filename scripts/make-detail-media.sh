@@ -182,3 +182,11 @@ still vive-towers "Vive Towers/2-1.webp"                story
 # system: the consensus loop, off its white sheet; spaces: the four elevations, on their own grey sheet
 python3 scripts/clear-white.py "$SRC/Vive Towers/2-3.webp" "$OUT/vive-towers/system.webp" 0 0 2432 3255 1200
 still vive-towers "Vive Towers/2-4.webp"                spaces
+
+# T1 (short page; the earphone case concept from the Glance internship)
+clip  glance-t1 "T1/3.gif"                              open
+clip  glance-t1 "T1/5.gif"                              slide
+still glance-t1 "T1/1.webp"                             brief
+still glance-t1 "T1/4.webp"                             dock
+still glance-t1 "T1/5.webp"                             faces
+still glance-t1 "T1/6.webp"                             bodies
