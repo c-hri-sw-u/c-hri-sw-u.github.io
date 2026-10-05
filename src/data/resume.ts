@@ -20,12 +20,12 @@ export const person = {
 // The one project told in full, above everything else. The lede says what the product is; the lines say what I did.
 export const lino = {
   name: 'Lino', role: 'Solo founder', when: 'Dec 2025 – now', href: 'https://lino.one',
-  lede: 'An AI workspace where documents, databases and sketches share one canvas with an agent. Launched on macOS in September 2026; Windows in beta.',
+  lede: 'An AI workspace that puts documents, databases and sketches on one canvas, with an agent working alongside you. Launched on macOS in September 2026; Windows in beta.',
   lines: [
-    'Designed and built the whole product alone: interaction model, design system, desktop app and agent. About **3,000 commits**.',
+    'Designed and built the whole product: interaction model, design system, desktop app and agent. About **3,000 commits**.',
     'Designed how people and the agent work together on the canvas: its changes arrive as proposals the person checks off and applies, new objects wait in an inbox for the person to place, and every paragraph and cell records whether a person or the AI wrote it.',
     'Ran the launch and the business: positioning, pricing and AI credits, onboarding, website and docs, analytics.',
-    'Wrote four essays on [Intent Engineering](https://medium.com/@gochris), the idea behind the product.',
+    'Wrote [four essays](https://medium.com/@gochris) on the idea behind the product, which I call Intent Engineering.',
   ],
 };
 
@@ -55,7 +55,7 @@ export const work: Work[] = [
   { name: 'Piko', when: '2025', tag: 'Team of 4', href: 'https://c-hri-sw-u.github.io/works/piko',
     line: 'A wearable AI companion with camera vision and Gemini voice. I did the concept, hardware prototyping and interaction design.' },
   { name: 'Banana Exoskeleton', when: '2025', tag: 'Team of 2', href: 'https://c-hri-sw-u.github.io/works/banana-exoskeleton',
-    line: 'A 3D-printed case that fits any banana, from 1,400 bananas traced with YOLO, a shape optimizer and a parametric model.' },
+    line: 'A 3D-printed case that fits any banana. I traced 1,400 bananas with YOLO, then built the shape optimizer and the parametric model.' },
   { name: 'Risee', when: '2025', tag: 'Solo', href: 'https://c-hri-sw-u.github.io/works/risee',
     line: 'LLM actions on any selected text, in a ring around the cursor. Built in Swift, then Electron. I use it every day.' },
   { name: 'Rabbit R1, Playground OS', when: '2024', tag: 'Concepts', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1',
@@ -81,5 +81,4 @@ export const skills: { t: string; d: string }[] = [
 export const honors: string[] = [
   'Frank-Ratchye Further Fund, 2026',
   'Best Future Designer, Solar Decathlon China 2021',
-  'Global Game Jam 2025',
 ];
