@@ -1,0 +1,177 @@
+---
+// The resume as a page: one US Letter sheet, the same on screen and on paper. Its words live in src/data/resume.ts.
+// "Download PDF" is a real file, printed from this page by scripts/resume-pdf.mjs when the site deploys.
+// Fonts are bundled (not Google Fonts) so the printed PDF is the same on any machine.
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/jetbrains-mono/400.css';
+import { person, experience, work, education, skills, honors, languages } from '../data/resume';
+const PDF = '/Yixi-Chris-Wu-Resume.pdf';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Resume · Yixi (Chris) Wu</title>
+  <meta name="description" content={`${person.name}. ${person.title} ${person.line}`}>
+  <link rel="icon" type="image/svg+xml" href="/icon/walking.svg">
+</head>
+<body>
+<header class="rs-bar">
+  <a class="home" href="/"><span aria-hidden="true">←</span> Yixi (Chris) Wu</a>
+  <a class="dl" href={PDF} download="Yixi-Chris-Wu-Resume.pdf">Download PDF</a>
+</header>
+
+<main class="sheet">
+  <header class="rs-head">
+    <div>
+      <h1>{person.name}</h1>
+      <p class="rs-title">{person.title}</p>
+      <p class="rs-line">{person.line}</p>
+    </div>
+    <ul class="rs-contact">
+      {person.contact.map(c => <li><a href={c.href}>{c.label}</a></li>)}
+    </ul>
+  </header>
+
+  <div class="rs-cols">
+    <div class="rs-main">
+      <section>
+        <h2>Experience</h2>
+        {experience.map(e => (
+          <article class="rs-entry">
+            <p class="rs-when">{e.when}</p>
+            <h3>{e.href ? <a href={e.href}>{e.what}</a> : e.what}{e.role && <span class="rs-role"> · {e.role}</span>}</h3>
+            {e.lines.length > 1 ? <ul>{e.lines.map(l => <li>{l}</li>)}</ul> : <p>{e.lines[0]}</p>}
+          </article>
+        ))}
+      </section>
+
+      <section>
+        <h2>Selected work</h2>
+        {work.map(w => (
+          <article class="rs-entry rs-work">
+            <p class="rs-when">{w.when}</p>
+            <h3>{w.href ? <a href={w.href}>{w.name}</a> : w.name}<span class="rs-role"> · {w.tag}</span></h3>
+            <p>{w.line}</p>
+          </article>
+        ))}
+      </section>
+    </div>
+
+    <aside class="rs-side">
+      <section>
+        <h2>Education</h2>
+        {education.map(e => (
+          <article class="rs-entry">
+            <p class="rs-when">{e.when}</p>
+            <h3>{e.what}</h3>
+            <p class="rs-sub">{e.role}</p>
+            {e.lines.map(l => <p>{l}</p>)}
+          </article>
+        ))}
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <dl class="rs-skills">
+          {skills.map(s => <div><dt>{s.t}</dt><dd>{s.d}</dd></div>)}
+        </dl>
+      </section>
+
+      <section>
+        <h2>Honors</h2>
+        <ul class="rs-plain">{honors.map(h => <li>{h}</li>)}</ul>
+      </section>
+
+      <section>
+        <h2>Languages</h2>
+        <p>{languages}</p>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<style is:global>
+  /* One Letter sheet (8.5 × 11 in), in the homepage's type: Poppins for words, JetBrains Mono for labels and dates. */
+  :root {
+    --bg: #f4f3f0; --paper: #ffffff; --fg: #111111; --muted: #6d6b66; --line: rgba(17, 17, 17, .14);
+    --font-body: "Poppins", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); -webkit-font-smoothing: antialiased }
+  a { color: inherit; text-decoration: none }
+
+  .rs-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; max-width: calc(8.5in + 32px); margin: 0 auto; padding: calc(18px + env(safe-area-inset-top, 0px)) 16px 16px }
+  .home { font-weight: 500; font-size: 13.5px; color: var(--muted) }
+  .home:hover { color: var(--fg) }
+  .dl { font-family: var(--font-mono); font-size: 12px; letter-spacing: .02em; color: var(--paper); background: var(--fg); border-radius: 999px; padding: 9px 16px }
+  .dl:hover { opacity: .85 }
+  .dl:focus-visible, .home:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px }
+
+  .sheet {
+    width: 8.5in; height: 11in; margin: 0 auto 48px; padding: .5in .6in .45in; background: var(--paper);
+    box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 24px 60px -28px rgba(0,0,0,.25); overflow: hidden;
+    font-size: 8.5pt; line-height: 1.4;
+  }
+  .sheet p, .sheet h1, .sheet h2, .sheet h3, .sheet ul, .sheet dl { margin: 0 }
+
+  .rs-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 14pt; border-bottom: 1px solid var(--fg) }
+  .rs-head h1 { font-size: 23pt; font-weight: 500; line-height: 1; letter-spacing: -.025em }
+  .rs-title { margin-top: 6pt !important; font-size: 11.5pt; font-weight: 500; letter-spacing: -.01em }
+  .rs-line { margin-top: 2pt !important; color: var(--muted) }
+  .rs-contact { list-style: none; padding: 0; text-align: right; font-family: var(--font-mono); font-size: 7.6pt; line-height: 1.65 }
+  .rs-contact a:hover { text-decoration: underline }
+
+  .rs-cols { display: grid; grid-template-columns: minmax(0, 1fr) 2.15in; gap: .32in; padding-top: 14pt }
+  .rs-cols section + section { margin-top: 12pt }
+  .sheet h2 { font-family: var(--font-mono); font-size: 7.4pt; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-bottom: 4pt; margin-bottom: 7pt !important; border-bottom: 1px solid var(--line) }
+  .rs-entry + .rs-entry { margin-top: 8pt }
+  .rs-when { font-family: var(--font-mono); font-size: 7.2pt; color: var(--muted); letter-spacing: .02em }
+  .sheet h3 { margin-top: 1pt !important; font-size: 9.4pt; font-weight: 600; line-height: 1.3; letter-spacing: -.005em }
+  .sheet h3 a:hover { text-decoration: underline }
+  .rs-role { font-weight: 400; color: var(--fg) }
+  .rs-entry > p:not(.rs-when) { margin-top: 2pt }
+  .rs-entry ul { margin-top: 2pt !important; padding-left: 10pt }
+  .rs-entry li + li { margin-top: 1.5pt }
+  .rs-entry li::marker { color: var(--muted) }
+  .rs-sub { font-weight: 500 }
+  .rs-work + .rs-work { margin-top: 6.5pt }
+  .rs-side .rs-entry > p:not(.rs-when):not(.rs-sub) { color: var(--muted) }
+  .rs-skills > div + div { margin-top: 5pt }
+  .rs-skills dt { font-weight: 600 }
+  .rs-skills dd { margin: 0 }
+  .rs-plain { list-style: none; padding: 0 }
+  .rs-plain li + li { margin-top: 4pt }
+
+  /* Below a sheet's width the page reflows into one column at a readable size; the PDF keeps the Letter sheet. */
+  @media screen and (max-width: 860px) {
+    .rs-bar { padding-inline: 16px }
+    .sheet { width: auto; height: auto; overflow: visible; margin: 0 0 24px; padding: 28px 16px 36px; box-shadow: none; font-size: 14px; line-height: 1.5 }
+    .rs-head { flex-direction: column; align-items: flex-start; gap: 12px }
+    .rs-head h1 { font-size: 30px }
+    .rs-title { font-size: 17px }
+    .rs-contact { text-align: left; font-size: 12px }
+    .rs-cols { grid-template-columns: 1fr; gap: 0; padding-top: 20px }
+    .rs-cols .rs-side { margin-top: 20px }
+    .rs-cols section + section { margin-top: 20px }
+    .sheet h2 { font-size: 11px; margin-bottom: 10px !important }
+    .sheet h3 { font-size: 15px }
+    .rs-when { font-size: 11.5px }
+    .rs-entry + .rs-entry { margin-top: 14px }
+  }
+
+  @page { size: letter; margin: 0 }
+  @media print {
+    html, body { background: var(--paper) }
+    .rs-bar { display: none }
+    .sheet { margin: 0; box-shadow: none; zoom: 1 }
+    a { text-decoration: none !important }
+  }
+</style>
+</body>
+</html>

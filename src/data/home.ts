@@ -45,7 +45,7 @@ export const concepts: Cell[] = [
 ];
 
 export const links = {
-  resume: '/Assets/cv.pdf',
+  resume: '/resume/', // the page; its PDF is printed at deploy (scripts/resume-pdf.mjs)
   playground: '/playground/', // with the slash: /playground alone can resolve to the old playground.html, which forwards here
   email: 'cwu14932@gmail.com',
   fullMap: '/map.html',

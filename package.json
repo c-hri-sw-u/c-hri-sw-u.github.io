@@ -6,12 +6,18 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "extract-works": "node scripts/extract-works.mjs"
+    "extract-works": "node scripts/extract-works.mjs",
+    "resume-pdf": "node scripts/resume-pdf.mjs"
   },
   "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
     "astro": "^7.3.5"
   },
   "engines": {
     "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
   }
 }
