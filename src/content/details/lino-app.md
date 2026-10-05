@@ -46,6 +46,7 @@ scenes:
     alt: "Lino AI proposing an essay outline from the cards"
     year: "2026"
   - line: "Lino is a portable workstation."
+    backdrop: desk
     list:
       - { t: "Personal knowledge base", d: "Built on connections, beyond backlinks" }
       - { t: "Infinite canvas", d: "Rich-text editor, multi-view databases and whiteboard on one surface, the smoothest in its class" }
