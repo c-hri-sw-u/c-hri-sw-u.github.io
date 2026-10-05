@@ -34,7 +34,8 @@ const details = defineCollection({
   schema: z.object({
     opener: z.array(z.string()).min(1),
     // lines: sentences read in turn, the last in italics. equation: terms joined by × or =, one per row.
-    openerStyle: z.enum(['lines', 'equation']).default('lines'),
+    openerStyle: z.enum(['lines', 'equation', 'poem']).default('lines'),
+    openerNote: z.string().optional(), // poem: a quiet line under it, saying who wrote it
     openerMedia: z.string().optional(), // a loop above the opening lines, shot on white and multiplied onto the paper
     openerAlt: z.string().optional(),
     scenes: z.array(z.object({

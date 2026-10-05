@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const detail = (await getEntry('details', id))!;
 const work = (await getEntry('works', id))!;
-const { opener, openerStyle, openerMedia, openerAlt, scenes, colophon, next } = detail.data;
+const { opener, openerStyle, openerNote, openerMedia, openerAlt, scenes, colophon, next } = detail.data;
 // Drawings that take the place of media: the scene is not text-only, and it gets the wide stack.
 const FIGURES = ['reasons', 'bananas', 'fit'];
 const isSign = (t: string) => t === '×' || t === '=';
@@ -67,7 +67,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
           <video src={openerMedia} poster={openerMedia.replace('.mp4', '-poster.jpg')} muted loop playsinline autoplay preload="auto" aria-label={openerAlt}></video>
         </figure>
       )}
-      {openerStyle === 'equation'
+      {openerStyle === 'poem' && <div class="poem opener-poem">{opener.map(l => <p class="r">{l.split(/\*\*(.+?)\*\*/).map((t, j) => j % 2 ? <b>{t}</b> : t)}</p>)}</div>}
+      {openerStyle === 'poem' && openerNote && <p class="note r">{openerNote}</p>}
+      {openerStyle === 'poem' ? null : openerStyle === 'equation'
         ? <div class="equation">{opener.map(t => <p class:list={['r', isSign(t) ? 'sign' : 'term']}>{t}</p>)}</div>
         : <div class="lines">
             {opener.map((l, i) => <p class:list={['line', 'r', { em: i === opener.length - 1 }]}>{l}</p>)}

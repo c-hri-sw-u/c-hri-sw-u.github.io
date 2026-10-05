@@ -1,8 +1,12 @@
 ---
+openerStyle: poem
 opener:
-  - "What if bread could speak?"
-  - "What if your toast held hidden stories?"
-  - "I built a machine to read them."
+  - "In the night, I **SEE** a light"
+  - "Dancing **LIGHTLY BETWEEN** the trees"
+  - "I **SEE** the old **MILL**"
+  - "Standing firm, its blades **KEEP** turning"
+  - "I **SEE** the world with new eyes"
+openerNote: "Written by a slice of bread."
 scenes:
   - line: "It began in a studio about electronic waste."
     note: "Waste Machines, an Advanced Synthesis Options Studio at Carnegie Mellon's School of Architecture, fall 2024. We took discarded electronics apart to question planned obsolescence, and made something new from them."
