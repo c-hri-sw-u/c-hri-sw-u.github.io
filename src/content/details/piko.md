@@ -20,6 +20,9 @@ scenes:
     pair: true
     alt: "Concept sketches of a fuzzy companion worn on the shoulder and chest"
     year: "2025"
+  - line: "On the body, it gets to know you."
+    drawing: reasons
+    year: "2025"
   - lead: "Meet Piko,"
     line: "a wearable AI companion"
     big: true

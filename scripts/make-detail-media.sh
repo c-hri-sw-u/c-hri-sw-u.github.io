@@ -32,7 +32,8 @@ clip  piko "Piko/IMG_2013.MOV"                       caught
 # moods: 6.gif with its white margin trimmed and replaced by an even one
 ffmpeg -nostdin -v error -y -i "$SRC/Piko/6.gif" -vf "crop=1024:500:28:42,pad=1072:548:24:24:white,fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart -an "$OUT/piko/moods.mp4"
 ffmpeg -nostdin -v error -y -i "$OUT/piko/moods.mp4" -frames:v 1 -q:v 3 "$OUT/piko/moods-poster.jpg"
-still piko "Piko/17.webp"                            inside
+# inside: 17.webp with the exploded skeleton added on its right, by scripts/piko-inside.py
+python3 scripts/piko-inside.py
 clip  piko "Piko/4.gif"                              system
 # flow.webp: the transparent interaction flow (3.png) flattened onto white, trimmed to the chart, then given a white margin
 ffmpeg -nostdin -v error -y -f lavfi -i color=white:s=3893x2014 -i "$SRC/Piko/3.png" -filter_complex "[0][1]overlay,crop=2740:1900:730:60,pad=iw*1.24:ih*1.3:(ow-iw)/2:(oh-ih)/2:white,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/piko/flow.webp"
