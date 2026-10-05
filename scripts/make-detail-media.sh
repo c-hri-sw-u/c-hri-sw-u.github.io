@@ -111,6 +111,8 @@ done
 # tokyo: the possibility wheel on a free afternoon in Tokyo, cropped to the device and its label, its black ground lifted to the page's ink (#111)
 ffmpeg -nostdin -v error -y -i "$SRC/Rethinking Rabbit R1/0.webp" -vf "crop=820:590:400:100,lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/rethinking-rabbit-r1/tokyo.webp"
 still rethinking-rabbit-r1 "Rethinking Rabbit R1/1.webp"   keynote
+# device: the R1 with an empty screen for the opener, by scripts/r1-device.py
+python3 scripts/r1-device.py
 
 # Playground OS
 # children, dynabook: Alan Kay's drawings without the captions under them; grow, playground, devices: my diagram and sketches

@@ -10,36 +10,29 @@ const pos = (i: number) => `--d:${i - start};--a:${Math.abs(i - start)}`;
 <div class="wh-open">
   <p class="wh-lead r">{lead}</p>
   <div class="wh-device r" role="img" aria-label={`A Rabbit R1 whose wheel turns through replies: ${replies.join(', ')}`} data-start={start} data-rest={replies.indexOf(rest)}>
+    <img class="wh-body" src="/media/works/rethinking-rabbit-r1/device.webp" alt="" width="544" height="533" decoding="async" />
     <div class="wh-screen solo">
       <ul class="wh-drum" aria-hidden="true">
         {replies.map((r, i) => <li class:list={['wh-pill', { on: i === start }]} style={pos(i)}>{r}</li>)}
       </ul>
       <span class="wh-tip" aria-hidden="true"></span>
     </div>
-    <div class="wh-side" aria-hidden="true">
-      <span class="wh-cam"><i></i></span>
-      <span class="wh-roller"></span>
-    </div>
-    <span class="wh-button" aria-hidden="true"></span>
+    <span class="wh-roller" aria-hidden="true"></span>
   </div>
 </div>
 
 <style is:global>
   .wh-open { display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3.4svh, 34px) }
   .wh-lead { margin: 0; font-size: clamp(22px, 3vw, 36px); font-weight: 300; line-height: 1.2; letter-spacing: -.01em; max-width: 24ch; text-wrap: balance }
-  /* The device, drawn in em so it scales as one piece: orange body, black screen, camera and wheel on the right. */
-  .wh-device {
-    --orange: #ff4a00;
-    position: relative; display: flex; gap: 1.1em; padding: 1.1em; width: 32em; height: 28em;
-    font-size: clamp(8.4px, 2.4vw, 12.5px); border-radius: 3.2em;
-    background: linear-gradient(160deg, #ff6a1f, var(--orange) 40%, #f03f00);
-    box-shadow: inset 0 -.3em .6em rgba(120,20,0,.25), inset 0 .25em .5em rgba(255,190,150,.35), 0 2.4em 4em -2em rgba(120,30,0,.45);
-  }
-  .wh-screen { position: relative; flex: 1; overflow: hidden; border-radius: 2.2em; background: #050505; box-shadow: inset 0 0 0 .15em rgba(0,0,0,.6) }
+  /* The device is the R1 as rendered in the project (scripts/r1-device.py builds it); the replies are live text laid over
+     its screen. The box is 32em wide and keeps the image's ratio; the screen and wheel are placed in its percentages. */
+  .wh-device { position: relative; width: 32em; aspect-ratio: 544 / 533; max-width: 100%; font-size: clamp(8.4px, 2.4vw, 12.5px) }
+  .wh-body { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 1.4em 2em rgba(120,30,0,.28)) }
+  .wh-screen { position: absolute; left: 3.31%; top: 3%; width: 68.75%; height: 93.43%; overflow: hidden; border-radius: 1.7em }
   .wh-drum { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none }
   /* Every reply sits on the line the wheel points at, moved up or down by its distance from it. */
   .wh-pill {
-    position: absolute; right: 2.1em; top: 41%; white-space: nowrap;
+    position: absolute; right: 2.1em; top: 40%; white-space: nowrap;
     font-family: var(--font-name); font-size: 1.12em; font-weight: 400; line-height: 1; color: #111;
     padding: .38em .78em .42em; border-radius: 999px;
     background: color-mix(in srgb, #ffffff calc(100% - var(--a) * 17%), #2c2c2c);
@@ -48,23 +41,15 @@ const pos = (i: number) => `--d:${i - start};--a:${Math.abs(i - start)}`;
     transition: transform .42s cubic-bezier(.3,.7,.2,1), opacity .42s ease, background-color .42s ease, font-size .42s ease;
   }
   .wh-pill.on { font-size: 1.36em; transform: translateY(-50%) }
-  .wh-tip { position: absolute; right: .55em; top: 41%; width: 0; height: 0; transform: translateY(-50%); border: .55em solid transparent; border-right-color: #fff; border-left-width: 0 }
+  .wh-tip { position: absolute; right: .55em; top: 40%; width: 0; height: 0; transform: translateY(-50%); border: .55em solid transparent; border-right-color: #fff; border-left-width: 0 }
   html.js .wh-screen.solo .wh-pill:not(.on) { opacity: 0 }
-  .wh-side { display: flex; flex-direction: column; align-items: center; gap: 2em; width: 6.6em }
-  .wh-cam { display: grid; place-items: center; width: 6.6em; height: 6.6em; border-radius: 1.9em; background: radial-gradient(circle at 50% 40%, #ff3b2e, #c41200 70%); box-shadow: inset 0 .2em .4em rgba(255,160,140,.5), inset 0 -.3em .5em rgba(80,0,0,.4) }
-  .wh-cam i { width: 1.3em; height: 1.3em; border-radius: 50%; background: #111; box-shadow: 0 0 0 .3em #8a0d00 }
-  /* The wheel's ridges slide past as it turns. */
+  /* The wheel's cylinder: ridges slide over it only while it turns, then fade, like a blur of motion. */
   .wh-roller {
-    width: 6em; height: 7.4em; border-radius: 1.1em; border: .22em solid #ffe1d3;
-    background:
-      linear-gradient(to bottom, rgba(255,255,255,.45), rgba(255,255,255,0) 30%, rgba(0,0,0,0) 62%, rgba(90,0,0,.45)),
-      repeating-linear-gradient(to bottom, rgba(90,0,0,.32) 0 .12em, transparent .12em .9em),
-      linear-gradient(#ff5a2a, #e01f00);
-    background-position: 0 0, 0 var(--turn, 0em), 0 0;
-    transition: background-position .42s cubic-bezier(.3,.7,.2,1);
-    box-shadow: 0 .3em .7em -.2em rgba(90,0,0,.5);
+    position: absolute; left: 76.9%; top: 32.2%; width: 16.9%; height: 17.2%; border-radius: .7em; mix-blend-mode: multiply; opacity: 0;
+    background: repeating-linear-gradient(to bottom, rgba(70,0,0,.9) 0 .1em, transparent .1em .8em) 0 var(--turn, 0em);
+    transition: background-position .42s cubic-bezier(.3,.7,.2,1), opacity .5s ease;
   }
-  .wh-button { position: absolute; right: -.55em; top: 15.6em; width: .8em; height: 2.6em; border-radius: .4em; background: linear-gradient(90deg, #d8d6d2, #f6f5f2) }
+  .wh-roller.spin { opacity: .28; transition: background-position .42s cubic-bezier(.3,.7,.2,1), opacity .12s ease }
   @media (max-width: 420px) { .wh-pill { right: 1.6em } }
   html.js .gate:has(.wh-open).on .stack > .wh-open .wh-device.r { transition-delay: .6s }
   html.js .gate:has(.wh-open).on .wh-lead.r { transition-delay: .3s }
@@ -88,8 +73,12 @@ const pos = (i: number) => `--d:${i - start};--a:${Math.abs(i - start)}`;
         p.style.setProperty('--a', String(Math.abs(i - cur)));
         p.classList.toggle('on', i === cur);
       });
-      roller.style.setProperty('--turn', `${(start - cur) * .9}em`);
+      roller.style.setProperty('--turn', `${(start - cur) * .8}em`);
+      roller.classList.add('spin');
+      clearTimeout(spin);
+      spin = setTimeout(() => roller.classList.remove('spin'), 380);
     };
+    let spin = 0;
     let started = false;
     const run = () => {
       if (started) return; started = true;
