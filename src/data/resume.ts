@@ -1,73 +1,70 @@
 // The resume, at /resume/ (src/pages/resume.astro). Edit it here: the page and the PDF are both made from this file.
 // The PDF is printed from the built page by scripts/resume-pdf.mjs when the site deploys. Keep it to one Letter page:
 // after a change, run `npm run build && npm run resume-pdf` and check the PDF still has one page.
-// In any line, **words** are set in bold and [words](url) is a link.
+// In any line, [words](url) is a link. Keep each line to one fact.
 
-export interface Entry { when: string; what: string; role?: string; href?: string; lines: string[] }
-export interface Work { name: string; when: string; tag: string; line: string; href?: string }
+export interface Entry { org: string; href?: string; site?: string; when: string; role: string; lines: string[] }
+export interface Project { name: string; href?: string; meta: string; line: string }
 
 export const person = {
   name: 'Yixi (Chris) Wu',
   title: 'Design engineer · Founder of Lino',
-  line: '',
   contact: [
-    { label: 'cwu14932@gmail.com', href: 'mailto:cwu14932@gmail.com' },
     { label: 'c-hri-sw-u.github.io', href: 'https://c-hri-sw-u.github.io' },
-    { label: 'linkedin.com/in/yixi-chris-wu', href: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/' },
+    { label: 'cwu14932@gmail.com', href: 'mailto:cwu14932@gmail.com' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/' },
   ],
+  about: 'Trained as an architect, now designing and building AI products, in software and hardware.',
 };
 
-// The one project told in full, above everything else. The lede says what the product is; the lines say what I did.
-export const lino = {
-  name: 'Lino', role: 'Solo founder', when: 'Dec 2025 – now', href: 'https://lino.one',
-  lede: 'An AI workspace that puts documents, databases and sketches on one canvas, with an agent working alongside you. Launched on macOS in September 2026; Windows in beta.',
-  lines: [
-    'Designed and built the whole product: interaction model, design system, desktop app and agent. About **3,000 commits**.',
-    'Designed how people and the agent work together on the canvas: its changes arrive as proposals the person checks off and applies, new objects wait in an inbox for the person to place, and every paragraph and cell records whether a person or the AI wrote it.',
-    'Ran the launch and the business: positioning, pricing and AI credits, onboarding, website and docs, analytics.',
-    'Wrote [four essays](https://medium.com/@gochris) on the idea behind the product, which I call Intent Engineering.',
-  ],
-};
+export const work: Entry[] = [
+  {
+    org: 'Lino', href: 'https://lino.one', site: 'lino.one', when: 'Dec 2025 – Present', role: 'Solo Founder',
+    lines: [
+      'I design, build and run Lino: an AI workspace that puts documents, databases and sketches on one canvas, with an agent.',
+      'Designed how people and the agent work together: its edits arrive as proposals to review, and every paragraph records who wrote it.',
+      'Launched on macOS in September 2026, Windows in beta. About 3,000 commits.',
+      'Wrote [four essays](https://medium.com/@gochris) on the idea behind it, Intent Engineering.',
+    ],
+  },
+  {
+    org: 'Glance (Veryloving, Inc.)', when: 'Jun – Aug 2024', role: 'AI Product Design Intern',
+    lines: [
+      'Designed T1, AI earphones whose case has a face and docks into a desktop robot.',
+      'Presented it to investors and partners at CES.',
+    ],
+  },
+];
 
 export const research: Entry[] = [
   {
-    when: 'Spring 2026', what: 'Witness', role: 'Master’s thesis, Carnegie Mellon', href: 'https://c-hri-sw-u.github.io/works/space-self-log',
-    lines: ['Built a system that lets a personal agent see the physical world: a Swift capture app, a vision-language pipeline and a three-tier memory for OpenClaw. Lived with it for **157 hours** and documented how it fails: misreadings stated as fact, and beliefs that can’t be traced to what it saw.'],
+    org: 'Carnegie Mellon University', href: 'https://c-hri-sw-u.github.io/works/space-self-log', when: 'Spring 2026', role: 'Master’s Thesis: Witness',
+    lines: [
+      'Built a system that lets a personal agent see: a Swift capture app, a vision-language pipeline and a three-tier memory.',
+      'Lived with it for 157 hours and found where it fails: it misreads scenes and states them as fact.',
+    ],
   },
   {
-    when: '2025', what: 'WHY Research Lab & L4C, Carnegie Mellon', role: 'Research Assistant',
-    lines: ['Prototyped cybernetic feedback loops in interactive systems.'],
-  },
-  {
-    when: '2025', what: 'Interactive Structures Lab, Carnegie Mellon', role: 'Research Assistant',
-    lines: ['Constraint-driven adaptive surfaces, for a human–robot interaction project.'],
+    org: 'Carnegie Mellon University', when: '2025', role: 'Research Assistant',
+    lines: ['WHY Research Lab & L4C; Interactive Structures Lab.'],
   },
 ];
 
-export const experience: Entry[] = [
-  {
-    when: 'Summer 2024', what: 'Glance (Veryloving, Inc.)', role: 'AI Product Design Intern',
-    lines: ['Designed T1, AI earphones whose case has a face and docks into a desktop robot: concept, interaction and form. Presented the product to investors and partners at CES.'],
-  },
+export const projects: Project[] = [
+  { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
+    line: 'A wearable AI companion. I did its concept, hardware and interactions.' },
+  { name: 'Banana Exoskeleton', href: 'https://c-hri-sw-u.github.io/works/banana-exoskeleton', meta: '2025 · team of 2',
+    line: 'A case that fits any banana. I traced 1,400 bananas with YOLO and built the optimizer.' },
+  { name: 'Risee', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
+    line: 'LLM actions on any selected text, in a ring around the cursor. I use it daily.' },
+  { name: 'Rabbit R1 and Playground OS', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concepts',
+    line: 'An AI device built around conversation; a computer that works like a playground.' },
 ];
 
-export const work: Work[] = [
-  { name: 'Piko', when: '2025', tag: 'Team of 4', href: 'https://c-hri-sw-u.github.io/works/piko',
-    line: 'A wearable AI companion with camera vision and Gemini voice. I did the concept, hardware prototyping and interaction design.' },
-  { name: 'Banana Exoskeleton', when: '2025', tag: 'Team of 2', href: 'https://c-hri-sw-u.github.io/works/banana-exoskeleton',
-    line: 'A 3D-printed case that fits any banana. I traced 1,400 bananas with YOLO, then built the shape optimizer and the parametric model.' },
-  { name: 'Risee', when: '2025', tag: 'Solo', href: 'https://c-hri-sw-u.github.io/works/risee',
-    line: 'LLM actions on any selected text, in a ring around the cursor. Built in Swift, then Electron. I use it every day.' },
-  { name: 'Rabbit R1, Playground OS', when: '2024', tag: 'Concepts', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1',
-    line: 'Two interaction concepts: an AI device built around conversation instead of ask-and-answer, and a computer that works like a playground.' },
-];
-
-export const education: Entry[] = [
-  {
-    when: '2024 – 2026', what: 'Carnegie Mellon University', role: 'Master of Advanced Architectural Design (STEM)',
-    lines: ['Generative AI, Machine Learning, ML in Production, Sensing Systems, Interaction Design'],
-  },
-  { when: '2023', what: 'Soochow University', role: 'Bachelor of Architecture', lines: [] },
+export const education = [
+  { school: 'Carnegie Mellon University', degree: 'Master of Advanced Architectural Design (STEM)', when: '2024 – 2026',
+    note: 'Generative AI, Machine Learning, ML in Production, Sensing Systems, Interaction Design' },
+  { school: 'Soochow University', degree: 'Bachelor of Architecture', when: '2023' },
 ];
 
 export const skills: { t: string; d: string }[] = [
@@ -78,7 +75,9 @@ export const skills: { t: string; d: string }[] = [
   { t: 'Physical', d: 'Raspberry Pi, Arduino, sensors, Rhino + Grasshopper, 3D printing' },
 ];
 
-export const honors: string[] = [
-  'Frank-Ratchye Further Fund, 2026',
-  'Best Future Designer, Solar Decathlon China 2021',
+export const honors: { t: string; when: string }[] = [
+  { t: 'Frank-Ratchye Further Fund', when: '’26' },
+  { t: 'Best Future Designer, Solar Decathlon China', when: '’21' },
 ];
+
+export const languages = 'English, Mandarin (native)';
