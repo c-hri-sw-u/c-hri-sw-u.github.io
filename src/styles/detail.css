@@ -67,6 +67,8 @@ button { font: inherit; color: inherit }
 }
 .text-only .line { font-size: clamp(30px, 5vw, 58px); max-width: 20ch }
 .line.em { font-style: italic }
+/* A product's own icon, set inline before its name. */
+.app-icon { display: inline-block; width: 1.05em; height: 1.05em; margin-right: .14em; vertical-align: -.17em }
 .lead { margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 300; line-height: 1.25; color: var(--dim) }
 .big .line { font-size: clamp(48px, 9vw, 128px); font-weight: 400; line-height: 1; letter-spacing: -.03em; max-width: none }
 .note, .kicker {
