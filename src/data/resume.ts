@@ -13,9 +13,7 @@ export const person = {
   contact: [
     { label: 'cwu14932@gmail.com', href: 'mailto:cwu14932@gmail.com' },
     { label: 'c-hri-sw-u.github.io', href: 'https://c-hri-sw-u.github.io' },
-    { label: 'lino.one', href: 'https://lino.one' },
     { label: 'linkedin.com/in/yixi-chris-wu', href: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/' },
-    { label: 'medium.com/@gochris', href: 'https://medium.com/@gochris' },
   ],
 };
 
