@@ -1,11 +1,11 @@
 ---
 // Witness's memory, from frames to one page: the three tiers it writes into OpenClaw's markdown memory, each narrower than
-// the one above: what each holds, and when the agent reads it (the when, in pink). Frames pour in at the top as a row of small squares.
+// the one above: what each holds, and how it is written (in pink). Frames pour in at the top as a row of small squares.
 const W = 400;
 const tiers = [
-  { file: 'physical-logs/', what: 'a note per scene', when: 'searched when needed', w: 340 },
-  { file: 'physical-insights/', what: 'today and yesterday', when: 'read as a chat begins', w: 270 },
-  { file: 'physical-pattern.md', what: 'who it thinks I am', when: 'read before every reply', w: 200 },
+  { file: 'physical-logs/', what: 'a note per scene', when: 'written as it happens', w: 340 },
+  { file: 'physical-insights/', what: 'today and yesterday', when: 'folded in through the day', w: 270 },
+  { file: 'physical-pattern.md', what: 'who it thinks I am', when: 'summarized every so often', w: 200 },
 ];
 const top = 52, rowH = 92, boxH = 38;
 const rr = (x: number, y: number, w: number, h: number, r: number) =>

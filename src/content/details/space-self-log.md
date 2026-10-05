@@ -42,11 +42,11 @@ scenes:
     year: "2026"
   - drawing: capture
     line: "It looks again when something changes."
-    note: "Motion and sound tell the camera when to pay attention. At a still desk it takes a frame every twenty seconds; when I stand up or someone speaks, every three, then it eases off. Of each scene it keeps only the sharp, different frames."
+    note: "Motion and sound tell the camera when to pay attention. At a still desk it takes a frame every twelve seconds; when I stand up or someone speaks, every two, then it eases back. Of each scene it keeps only the sharp, different frames."
     year: "2026"
   - drawing: tiers
     line: "Thousands of frames become one page about me."
-    note: "A vision model writes a note for each scene. Through the day the notes are folded into insights, and each night the insights into a profile. The agent reads that page before every reply."
+    note: "A vision model writes a note for each scene. Through the day the notes are folded into insights, and every so often the insights are summarized, on their own, into a profile of me."
     year: "2026"
   - line: "157 hours of my life, as it saw them."
     caption: "Part of the photo wall: the frames it kept, in time order, March 22 to April 30, 2026. A few moments are pulled out."
@@ -76,13 +76,13 @@ scenes:
     year: "2026"
   - line: "Another day I was reorganizing my fridge.\nIt messaged to tell me I was cleaning the coils."
     file:
-      name: "physical-pattern.md · the profile it read before every reply"
+      name: "physical-pattern.md · the profile it summarized of me"
       lines:
         - "## Sensory & Sustenance Patterns"
         - "- Beverage rotation synced to workload: Espresso (design/app pivot) → soda/orange cream (deep focus) → tea (log review) → latte (image browsing) — observed 40 of 44 late sessions."
         - "## Active Craft & Engineering Rituals"
         - "! - Precision maintenance escalation: Refrigerator coil cleaning → mixing valve replacement → water-heater seasoning — observed 6 of 7 recent sessions."
-    note: "Folded into the profile night after night, the mistake became a habit of mine, with a count. Vision models are built to find meaning. In an ordinary scene, they find one anyway."
+    note: "Summarized into the profile again and again, the mistake became a habit of mine, with a count. Vision models are built to find meaning. In an ordinary scene, they find one anyway."
     year: "2026"
   - line: "An agent that sees needs a memory you can check."
     list:
