@@ -12,12 +12,9 @@ openerMedia: /media/works/space-self-log/frame.webp
 openerNote: "It saw what I saw. Then it decided what it meant."
 scenes:
   - line: "It knew my inbox, my calendar and my files.\nIt had never seen my kitchen."
-    note: "In early 2026, personal agents like OpenClaw took off. They run on your own computer, work for you through chat, and remember you for months. All they know of you is what you type."
+    note: "In early 2026, personal agents like OpenClaw took off. They ran on your own computer and remembered you for months, yet all they knew of you was what you typed. Nothing I typed said that my coffee goes cold once I start working."
     year: "2026"
-  - line: "Nothing I typed said that my coffee goes cold once I start working."
-    note: "Most of a life happens away from the screen: where you are, what you reach for, when you stop. An agent that can’t see it fits itself to half of you."
-    year: "2026"
-  - line: "Its memory is plain text.\nAnything that can write a note can teach it."
+  - line: "Its memory was plain text.\nAnything that could write a note could teach it."
     file:
       name: "~/.openclaw/workspace · read before it acts"
       lines:
@@ -25,7 +22,7 @@ scenes:
         - "USER.md      # who you are: preferences, habits"
         - "MEMORY.md    # facts it keeps for good"
         - "memory/      # a log for each day"
-    note: "OpenClaw keeps what it knows about you in markdown files like these. Vision-language models can now turn a photo into a few sentences. The two fit together without rebuilding the agent."
+    note: "OpenClaw kept what it knew about you in markdown files like these. By then, vision-language models could turn a photo into a few sentences. The two fit together without rebuilding the agent."
     year: "2026"
   - lead: "So I gave it eyes, and called it"
     line: "Witness"
@@ -55,6 +52,7 @@ scenes:
     caption: "Part of the photo wall: the frames it kept, in time order, March 22 to April 30, 2026. A few moments are pulled out."
     media: /media/works/space-self-log/wall.webp
     alt: "Rows of tiny frames in time order; two clusters from the evening of April 10 are enlarged"
+    cutout: true
     wide: true
     year: "2026"
   - line: "It learned where my life happens."
@@ -91,13 +89,13 @@ scenes:
       - { t: "Trace every belief", d: "Each line of the profile should lead back to the frames behind it, so a wrong one can be found and undone" }
       - { t: "Correct it by talking", d: "No one reviews 157 hours of frames. Feedback has to come in conversation" }
       - { t: "Remember what it said", d: "When it spoke first, it repeated itself. It needs to know what it already sent, and what went unanswered" }
-      - { t: "A switch you can see", d: "Off should be obvious. I took it off for video calls: the people around me never agreed to be seen" }
+      - { t: "A switch you can see", d: "Off should be obvious. I took it off for video calls, since the people around me never agreed to be seen" }
     year: "2026"
   - caption: "At the end, I asked it to draw my life as a manga."
     media: /media/works/space-self-log/manga.webp
     alt: "Three manga pages: late nights at a desk of many screens, the kitchen, plants and a 3D printer"
     line: "Seeing was the easy part."
-    note: "It got the shape of my days: late nights, many screens, desk to kitchen and back. What it comes to believe about me is the part to design."
+    note: "It got the shape of my days right, the late nights, the many screens, desk to kitchen and back. What it comes to believe about me is the part to design."
     tone: ink
     wide: true
 colophon:

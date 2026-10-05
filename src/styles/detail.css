@@ -405,7 +405,4 @@ figure.file pre > * { display: block }
 figure.file pre > * + * { margin-top: .55em }
 figure.file .h, figure.file i { color: var(--paper-dim); font-style: normal }
 figure.file mark { background: none; color: inherit; text-decoration: underline wavy var(--signal); text-decoration-thickness: 1.5px; text-underline-offset: 4px; text-decoration-skip-ink: none }
-html.js .scene figure.file mark { text-decoration-color: transparent; transition: text-decoration-color .8s ease 1.4s }
-html.js .scene.on figure.file mark { text-decoration-color: var(--signal) }
 @media (max-width: 600px) { figure.file pre { font-size: 11px; padding: 12px 12px 14px } figure.file figcaption { padding-inline: 12px } }
-@media (prefers-reduced-motion: reduce) { html.js .scene figure.file mark { text-decoration-color: var(--signal); transition: none } }
