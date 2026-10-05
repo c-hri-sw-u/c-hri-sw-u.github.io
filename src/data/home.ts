@@ -28,7 +28,7 @@ export const selected: Cell[] = [
   { id: 'piko', name: 'Piko', what: 'Wearable companion', how: 'Hardware + CV + LLM',
     moments: [img('piko-parts')] },
   { id: 'banana-exoskeleton', name: 'Banana Exoskeleton', what: 'Fits any banana', how: 'Computational design',
-    moments: [vid('banana-scan'), vid('banana-optimize', true), img('banana-shell', true)] },
+    moments: [img('banana-shell', true)] },
   { id: 'bread-reader', name: 'breadReader', what: 'Toaster that reads poems', how: 'Hardware hack',
     moments: [img('bread-exhibit'), img('bread-hack')] },
   { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
