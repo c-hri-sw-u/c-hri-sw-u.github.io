@@ -53,7 +53,15 @@ export function initHome() {
   let armed: string | null = null;
   function showPreview(b: HTMLElement) {
     const { title, date, preview } = b.dataset;
-    pv.querySelector('img')!.src = preview || '';
+    // One <img> is reused for every icon. Hide it until the new picture has loaded, or the
+    // last icon's picture lingers for a beat (e.g. Hill Making's before Aurora House's).
+    const img = pv.querySelector('img')!, src = preview || '';
+    if (img.getAttribute('src') !== src) {
+      img.style.visibility = 'hidden';
+      img.onload = () => { img.style.visibility = ''; };
+      img.src = src;
+      if (img.complete) img.style.visibility = '';
+    }
     pv.querySelector('b')!.textContent = title || '';
     pv.querySelector('span')!.textContent = (date || '') + (b.classList.contains('feat') ? ' · on the homepage' : '');
     const x = parseFloat(b.style.left), y = parseFloat(b.style.top);
@@ -62,6 +70,12 @@ export function initHome() {
       top: y > 55 ? '' : `calc(${y}% - 20px)`, bottom: y > 55 ? `calc(${100 - y}% - 20px)` : '',
     });
     pv.classList.add('show');
+  }
+  // Warm the cache once the map is first opened, so a hover rarely waits on the network.
+  let warmed = false;
+  function warmPreviews() {
+    if (warmed) return; warmed = true;
+    plane.querySelectorAll<HTMLElement>('.mapicon').forEach(b => { if (b.dataset.preview) new Image().src = b.dataset.preview; });
   }
   plane.addEventListener('pointerover', e => {
     const b = (e.target as Element).closest<HTMLElement>('.mapicon');
@@ -126,7 +140,7 @@ export function initHome() {
   let landTimer = 0;
   function goMap(focusId?: string, peeling = false, fromPop = false) {
     if (mode === 'map' && document.body.classList.contains('is-map')) return;
-    mode = 'map'; setPressed();
+    mode = 'map'; setPressed(); warmPreviews();
     if (!fromPop && location.hash !== '#map') history.pushState({ map: true }, '', '#map');
     const cards = workCards().filter(c => inView(c.getBoundingClientRect()));
     const starts = cards.map(c => [c, c.querySelector('.glyph-btn')!.getBoundingClientRect()] as const);

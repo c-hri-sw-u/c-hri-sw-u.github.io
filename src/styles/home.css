@@ -106,7 +106,7 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .cap { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; min-width: 0; padding: 10px 14px 12px; font-size: 13px; line-height: 1.3 }
 .cap .what { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted) }
 .cap .what b { color: var(--fg); font-weight: 500; margin-right: 4px }
-.cap .how { color: var(--muted); white-space: nowrap; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase }
+.cap .how { color: var(--muted); white-space: nowrap; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .02em }
 .dots { display: inline-flex; gap: 4px; margin-left: 8px; vertical-align: middle }
 .dots i { width: 4px; height: 4px; border-radius: 50%; background: var(--line); transition: background .3s }
 .dots i.on { background: var(--ink) }
@@ -114,7 +114,7 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 
 .concepts-head { display: flex; align-items: baseline; gap: 12px; margin: 64px 0 16px }
 .concepts-head h2 { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -.01em }
-.concepts-head p { margin: 0; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase }
+.concepts-head p { margin: 0; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em }
 .shelf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
 .shelf .card { aspect-ratio: 4 / 3 }
 .shelf .media { padding: 15% 10% 6% }
@@ -198,7 +198,7 @@ html:has(body.is-map) { overflow: hidden }
 .preview img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; border-radius: 2px; background: var(--paper-bg) }
 .preview div { padding-top: 8px; font-size: 13px; line-height: 1.35 }
 .preview b { display: block; font-weight: 500 }
-.preview span { color: var(--muted); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase }
+.preview span { color: var(--muted); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .02em }
 
 .compass { position: absolute; left: 40px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 50%; background: var(--card) }
 /* As on the legacy map (public/compass.js): the arrowhead points at the pointer and slides outward the
