@@ -183,7 +183,9 @@ still vive-towers "Vive Towers/2-4.webp"                spaces
 
 # T1 (short page; the earphone case concept from the Glance internship)
 clip  glance-t1 "T1/3.gif"                              open
-clip  glance-t1 "T1/5.gif"                              slide
+# slide: 5.gif has a dark line on its left and bottom edges; trim a couple of pixels all round
+ffmpeg -nostdin -v error -y -i "$SRC/T1/5.gif" -vf "crop=414:414:3:2,fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart -an "$OUT/glance-t1/slide.mp4"
+ffmpeg -nostdin -v error -y -i "$OUT/glance-t1/slide.mp4" -frames:v 1 -q:v 3 "$OUT/glance-t1/slide-poster.jpg"
 still glance-t1 "T1/1.webp"                             brief
 still glance-t1 "T1/4.webp"                             dock
 still glance-t1 "T1/5.webp"                             faces
