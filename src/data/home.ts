@@ -44,6 +44,12 @@ export const concepts: Cell[] = [
     moments: [img('lifeo-trio', true)] },
 ];
 
+// A homepage work's still: its first moment, or that video's poster. The map's preview uses it, so the two never drift.
+export const coverOf = (id: string) => {
+  const m = [...selected, ...concepts].find(c => c.id === id)?.moments[0];
+  return m && (m.kind === 'video' ? m.src.replace(/\.mp4$/, '-poster.jpg') : m.src);
+};
+
 export const links = {
   resume: '/resume/', // the page; its PDF is printed at deploy (scripts/resume-pdf.mjs)
   playground: '/playground/', // with the slash: /playground alone can resolve to the old playground.html, which forwards here
