@@ -1,6 +1,6 @@
 ---
 opener:
-  - "As AI grew more capable by the month, I became deeply anxious."
+  - "As AI grew more capable month by month, I became deeply anxious."
   - "If AI can do our thinking, what is left for us?"
   - "This product is my answer."
 scenes:
