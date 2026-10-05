@@ -71,10 +71,14 @@ scenes:
       - { t: "I eat lunch late", d: "So it began reminding me to eat" }
     year: "2026"
   - line: "One afternoon I was gone for hours.\nWhen I came back, it asked if I’d been climbing."
-    tone: ink
     note: "I hadn’t said a word. It put together the gap in its record, the rhythm of my weeks and the climbing questions I had once asked it. It was right."
     year: "2026"
-  - line: "Another day I was reorganizing my fridge.\nIt messaged to tell me I was cleaning the coils."
+  - lead: "It was just as sure when it was wrong. One day it messaged me:"
+    line: "“You are cleaning the refrigerator coils.”\nI was only reorganizing my fridge."
+    note: "It had seen me crouch by the open door, and found a reason for it. Vision models are built to find meaning. In an ordinary moment, they find one anyway."
+    tone: ink
+    year: "2026"
+  - line: "Summarized again and again, it became a habit of mine."
     file:
       name: "physical-pattern.md · the profile it summarized of me"
       lines:
@@ -82,10 +86,12 @@ scenes:
         - "- Beverage rotation synced to workload: Espresso (design/app pivot) → soda/orange cream (deep focus) → tea (log review) → latte (image browsing) — observed 40 of 44 late sessions."
         - "## Active Craft & Engineering Rituals"
         - "! - Precision maintenance escalation: Refrigerator coil cleaning → mixing valve replacement → water-heater seasoning — observed 6 of 7 recent sessions."
-    note: "Summarized into the profile again and again, the mistake became a habit of mine, with a count. Vision models are built to find meaning. In an ordinary scene, they find one anyway."
+    note: "One misread moment, with a count. And nothing in the profile led back to the frame it came from, so I could not trace the mistake, let alone correct it."
     year: "2026"
-  - line: "An agent that sees needs a memory you can check."
+  - lead: "What living with it taught me"
+    line: "An agent that sees needs judgment, and a memory you can check."
     list:
+      - { t: "Let ordinary moments stay ordinary", d: "Most frames mean nothing. It should ask before turning one into a habit" }
       - { t: "Trace every belief", d: "Each line of the profile should lead back to the frames behind it, so a wrong one can be found and undone" }
       - { t: "Correct it by talking", d: "No one reviews 157 hours of frames. Feedback has to come in conversation" }
       - { t: "Remember what it said", d: "When it spoke first, it repeated itself. It needs to know what it already sent, and what went unanswered" }
@@ -94,8 +100,8 @@ scenes:
   - caption: "At the end, I asked it to draw my life as a manga."
     media: /media/works/space-self-log/manga.webp
     alt: "Three manga pages: late nights at a desk of many screens, the kitchen, plants and a 3D printer"
-    line: "Seeing was the easy part."
-    note: "It got the shape of my days right, the late nights, the many screens, desk to kitchen and back. What it comes to believe about me is the part to design."
+    line: "Seeing was the easy part.\nThe hard part is deciding which moments matter to you."
+    note: "It got the shape of my days right, the late nights, the many screens, desk to kitchen and back. It also drew every moment as if it meant something."
     tone: ink
     wide: true
 colophon:
