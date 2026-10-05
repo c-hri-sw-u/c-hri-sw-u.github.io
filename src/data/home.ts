@@ -26,7 +26,7 @@ export const selected: Cell[] = [
   { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
     moments: [vid('risee-orbit')] },
   { id: 'space-self-log', name: 'Witness', what: 'A personal agent that can see', how: 'Agent memory + egocentric vision',
-    moments: [img('witness-device', true)] },
+    moments: [img('witness-device', true), img('witness-plan', true)] },
   { id: 'piko', name: 'Piko', what: 'Wearable companion', how: 'Hardware + CV + LLM',
     moments: [img('piko-parts')] },
   { id: 'banana-exoskeleton', name: 'Banana Exoskeleton', what: 'Fits any banana', how: 'Computational design',
