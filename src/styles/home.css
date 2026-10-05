@@ -116,8 +116,6 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .concepts-head h2 { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -.01em }
 .concepts-head p { margin: 0; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em }
 .shelf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
-.shelf .card { aspect-ratio: 4 / 3 }
-.shelf .media { padding: 15% 10% 6% }
 
 .foot { margin-top: 72px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em }
 .foot a { text-decoration: none }
@@ -253,11 +251,11 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .links-top { grid-column: 2 }
   main { padding-block: 44px 96px }
   .grid, .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px }
-  .shelf { grid-template-columns: minmax(0, 1fr) }
   .card { border-radius: 8px }
   .media { padding: 26% 9% 6% }
   .card.lead .media { padding: 14% 8% 6% }
-  .grid > .card:last-child .media { padding: 12% 18% 4% }
+  :is(.grid, .shelf) > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* three concepts: the third spans the row */
+  :is(.grid, .shelf) > .card:last-child .media { padding: 12% 18% 4% }
   .glyph-btn { top: 8px; left: 8px; width: 26px; height: 26px }
   .coord { top: 15px; right: 10px; font-size: 10px; gap: 5px } .xh { display: none }
   .cap { padding: 7px 9px 9px; font-size: 11.5px }
