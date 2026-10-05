@@ -63,16 +63,16 @@ scenes:
     tone: ink
   - line: "So I invented it, all of it."
     list:
-      - { t: "Product philosophy", d: "Intent Engineering, and AI that makes people better thinkers" }
-      - { t: "Product strategy", d: "What Lino is, who it's for, and what it leaves out" }
+      - { t: "Product philosophy", d: "Intent Engineering, human-centered AI, augmenting human intellect" }
+      - { t: "Product strategy", d: "Positioning, target users, competitive landscape, roadmap" }
       - { t: "A system of concepts", d: "Concept (Alias, Variable), Card, Sketch, Spark, Connection, Proposal" }
-      - { t: "Agent engineering", d: "Context engineering, long-term memory, tool and skill design, background agents, permission modes, human-in-the-loop review" }
-      - { t: "Frontend engineering", d: "UI and UX design, the canvas, the editor, tables and boards" }
-      - { t: "Backend engineering", d: "Sync across devices and with Obsidian, accounts, storage" }
-      - { t: "Onboarding", d: "The first canvas a new user sees" }
-      - { t: "The website", d: "lino.one, the docs and the blog" }
-      - { t: "Product analytics", d: "What people actually do in Lino" }
-      - { t: "The business model", d: "Free and paid plans, AI credits" }
+      - { t: "Agent engineering", d: "Context engineering, user + canvas memory, tool and skill design, background agents, permission modes, human-in-the-loop review" }
+      - { t: "Frontend engineering", d: "UI/UX design, design system, infinite canvas, rich-text editor, table views" }
+      - { t: "Backend engineering", d: "Cross-device sync, authentication, cloud storage, subscriptions" }
+      - { t: "Onboarding", d: "First-run flow, guided tutorials, user activation" }
+      - { t: "The website", d: "Landing page, documentation, blog, SEO, localization" }
+      - { t: "Product analytics", d: "Event tracking, funnels, retention" }
+      - { t: "The business model", d: "Free trial, pricing, AI credits" }
     note: "About 3,000 commits since late 2025"
     tone: ink
 colophon:
