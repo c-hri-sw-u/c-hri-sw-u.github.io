@@ -73,7 +73,7 @@ scenes:
       - { t: "The website", d: "Landing page, documentation, blog, SEO, localization" }
       - { t: "Product analytics", d: "Event tracking, funnels, retention" }
       - { t: "The business model", d: "Free trial, pricing, AI credits" }
-    note: "About 3,000 commits since late 2025"
+    note: "About 3,000 commits since December 2025"
     tone: ink
 colophon:
   - { k: "Role", v: "Founder: product, design and engineering" }
