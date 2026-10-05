@@ -65,6 +65,13 @@ const details = defineCollection({
       cutout: z.boolean().default(false), // a cut-out with a transparent ground: no frame, no shadow
       icon: z.string().optional(), // drawn where the line says [icon]
       backdrop: z.enum(['desk']).optional(), // a line drawing behind the words
+      // a simple diagram written as data, for facts buried in a dense board (see src/components/Diagram.astro)
+      diagram: z.object({
+        kind: z.enum(['pairs', 'steps', 'cycle']),
+        heads: z.array(z.string()).optional(), // pairs: the two column titles
+        center: z.string().optional(),         // cycle: a word in the middle
+        items: z.array(z.object({ t: z.string(), d: z.string().optional(), to: z.string().optional(), toNote: z.string().optional() })),
+      }).optional(),
       drawing: z.enum(['balance', 'reasons', 'bananas', 'fit', 'decode', 'sizes', 'capture', 'tiers']).optional(), // a line drawing above the words (decode: Bread Reader's scan; sizes: R1 beside an iPad and a phone; capture, tiers: Witness's capture and memory)
       // A text file, quoted: its name, then lines. "#" lines and " # " comments are dimmed; a line starting with "! " is marked as wrong.
       file: z.object({ name: z.string(), lines: z.array(z.string()) }).optional(),

@@ -6,7 +6,10 @@ opener:
   - "Designed in Denmark. Built by us, in under 20 days."
 scenes:
   - line: "The pandemic kept our Danish partners from coming to China."
+    caption: "Our team on the foundation, before the modules arrived."
     note: "Our team joined the Technical University of Denmark with Soochow University for Solar Decathlon China 2021. They drew the first design; we had to adapt it to China and build it on our own."
+    media: /media/works/aurora-house/team.webp
+    alt: "Seen from above, the team waves from a bare concrete foundation"
     year: "2021"
   - line: "Two homes of 80 and 60 m², built from modules made in a factory."
     note: "A 35 m² courtyard joins them under a bamboo roof. Two technical cores serve the kitchens and baths with water, power and heating. The square plans make good use of space and keep energy and transport costs low."
@@ -16,10 +19,16 @@ scenes:
     wide: true
     year: "2021"
   - line: "On site, we put it up in under 20 days."
-    caption: "The team on the foundation, before the modules arrived."
-    note: "The modules were made in July 2021. From August 23 to September 8 we hoisted them, clad the facade in bamboo, raised the roof, laid the solar panels and fitted the ventilation and heating."
-    media: /media/works/aurora-house/team.webp
-    alt: "Seen from above, the team waves from a bare concrete foundation"
+    diagram:
+      kind: steps
+      items:
+        - { t: "Prefabrication", d: "Jul 10–20, in factories" }
+        - { t: "Preparation", d: "Aug 23" }
+        - { t: "Hoisting", d: "Aug 24–25" }
+        - { t: "Bamboo facade", d: "Aug 26 – Sep 3" }
+        - { t: "Roof trusses", d: "Sep 1–4" }
+        - { t: "Solar panels", d: "Sep 6" }
+        - { t: "Ventilation, heating", d: "Sep 8" }
     year: "2021"
   - line: "AR showed us where every tile went."
     caption: "Assisted construction with AR, on a HoloLens 2."

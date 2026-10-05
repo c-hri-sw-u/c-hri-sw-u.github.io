@@ -130,7 +130,8 @@
 
 - **开场**：一律 `lines` 加 `openerMedia`，即一张代表图加一两句话，说清这个项目是什么，最后一句是斜体。不做定制开场。
 - **4–6 屏**：背景 → 我做了什么 → 一两组关键图 → 结果。图多的项目用 `gallery` 或 `pair`。
-- **只用已有字段**：不加组件、线条画、动效。
+- **不做专属的东西**：不加专为某一页写的组件、开场、动效。
+- **埋在复杂展板里的关键信息，用通用图组件重画**（`diagram` 字段，`src/components/Diagram.astro`）：在 Markdown 里写数据，三种形态——`pairs`（左列对右列，如神 → 主题）、`steps`（步骤或时间线）、`cycle`（循环；手机上变成一列，左侧括线连回第一项）。每页一两张，只放原图在手机上读不出来的信息；原图好看又读得清的照旧用原图。
 - **文案以旧版原文和图里的文字为基础**，精简改写，不重新构思叙事。图里常有原文没写的关键事实（日期、奖项、工具），要逐张读出来。
 - **colophon** 写清角色和贡献、团队、课程或比赛、老师、年份。角色只写做了哪些部分，不写百分比。
 - **哪些作品做简版**：Aurora House、Go Above or Below、Parade with Gods、Vive Towers、T1、ReCurv、Hill Making、Lino、MOREDANCE。Lino 单独做，不并入 Lino App。Boba Bubble Trouble 移到 playground，不做详情页。

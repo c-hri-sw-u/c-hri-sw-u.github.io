@@ -20,10 +20,16 @@ scenes:
     wide: true
     year: "2030"
   - line: "The structure grows like slime mould, where people need it."
-    note: "It suggests spaces from what residents need. They propose their own; the others spend tokens to agree. Once they reach consensus, it grows the space."
-    media: /media/works/vive-towers/system.webp
-    alt: "A diagram: residents’ data and needs, proposals, a consensus vote, and a slime-mould simulation that shapes new spaces"
-    cutout: true
+    note: "Sensors and residents’ profiles tell it what people need. Nothing is built until enough of them agree."
+    diagram:
+      kind: cycle
+      center: "consensus"
+      items:
+        - { t: "It suggests a space", d: "from residents’ needs" }
+        - { t: "Residents propose", d: "their own ideas" }
+        - { t: "Others agree", d: "by spending tokens" }
+        - { t: "Consensus", d: "enough of them agree" }
+        - { t: "The space grows", d: "like slime mould" }
     year: "2030"
   - line: "Everything the towers never got, hung between them."
     note: "A theater, an auditorium, sky restaurants, a vertical farm, a school, a playground, even a small theme park, in a lattice of soft, see-through panels that keeps adjusting."

@@ -23,10 +23,15 @@ scenes:
     year: "2023"
   - line: "Each feeling answers with a piece of a landscape painting."
     tone: ink
-    note: "Mountains, clouds, water and trees, each matched to a feeling, become generated visuals and music around you: TouchDesigner for the images, ChatGPT and Stable Audio for the sound."
-    media: /media/works/hill-making/transcoding.webp
-    alt: "From a shan shui painting to its elements, four emotions, their signals, recorded scenes and blurred renderings"
-    wide: true
+    note: "Each feeling calls up its element as generated visuals and music around you: TouchDesigner for the images, ChatGPT and Stable Audio for the sound."
+    diagram:
+      kind: pairs
+      heads: ["In the painting", "The feeling it answers"]
+      items:
+        - { t: "Mountains", d: "they broaden the heart", to: "Burnout", toNote: "negative, low arousal" }
+        - { t: "Clouds", d: "thoughts drift with them", to: "Stress", toNote: "negative, high arousal" }
+        - { t: "Water", d: "it stills the heart", to: "Calmness", toNote: "positive, low arousal" }
+        - { t: "Trees", d: "they bring sprouting minds", to: "Stimulation", toNote: "positive, high arousal" }
     year: "2023"
   - line: "Strangers in the same cave hear each other."
     note: "When two visitors touch the stones, their music and visuals overlap. A space that once held one person’s feelings becomes a way to meet."

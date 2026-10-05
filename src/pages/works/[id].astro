@@ -8,6 +8,7 @@ import Reasons from '../../components/Reasons.astro';
 import Bananas from '../../components/Bananas.astro';
 import Decode from '../../components/Decode.astro';
 import Sizes from '../../components/Sizes.astro';
+import Diagram from '../../components/Diagram.astro';
 import Poem from '../../components/Poem.astro';
 import SelectOpener from '../../components/SelectOpener.astro';
 import ContextOpener from '../../components/ContextOpener.astro';
@@ -99,7 +100,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
   {scenes.map((sc, i) => {
     const list = sc.media ? [sc.media].flat() : [];
     return (
-      <section class:list={['scene', { 'text-only': !list.length && !sc.card && !FIGURES.includes(sc.drawing ?? '') && sc.drawing !== 'decode' && !sc.poem && !sc.file, big: sc.big, wide: !!sc.facts || FIGURES.includes(sc.drawing ?? '') }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
+      <section class:list={['scene', { 'text-only': !list.length && !sc.card && !FIGURES.includes(sc.drawing ?? '') && sc.drawing !== 'decode' && !sc.poem && !sc.file && !sc.diagram, big: sc.big, wide: !!sc.facts || FIGURES.includes(sc.drawing ?? '') || !!sc.diagram }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
         {sc.backdrop === 'desk' && <Desk />}
         <div class:list={['stack', { wide: sc.wide }]}>
           {sc.drawing === 'balance' && <Balance />}
@@ -108,6 +109,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
           {sc.drawing === 'fit' && <Bananas fit />}
           {sc.drawing === 'decode' && <Decode />}
           {sc.drawing === 'sizes' && <Sizes />}
+          {sc.diagram && <Diagram {...sc.diagram} />}
           {sc.drawing === 'capture' && <Capture />}
           {sc.drawing === 'tiers' && <Tiers />}
           {sc.file && (

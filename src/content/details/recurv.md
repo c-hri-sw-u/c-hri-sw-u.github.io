@@ -9,11 +9,22 @@ scenes:
     note: "Patients get little feedback, rarely talk with their doctors, follow exercises that aren’t made for them, and struggle to keep at it."
     year: "2024"
   - line: "Small sensors on the arm track each muscle."
-    note: "EMG reads how each muscle activates, and an IMU reads the pose. They live in a charging case and attach with a patch or a band. An app, an algorithm and a remote doctor turn the data into a training plan."
+    note: "EMG reads how each muscle activates, and an IMU reads the pose. The sensors live in a charging case and attach with a patch or a band."
     media: /media/works/recurv/system.webp
-    alt: "EMG and IMU signals, the band, patch and sensors in their charging case, the app, and the loop between AI assistant, remote doctor, training plan and games"
+    alt: "EMG and IMU signals, and the band, patch and sensors in their charging case, with the app"
     cutout: true
     wide: true
+    year: "2024"
+  - line: "An algorithm and a remote doctor keep the plan in step."
+    note: "What the sensors read adjusts the training plan; the plan sets the games; the games bring back live data."
+    diagram:
+      kind: cycle
+      items:
+        - { t: "Sensors", d: "EMG and IMU" }
+        - { t: "Algorithm and remote doctor" }
+        - { t: "Training plan", d: "in the app" }
+        - { t: "Games on the wall", d: "real-time feedback" }
+        - { t: "Live data", d: "a training log" }
     year: "2024"
   - line: "“This was way more fun than staying in the hospital!”"
     note: "After Nintendo’s Ring Fit Adventure, the exercises are games projected on the wall, with feedback as you move."

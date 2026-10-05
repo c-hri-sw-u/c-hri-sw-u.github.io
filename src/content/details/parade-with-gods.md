@@ -32,10 +32,18 @@ scenes:
     cutout: true
     year: "2023"
   - line: "Each god’s domain became a theme for village life."
-    note: "The Tudi temple, god of earth and crops, became a Four Seasons Park with a fairground and a circular theatre shaped like the parade’s umbrella. The Wu clan’s assembly hall, in use since the Ming dynasty, stays the place to gather."
-    media: /media/works/parade-with-gods/zones.webp
-    alt: "A zoning map of Xiange: temples linked to themes such as a park, a theatre, catering, a bank and healthcare"
-    wide: true
+    diagram:
+      kind: pairs
+      heads: ["Temple and god", "Theme"]
+      items:
+        - { t: "Tudi Temple", d: "god of earth and crops", to: "Four Seasons Park", toNote: "a fairground, a circular theatre" }
+        - { t: "Former Tudi Temple", to: "Catering", toNote: "the Golden Arch" }
+        - { t: "Wu Palace", d: "guardian of the Wu clan", to: "Gathering", toNote: "the assembly hall, in use since the Ming" }
+        - { t: "Lin’gong Palace", d: "god of royalty", to: "Finance", toNote: "the Loyalty & Fairness Bank" }
+        - { t: "Guanyin Temple", d: "goddess of compassion", to: "Holy place", toNote: "a viral Guanyin statue" }
+        - { t: "Shengmu Palace", d: "goddess of medicine", to: "Healthcare", toNote: "a health station" }
+        - { t: "Dasheng Palace", d: "the Monkey King", to: "Recreation", toNote: "a kung fu school, a public stage" }
+        - { t: "Sanguan Palace", d: "gods of three realms", to: "Mourning", toNote: "a Ferris wheel of flowers" }
     year: "2023"
   - line: "A tin roof and a strip of red paper can hold a faith."
     tone: ink

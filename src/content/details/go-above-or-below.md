@@ -25,8 +25,19 @@ scenes:
     cutout: true
     wide: true
     year: "2022"
+  - line: "From the site to the roof, in six moves."
+    diagram:
+      kind: steps
+      items:
+        - { t: "Site and traffic", d: "people and cars apart" }
+        - { t: "Functions by scale", d: "small, medium, large" }
+        - { t: "One continuous roof", d: "three roofs interlock like cards" }
+        - { t: "Below: one centre", d: "entrances from every side" }
+        - { t: "Above: many clubs", d: "boxes plug into the roof" }
+        - { t: "Synthesis", d: "circulation, functions, landscape" }
+    year: "2022"
   - line: "Under the roof, everyone meets in the middle. On it, clubs spread out."
-    note: "Three roofs slope in three directions and interlock like playing cards. Below, entrances from every side lead to one large central space. Above, small club boxes plug into the roof’s strips, each on its own."
+    note: "Below, one large central space for sports and performances. Above, small club boxes set into the stepped roof, each on its own."
     media: /media/works/go-above-or-below/section.webp
     alt: "An axonometric section: halls under the roof, small boxes set into the stepped roof above"
     cutout: true
