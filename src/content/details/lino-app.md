@@ -27,7 +27,7 @@ scenes:
     alt: "A musician's canvas for a show; Lino AI builds the live visual from their notes"
     year: "2026"
     wide: true
-  - line: "Shared context. Shared memory."
+  - line: "They share context. They share memory."
     note: "Everything you put on the canvas, the agent can see. Nothing to paste in or explain again."
     media: /media/works/lino-app/canvas.webp
     round: 0.037
