@@ -193,7 +193,7 @@ still glance-t1 "T1/6.webp"                             bodies
 still recurv "ReCurv/1-0.webp"                          home
 still recurv "ReCurv/1-7.webp"                          game
 # system, curve: transparent boards, kept transparent; system only up to the hardware (the care loop is a diagram on the page)
-ffmpeg -nostdin -v error -y -i "$SRC/ReCurv/1-5.webp" -vf "crop=1740:ih:0:0,scale='min(1400,iw)':-2:flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/recurv/system.webp"
+ffmpeg -nostdin -v error -y -i "$SRC/ReCurv/1-5.webp" -vf "crop=1680:ih:0:0,scale='min(1400,iw)':-2:flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/recurv/system.webp"
 ffmpeg -nostdin -v error -y -i "$SRC/ReCurv/1-6.webp" -vf "scale='min(1600,iw)':-2:flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/recurv/curve.webp"
 
 # Hill Making (short page)
