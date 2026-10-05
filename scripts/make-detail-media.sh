@@ -134,6 +134,17 @@ python3 scripts/clear-white.py "$SRC/Aurora House/5-3.webp" "$OUT/aurora-house/a
 # ar: the facade seen through the HoloLens, its tiles coloured by angle (the upper photo of 5-5)
 ffmpeg -nostdin -v error -y -i "$SRC/Aurora House/5-5.webp" -vf "crop=1629:752:732:1493,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/aurora-house/ar.webp"
 
+# Go Above or Below (short page)
+still go-above-or-below "Go Above or Below/4-14.webp"   roof
+still go-above-or-below "Go Above or Below/4-11.webp"   view-1
+still go-above-or-below "Go Above or Below/4-12.webp"   view-2
+still go-above-or-below "Go Above or Below/4-15.webp"   view-3
+# site, sketch, idea, section: the map, the "second ground" sketch, the concept and the axonometric section, off their white sheets
+python3 scripts/clear-white.py "$SRC/Go Above or Below/4-1.webp" "$OUT/go-above-or-below/site.webp" 0 0 2481 992 1600
+python3 scripts/clear-white.py "$SRC/Go Above or Below/4-5.webp" "$OUT/go-above-or-below/sketch.webp"
+python3 scripts/clear-white.py "$SRC/Go Above or Below/4-8.webp" "$OUT/go-above-or-below/idea.webp" 0 0 2480 700 1600
+python3 scripts/clear-white.py "$SRC/Go Above or Below/4-9.webp" "$OUT/go-above-or-below/section.webp" 0 0 1630 1686 1100
+
 # Witness (the master's thesis; the id stays space-self-log)
 # Sources were cut from the SpaceSelfLog repo's visualization/: photo-wall.jpg and plan-heat.png from the two poster
 # exports (poster2_export.jpg, poster1_export.jpg), frame-0424-1459.png from preview_frames_2026-04-24/frame_0119.png

@@ -3,7 +3,7 @@ title: "2021 SOLAR DECATHLON CHINA(SDC) COMPETITION Aurora House"
 listTitle: "Aurora House"
 subtitle: ""
 type: "Architecture | Design + Construction | MR | Residential"
-date: "March 2021 - Sept. 2021"
+date: "March 2021 - Aug. 2022"
 stage: "A"
 order: 1
 seq: 16
