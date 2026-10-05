@@ -236,3 +236,14 @@ pgstill "$SRC/../Playgrounds/Walk With Shooting Star/1.png"    shooting-star
 pgstill "$SRC/../Playgrounds/Walk With Shooting Star/2.jpg"    shooting-star-fetch
 pgstill "$SRC/Boba Bubble Trouble/3.webp"                      boba
 pgstill "$SRC/Boba Bubble Trouble/5.webp"                      boba-fruit
+# Rehears and Deploybell, from the v1be.online project images: the app window or menu bar panel alone, without the
+# desktop around it (Rehears' screenshots sit on a film still)
+for p in "rehearse rehears" "setup rehears-setup"; do
+  set -- $p
+  ffmpeg -nostdin -v error -y -i "$SRC/../Playgrounds/Rehears/$1.jpeg" -vf "crop=1498:879:215:99,scale=1200:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$PG/$2.webp"
+done
+ffmpeg -nostdin -v error -y -i "$SRC/../Playgrounds/Deploybell/menubar.jpeg" -vf "crop=400:330:608:0" -frames:v 1 -c:v libwebp -q:v 90 "$PG/deploybell.webp"
+for p in "Rehears rehears" "Deploybell deploybell"; do
+  set -- $p
+  ffmpeg -nostdin -v error -y -i "$SRC/../Playgrounds/$1/icon.png" -vf "scale=96:96:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 90 "$PG/$2-icon.webp"
+done

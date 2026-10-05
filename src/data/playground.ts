@@ -20,6 +20,36 @@ const m = (name: string) => `/media/playground/${name}`;
 
 export const experiments: Experiment[] = [
   {
+    id: 'deploybell',
+    name: 'Deploybell',
+    icon: m('deploybell-icon.webp'),
+    meta: '2026 · macOS menu bar app, made in an hour',
+    line: 'A chime when a Vercel deploy succeeds, another when it fails, so I stop refreshing the page.',
+    media: { src: m('deploybell.webp'), alt: 'The Deploybell menu: v1be.online building, lino, palpal-web and rehears ready' },
+    more: [
+      'I work on several projects at once, most of them on Vercel, and every push meant 30 seconds to a minute of checking back.',
+      'Deploybell polls the deployments every 5 seconds with a Vercel token and plays one sound on success, another on failure. The menu bar shows each project’s latest status. It is native to macOS, and open source.',
+    ],
+    credit: 'Design and development, solo',
+    links: [{ href: 'https://github.com/c-hri-sw-u/Deploybell', label: 'GitHub' }],
+  },
+  {
+    id: 'rehears',
+    name: 'Rehears',
+    icon: m('rehears-icon.webp'),
+    meta: '2026 · Web app, made in an afternoon',
+    line: 'Rehearse your lines alone: it reads every other part aloud, and stops when it’s your turn.',
+    media: { src: m('rehears.webp'), alt: 'Rehearsal mode: a line from Catherine in Proof, with play and skip controls' },
+    more: [
+      'In a drama class at CMU, learning lines was my nightmare: alone there is no one to read the other parts, and scanned scripts barely give up their text.',
+      'Gemini turns a PDF into characters, lines and actions, and MiniMax reads each role in its own voice. Pick your role and a range of lines, then choose how much help you get: the whole line, its first word, its length, or nothing. To keep a small, cheap model reliable, it leaves splitting scenes to you.',
+      'It became a teaching resource for the class.',
+    ],
+    moreMedia: { src: m('rehears-setup.webp'), alt: 'Setting up a rehearsal: choosing your role, and a voice for every character' },
+    credit: 'Design and development, solo',
+    links: [{ href: 'https://rehears.vercel.app/', label: 'Try it' }],
+  },
+  {
     id: 'rotfix',
     name: 'RotFix',
     icon: m('rotfix-icon.webp'),
