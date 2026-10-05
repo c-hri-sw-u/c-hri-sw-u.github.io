@@ -19,7 +19,7 @@ scenes:
       - /media/works/piko/concept-2.webp
     alt: "Concept sketches of a fuzzy companion worn on the shoulder and chest"
     year: "2025"
-  - line: "Closer, for longer, so it knows you better."
+  - line: "Closer, longer, easier."
     drawing: reasons
     year: "2025"
   - lead: "Meet Piko,"
