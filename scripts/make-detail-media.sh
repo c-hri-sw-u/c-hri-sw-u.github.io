@@ -182,3 +182,41 @@ still vive-towers "Vive Towers/2-1.webp"                story
 # system: the consensus loop, off its white sheet; spaces: the four elevations, on their own grey sheet
 python3 scripts/clear-white.py "$SRC/Vive Towers/2-3.webp" "$OUT/vive-towers/system.webp" 0 0 2432 3255 1200
 still vive-towers "Vive Towers/2-4.webp"                spaces
+
+# T1 (short page; the earphone case concept from the Glance internship)
+clip  glance-t1 "T1/3.gif"                              open
+clip  glance-t1 "T1/5.gif"                              slide
+still glance-t1 "T1/1.webp"                             brief
+still glance-t1 "T1/4.webp"                             dock
+still glance-t1 "T1/5.webp"                             faces
+still glance-t1 "T1/6.webp"                             bodies
+
+# ReCurv (short page)
+still recurv "ReCurv/1-0.webp"                          home
+still recurv "ReCurv/1-7.webp"                          game
+# system, curve: transparent boards, kept transparent
+for p in "1-5 system" "1-6 curve"; do
+  set -- $p
+  ffmpeg -nostdin -v error -y -i "$SRC/ReCurv/$1.webp" -vf "scale='min(1600,iw)':-2:flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/recurv/$2.webp"
+done
+
+# Hill Making (short page)
+still hill-making "Hill Making/3-0.webp"                painting
+still hill-making "Hill Making/3-2.webp"                visit
+# spaces, stone: the five spaces and the touch stone, off their white sheets
+python3 scripts/clear-white.py "$SRC/Hill Making/3-8.webp" "$OUT/hill-making/spaces.webp" 0 0 2480 2401 1300
+python3 scripts/clear-white.py "$SRC/Hill Making/3-13.webp" "$OUT/hill-making/stone.webp" 0 0 2481 1407 1600
+# transcoding: painting to emotions to rendering (the faded band on its right cut off), on black lifted to the page's ink (#111)
+ffmpeg -nostdin -v error -y -i "$SRC/Hill Making/3-6.webp" -vf "crop=3600:1381:0:0,scale=1600:-2:flags=lanczos,lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/hill-making/transcoding.webp"
+
+# Lino (short page; the 2024 prototype that later became Lino App)
+clip  lino "Lino/1.gif"                                 card
+still lino "Lino/7.webp"                                notes
+python3 scripts/clear-white.py "$SRC/Lino/11.webp" "$OUT/lino/cards.webp"
+python3 scripts/clear-white.py "$SRC/Lino/9.webp" "$OUT/lino/web.webp"
+# memex: Bush's article and the Memex desk, without the caption band under them
+mkdir -p "$OUT/lino" && ffmpeg -nostdin -v error -y -i "$SRC/Lino/6.webp" -vf "crop=2400:876:0:0,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/lino/memex.webp"
+
+# MOREDANCE (short page)
+python3 scripts/clear-white.py "$SRC/MOREDANCE/1.webp" "$OUT/more-dance/device.webp" 60 150 1080 860
+clip  more-dance "MOREDANCE/1.gif"                      parts
