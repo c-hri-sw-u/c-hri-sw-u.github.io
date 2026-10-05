@@ -15,7 +15,7 @@ scenes:
     link: { href: "https://medium.com/@gochris/intent-engineering-42af3438bdc5", label: "Read it on Medium" }
   - line: "Intent doesn't fit in a chat box. It needs a space to grow."
     note: "A place to discover it, develop it, and let it evolve"
-  - line: "I had started building one in 2024."
+  - line: "In 2024, I had already built a first prototype of that space."
     note: "Cards that collect themselves while you read, inspired by Vannevar Bush's Memex"
     media: /media/works/lino-app/prototype-card.webp
     alt: "A Memex card linked to a Vannevar Bush card, from the 2024 prototype"
