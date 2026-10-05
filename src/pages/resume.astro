@@ -140,9 +140,8 @@ const sections = [
   .rs-org span { color: var(--fg); font-weight: 500 }
   /* App icons hang in the margin, left of the text, so every name still starts on the same edge */
   .rs-entry, .rs-project { position: relative }
-  .rs-icon { position: absolute; left: -21pt; top: -1.5pt; width: 15pt; height: 15pt; border-radius: 3.5pt }
-  /* Risee's icon is a bare mark on white, so it gets the tile Lino's icon already has */
-  .rs-project .rs-icon { top: -1pt; padding: 1.5pt; border-radius: 3.5pt; box-shadow: inset 0 0 0 .6pt var(--line) }
+  .rs-icon { position: absolute; left: -21pt; top: -1.5pt; width: 15pt; height: 15pt }
+  .rs-project .rs-icon { top: -1pt }
   .rs-entry h3 { margin: 1pt 0 3pt !important; font-size: 12pt; font-weight: 500; line-height: 1.3; letter-spacing: -.01em; color: var(--fg) }
   .rs-entry p + p { margin-top: 1.5pt }
 
@@ -181,7 +180,6 @@ const sections = [
     .rs-contact { flex-direction: column; gap: 4px }
     .rs-walker { --h: 112px }
     .rs-icon { position: static; vertical-align: -5px; margin-right: 6px; width: 20px; height: 20px }
-    .rs-project .rs-icon { width: 20px; height: 20px }
   }
 
   @page { size: letter; margin: 0 }

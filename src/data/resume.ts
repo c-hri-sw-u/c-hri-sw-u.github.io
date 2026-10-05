@@ -53,7 +53,7 @@ export const research: Entry[] = [
 export const projects: Project[] = [
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
     line: 'A wearable AI companion. I did its concept, hardware and interactions.' },
-  { name: 'Risee', icon: '/media/works/risee/app-icon.webp', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
+  { name: 'Risee', icon: '/media/works/risee/app-icon-ios.webp', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
     line: 'LLM actions on any selected text, in a ring around the cursor. I use it daily.' },
   { name: 'Rethinking Rabbit R1', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concept',
     line: 'Redesigned the AI device around conversation instead of ask-and-answer: you see what it draws on and choose how much it remembers.' },
