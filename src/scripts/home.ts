@@ -25,28 +25,41 @@ export function initHome() {
       else el.pause();
     }
   }
-  // Videos that have wrapped around at least once since they were shown.
-  const looped = new WeakSet<HTMLVideoElement>();
-  document.querySelectorAll<HTMLVideoElement>('.media > video').forEach(v => {
-    let last = 0;
-    v.addEventListener('timeupdate', () => { if (v.currentTime < last) looped.add(v); last = v.currentTime; });
-    v.addEventListener('play', () => { if (v.currentTime < 0.2) { looped.delete(v); last = 0; } });
-  });
+  // Each cell steps through its moments. An image stays for MIN; a video plays to its end and the
+  // cell moves on at once (it loops only if it is shorter than MIN, or while the cell is hovered).
+  const MIN = 4200;
   workCards().forEach((card, n) => {
     const frames = [...card.querySelectorAll('.media > img, .media > video')];
     const dots = [...card.querySelectorAll('.dots i')];
     if (frames.length < 2 || reduce) return;
-    let i = 0;
-    const step = () => {
-      if (card.matches(':hover') || mode === 'map' || document.hidden) return;
-      // A video moment plays through once before the cell moves on (long demos are not cut off).
-      const cur = frames[i];
-      if (cur instanceof HTMLVideoElement && !cur.paused && cur.duration && !looped.has(cur) && cur.currentTime < cur.duration - 4.2) return;
+    let i = 0, shownAt = performance.now(), timer = 0; // the first moment is already showing
+    const blocked = () => card.matches(':hover') || mode === 'map' || document.hidden;
+    const advance = () => {
+      clearTimeout(timer);
+      if (blocked()) { timer = window.setTimeout(advance, 600); return; }
       show(frames[i], false); dots[i]?.classList.remove('on');
       i = (i + 1) % frames.length;
       show(frames[i], true); dots[i]?.classList.add('on');
+      schedule();
     };
-    setTimeout(() => setInterval(step, 4200), 1200 + n * 700);
+    const schedule = (fresh = true) => {
+      if (fresh) shownAt = performance.now();
+      const f = frames[i];
+      if (!(f instanceof HTMLVideoElement)) { timer = window.setTimeout(advance, MIN); return; }
+      // A video that never gets to play (autoplay refused, low-power mode) must not hold the cell.
+      const check = () => { if (frames[i] !== f) return; if (f.paused && !f.ended) advance(); else timer = window.setTimeout(check, MIN); };
+      timer = window.setTimeout(check, MIN);
+    };
+    frames.forEach(f => {
+      if (!(f instanceof HTMLVideoElement)) return;
+      f.loop = false;
+      f.addEventListener('ended', () => {
+        if (frames[i] !== f) return;
+        if (performance.now() - shownAt < MIN || blocked()) { f.currentTime = 0; f.play().catch(() => {}); return; }
+        advance();
+      });
+    });
+    setTimeout(() => schedule(false), 1200 + n * 700); // staggered so the cells don't all change together
   });
 
   // ---------- map previews (hover on desktop, first tap on touch) ----------
