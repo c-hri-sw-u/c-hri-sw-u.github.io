@@ -63,7 +63,7 @@ scenes:
     tone: ink
   - line: "So I invented it, all of it."
     list:
-      - { t: "Product philosophy", d: "Intent Engineering, human-centered AI, augmenting human intellect" }
+      - { t: "Product philosophy", d: "Intent Engineering, human-centered AI, reducing cognitive friction, augmenting human intellect" }
       - { t: "Product strategy", d: "Positioning, target users, competitive landscape, roadmap" }
       - { t: "A system of concepts", d: "Concept (Alias, Variable), Card, Sketch, Spark, Connection, Proposal" }
       - { t: "Agent engineering", d: "Context engineering, harness engineering, user + canvas memory, tool and skill design, permission modes, human-in-the-loop review" }
