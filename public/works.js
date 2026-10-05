@@ -158,7 +158,7 @@ const worksData = {
                     },
                     hover: `<img style="aspect-ratio: 14/9;" src="../../Assets/Works/SpaceSelfLog/results_3.webp" alt="">`,
                     title: 'Physical-World Observation for Personal AI Agent Personalization',
-                    listTitle: 'Physical-World Observation (Thesis)',
+                    listTitle: 'Witness',
                     subtitle: `- Integrating Continuous Egocentric Vision into Local Agent Memory Systems`,
                     type: 'Thesis Project | <b>System Design + Autoethnographic Research</b> | Personal AI Agent | Egocentric Vision',
                     date: '2026 Spring',

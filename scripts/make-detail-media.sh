@@ -124,3 +124,126 @@ clip  playground-os "Playground OS/1.gif"            context
 clip  playground-os "Playground OS/2.gif"            community
 clip  playground-os "Playground OS/6.gif"            program
 clip  playground-os "Playground OS/5.gif"            run
+
+# Aurora House (a short page: the house, its system, the build, AR on site, the result)
+still aurora-house "Aurora House/5-0.webp"           house
+still aurora-house "Aurora House/5-10.webp"          team
+# system, awards: the module diagram and the three awards lifted off their white sheets
+python3 scripts/clear-white.py "$SRC/Aurora House/5-8.webp" "$OUT/aurora-house/system.webp" 0 0 2481 2054 1600
+python3 scripts/clear-white.py "$SRC/Aurora House/5-3.webp" "$OUT/aurora-house/awards.webp" 0 0 1612 935 1400
+# ar: the facade seen through the HoloLens, its tiles coloured by angle (the upper photo of 5-5)
+ffmpeg -nostdin -v error -y -i "$SRC/Aurora House/5-5.webp" -vf "crop=1629:752:732:1493,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/aurora-house/ar.webp"
+
+# Go Above or Below (short page)
+still go-above-or-below "Go Above or Below/4-14.webp"   roof
+still go-above-or-below "Go Above or Below/4-11.webp"   view-1
+still go-above-or-below "Go Above or Below/4-12.webp"   view-2
+still go-above-or-below "Go Above or Below/4-15.webp"   view-3
+# site, sketch, idea, section: the map, the "second ground" sketch, the concept and the axonometric section, off their white sheets
+python3 scripts/clear-white.py "$SRC/Go Above or Below/4-1.webp" "$OUT/go-above-or-below/site.webp" 0 0 2481 992 1600
+python3 scripts/clear-white.py "$SRC/Go Above or Below/4-5.webp" "$OUT/go-above-or-below/sketch.webp"
+python3 scripts/clear-white.py "$SRC/Go Above or Below/4-8.webp" "$OUT/go-above-or-below/idea.webp" 0 0 2480 700 1600
+python3 scripts/clear-white.py "$SRC/Go Above or Below/4-9.webp" "$OUT/go-above-or-below/section.webp" 0 0 1630 1686 1100
+
+# Parade with Gods (short page: the trip, then the three rounds of a tug-of-war between village and city)
+still parade-with-gods "Parade with Gods/1-0.webp"      village
+still parade-with-gods "Parade with Gods/1-9.webp"      fieldwork
+ffmpeg -nostdin -v error -y -i "$SRC/Parade with Gods/1-12.webp" -vf "scale=1100:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/parade-with-gods/invasion.webp"
+# parade, disneyland: the procession and the Guanyin–Mickey pair, off their white sheets
+python3 scripts/clear-white.py "$SRC/Parade with Gods/1-4.webp" "$OUT/parade-with-gods/parade.webp" 0 0 2481 1212 1600
+python3 scripts/clear-white.py "$SRC/Parade with Gods/1-8.webp" "$OUT/parade-with-gods/disneyland.webp"
+# light: the shrine of light structures on black, its ground lifted to the page's ink (#111)
+ffmpeg -nostdin -v error -y -i "$SRC/Parade with Gods/1-1.webp" -vf "lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/parade-with-gods/light.webp"
+
+# Witness (the master's thesis; the id stays space-self-log)
+# Sources were cut from the SpaceSelfLog repo's visualization/: photo-wall.jpg and plan-heat.png from the two poster
+# exports (poster2_export.jpg, poster1_export.jpg), frame-0424-1459.png from preview_frames_2026-04-24/frame_0119.png
+# (the blurred thumbnail of the log entry the opener quotes), device-* and manga-* from assets/img.
+W="$SRC/SpaceSelfLog"; mkdir -p "$OUT/space-self-log"
+ffmpeg -nostdin -v error -y -i "$W/frame-0424-1459.png" -vf "scale=640:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/space-self-log/frame.webp"
+for d in side front; do # the neck mount, on its transparent ground
+  ffmpeg -nostdin -v error -y -i "$W/device-$d.png" -vf "scale=-2:'min(1100,ih)':flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/device-$d.webp"
+done
+# wall: a slice of the photo wall, lifted off its white poster
+python3 scripts/clear-white.py "$W/photo-wall.jpg" "$OUT/space-self-log/wall.webp" 0 0 2394 1334 1600
+python3 scripts/clear-white.py "$W/plan-heat.png" "$OUT/space-self-log/plan.webp" 0 0 1690 1230 1600
+# manga: the three pages it drew, side by side on the page's ink (#111)
+ffmpeg -nostdin -v error -y -i "$W/manga-1.jpg" -i "$W/manga-2.jpg" -i "$W/manga-3.jpg" -filter_complex \
+  "[0]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[a];[1]format=rgb24,pad=w=iw+48:h=ih:color=0x111111[b];[2]format=rgb24[c];[a][b][c]hstack=3,scale=1600:-2:flags=lanczos" \
+  -frames:v 1 -c:v libwebp -q:v 82 "$OUT/space-self-log/manga.webp"
+
+# Vive Towers (short page)
+# tower: the opener is shown at most ~46% of the screen high, so 1400px tall is plenty
+ffmpeg -nostdin -v error -y -i "$SRC/Vive Towers/2-0.webp" -vf "scale=-2:1400:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/vive-towers/tower.webp"
+still vive-towers "Vive Towers/2-12.webp"               garden
+still vive-towers "Vive Towers/2-13.webp"               window
+still vive-towers "Vive Towers/2-1.webp"                story
+# spaces: the four elevations, on their own grey sheet (the consensus loop is a diagram on the page)
+still vive-towers "Vive Towers/2-4.webp"                spaces
+
+# T1 (short page; the earphone case concept from the Glance internship)
+clip  glance-t1 "T1/3.gif"                              open
+# slide: 5.gif has a dark line on its left and bottom edges; trim a couple of pixels all round
+ffmpeg -nostdin -v error -y -i "$SRC/T1/5.gif" -vf "crop=414:414:3:2,fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart -an "$OUT/glance-t1/slide.mp4"
+ffmpeg -nostdin -v error -y -i "$OUT/glance-t1/slide.mp4" -frames:v 1 -q:v 3 "$OUT/glance-t1/slide-poster.jpg"
+still glance-t1 "T1/1.webp"                             brief
+still glance-t1 "T1/4.webp"                             dock
+still glance-t1 "T1/5.webp"                             faces
+still glance-t1 "T1/6.webp"                             bodies
+
+# ReCurv (short page)
+still recurv "ReCurv/1-0.webp"                          home
+still recurv "ReCurv/1-7.webp"                          game
+# system, curve: transparent boards, kept transparent; system only up to the hardware (the care loop is a diagram on the page)
+ffmpeg -nostdin -v error -y -i "$SRC/ReCurv/1-5.webp" -vf "crop=1680:ih:0:0,scale='min(1400,iw)':-2:flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/recurv/system.webp"
+ffmpeg -nostdin -v error -y -i "$SRC/ReCurv/1-6.webp" -vf "scale='min(1600,iw)':-2:flags=lanczos,format=yuva420p" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/recurv/curve.webp"
+
+# Hill Making (short page)
+still hill-making "Hill Making/3-0.webp"                painting
+still hill-making "Hill Making/3-2.webp"                visit
+# spaces, stone: the five spaces and the touch stone, off their white sheets
+python3 scripts/clear-white.py "$SRC/Hill Making/3-8.webp" "$OUT/hill-making/spaces.webp" 0 0 2480 2401 1300
+python3 scripts/clear-white.py "$SRC/Hill Making/3-13.webp" "$OUT/hill-making/stone.webp" 0 0 2481 1407 1600
+
+# Lino (short page; the 2024 prototype that later became Lino App)
+clip  lino "Lino/1.gif"                                 card
+still lino "Lino/7.webp"                                notes
+python3 scripts/clear-white.py "$SRC/Lino/11.webp" "$OUT/lino/cards.webp"
+python3 scripts/clear-white.py "$SRC/Lino/9.webp" "$OUT/lino/web.webp"
+# memex: Bush's article and the Memex desk, without the caption band under them
+mkdir -p "$OUT/lino" && ffmpeg -nostdin -v error -y -i "$SRC/Lino/6.webp" -vf "crop=2400:876:0:0,scale=1600:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/lino/memex.webp"
+
+# MOREDANCE (short page)
+python3 scripts/clear-white.py "$SRC/MOREDANCE/1.webp" "$OUT/more-dance/device.webp" 60 150 1080 860
+clip  more-dance "MOREDANCE/1.gif"                      parts
+
+# Playground (one page, a card per experiment, in public/media/playground)
+PG=public/media/playground
+mkdir -p "$PG"
+pgclip() { # source, name
+  ffmpeg -nostdin -v error -y -i "$1" -vf "fps=30,scale='min(1200,iw)':-2:flags=lanczos,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart -an "$PG/$2.mp4"
+  ffmpeg -nostdin -v error -y -i "$PG/$2.mp4" -frames:v 1 -q:v 3 "$PG/$2-poster.jpg"
+}
+pgstill() { # source, name
+  ffmpeg -nostdin -v error -y -i "$1" -vf "scale='min(1400,iw)':-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$PG/$2.webp"
+}
+pgclip  "$SRC/../Playgrounds/RotFix/2.gif"                     rotfix-lock
+# its first frame is nearly black: take the poster from the moment the reflection box is up
+ffmpeg -nostdin -v error -y -ss 4 -i "$PG/rotfix-lock.mp4" -frames:v 1 -q:v 3 "$PG/rotfix-lock-poster.jpg"
+pgclip  "$SRC/../Playgrounds/RotFix/1.gif"                     rotfix-chat
+ffmpeg -nostdin -v error -y -i "$SRC/../Playgrounds/RotFix/icon.png" -vf "scale=96:96:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 90 "$PG/rotfix-icon.webp"
+pgstill "$SRC/../Playgrounds/Walk With Shooting Star/1.png"    shooting-star
+pgstill "$SRC/../Playgrounds/Walk With Shooting Star/2.jpg"    shooting-star-fetch
+pgstill "$SRC/Boba Bubble Trouble/3.webp"                      boba
+pgstill "$SRC/Boba Bubble Trouble/5.webp"                      boba-fruit
+# Rehears and Deploybell, from the v1be.online project images: the app window or menu bar panel alone, without the
+# desktop around it (Rehears' screenshots sit on a film still)
+for p in "rehearse rehears" "setup rehears-setup"; do
+  set -- $p
+  ffmpeg -nostdin -v error -y -i "$SRC/../Playgrounds/Rehears/$1.jpeg" -vf "crop=1498:879:215:99,scale=1200:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$PG/$2.webp"
+done
+ffmpeg -nostdin -v error -y -i "$SRC/../Playgrounds/Deploybell/menubar.jpeg" -vf "crop=400:330:608:0" -frames:v 1 -c:v libwebp -q:v 90 "$PG/deploybell.webp"
+for p in "Rehears rehears" "Deploybell deploybell"; do
+  set -- $p
+  ffmpeg -nostdin -v error -y -i "$SRC/../Playgrounds/$1/icon.png" -vf "scale=96:96:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 90 "$PG/$2-icon.webp"
+done

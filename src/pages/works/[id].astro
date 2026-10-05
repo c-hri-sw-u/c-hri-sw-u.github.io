@@ -8,11 +8,15 @@ import Reasons from '../../components/Reasons.astro';
 import Bananas from '../../components/Bananas.astro';
 import Decode from '../../components/Decode.astro';
 import Sizes from '../../components/Sizes.astro';
+import Diagram from '../../components/Diagram.astro';
 import Poem from '../../components/Poem.astro';
 import SelectOpener from '../../components/SelectOpener.astro';
 import ContextOpener from '../../components/ContextOpener.astro';
 import WheelOpener from '../../components/WheelOpener.astro';
 import DockOpener from '../../components/DockOpener.astro';
+import LogOpener from '../../components/LogOpener.astro';
+import Capture from '../../components/Capture.astro';
+import Tiers from '../../components/Tiers.astro';
 
 // One page per work that has a narrative in src/content/details. Works without one keep their legacy page.
 export async function getStaticPaths() {
@@ -25,10 +29,10 @@ const detail = (await getEntry('details', id))!;
 const work = (await getEntry('works', id))!;
 const { opener, openerStyle, openerNote, openerMedia, openerAlt, scenes, colophon, next } = detail.data;
 // Drawings that take the place of media: the scene is not text-only, and it gets the wide stack.
-const FIGURES = ['reasons', 'bananas', 'fit', 'sizes'];
+const FIGURES = ['reasons', 'bananas', 'fit', 'sizes', 'capture', 'tiers'];
 const isSign = (t: string) => t === '×' || t === '=';
 // Openers drawn by their own component, with an italic note under them.
-const OWN = ['selection', 'context', 'wheel', 'dock'];
+const OWN = ['selection', 'context', 'wheel', 'dock', 'log'];
 
 const detailIds = new Set((await getCollection('details')).map(d => d.id));
 const hrefOf = (wid: string, legacy?: string) => detailIds.has(wid) ? `/works/${wid}` : legacy;
@@ -69,7 +73,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <section class="scene gate" data-tone="paper">
     <div class="stack">
       <p class="kicker r"><span class="glyph badge" set:html={glyph(work.data.icon, codeOf(work))} />{name}</p>
-      {openerMedia && (
+      {openerMedia && openerStyle !== 'log' && (
         <figure class="r loose">
           {isVideo(openerMedia)
             ? <video src={openerMedia} poster={openerMedia.replace('.mp4', '-poster.jpg')} muted loop playsinline autoplay preload="auto" aria-label={openerAlt}></video>
@@ -82,6 +86,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
       {openerStyle === 'context' && <ContextOpener parts={opener} />}
       {openerStyle === 'wheel' && <WheelOpener lead={opener[0]} answer={opener[1]} rest={opener[2]} replies={opener.slice(3)} />}
       {openerStyle === 'dock' && <DockOpener lead={opener[0]} parts={opener.slice(1)} />}
+      {openerStyle === 'log' && <LogOpener lead={opener[0]} stamp={opener[1]} fields={opener.slice(2, -1)} quote={opener[opener.length - 1]} frame={openerMedia!} />}
       {OWN.includes(openerStyle) && openerNote && <div class="lines"><p class="line r em">{openerNote}</p></div>}
       {openerStyle === 'poem' || OWN.includes(openerStyle) ? null : openerStyle === 'equation'
         ? <div class="equation">{opener.map(t => <p class:list={['r', isSign(t) ? 'sign' : 'term']}>{t}</p>)}</div>
@@ -95,7 +100,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
   {scenes.map((sc, i) => {
     const list = sc.media ? [sc.media].flat() : [];
     return (
-      <section class:list={['scene', { 'text-only': !list.length && !sc.card && !FIGURES.includes(sc.drawing ?? '') && sc.drawing !== 'decode' && !sc.poem, big: sc.big, wide: !!sc.facts || FIGURES.includes(sc.drawing ?? '') }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
+      <section class:list={['scene', { 'text-only': !list.length && !sc.card && !FIGURES.includes(sc.drawing ?? '') && sc.drawing !== 'decode' && !sc.poem && !sc.file && !sc.diagram, big: sc.big, wide: !!sc.facts || FIGURES.includes(sc.drawing ?? '') || !!sc.diagram }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
         {sc.backdrop === 'desk' && <Desk />}
         <div class:list={['stack', { wide: sc.wide }]}>
           {sc.drawing === 'balance' && <Balance />}
@@ -104,6 +109,17 @@ const pad = (n: number) => String(n).padStart(2, '0');
           {sc.drawing === 'fit' && <Bananas fit />}
           {sc.drawing === 'decode' && <Decode />}
           {sc.drawing === 'sizes' && <Sizes />}
+          {sc.diagram && <Diagram {...sc.diagram} />}
+          {sc.drawing === 'capture' && <Capture />}
+          {sc.drawing === 'tiers' && <Tiers />}
+          {sc.file && (
+            <figure class="file r">
+              <figcaption>{sc.file.name}</figcaption>
+              <pre>{sc.file.lines.map(l => l.startsWith('! ') ? <mark>{l.slice(2)}</mark>
+                : l.startsWith('#') ? <span class="h">{l}</span>
+                : <span>{l.split(/(?=\s#\s)/)[0]}{l.includes(' # ') && <i>{l.slice(l.indexOf(' # '))}</i>}</span>)}</pre>
+            </figure>
+          )}
           {sc.poem && <Poem stanzas={sc.poem} />}
           {list.length > 0 && (
             <figure class:list={['r', { fade: list.length > 1 && !sc.gallery && !sc.pair, gallery: sc.gallery, pair: sc.pair, cutout: sc.cutout }]}>
@@ -175,7 +191,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         </ul>
       </section>
     ))}
-    <p class="index-foot"><a href="/">Selected works</a> · <a href="/map.html">Original map</a></p>
+    <p class="index-foot"><a href="/">Selected works</a> · <a href="/playground/">Playground</a> · <a href="/map.html">Original map</a></p>
   </div>
 </dialog>
 

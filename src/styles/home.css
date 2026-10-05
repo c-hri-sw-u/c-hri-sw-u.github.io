@@ -65,6 +65,7 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .intro { display: grid; justify-items: center; text-align: center; gap: 12px; margin-bottom: 44px }
 .intro h1 { margin: 0; text-wrap: balance; font-weight: 500; font-size: clamp(30px, 3.9vw, 48px); line-height: 1.1; letter-spacing: -.025em }
 .intro h1 em { font-family: var(--font-accent); font-style: normal; font-weight: 400; letter-spacing: 0 }
+.intro .keep { white-space: nowrap } /* on a phone the headline breaks between its sentences, not inside the name */
 .intro p { margin: 0; text-wrap: balance; color: var(--muted); font-size: clamp(14.5px, 1.3vw, 17px); font-weight: 400 }
 
 /* ---------- cells ---------- */
@@ -116,10 +117,21 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .concepts-head h2 { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -.01em }
 .concepts-head p { margin: 0; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em }
 .shelf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
+/* Playground: one line of names, each opening its card on /playground/ */
+.play-head { flex-wrap: wrap; row-gap: 6px }
+.play-head h2 a { color: inherit; text-decoration: none }
+.play-head .toys { display: flex; flex-wrap: wrap; gap: 4px 16px; font-family: var(--font-body); font-size: 13.5px; letter-spacing: 0 }
+.play-head .toys a { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); text-decoration: none; transition: color .2s }
+.play-head .toys a:hover { color: var(--fg) }
+.play-head .toys img { width: 14px; height: 14px; border-radius: 3.5px }
+.play-head .all { margin-left: auto; color: var(--muted); font-size: 12.5px; text-decoration: none; white-space: nowrap }
+.play-head .all:hover { color: var(--fg) }
 
 .foot { margin-top: 72px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em }
 .foot a { text-decoration: none }
 .foot a:hover { text-decoration: underline }
+/* The top bar's links again, at the end of the page, for whoever read this far */
+.foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px }
 
 /* ---------- the map ---------- */
 #map { position: fixed; inset: 0; z-index: 40; padding: calc(84px + env(safe-area-inset-top, 0px)) 40px calc(110px + env(safe-area-inset-bottom, 0px));
@@ -243,6 +255,7 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .grid > .card:last-child .media { padding: 9% 16% 4% }
 }
 @media (max-width: 600px) {
+  .play-head .all { display: none } /* the heading itself opens the page */
   body { padding-inline: 14px }
   .bar { grid-template-columns: auto 1fr; margin-inline: -14px; padding: 14px 14px 0 58px }
   .wordmark span:last-child { display: none }

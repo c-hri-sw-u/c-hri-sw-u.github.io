@@ -18,8 +18,10 @@ still() { # source, name
 }
 
 W=Assets/Works
-still "$W/SpaceSelfLog/results_3.webp" thesis-floorplan
-still "$W/SpaceSelfLog/results_1.webp" thesis-flow
+# Witness: the neck-mounted iPhone that does the seeing, on transparency (flat on the card), then what it learned:
+# the floor plan from the results, without its sidebars and legend
+ffmpeg -nostdin -v error -y -i "$W/SpaceSelfLog/device-side.png" -vf "scale=-2:900:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/witness-device.webp"
+ffmpeg -nostdin -v error -y -i "$W/SpaceSelfLog/results_3.webp" -vf "crop=1860:1340:720:460,scale=900:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 75 "$OUT/witness-plan.webp"
 clip  "$W/Piko/IMG_2013.MOV" piko-shoulder 4.7
 clip  "$W/Piko/6.gif" piko-gestures 7
 still "$W/Piko/0.png" piko-parts

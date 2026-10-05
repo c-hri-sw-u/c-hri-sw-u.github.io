@@ -37,7 +37,8 @@ const details = defineCollection({
     // selection: [lead, the selected word, ...capsules] (Risee). context: words and "a|b|c" tags (Lifeo).
     // wheel: [lead, the one answer, where the wheel rests, ...the wheel's replies] (Rethinking Rabbit R1).
     // dock: [lead, ...the dock's buttons] (Playground OS).
-    openerStyle: z.enum(['lines', 'equation', 'poem', 'selection', 'context', 'wheel', 'dock']).default('lines'),
+    // log: [lead, stamp, ..."key: value" fields, the quote] with openerMedia as the frame it saw (Witness).
+    openerStyle: z.enum(['lines', 'equation', 'poem', 'selection', 'context', 'wheel', 'dock', 'log']).default('lines'),
     openerNote: z.string().optional(), // poem: a quiet line under it, saying who wrote it; selection / context / wheel / dock: an italic line under it
     openerMedia: z.string().optional(), // a loop above the opening lines: an mp4, or an animated image with a transparent ground
     openerAlt: z.string().optional(),
@@ -64,7 +65,16 @@ const details = defineCollection({
       cutout: z.boolean().default(false), // a cut-out with a transparent ground: no frame, no shadow
       icon: z.string().optional(), // drawn where the line says [icon]
       backdrop: z.enum(['desk']).optional(), // a line drawing behind the words
-      drawing: z.enum(['balance', 'reasons', 'bananas', 'fit', 'decode', 'sizes']).optional(), // a line drawing above the words (decode: Bread Reader's scan; sizes: R1 beside an iPad and a phone)
+      // a simple diagram written as data, for facts buried in a dense board (see src/components/Diagram.astro)
+      diagram: z.object({
+        kind: z.enum(['pairs', 'steps', 'cycle']),
+        heads: z.array(z.string()).optional(), // pairs: the two column titles
+        center: z.string().optional(),         // cycle: a word in the middle
+        items: z.array(z.object({ t: z.string(), d: z.string().optional(), to: z.string().optional(), toNote: z.string().optional() })),
+      }).optional(),
+      drawing: z.enum(['balance', 'reasons', 'bananas', 'fit', 'decode', 'sizes', 'capture', 'tiers']).optional(), // a line drawing above the words (decode: Bread Reader's scan; sizes: R1 beside an iPad and a phone; capture, tiers: Witness's capture and memory)
+      // A text file, quoted: its name, then lines. "#" lines and " # " comments are dimmed; a line starting with "! " is marked as wrong.
+      file: z.object({ name: z.string(), lines: z.array(z.string()) }).optional(),
       poem: z.array(z.array(z.string())).optional(), // stanzas of lines, **word** in bold, set above the line
     })),
     colophon: z.array(z.object({ k: z.string(), v: z.string(), href: z.string().optional() })),

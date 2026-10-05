@@ -23,16 +23,16 @@ export const selected: Cell[] = [
   { id: 'lino-app', lead: true, name: 'Lino', what: 'AI canvas for visual thinking', how: 'Startup · design + code',
     // The product demo and the lino.one site, shared with the Lino App detail page.
     moments: [{ src: '/media/works/lino-app/hero.mp4', kind: 'video' }] },
-  { id: 'space-self-log', name: 'Thesis', what: 'Egocentric vision for personal AI', how: 'Swift + agent memory',
-    moments: [img('thesis-floorplan', true), img('thesis-flow', true)] },
+  { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
+    moments: [vid('risee-orbit')] },
+  { id: 'space-self-log', name: 'Witness', what: 'A personal agent that can see', how: 'Agent memory + egocentric vision',
+    moments: [img('witness-device', true), img('witness-plan', true)] },
   { id: 'piko', name: 'Piko', what: 'Wearable companion', how: 'Hardware + CV + LLM',
     moments: [img('piko-parts')] },
   { id: 'banana-exoskeleton', name: 'Banana Exoskeleton', what: 'Fits any banana', how: 'Computational design',
     moments: [img('banana-shell')] },
   { id: 'bread-reader', name: 'Bread Reader', what: 'Toaster that reads poems', how: 'Hardware hack',
     moments: [img('bread-cover')] },
-  { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
-    moments: [vid('risee-orbit')] },
 ];
 
 export const concepts: Cell[] = [
@@ -46,8 +46,9 @@ export const concepts: Cell[] = [
 
 export const links = {
   resume: '/Assets/cv.pdf',
-  playground: '/playground.html',
+  playground: '/playground/', // with the slash: /playground alone can resolve to the old playground.html, which forwards here
   email: 'cwu14932@gmail.com',
   fullMap: '/map.html',
   medium: 'https://medium.com/@gochris',
+  linkedin: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/',
 };

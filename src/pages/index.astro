@@ -4,6 +4,7 @@ import '../styles/home.css';
 import MapView from '../components/MapView.astro';
 import { glyph, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
 import { selected, concepts, links, type Cell } from '../data/home';
+import { experiments } from '../data/playground';
 
 // Chronological path through every work, the same order the legacy map draws its lines in.
 const works = (await getCollection('works')).sort((a, b) =>
@@ -28,7 +29,7 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Yixi (Chris) Wu · Design engineer</title>
-  <meta name="description" content="Yixi (Chris) Wu, design engineer and founder of Lino. Work across software, hardware and space.">
+  <meta name="description" content="Yixi (Chris) Wu, design engineer and founder of Lino, building AI products across software, hardware and space.">
   <link rel="icon" type="image/svg+xml" href="/icon/walking.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +47,7 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
   </div>
   <nav class="links-top">
     <a href={links.resume} target="_blank" rel="noopener">Resume</a>
-    <a href={links.playground}>Playground</a>
+    <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
     <a href={`mailto:${links.email}`}>Email</a>
     <a class="book top-book" href={links.medium} target="_blank" rel="noopener" aria-label="Notes on Medium" title="Notes on Medium">
       <img class="b-closed" src="/icon/Notebook-closed.svg" alt="" /><img class="b-semi" src="/icon/Notebook-semiopen.svg" alt="" /><img class="b-open" src="/icon/Notebook-open.svg" alt="" />
@@ -56,8 +57,8 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
 
 <main id="top">
   <section class="intro">
-    <h1>Hi, I'm Chris.<br>Founder of <em>Lino</em>.</h1>
-    <p>Design engineer working across software, hardware and space.</p>
+    <h1>Hi, I'm Chris.<br>Design engineer. <span class="keep">Founder of <em>Lino</em>.</span></h1>
+    <p>Building AI products across software, hardware and space.</p>
   </section>
 
   {[{ cells: selected, cls: 'grid', label: 'Selected works' }, { cells: concepts, cls: 'shelf', label: 'Concepts' }].map(({ cells, cls, label }, gi) => (
@@ -90,8 +91,20 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
     </Fragment>
   ))}
 
+  <div class="concepts-head play-head">
+    <h2><a href={links.playground}>Playground</a></h2>
+    <p class="toys">{experiments.map(x => <a href={`${links.playground}#${x.id}`}>{x.icon && <img src={x.icon} alt="" />}{x.name}</a>)}</p>
+    <a class="all" href={links.playground}>All →</a>
+  </div>
+
   <footer class="foot">
-    <span>© 2026 Yixi(Chris) Wu</span>
+    <span>© 2026 Yixi (Chris) Wu</span>
+    <nav class="foot-links" aria-label="Get in touch">
+      <a href={links.resume} target="_blank" rel="noopener">Resume</a>
+      <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={`mailto:${links.email}`}>Email</a>
+      <a href={links.medium} target="_blank" rel="noopener">Medium</a>
+    </nav>
   </footer>
 </main>
 

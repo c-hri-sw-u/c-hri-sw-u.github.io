@@ -1,0 +1,49 @@
+---
+// Witness's adaptive capture, as a strip of time: one tick per frame the phone takes. At rest it waits 12 s between
+// frames; a trigger (I stand up, someone speaks) drops it to 2 s, and it eases back through 5 s and 8 s to 12 s
+// (the calibrated 2 → 5 → 8 → 12 s, as on the thesis slides). One unit is one second; the ticks draw in time order.
+const X0 = 18, T = 180, W = 384, x = (t: number) => X0 + (t * W) / T;
+const ramp = (from: number, until: number) => {
+  const out: number[] = [];
+  for (let t = from, k = 0, gaps = [2, 5, 8]; t <= until; t += gaps[k] ?? 12, k++) out.push(t);
+  return out;
+};
+const triggers = [{ t: 66, label: 'I stand up' }, { t: 128, label: 'someone speaks' }];
+const ticks = [0, 12, 24, 36, 48, 60, ...ramp(66, 122), ...ramp(128, T)];
+const y = 64, h = 34;
+// Each tick draws at its moment along the strip, so the strip fills in time order.
+const at = (t: number) => (0.5 + (t / T) * 2.4).toFixed(2);
+---
+<svg class="drawing capture r" viewBox="0 0 420 150" aria-hidden="true">
+  <g class="obj">
+    <path class="axis" pathLength="1" d={`M${X0 - 8} ${y + h} H${X0 + W + 8}`} />
+    {ticks.map(t => (
+      <path class="tick" pathLength="1" d={`M${x(t)} ${y + h} v${-h}`} style={`transition-delay:${at(t)}s`} />
+    ))}
+    <text class="gap" x={x(30)} y={y + h + 26}>quiet: every 12 s</text>
+    <text class="gap" x={x(140)} y={y + h + 26}>then every 2 s, easing back</text>
+  </g>
+  {triggers.map(({ t, label }) => (
+    <g class="obj trig" style={`--d:${at(t)}s`}>
+      <path pathLength="1" d={`M${x(t)} ${y - 26} v14 m-4 -5 l4 5 l4 -5`} />
+      <text x={x(t)} y={y - 34}>{label}</text>
+    </g>
+  ))}
+</svg>
+
+<style is:global>
+  .drawing.capture { width: min(100%, 680px, calc(40svh * 420 / 150)) }
+  /* Drawn larger than its own units on wide screens; see Sizes.astro. */
+  .capture path { vector-effect: none; stroke-width: .9 }
+  .capture .tick { stroke-opacity: .8 }
+  .capture .axis { stroke-opacity: .3 }
+  .capture text { font-size: 11px }
+  @media (max-width: 600px) { .capture text { font-size: 14.5px } }
+  .capture .trig text { fill: var(--fg) }
+  .capture .trig path { stroke: var(--signal); stroke-opacity: 1 }
+  /* Its own timing, over the shared .drawing .obj delays. */
+  html.js .scene.on .drawing.capture .obj.trig path, html.js .scene.on .drawing.capture .obj.trig text { transition-delay: var(--d) }
+  html.js .scene.on .drawing.capture .obj .gap { transition-delay: 3s }
+  html.js .scene.on .drawing.capture .obj .axis { transition-delay: .3s }
+  html.js .scene.on .drawing.capture .obj .tick { transition-duration: .35s }
+</style>
