@@ -144,3 +144,14 @@ python3 scripts/clear-white.py "$SRC/Go Above or Below/4-1.webp" "$OUT/go-above-
 python3 scripts/clear-white.py "$SRC/Go Above or Below/4-5.webp" "$OUT/go-above-or-below/sketch.webp"
 python3 scripts/clear-white.py "$SRC/Go Above or Below/4-8.webp" "$OUT/go-above-or-below/idea.webp" 0 0 2480 700 1600
 python3 scripts/clear-white.py "$SRC/Go Above or Below/4-9.webp" "$OUT/go-above-or-below/section.webp" 0 0 1630 1686 1100
+
+# Parade with Gods (short page: the trip, then the three rounds of a tug-of-war between village and city)
+still parade-with-gods "Parade with Gods/1-0.webp"      village
+still parade-with-gods "Parade with Gods/1-9.webp"      fieldwork
+still parade-with-gods "Parade with Gods/1-15.webp"     zones
+ffmpeg -nostdin -v error -y -i "$SRC/Parade with Gods/1-12.webp" -vf "scale=1100:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/parade-with-gods/invasion.webp"
+# parade, disneyland: the procession and the Guanyin–Mickey pair, off their white sheets
+python3 scripts/clear-white.py "$SRC/Parade with Gods/1-4.webp" "$OUT/parade-with-gods/parade.webp" 0 0 2481 1212 1600
+python3 scripts/clear-white.py "$SRC/Parade with Gods/1-8.webp" "$OUT/parade-with-gods/disneyland.webp"
+# light: the shrine of light structures on black, its ground lifted to the page's ink (#111)
+ffmpeg -nostdin -v error -y -i "$SRC/Parade with Gods/1-1.webp" -vf "lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/parade-with-gods/light.webp"
