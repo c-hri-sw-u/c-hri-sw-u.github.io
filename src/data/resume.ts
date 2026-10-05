@@ -3,7 +3,7 @@
 // after a change, run `npm run build && npm run resume-pdf` and check the PDF still has one page.
 // In any line, [words](url) is a link. Keep each line to one fact.
 
-export interface Entry { org: string; href?: string; site?: string; when: string; role: string; lines: string[] }
+export interface Entry { org: string; icon?: string; href?: string; site?: string; when: string; role: string; lines: string[] }
 export interface Project { name: string; href?: string; meta: string; line: string }
 
 export const person = {
@@ -19,7 +19,7 @@ export const person = {
 
 export const work: Entry[] = [
   {
-    org: 'Lino', href: 'https://lino.one', site: 'lino.one', when: 'Dec 2025 – Present', role: 'Solo Founder',
+    org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', href: 'https://lino.one', site: 'lino.one', when: 'Dec 2025 – Present', role: 'Solo Founder',
     lines: [
       'I design, build and run Lino: an AI workspace that puts documents, databases and sketches on one canvas, with an agent.',
       'Designed how people and the agent work together: its edits arrive as proposals to review, and every paragraph records who wrote it.',
@@ -53,8 +53,6 @@ export const research: Entry[] = [
 export const projects: Project[] = [
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
     line: 'A wearable AI companion. I did its concept, hardware and interactions.' },
-  { name: 'Banana Exoskeleton', href: 'https://c-hri-sw-u.github.io/works/banana-exoskeleton', meta: '2025 · team of 2',
-    line: 'A case for any banana: I traced 1,400 with YOLO and wrote the optimizer.' },
   { name: 'Risee', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
     line: 'LLM actions on any selected text, in a ring around the cursor. I use it daily.' },
   { name: 'Rethinking Rabbit R1', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concept',
