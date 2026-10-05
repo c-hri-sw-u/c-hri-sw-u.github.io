@@ -1,8 +1,10 @@
 ---
 // A desk in perspective behind the "portable workstation" scene: a few things lie on it, drawn in
 // the same hairline as the page's rules. Coordinates follow a 2000 × 1135 screen.
+// On a phone it sits under the words instead (inline), cropped to the desk itself.
+const { inline = false } = Astro.props;
 ---
-<svg class="backdrop desk" viewBox="0 0 2000 1135" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<svg class:list={['backdrop desk', { inline }]} viewBox={inline ? '0 150 2000 935' : '0 0 2000 1135'} preserveAspectRatio={inline ? 'xMidYMid meet' : 'xMidYMid slice'} aria-hidden="true">
   <path pathLength="1" d="M0 700 L480 180 H1520 L2000 700" />
   <g class="obj">
     <path pathLength="1" d="M 150 820 L 330 760 L 410 1000 L 230 1060 Z" />
