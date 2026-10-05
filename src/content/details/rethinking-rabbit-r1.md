@@ -60,8 +60,8 @@ scenes:
     cutout: true
     wide: true
     year: "2024"
-  - line: "Each step plays to what the R1 is good at."
-    note: "Sensors and the network to gather context. A small screen made for exploring the world, not for scrolling. A wheel and a button for the hand."
+  - line: "Too small for heavy content, it’s made for small surprises."
+    note: "You carry it like a toy. Its little screen is for glancing at the world, not for reading or watching. So I used it to bring more surprises into everyday life."
     year: "2024"
   - line: "You see what it draws on.*"
     caption: "Process Visualization and Fluid Widgets."
