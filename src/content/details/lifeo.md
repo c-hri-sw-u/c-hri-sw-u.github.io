@@ -39,9 +39,6 @@ scenes:
     note: "Every day, AI writes a short story in a genre you love, from the words you met lately, plus a few new ones*"
     footnote: "* The i+1 idea from Stephen Krashen: learn from input one step beyond what you already know. It started in Risee."
     year: "2025"
-  - line: "I had finished a first version. Then Apple announced iOS 26, and I started over."
-    tone: ink
-    year: "2025"
 colophon:
   - { k: "Role", v: "Product and interaction design, solo" }
   - { k: "Year", v: "June 2025" }
