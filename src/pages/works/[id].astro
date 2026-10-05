@@ -24,6 +24,8 @@ const stages = [...new Set(works.map(w => w.data.stage))].map(s => ({ s, items: 
 const STAGE_NAME: Record<string, string> = { E: 'Lino', D: 'Graduate, year two', C: 'Graduate, year one', B: 'Gap year', A: 'Undergraduate' };
 
 const nextWork = next ? await getEntry('works', next) : undefined;
+// The work's code (stage letter + order), written inside its glyph as on the homepage badges.
+const codeOf = (w: { data: { stage: string; order: number } }) => `${w.data.stage}${w.data.order}`;
 const name = work.data.listTitle.replace(/\s*\(.*\)$/, '');
 const isVideo = (src: string) => src.endsWith('.mp4');
 const total = scenes.length + 1;
@@ -50,7 +52,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
 <main class="story" id="story">
   <section class="scene gate" data-tone="paper">
     <div class="stack">
-      <p class="kicker r"><span class="glyph" set:html={glyph(work.data.icon)} />{name}</p>
+      <p class="kicker r"><span class="glyph badge" set:html={glyph(work.data.icon, codeOf(work))} />{name}</p>
       <div class="lines">
         {opener.map((l, i) => <p class:list={['line', 'r', { em: i === opener.length - 1 }]}>{l}</p>)}
       </div>
@@ -87,7 +89,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
       </dl>
       {nextWork && (
         <a class="next r" href={hrefOf(nextWork.id, nextWork.data.legacyUrl)}>
-          <span class="glyph" set:html={glyph(nextWork.data.icon)} />
+          <span class="glyph badge" set:html={glyph(nextWork.data.icon, codeOf(nextWork))} />
           <span><small>Next</small>{nextWork.data.listTitle}</span>
         </a>
       )}
