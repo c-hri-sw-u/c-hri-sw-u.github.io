@@ -48,7 +48,7 @@ scenes:
   - line: "Lino is a portable workstation."
     list:
       - { t: "Personal knowledge base", d: "Built on connections, beyond backlinks" }
-      - { t: "Infinite canvas", d: "Cards, databases and sketches on one surface, the smoothest in its class" }
+      - { t: "Infinite canvas", d: "Rich-text editor, multi-view databases and whiteboard on one surface, the smoothest in its class" }
       - { t: "Personal agent", d: "An AI that works inside your canvas" }
       - { t: "Project management with agents", d: "Tasks today, Lino Teams coming soon" }
       - { t: "Everything else, built in", d: "A calendar, a reader and a browser" }
