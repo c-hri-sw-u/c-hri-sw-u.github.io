@@ -86,8 +86,11 @@ export function initHome() {
   });
   plane.addEventListener('click', e => {
     const b = (e.target as Element).closest<HTMLElement>('.mapicon');
+    // On a phone the preview is a sheet above the switch: tapping it opens the work.
+    if ((e.target as Element).closest('#preview')) { if (armed) location.href = iconEl(armed).dataset.url || ''; return; }
+    plane.querySelector('.mapicon.armed')?.classList.remove('armed');
     if (!b) { pv.classList.remove('show'); armed = null; return; }
-    if (armed !== b.dataset.id && matchMedia('(hover: none)').matches) { armed = b.dataset.id!; showPreview(b); return; }
+    if (armed !== b.dataset.id && matchMedia('(hover: none)').matches) { armed = b.dataset.id!; b.classList.add('armed'); showPreview(b); return; }
     if (b.dataset.url) location.href = b.dataset.url;
     else showPreview(b);
   });

@@ -198,6 +198,7 @@ html:has(body.is-map) { overflow: hidden }
 .preview img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; border-radius: 2px; background: var(--paper-bg) }
 .preview div { padding-top: 8px; font-size: 13px; line-height: 1.35 }
 .preview b { display: block; font-weight: 500 }
+.preview em { display: none }
 .preview span { color: var(--muted); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .02em }
 
 .compass { position: absolute; left: 40px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 50%; background: var(--card) }
@@ -265,9 +266,22 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   #map { padding: calc(70px + env(safe-area-inset-top, 0px)) 16px calc(150px + env(safe-area-inset-bottom, 0px)) }
   .mapicon { width: 28px; height: 28px; margin: -14px 0 0 -14px }
   .ax-l, .ax-r { display: none } .ax-h { left: 0; right: 0 }
-  .trow img { width: 15px; height: 15px } .parthenon { position: absolute; left: 17%; top: 88%; width: calc(2.4vw + 30px); transform: translate(-50%, -50%) rotate(-26deg); clip-path: inset(4% 0 10% 0) }
+  .trow img { width: 15px; height: 15px }
 .trow .gap { width: 12px; height: 15px }
   .bubble { font-size: 12px; padding: 4px 9px }
+  .bubble.now { bottom: auto; top: calc(100% + 8px) } /* above, it would sit on Risee */
+  /* Fingers need more than the 28px glyph: an invisible 44px target around each icon. */
+  .mapicon::after { content: ''; position: absolute; inset: -8px }
+  .mapicon.armed { transform: scale(1.25); z-index: 6 }
+  /* The preview becomes a sheet above the switch, tapped to open the work. */
+  .preview { position: fixed; inset: auto 16px calc(84px + env(safe-area-inset-bottom, 0px)) 16px !important; width: auto; z-index: 75;
+    display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; align-items: center; border-radius: 10px; box-shadow: 0 8px 28px var(--shadow);
+    transform: translateY(10px); transition: opacity .2s, transform .25s }
+  .preview.show { transform: none; pointer-events: auto }
+  body:has(.preview.show) :is(.legend, .map-foot, .compass) { opacity: 0; pointer-events: none }
+  .preview div { padding: 0 }
+  .preview span { display: block; margin-top: 2px }
+  .preview em { display: inline-block; margin-top: 8px; font-style: normal; font-size: 12.5px; font-weight: 500 }
   .compass { left: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px }
   .map-foot { right: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); font-size: 10px }
   .legend { right: 16px; bottom: calc(94px + env(safe-area-inset-bottom, 0px)) }
