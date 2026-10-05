@@ -4,7 +4,6 @@ import '../../styles/detail.css';
 import { glyph } from '../../lib/glyph';
 import Desk from '../../components/Desk.astro';
 import Balance from '../../components/Balance.astro';
-import Shelf from '../../components/Shelf.astro';
 
 // One page per work that has a narrative in src/content/details. Works without one keep their legacy page.
 export async function getStaticPaths() {
@@ -15,7 +14,8 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const detail = (await getEntry('details', id))!;
 const work = (await getEntry('works', id))!;
-const { opener, scenes, colophon, next } = detail.data;
+const { opener, openerStyle, scenes, colophon, next } = detail.data;
+const isSign = (t: string) => t === '×' || t === '=';
 
 const detailIds = new Set((await getCollection('details')).map(d => d.id));
 const hrefOf = (wid: string, legacy?: string) => detailIds.has(wid) ? `/works/${wid}` : legacy;
@@ -56,9 +56,11 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <section class="scene gate" data-tone="paper">
     <div class="stack">
       <p class="kicker r"><span class="glyph badge" set:html={glyph(work.data.icon, codeOf(work))} />{name}</p>
-      <div class="lines">
-        {opener.map((l, i) => <p class:list={['line', 'r', { em: i === opener.length - 1 }]}>{l}</p>)}
-      </div>
+      {openerStyle === 'equation'
+        ? <div class="equation">{opener.map(t => <p class:list={['r', isSign(t) ? 'sign' : 'term']}>{t}</p>)}</div>
+        : <div class="lines">
+            {opener.map((l, i) => <p class:list={['line', 'r', { em: i === opener.length - 1 }]}>{l}</p>)}
+          </div>}
       <button class="begin r" id="begin" type="button">Begin</button>
     </div>
   </section>
@@ -66,16 +68,15 @@ const pad = (n: number) => String(n).padStart(2, '0');
   {scenes.map((sc, i) => {
     const list = sc.media ? [sc.media].flat() : [];
     return (
-      <section class:list={['scene', { 'text-only': !list.length && !sc.card, big: sc.big }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
+      <section class:list={['scene', { 'text-only': !list.length && !sc.card, big: sc.big, wide: !!sc.facts }]} data-tone={sc.tone} data-year={sc.year ?? ''} data-n={pad(i + 1)}>
         {sc.backdrop === 'desk' && <Desk />}
         <div class:list={['stack', { wide: sc.wide }]}>
           {sc.drawing === 'balance' && <Balance />}
-          {sc.drawing === 'shelf' && <Shelf />}
           {list.length > 0 && (
-            <figure class:list={['r', { fade: list.length > 1, cutout: sc.cutout }]}>
+            <figure class:list={['r', { fade: list.length > 1 && !sc.gallery, gallery: sc.gallery, cutout: sc.cutout }]}>
               {list.map((src, j) => isVideo(src)
                 ? <video data-round={sc.round} src={src} poster={src.replace('.mp4', '-poster.jpg')} muted loop playsinline preload="metadata" aria-label={sc.alt}></video>
-                : <img class:list={[{ on: j === 0 }]} data-round={sc.round} src={src} alt={j === 0 ? (sc.alt ?? '') : ''} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
+                : <img class:list={[{ on: j === 0 }]} data-round={sc.round} src={src} alt={j === 0 || sc.gallery ? (sc.alt ?? '') : ''} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
             </figure>
           )}
           {sc.card && (
@@ -88,9 +89,11 @@ const pad = (n: number) => String(n).padStart(2, '0');
           )}
           {sc.caption && <p class="caption r">{sc.caption}</p>}
           {sc.lead && <p class="lead r">{sc.lead}</p>}
-          <p class="line r">{sc.icon && sc.line.includes('[icon]')
+          {sc.equation && <div class="equation">{sc.equation.map(t => <p class:list={['r', isSign(t) ? 'sign' : 'term']}>{t}</p>)}</div>}
+          {sc.facts && <div class="facts">{sc.facts.map(f => <div class="fact r"><h3>{f.t}</h3><p>{f.d}</p></div>)}</div>}
+          {sc.line && <p class="line r">{sc.icon && sc.line.includes('[icon]')
             ? <Fragment>{sc.line.split('[icon]')[0]}<img class="app-icon" src={sc.icon} alt="" />{sc.line.split('[icon]')[1]}</Fragment>
-            : sc.line}</p>
+            : sc.line}</p>}
           {sc.list && <ul class="inventory r">{sc.list.map(item => typeof item === 'string' ? <li>{item}</li> : <li>{item.t}<small>{item.d}</small></li>)}</ul>}
           {sc.note && <p class="note r">{sc.note}</p>}
           {sc.backdrop === 'desk' && <Desk inline />}

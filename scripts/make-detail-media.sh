@@ -30,7 +30,16 @@ still lino-app "Lino App/lino-ai.webp"               lino-ai
 # Piko
 clip  piko "Piko/IMG_2013.MOV"                       caught
 clip  piko "Piko/6.gif"                              moods
-still piko "Piko/1.webp"                             venn
-still piko "Piko/9.webp"                             worn
 still piko "Piko/17.webp"                            inside
 # koala.webp: Piko/14.webp keyed to a transparent ground by hand (black around the puppet, nose kept, bottom faded)
+still piko "Piko/2.webp"                             concept
+sq() { # id, source, name: a centred square crop, for a gallery
+  mkdir -p "$OUT/$1"
+  ffmpeg -nostdin -v error -y -i "$SRC/$2" -vf "crop='min(iw,ih)':'min(iw,ih)',scale=800:800:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/$1/$3.webp"
+}
+sq    piko "Piko/9.webp"                             fan-1
+sq    piko "Piko/8.webp"                             fan-2
+sq    piko "Piko/12.webp"                            fan-3
+sq    piko "Piko/13.webp"                            fan-4
+sq    piko "Piko/19.webp"                            fan-5
+sq    piko "Piko/Snipaste_2025-05-12_17-16-30.png"   fan-6

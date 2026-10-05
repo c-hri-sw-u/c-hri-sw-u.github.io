@@ -32,10 +32,15 @@ const link = z.object({ href: z.string(), label: z.string() });
 const details = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/details' }),
   schema: z.object({
-    opener: z.array(z.string()).length(3),
+    opener: z.array(z.string()).min(1),
+    // lines: sentences read in turn, the last in italics. equation: terms joined by × or =, one per row.
+    openerStyle: z.enum(['lines', 'equation']).default('lines'),
     scenes: z.array(z.object({
       lead: z.string().optional(),                                   // a quieter line above a big one
-    line: z.string(),
+    line: z.string().optional(),
+      equation: z.array(z.string()).optional(), // terms and × / = signs, one per row, like the equation opener
+      facts: z.array(z.object({ t: z.string(), d: z.string() })).optional(), // side-by-side columns
+      gallery: z.boolean().default(false), // several stills shown together in a grid, not in turn
     big: z.boolean().default(false),                               // a name or statement set large
       note: z.string().optional(),
       media: z.union([z.string(), z.array(z.string())]).optional(), // several stills cross-fade
@@ -52,7 +57,7 @@ const details = defineCollection({
       cutout: z.boolean().default(false), // a cut-out with a transparent ground: no frame, no shadow
       icon: z.string().optional(), // drawn where the line says [icon]
       backdrop: z.enum(['desk']).optional(), // a line drawing behind the words
-      drawing: z.enum(['balance', 'shelf']).optional(), // a line drawing above the words
+      drawing: z.enum(['balance']).optional(), // a line drawing above the words
     })),
     colophon: z.array(z.object({ k: z.string(), v: z.string(), href: z.string().optional() })),
     next: z.string().optional(),
