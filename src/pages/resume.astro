@@ -5,8 +5,14 @@
 import '@fontsource/poppins/400.css';
 import '@fontsource/poppins/500.css';
 import '@fontsource/poppins/600.css';
+import { readFileSync } from 'node:fs';
 import { person, work, research, projects, education, skills, honors, languages } from '../data/resume';
-const PDF = '/Yixi-Chris-Wu-Resume.pdf';
+import { LOOKS, pdfFor } from '../data/resume-looks';
+// The walking figure's looks (the homepage's frames: same body, different headwear), drawn white there, inked here.
+// Inline, so the colour can change (ids every frame shares are dropped); each look has its own printed PDF (see resume-looks.ts).
+const ink = (svg: string) => svg.replace(/<\?xml[^>]*>/, '').replace(/ id="(1475|SVGRepo_\w+)"/g, '').replace(/rgb\(255, 255, 255\)/g, 'rgb(17, 17, 17)')
+  .replace(/#ffffff/gi, '#111111').replace(/rgb\(231, 231, 231\)/g, 'rgb(90, 90, 90)');
+const looks = LOOKS.map(id => ink(readFileSync(`public/icon/walking/walking-${id}.svg`, 'utf8')));
 // [words](url) → link, everything else escaped
 const md = (s: string) => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]!).replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
 const sections = [
@@ -26,7 +32,7 @@ const sections = [
 <body>
 <header class="rs-bar">
   <a class="home" href="/"><span aria-hidden="true">←</span> Yixi (Chris) Wu</a>
-  <a class="dl" href={PDF} download="Yixi-Chris-Wu-Resume.pdf">Download PDF</a>
+  <a class="dl" id="dl" href={pdfFor(LOOKS[0])} download="Yixi-Chris-Wu-Resume.pdf">Download PDF</a>
 </header>
 
 <main class="sheet">
@@ -35,7 +41,7 @@ const sections = [
     <p class="rs-title">{person.title}</p>
     <ul class="rs-contact">{person.contact.map(c => <li><a href={c.href}>{c.label}</a></li>)}</ul>
     <!-- The walking figure, the site's mark, large, walking along the line under the header -->
-    <div class="rs-walker" aria-hidden="true"><img src="/icon/walking.svg" alt="" /></div>
+    <div class="rs-walker" id="walker" aria-hidden="true">{looks.map((svg, i) => <div class:list={['rs-look', { on: i === 0 }]} data-look={LOOKS[i]} data-pdf={pdfFor(LOOKS[i])} set:html={svg} />)}</div>
   </header>
 
   <div class="rs-cols">
@@ -94,6 +100,22 @@ const sections = [
   </div>
 
 </main>
+
+<script>
+  // On screen the figure changes its look every couple of seconds, and "Download PDF" always points at the PDF printed
+  // with the look showing that moment. ?look=<id> holds one look still: the PDF script prints each look that way.
+  const looks = [...document.querySelectorAll<HTMLElement>('#walker .rs-look')];
+  const dl = document.getElementById('dl') as HTMLAnchorElement;
+  let at = 0;
+  const show = (i: number) => { looks[at].classList.remove('on'); at = i; looks[at].classList.add('on'); dl.href = looks[at].dataset.pdf!; };
+  const pinned = new URLSearchParams(location.search).get('look');
+  if (pinned !== null) show(Math.max(0, looks.findIndex(l => l.dataset.look === pinned)));
+  else {
+    const next = () => { let i; do i = Math.floor(Math.random() * looks.length); while (i === at); show(i); };
+    next();
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(next, 1800);
+  }
+</script>
 
 <style is:global>
   /* One Letter sheet (8.5 × 11 in). One typeface, three sizes, two greys: the hierarchy does the work.
@@ -159,8 +181,10 @@ const sections = [
 
   /* The figure's feet stand on the header's rule. In walking.svg the figure spans x 258–762 and y 206–1004 of 1024,
      so the box is 98% of the image tall (feet at its bottom) and the image overhangs on the right by the empty 26%. */
-  .rs-walker { --h: 2.05in; position: absolute; right: calc(var(--h) * -.256); bottom: 0; width: var(--h); height: calc(var(--h) * .98); pointer-events: none }
-  .rs-walker img { display: block; width: var(--h); height: var(--h) }
+  .rs-walker { --h: 1.5in; position: absolute; right: calc(var(--h) * -.256); bottom: 0; width: var(--h); height: calc(var(--h) * .98); pointer-events: none }
+  .rs-look { position: absolute; inset: 0 auto auto 0; width: var(--h); height: var(--h); visibility: hidden }
+  .rs-look.on { visibility: visible }
+  .rs-look svg { display: block; width: 100%; height: 100%; overflow: visible } /* some headwear reaches past the frame */
 
   /* Below a sheet's width the page reflows into one column at a readable size; the PDF keeps the Letter sheet. */
   @media screen and (max-width: 860px) {
