@@ -1,0 +1,43 @@
+---
+// An iPad, a phone and the Rabbit R1, outlined to scale (one unit is a millimetre) and standing on one line.
+// iPad 10th gen 179.5 × 248.6 mm, iPhone 15 71.6 × 147.6 mm, R1 78 × 78 mm; the R1's parts follow its render.
+// Each draws itself in turn; the R1 is in its orange.
+const rr = (x: number, y: number, w: number, h: number, r: number) =>
+  `M${x + r} ${y} H${x + w - r} A${r} ${r} 0 0 1 ${x + w} ${y + r} V${y + h - r} A${r} ${r} 0 0 1 ${x + w - r} ${y + h} ` +
+  `H${x + r} A${r} ${r} 0 0 1 ${x} ${y + h - r} V${y + r} A${r} ${r} 0 0 1 ${x + r} ${y} Z`;
+const base = 270;
+const ipad = { x: 20, w: 179.5, h: 248.6 }, phone = { x: 235.5, w: 71.6, h: 147.6 }, r1 = { x: 343.1, w: 78, h: 78 };
+const top = (d: { h: number }) => base - d.h;
+---
+<svg class="drawing sizes r" viewBox="0 0 441 302" aria-hidden="true">
+  <g class="obj">
+    <path pathLength="1" d={rr(ipad.x, top(ipad), ipad.w, ipad.h, 12)} />
+    <path pathLength="1" d={rr(ipad.x + 9.5, top(ipad) + 9.5, ipad.w - 19, ipad.h - 19, 6)} />
+    <text x={ipad.x + ipad.w / 2} y="292">iPad · 10.9″</text>
+  </g>
+  <g class="obj">
+    <path pathLength="1" d={rr(phone.x, top(phone), phone.w, phone.h, 11)} />
+    <path pathLength="1" d={rr(phone.x + 3, top(phone) + 3, phone.w - 6, phone.h - 6, 8.5)} />
+    <path pathLength="1" d={rr(phone.x + 25.5, top(phone) + 7, 20.6, 6, 3)} />
+    <text x={phone.x + phone.w / 2} y="292">Phone · 6.1″</text>
+  </g>
+  <g class="obj r1">
+    <path pathLength="1" d={rr(r1.x, top(r1), r1.w, r1.h, 9)} />
+    <path pathLength="1" d={rr(r1.x + 2.6, top(r1) + 2.3, 53.6, 72.9, 5)} />
+    <path pathLength="1" d={rr(r1.x + 58.8, top(r1) + 4.4, 15.5, 15.1, 4)} />
+    <path pathLength="1" d={`M${r1.x + 68.75} ${top(r1) + 11.95} a2.2 2.2 0 1 1 -0.01 0 Z`} />
+    <path pathLength="1" d={rr(r1.x + 58.9, top(r1) + 23.3, 15.2, 16.5, 2.5)} />
+    <path pathLength="1" d={`M${r1.x + 78} ${top(r1) + 28} v6`} />
+    <text x={r1.x + r1.w / 2} y="292">Rabbit R1 · 2.88″</text>
+  </g>
+</svg>
+
+<style is:global>
+  .drawing.sizes { width: min(100%, 640px, calc(44svh * 441 / 302)) }
+  .sizes text { font-size: 13px }
+  /* Drawn larger than its own units on wide screens, so its strokes scale with it: a non-scaling stroke measures its
+     dash on screen, and the draw-in would stop short of the end. */
+  .sizes path { vector-effect: none; stroke-width: .95 }
+  .sizes .r1 path { stroke: #ff4a00; stroke-opacity: 1; stroke-width: 1.25 }
+  .sizes .r1 text { fill: var(--fg) }
+</style>

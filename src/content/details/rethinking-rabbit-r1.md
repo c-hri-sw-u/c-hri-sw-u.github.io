@@ -56,8 +56,10 @@ scenes:
     cutout: true
     wide: true
     year: "2024"
-  - line: "Too small for heavy content, it’s made for small surprises."
-    note: "You carry it like a toy. Its little screen is for glancing at the world, not for reading or watching. So I used it to bring more surprises into everyday life."
+  - drawing: sizes
+    caption: "To scale: an iPad, a phone, and the R1, 78 mm on each side."
+    line: "Too small to scroll on. Just right for a surprise."
+    note: "You carry it like a toy and glance at it, not into it. So I used it to bring small surprises into everyday life."
     year: "2024"
   - line: "You see what it draws on.*"
     caption: "Process Visualization and Fluid Widgets."

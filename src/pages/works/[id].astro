@@ -7,6 +7,7 @@ import Balance from '../../components/Balance.astro';
 import Reasons from '../../components/Reasons.astro';
 import Bananas from '../../components/Bananas.astro';
 import Decode from '../../components/Decode.astro';
+import Sizes from '../../components/Sizes.astro';
 import Poem from '../../components/Poem.astro';
 import SelectOpener from '../../components/SelectOpener.astro';
 import ContextOpener from '../../components/ContextOpener.astro';
@@ -24,7 +25,7 @@ const detail = (await getEntry('details', id))!;
 const work = (await getEntry('works', id))!;
 const { opener, openerStyle, openerNote, openerMedia, openerAlt, scenes, colophon, next } = detail.data;
 // Drawings that take the place of media: the scene is not text-only, and it gets the wide stack.
-const FIGURES = ['reasons', 'bananas', 'fit'];
+const FIGURES = ['reasons', 'bananas', 'fit', 'sizes'];
 const isSign = (t: string) => t === '×' || t === '=';
 // Openers drawn by their own component, with an italic note under them.
 const OWN = ['selection', 'context', 'wheel', 'dock'];
@@ -102,6 +103,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
           {sc.drawing === 'bananas' && <Bananas />}
           {sc.drawing === 'fit' && <Bananas fit />}
           {sc.drawing === 'decode' && <Decode />}
+          {sc.drawing === 'sizes' && <Sizes />}
           {sc.poem && <Poem stanzas={sc.poem} />}
           {list.length > 0 && (
             <figure class:list={['r', { fade: list.length > 1 && !sc.gallery && !sc.pair, gallery: sc.gallery, pair: sc.pair, cutout: sc.cutout }]}>
