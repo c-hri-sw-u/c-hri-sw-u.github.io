@@ -4,6 +4,7 @@ import '../styles/home.css';
 import MapView from '../components/MapView.astro';
 import { glyph, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
 import { selected, concepts, links, type Cell } from '../data/home';
+import { experiments } from '../data/playground';
 
 // Chronological path through every work, the same order the legacy map draws its lines in.
 const works = (await getCollection('works')).sort((a, b) =>
@@ -47,7 +48,6 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
   <nav class="links-top">
     <a href={links.resume} target="_blank" rel="noopener">Resume</a>
     <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-    <a href={links.playground}>Playground</a>
     <a href={`mailto:${links.email}`}>Email</a>
     <a class="book top-book" href={links.medium} target="_blank" rel="noopener" aria-label="Notes on Medium" title="Notes on Medium">
       <img class="b-closed" src="/icon/Notebook-closed.svg" alt="" /><img class="b-semi" src="/icon/Notebook-semiopen.svg" alt="" /><img class="b-open" src="/icon/Notebook-open.svg" alt="" />
@@ -90,6 +90,17 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
       </section>
     </Fragment>
   ))}
+
+  <div class="concepts-head play-head"><h2>Playground</h2><p>Small things made to try an idea</p><a href={links.playground}>All →</a></div>
+  <section class="play" aria-label="Playground">
+    {experiments.map(x => (
+      <a class="toy" href={`${links.playground}#${x.id}`}>
+        <span class="toy-img"><img src={x.media.src.endsWith('.mp4') ? x.media.src.replace('.mp4', '-poster.jpg') : x.media.src} alt="" loading="lazy" decoding="async" /></span>
+        <span class="toy-name">{x.icon && <img src={x.icon} alt="" />}{x.name}</span>
+        <span class="toy-meta">{x.meta.split(' · ')[0]} · {x.meta.split(' · ')[1].split(',')[0].split(';')[0]}</span>
+      </a>
+    ))}
+  </section>
 
   <footer class="foot">
     <span>© 2026 Yixi (Chris) Wu</span>
