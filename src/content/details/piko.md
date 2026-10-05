@@ -54,7 +54,7 @@ scenes:
     media: /media/works/piko/inside.webp
     alt: "Generations of Piko's 3D-printed parts, and the assembled skeleton"
     year: "2025"
-  - line: "Everyone loves it."
+  - line: "Everyone loves Piko."
     media:
       - /media/works/piko/fan-1.webp
       - /media/works/piko/fan-2.webp
