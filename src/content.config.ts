@@ -36,7 +36,7 @@ const details = defineCollection({
     // lines: sentences read in turn, the last in italics. equation: terms joined by × or =, one per row.
     openerStyle: z.enum(['lines', 'equation', 'poem']).default('lines'),
     openerNote: z.string().optional(), // poem: a quiet line under it, saying who wrote it
-    openerMedia: z.string().optional(), // a loop above the opening lines, shot on white and multiplied onto the paper
+    openerMedia: z.string().optional(), // a loop above the opening lines: an mp4, or an animated image with a transparent ground
     openerAlt: z.string().optional(),
     scenes: z.array(z.object({
       lead: z.string().optional(),                                   // a quieter line above a big one

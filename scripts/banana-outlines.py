@@ -1,5 +1,5 @@
 # Banana Exoskeleton: everything drawn from the cut-out bananas in Assets/Works/Banana Exoskeleton/18.gif.
-# Writes public/media/works/banana-exoskeleton/every.mp4 (+ poster), the bananas one after another on white,
+# Writes public/media/works/banana-exoskeleton/every.webp, the bananas one after another on a transparent ground,
 # each centred and scaled to the same length so only the shape changes,
 # and src/components/Bananas.astro: their outlines aligned and overlaid, and a ring of points that shrinks onto
 # the outline they share (redrawn from the project's optimization).
@@ -8,7 +8,6 @@ import cv2, numpy as np, subprocess, tempfile, glob, os
 
 SRC = 'public/Assets/Works/Banana Exoskeleton/18.gif'
 OUT = 'public/media/works/banana-exoskeleton'
-PAPER = np.array([255, 255, 255], np.uint8)  # white: the page multiplies the video onto its paper
 os.makedirs(OUT, exist_ok=True)
 
 tmp = tempfile.mkdtemp()
@@ -35,11 +34,11 @@ for f in sorted(glob.glob(f'{tmp}/f*.png')):
     a = cv2.GaussianBlur(mask, (3, 3), 0)[y:y + h, x:x + w]
     crop = cv2.resize(im[y:y + h, x:x + w], None, fx=k, fy=k, interpolation=cv2.INTER_AREA)
     a = cv2.resize(a, (crop.shape[1], crop.shape[0]), interpolation=cv2.INTER_AREA).astype(float)[..., None] / 255
-    canvas = np.tile(PAPER, (S, S, 1)).astype(float)
+    canvas = np.zeros((S, S, 4), np.uint8)  # transparent, so the banana sits on whatever ground the page has
     oy, ox = (S - crop.shape[0]) // 2, (S - crop.shape[1]) // 2
-    region = canvas[oy:oy + crop.shape[0], ox:ox + crop.shape[1]]
-    canvas[oy:oy + crop.shape[0], ox:ox + crop.shape[1]] = crop * a + region * (1 - a)
-    frames.append(canvas.astype(np.uint8))
+    canvas[oy:oy + crop.shape[0], ox:ox + crop.shape[1], :3] = crop
+    canvas[oy:oy + crop.shape[0], ox:ox + crop.shape[1], 3] = (a[..., 0] * 255).round()
+    frames.append(canvas)
     # --- the outline: long axis level, arching upward, stem to the right
     c = pts - pts.mean(0)
     _, vecs = np.linalg.eigh(np.cov(c.T))
@@ -57,11 +56,10 @@ med = np.median([np.ptp(c[:, 0]) for c in outlines])
 outlines = [c / med for c in outlines]  # the median banana is length 1
 
 for i, fr in enumerate(frames): cv2.imwrite(f'{tmp}/k{i:03d}.png', fr)
+# An animated WebP with alpha: a video can't be transparent everywhere, and blending one onto the paper fails in Safari.
 subprocess.run(['ffmpeg', '-nostdin', '-v', 'error', '-y', '-framerate', '6', '-i', f'{tmp}/k%03d.png',
-                '-vf', 'fps=30,format=yuv420p', '-c:v', 'libx264', '-preset', 'slow', '-crf', '24',
-                '-movflags', '+faststart', '-an', f'{OUT}/every.mp4'], check=True)
-subprocess.run(['ffmpeg', '-nostdin', '-v', 'error', '-y', '-i', f'{OUT}/every.mp4', '-frames:v', '1', '-q:v', '3',
-                f'{OUT}/every-poster.jpg'], check=True)
+                '-vf', 'scale=560:-2:flags=lanczos', '-c:v', 'libwebp_anim', '-lossless', '0', '-q:v', '72',
+                '-loop', '0', f'{OUT}/every.webp'], check=True)
 
 # --- drawing space: 1000 wide, bananas 560 long, centred
 W, H, SC, CX, CY = 1000, 560, 560, 500, 300

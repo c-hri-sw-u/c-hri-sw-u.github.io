@@ -1,5 +1,5 @@
 ---
-openerMedia: /media/works/banana-exoskeleton/every.mp4
+openerMedia: /media/works/banana-exoskeleton/every.webp
 openerAlt: "Bananas of every shape and ripeness, one after another"
 opener:
   - "Every banana is different."
@@ -54,8 +54,9 @@ scenes:
   - line: "Three cases cover the three most common banana shapes."
     tone: ink
     note: "K-Means clustering found six shapes in the data. The three most representative each got their own case."
-    media: /media/works/banana-exoskeleton/cases.webp
-    alt: "Three white printed cases, each with a different curve"
+    caption: "Each cluster's bananas overlaid, above the case made for it."
+    media: /media/works/banana-exoskeleton/clusters.webp
+    alt: "The overlaid outlines of three banana clusters, each above a white printed case with the same curve"
     cutout: true
     year: "2025"
   - line: "All bananas are beautiful."

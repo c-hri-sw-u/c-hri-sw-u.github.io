@@ -55,7 +55,7 @@ sq    piko "Piko/19.webp"                            fan-5
 ffmpeg -nostdin -v error -y -i "$SRC/Piko/Snipaste_2025-05-12_17-16-30.png" -vf "crop=777:777:345:0,scale=800:800:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 78 "$OUT/piko/fan-6.webp"
 
 # Banana Exoskeleton
-# every.mp4 (the opener) and src/components/Bananas.astro (the outlines) come from 18.gif, by scripts/banana-outlines.py
+# every.webp (the opener) and src/components/Bananas.astro (the outlines) come from 18.gif, by scripts/banana-outlines.py
 python3 scripts/banana-outlines.py
 # shell: the orange case on its white sweep, cropped to the case; the page multiplies it onto the paper
 ffmpeg -nostdin -v error -y -i "$SRC/Banana Exoskeleton/0.png" -vf "crop=2400:3600:760:400,scale=1200:-2:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/banana-exoskeleton/shell.webp"
@@ -64,6 +64,8 @@ ffmpeg -nostdin -v error -y -i "$SRC/Banana Exoskeleton/1.png" -vf "crop=425:543
 clip  banana-exoskeleton "Banana Exoskeleton/17.gif"          fit
 still banana-exoskeleton "Banana Exoskeleton/4.png"           ring
 still banana-exoskeleton "Banana Exoskeleton/13.png"          to-3d
+# clusters: the three cases with their clusters' outlines above them, by scripts/banana-clusters.py
+python3 scripts/banana-clusters.py
 # cases: the three cases with their black ground lifted to the page's ink (#111)
 ffmpeg -nostdin -v error -y -i "$SRC/Banana Exoskeleton/14.png" -vf "scale=1600:-2:flags=lanczos,lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 80 "$OUT/banana-exoskeleton/cases.webp"
 

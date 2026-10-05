@@ -373,10 +373,10 @@ html.js .gate.on .stack > .begin.r { transition-delay: 3.2s }
 }
 
 /* ---------- Banana Exoskeleton ----------
-   Media shot on white melt into the paper. The outlines of a hundred bananas draw in one after another,
+   The opener's bananas sit on the paper with no frame. The outlines of a hundred bananas draw in one after another,
    faint, so their shared arc shows where they pile up; with `fit` a ring of points then shrinks onto it. */
-figure.blend img, figure.blend video { border-radius: 0; box-shadow: none; mix-blend-mode: multiply; cursor: default }
-.gate figure.blend video { max-height: min(var(--max, 46svh), 46svh) }
+figure.loose img, figure.loose video { border-radius: 0; box-shadow: none; cursor: default }
+.gate figure.loose > * { max-height: min(var(--max, 46svh), 46svh) }
 /* A name set large next to a photo keeps to one line. */
 .big .stack.wide:not(:has(video)) { width: min(100%, 1320px) }
 .drawing.bananas { width: min(100%, 900px, calc(38svh * 584 / 357)) }

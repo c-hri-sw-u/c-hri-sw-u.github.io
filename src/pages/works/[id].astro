@@ -63,8 +63,10 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <div class="stack">
       <p class="kicker r"><span class="glyph badge" set:html={glyph(work.data.icon, codeOf(work))} />{name}</p>
       {openerMedia && (
-        <figure class="r blend">
-          <video src={openerMedia} poster={openerMedia.replace('.mp4', '-poster.jpg')} muted loop playsinline autoplay preload="auto" aria-label={openerAlt}></video>
+        <figure class="r loose">
+          {isVideo(openerMedia)
+            ? <video src={openerMedia} poster={openerMedia.replace('.mp4', '-poster.jpg')} muted loop playsinline autoplay preload="auto" aria-label={openerAlt}></video>
+            : <img src={openerMedia} alt={openerAlt ?? ''} decoding="async" />}
         </figure>
       )}
       {openerStyle === 'poem' && <div class="poem opener-poem">{opener.map(l => <p class="r">{l.split(/\*\*(.+?)\*\*/).map((t, j) => j % 2 ? <b>{t}</b> : t)}</p>)}</div>}
