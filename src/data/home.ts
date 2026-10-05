@@ -38,7 +38,7 @@ export const selected: Cell[] = [
 export const concepts: Cell[] = [
   { id: 'playground-os', name: 'Playground OS', what: 'An OS for creation', how: 'LLM + XR',
     moments: [vid('pgos-creation'), vid('pgos-spatial')] },
-  { id: 'rethinking-rabbit-r1', name: 'Rabbit R1', what: 'Agent-first device', how: 'UX',
+  { id: 'rethinking-rabbit-r1', name: 'Rethinking Rabbit R1', what: 'Agent-first device', how: 'UX',
     moments: [vid('r1-agent')] },
   { id: 'lifeo', name: 'Lifeo', what: 'Learn language from your life', how: 'iOS app design',
     moments: [img('lifeo-trio', true)] },

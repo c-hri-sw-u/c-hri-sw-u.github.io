@@ -1,0 +1,109 @@
+---
+// Rethinking Rabbit R1 opens on its own gesture: the device shows one answer, then its wheel turns through the others.
+// lead: the sentence above; answer: the one reply shown first; rest: the reply the wheel stops on (it turns two past it,
+// then back, as a thumb would); replies: the wheel, in order.
+interface Props { lead: string; answer: string; rest: string; replies: string[] }
+const { lead, answer, rest, replies } = Astro.props;
+const start = replies.indexOf(answer);
+const pos = (i: number) => `--d:${i - start};--a:${Math.abs(i - start)}`;
+---
+<div class="wh-open">
+  <p class="wh-lead r">{lead}</p>
+  <div class="wh-device r" role="img" aria-label={`A Rabbit R1 whose wheel turns through replies: ${replies.join(', ')}`} data-start={start} data-rest={replies.indexOf(rest)}>
+    <div class="wh-screen solo">
+      <ul class="wh-drum" aria-hidden="true">
+        {replies.map((r, i) => <li class:list={['wh-pill', { on: i === start }]} style={pos(i)}>{r}</li>)}
+      </ul>
+      <span class="wh-tip" aria-hidden="true"></span>
+    </div>
+    <div class="wh-side" aria-hidden="true">
+      <span class="wh-cam"><i></i></span>
+      <span class="wh-roller"></span>
+    </div>
+    <span class="wh-button" aria-hidden="true"></span>
+  </div>
+</div>
+
+<style is:global>
+  .wh-open { display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3.4svh, 34px) }
+  .wh-lead { margin: 0; font-size: clamp(22px, 3vw, 36px); font-weight: 300; line-height: 1.2; letter-spacing: -.01em; max-width: 24ch; text-wrap: balance }
+  /* The device, drawn in em so it scales as one piece: orange body, black screen, camera and wheel on the right. */
+  .wh-device {
+    --orange: #ff4a00;
+    position: relative; display: flex; gap: 1.1em; padding: 1.1em; width: 32em; height: 28em;
+    font-size: clamp(8.4px, 2.4vw, 12.5px); border-radius: 3.2em;
+    background: linear-gradient(160deg, #ff6a1f, var(--orange) 40%, #f03f00);
+    box-shadow: inset 0 -.3em .6em rgba(120,20,0,.25), inset 0 .25em .5em rgba(255,190,150,.35), 0 2.4em 4em -2em rgba(120,30,0,.45);
+  }
+  .wh-screen { position: relative; flex: 1; overflow: hidden; border-radius: 2.2em; background: #050505; box-shadow: inset 0 0 0 .15em rgba(0,0,0,.6) }
+  .wh-drum { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none }
+  /* Every reply sits on the line the wheel points at, moved up or down by its distance from it. */
+  .wh-pill {
+    position: absolute; right: 2.1em; top: 41%; white-space: nowrap;
+    font-family: var(--font-name); font-size: 1.12em; font-weight: 400; line-height: 1; color: #111;
+    padding: .38em .78em .42em; border-radius: 999px;
+    background: color-mix(in srgb, #ffffff calc(100% - var(--a) * 17%), #2c2c2c);
+    transform: translateY(calc(-50% + var(--d) * 1.72em)) scale(calc(1 - var(--a) * .035));
+    transform-origin: right center; opacity: calc(1 - var(--a) * .17);
+    transition: transform .42s cubic-bezier(.3,.7,.2,1), opacity .42s ease, background-color .42s ease, font-size .42s ease;
+  }
+  .wh-pill.on { font-size: 1.36em; transform: translateY(-50%) }
+  .wh-tip { position: absolute; right: .55em; top: 41%; width: 0; height: 0; transform: translateY(-50%); border: .55em solid transparent; border-right-color: #fff; border-left-width: 0 }
+  html.js .wh-screen.solo .wh-pill:not(.on) { opacity: 0 }
+  .wh-side { display: flex; flex-direction: column; align-items: center; gap: 2em; width: 6.6em }
+  .wh-cam { display: grid; place-items: center; width: 6.6em; height: 6.6em; border-radius: 1.9em; background: radial-gradient(circle at 50% 40%, #ff3b2e, #c41200 70%); box-shadow: inset 0 .2em .4em rgba(255,160,140,.5), inset 0 -.3em .5em rgba(80,0,0,.4) }
+  .wh-cam i { width: 1.3em; height: 1.3em; border-radius: 50%; background: #111; box-shadow: 0 0 0 .3em #8a0d00 }
+  /* The wheel's ridges slide past as it turns. */
+  .wh-roller {
+    width: 6em; height: 7.4em; border-radius: 1.1em; border: .22em solid #ffe1d3;
+    background:
+      linear-gradient(to bottom, rgba(255,255,255,.45), rgba(255,255,255,0) 30%, rgba(0,0,0,0) 62%, rgba(90,0,0,.45)),
+      repeating-linear-gradient(to bottom, rgba(90,0,0,.32) 0 .12em, transparent .12em .9em),
+      linear-gradient(#ff5a2a, #e01f00);
+    background-position: 0 0, 0 var(--turn, 0em), 0 0;
+    transition: background-position .42s cubic-bezier(.3,.7,.2,1);
+    box-shadow: 0 .3em .7em -.2em rgba(90,0,0,.5);
+  }
+  .wh-button { position: absolute; right: -.55em; top: 15.6em; width: .8em; height: 2.6em; border-radius: .4em; background: linear-gradient(90deg, #d8d6d2, #f6f5f2) }
+  @media (max-width: 420px) { .wh-pill { right: 1.6em } }
+  html.js .gate:has(.wh-open).on .stack > .wh-open .wh-device.r { transition-delay: .6s }
+  html.js .gate:has(.wh-open).on .wh-lead.r { transition-delay: .3s }
+  html.js .gate:has(.wh-open).on .lines .r { transition-delay: 6s }
+  html.js .gate:has(.wh-open).on .stack > .begin.r { transition-delay: 6.7s }
+  .gate:has(.wh-open) .lines .line.em { font-size: clamp(22px, 2.8vw, 32px) }
+  .gate:has(.wh-open) .stack { gap: clamp(14px, 2.6svh, 28px) }
+</style>
+
+<script>
+  // One answer first; then the others appear around it, and the wheel turns, a reply a click, to where it rests.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for (const dev of document.querySelectorAll<HTMLElement>('.wh-device')) {
+    const screen = dev.querySelector<HTMLElement>('.wh-screen')!;
+    const roller = dev.querySelector<HTMLElement>('.wh-roller')!;
+    const pills = [...dev.querySelectorAll<HTMLElement>('.wh-pill')];
+    const start = +dev.dataset.start!, rest = +dev.dataset.rest!;
+    const show = (cur: number) => {
+      pills.forEach((p, i) => {
+        p.style.setProperty('--d', String(i - cur));
+        p.style.setProperty('--a', String(Math.abs(i - cur)));
+        p.classList.toggle('on', i === cur);
+      });
+      roller.style.setProperty('--turn', `${(start - cur) * .9}em`);
+    };
+    let started = false;
+    const run = () => {
+      if (started) return; started = true;
+      if (reduce) { screen.classList.remove('solo'); show(rest); return; }
+      setTimeout(() => screen.classList.remove('solo'), 2300);
+      const dir = Math.sign(rest - start) || 1;
+      const far = Math.max(0, Math.min(pills.length - 1, rest + dir * 2));
+      const path: number[] = [];
+      for (let i = start + dir; i !== far + dir; i += dir) path.push(i);
+      for (let i = far - dir; i !== rest - dir; i -= dir) path.push(i);
+      path.forEach((cur, k) => setTimeout(() => show(cur), 3000 + k * 430 + (k >= Math.abs(far - start) ? 260 : 0)));
+    };
+    const gate = dev.closest('.gate')!;
+    new MutationObserver(() => { if (gate.classList.contains('on')) run(); }).observe(gate, { attributes: true, attributeFilter: ['class'] });
+    if (gate.classList.contains('on')) run();
+  }
+</script>

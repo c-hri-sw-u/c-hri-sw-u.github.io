@@ -95,3 +95,31 @@ still lifeo "Lifeo/1.png"                            hero
 still lifeo "Lifeo/2.png"                            map
 still lifeo "Lifeo/3.png"                            context
 mkdir -p "$OUT/lifeo" && ffmpeg -nostdin -v error -y -i "$SRC/Lifeo/icon.png" -vf "scale=128:128:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 90 "$OUT/lifeo/app-icon.webp"
+
+# Rethinking Rabbit R1
+# anatomy, ask-answer, pask, loop: diagrams lifted off their white sheets, by scripts/clear-white.py (pask without its source line)
+python3 scripts/clear-white.py "$SRC/Rethinking Rabbit R1/2.webp" "$OUT/rethinking-rabbit-r1/anatomy.webp" 0 0 1920 1080 1600
+python3 scripts/clear-white.py "$SRC/Rethinking Rabbit R1/6.webp" "$OUT/rethinking-rabbit-r1/ask-answer.webp" 60 45 1265 690
+python3 scripts/clear-white.py "$SRC/Rethinking Rabbit R1/7.webp" "$OUT/rethinking-rabbit-r1/pask.webp" 0 0 850 835
+python3 scripts/clear-white.py "$SRC/Rethinking Rabbit R1/4.webp" "$OUT/rethinking-rabbit-r1/loop.webp" 60 60 1605 875 1600
+# process, memory, wheel: the three screens of 3.gif, each cut out on its own (the captions under them left out)
+for p in "process 29 592" "memory 664 592" "wheel 1301 618"; do
+  set -- $p
+  ffmpeg -nostdin -v error -y -i "$SRC/Rethinking Rabbit R1/3.gif" -vf "crop=$3:580:$2:28,pad=$3+32:612:16:16:white,fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 25 -movflags +faststart -an "$OUT/rethinking-rabbit-r1/$1.mp4"
+  ffmpeg -nostdin -v error -y -i "$OUT/rethinking-rabbit-r1/$1.mp4" -frames:v 1 -q:v 3 "$OUT/rethinking-rabbit-r1/$1-poster.jpg"
+done
+# tokyo: the possibility wheel on a free afternoon in Tokyo, cropped to the device and its label, its black ground lifted to the page's ink (#111)
+ffmpeg -nostdin -v error -y -i "$SRC/Rethinking Rabbit R1/0.webp" -vf "crop=820:590:400:100,lutrgb=r='17+val*238/255':g='17+val*238/255':b='17+val*238/255'" -frames:v 1 -c:v libwebp -q:v 82 "$OUT/rethinking-rabbit-r1/tokyo.webp"
+still rethinking-rabbit-r1 "Rethinking Rabbit R1/1.webp"   keynote
+
+# Playground OS
+# children, dynabook: Alan Kay's drawings without the captions under them; grow, playground, devices: my diagram and sketches
+python3 scripts/clear-white.py "$SRC/Playground OS/1-6.webp" "$OUT/playground-os/children.webp" 60 80 740 540
+python3 scripts/clear-white.py "$SRC/Playground OS/1-7.webp" "$OUT/playground-os/dynabook.webp" 60 55 815 645
+python3 scripts/clear-white.py "$SRC/Playground OS/1-1.webp" "$OUT/playground-os/grow.webp" 60 110 1170 1025 1200
+python3 scripts/clear-white.py "$SRC/Playground OS/1-5.webp" "$OUT/playground-os/playground.webp" 0 0 1508 916 1400
+python3 scripts/clear-white.py "$SRC/Playground OS/1-3.webp" "$OUT/playground-os/devices.webp" 0 0 1343 866 1200
+clip  playground-os "Playground OS/1.gif"            context
+clip  playground-os "Playground OS/2.gif"            community
+clip  playground-os "Playground OS/6.gif"            program
+clip  playground-os "Playground OS/5.gif"            run
