@@ -1,7 +1,7 @@
 ---
 opener:
-  - "When AI agents started getting good, I got anxious."
-  - "If they can do the thinking work, what is left for us?"
+  - "As AI grew more capable by the month, I became deeply anxious."
+  - "If AI can do our thinking, what is left for us?"
   - "This product is my answer."
 scenes:
   - line: "I went looking for what only humans have."
