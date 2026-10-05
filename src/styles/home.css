@@ -120,6 +120,7 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .foot { margin-top: 72px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em }
 .foot a { text-decoration: none }
 .foot a:hover { text-decoration: underline }
+.foot-links { display: flex; gap: 18px }
 
 /* ---------- the map ---------- */
 #map { position: fixed; inset: 0; z-index: 40; padding: calc(84px + env(safe-area-inset-top, 0px)) 40px calc(110px + env(safe-area-inset-bottom, 0px));

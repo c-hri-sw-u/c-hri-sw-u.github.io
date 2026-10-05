@@ -50,4 +50,5 @@ export const links = {
   email: 'cwu14932@gmail.com',
   fullMap: '/map.html',
   medium: 'https://medium.com/@gochris',
+  linkedin: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/',
 };
