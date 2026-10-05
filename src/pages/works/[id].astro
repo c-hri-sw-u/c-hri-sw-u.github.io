@@ -72,6 +72,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
                 : <img class:list={[{ on: j === 0 }]} data-round={sc.round} src={src} alt={j === 0 ? (sc.alt ?? '') : ''} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />)}
             </figure>
           )}
+          {sc.caption && <p class="caption r">{sc.caption}</p>}
           {sc.lead && <p class="lead r">{sc.lead}</p>}
           <p class="line r">{sc.line}</p>
           {sc.list && <ul class="inventory r">{sc.list.map(item => <li>{item}</li>)}</ul>}

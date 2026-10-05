@@ -40,6 +40,7 @@ const details = defineCollection({
       note: z.string().optional(),
       media: z.union([z.string(), z.array(z.string())]).optional(), // several stills cross-fade
       alt: z.string().optional(),
+      caption: z.string().optional(), // sits right under the media, above the line
       tone: z.enum(['paper', 'ink']).default('paper'),
       year: z.string().optional(),
       list: z.array(z.string()).optional(), // a short inventory under the line
