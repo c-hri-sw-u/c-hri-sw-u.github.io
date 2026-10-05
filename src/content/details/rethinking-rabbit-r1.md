@@ -91,7 +91,7 @@ scenes:
     cutout: true
     link: { href: "https://www.figma.com/proto/YsZ5FjZWKdmdTpIgsEyiEF/Prototype-Final-Project---Rethink-Rabbit-R1?node-id=6211-2493&scaling=scale-down&content-scaling=fixed&page-id=6211%3A2410&starting-point-node-id=6211%3A2489", label: "Try the prototype" }
     year: "2024"
-  - line: "Not an answer machine, but someone to talk with."
+  - line: "Ask it what to do, and it opens up what you could do."
     tone: ink
 colophon:
   - { k: "Role", v: "Concept, interaction and UX design, solo" }
