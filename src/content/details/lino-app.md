@@ -63,14 +63,15 @@ scenes:
     tone: ink
   - line: "So I invented it, all of it."
     list:
-      - "Product and interaction design"
-      - "Agent engineering: tools, permissions, a sandbox"
-      - "A system of concepts: cards, connections, Sparks, Quick Entry, review cards"
-      - "The canvas, sync and the backend"
-      - "Onboarding"
-      - "The website and the posters"
-      - "Analytics"
-      - "The business model"
+      - { t: "Product strategy", d: "What Lino is, who it's for, and what it leaves out" }
+      - { t: "A system of concepts", d: "Concept (Alias, Variable), Card, Sketch, Spark, Connection, Proposal" }
+      - { t: "Agent engineering", d: "Memory for every canvas, reusable skills, work that runs in the background, permissions, review before anything changes" }
+      - { t: "Frontend engineering", d: "UI and UX design, the canvas, the editor, tables and boards" }
+      - { t: "Backend engineering", d: "Sync across devices and with Obsidian, accounts, storage" }
+      - { t: "Onboarding", d: "The first canvas a new user sees" }
+      - { t: "The website", d: "lino.one, the docs and the blog" }
+      - { t: "Product analytics", d: "What people actually do in Lino" }
+      - { t: "The business model", d: "Free and paid plans, AI credits" }
     note: "About 3,000 commits since late 2025"
     tone: ink
 colophon:

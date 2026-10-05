@@ -41,7 +41,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <link rel="icon" type="image/svg+xml" href="/icon/walking.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500&display=swap">
 </head>
 <body>
 <header class="d-bar">
@@ -83,7 +83,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
           {sc.caption && <p class="caption r">{sc.caption}</p>}
           {sc.lead && <p class="lead r">{sc.lead}</p>}
           <p class="line r">{sc.line}</p>
-          {sc.list && <ul class="inventory r">{sc.list.map(item => <li>{item}</li>)}</ul>}
+          {sc.list && <ul class="inventory r">{sc.list.map(item => typeof item === 'string' ? <li>{item}</li> : <li>{item.t}<small>{item.d}</small></li>)}</ul>}
           {sc.note && <p class="note r">{sc.note}</p>}
           {sc.link && <p class="r"><a class="go" href={sc.link.href} target={sc.link.href.startsWith('http') ? '_blank' : undefined} rel="noopener">{sc.link.label} →</a></p>}
         </div>

@@ -43,7 +43,7 @@ const details = defineCollection({
       caption: z.string().optional(), // sits right under the media, above the line
       tone: z.enum(['paper', 'ink']).default('paper'),
       year: z.string().optional(),
-      list: z.array(z.string()).optional(), // a short inventory under the line
+      list: z.array(z.union([z.string(), z.object({ t: z.string(), d: z.string() })])).optional(), // an item, or an item with its examples // a short inventory under the line
       round: z.number().optional(), // corner radius baked into the image, as a share of its width
       link: link.optional(),
       card: z.object({ href: z.string(), image: z.string(), title: z.string(), label: z.string() }).optional(), // a site, shown as its cover
