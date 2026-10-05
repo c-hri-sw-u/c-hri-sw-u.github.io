@@ -63,9 +63,10 @@ scenes:
     tone: ink
   - line: "So I invented it, all of it."
     list:
+      - { t: "Product philosophy", d: "Intent Engineering, and AI that makes people better thinkers" }
       - { t: "Product strategy", d: "What Lino is, who it's for, and what it leaves out" }
       - { t: "A system of concepts", d: "Concept (Alias, Variable), Card, Sketch, Spark, Connection, Proposal" }
-      - { t: "Agent engineering", d: "Memory for every canvas, reusable skills, work that runs in the background, permissions, review before anything changes" }
+      - { t: "Agent engineering", d: "Context engineering, long-term memory, tool and skill design, background agents, permission modes, human-in-the-loop review" }
       - { t: "Frontend engineering", d: "UI and UX design, the canvas, the editor, tables and boards" }
       - { t: "Backend engineering", d: "Sync across devices and with Obsidian, accounts, storage" }
       - { t: "Onboarding", d: "The first canvas a new user sees" }

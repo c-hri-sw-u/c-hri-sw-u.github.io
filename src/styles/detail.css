@@ -170,6 +170,7 @@ html.js .gate.on .stack > .begin.r { transition-delay: 3.2s }
 
 @media (max-width: 600px) {
   .scene { padding-inline: 16px }
+  .scene:has(.inventory) { padding-block: 8svh 7svh }
   .d-bar { padding-inline: 16px }
   .year { left: 16px } .progress { right: 16px }
   .colophon dl { grid-template-columns: 1fr; gap: 4px }
