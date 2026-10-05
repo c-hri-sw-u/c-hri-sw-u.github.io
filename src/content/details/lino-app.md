@@ -16,7 +16,7 @@ scenes:
   - line: "Intent doesn't fit in a chat box. It needs a space to grow."
     note: "A place to discover it, develop it, and let it evolve"
   - line: "In 2024, I had already built a first prototype of that space."
-    note: "Cards that collect themselves while you read, inspired by Vannevar Bush's Memex. Well before Andrej Karpathy proposed the LLM Wiki in April 2026."
+    note: "Select a word as you read and it becomes a card, linked to everything around it. Inspired by Vannevar Bush's Memex. Well before Andrej Karpathy proposed the LLM Wiki in April 2026."
     media: /media/works/lino-app/prototype-card.webp
     alt: "A Memex card linked to a Vannevar Bush card, from the 2024 prototype"
     year: "2024"
