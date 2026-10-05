@@ -25,25 +25,24 @@ export function initHome() {
       else el.pause();
     }
   }
-  // Each cell steps through its moments. An image stays for MIN; a video plays to its end and the
-  // cell moves on at once (it loops only if it is shorter than MIN, or while the cell is hovered).
+  // Each cell steps through its moments. An image stays for MIN (longer while hovered); a video
+  // plays to its end and the cell moves on at once, so a clip never visibly starts over.
   const MIN = 4200;
   workCards().forEach((card, n) => {
     const frames = [...card.querySelectorAll('.media > img, .media > video')];
     const dots = [...card.querySelectorAll('.dots i')];
     if (frames.length < 2 || reduce) return;
-    let i = 0, shownAt = performance.now(), timer = 0; // the first moment is already showing
+    let i = 0, timer = 0;
     const blocked = () => card.matches(':hover') || mode === 'map' || document.hidden;
-    const advance = () => {
+    const advance = (force = false) => {
       clearTimeout(timer);
-      if (blocked()) { timer = window.setTimeout(advance, 600); return; }
+      if (blocked() && !(force && mode === 'list' && !document.hidden)) { timer = window.setTimeout(advance, 600); return; }
       show(frames[i], false); dots[i]?.classList.remove('on');
       i = (i + 1) % frames.length;
       show(frames[i], true); dots[i]?.classList.add('on');
       schedule();
     };
-    const schedule = (fresh = true) => {
-      if (fresh) shownAt = performance.now();
+    const schedule = () => {
       const f = frames[i];
       if (!(f instanceof HTMLVideoElement)) { timer = window.setTimeout(advance, MIN); return; }
       // A video that never gets to play (autoplay refused, low-power mode) must not hold the cell.
@@ -55,11 +54,10 @@ export function initHome() {
       f.loop = false;
       f.addEventListener('ended', () => {
         if (frames[i] !== f) return;
-        if (performance.now() - shownAt < MIN || blocked()) { f.currentTime = 0; f.play().catch(() => {}); return; }
-        advance();
+        advance(true); // even when hovered: a finished clip should not start over
       });
     });
-    setTimeout(() => schedule(false), 1200 + n * 700); // staggered so the cells don't all change together
+    setTimeout(schedule, 1200 + n * 700); // staggered so the cells don't all change together
   });
 
   // ---------- map previews (hover on desktop, first tap on touch) ----------

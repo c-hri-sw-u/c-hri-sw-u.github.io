@@ -32,14 +32,14 @@ export const selected: Cell[] = [
   { id: 'bread-reader', name: 'Bread Reader', what: 'Toaster that reads poems', how: 'Hardware hack',
     moments: [img('bread-cover')] },
   { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
-    moments: [vid('risee-orbit'), vid('risee-actions')] },
+    moments: [vid('risee-orbit')] },
 ];
 
 export const concepts: Cell[] = [
   { id: 'playground-os', name: 'Playground OS', what: 'An OS for creation', how: 'LLM + XR',
     moments: [vid('pgos-creation'), vid('pgos-spatial')] },
   { id: 'rethinking-rabbit-r1', name: 'Rabbit R1', what: 'Agent-first device', how: 'UX',
-    moments: [vid('r1-agent'), img('r1-memory')] },
+    moments: [vid('r1-agent')] },
   { id: 'lifeo', name: 'Lifeo', what: 'Learn language from your life', how: 'iOS app design',
     moments: [img('lifeo-trio', true)] },
 ];
