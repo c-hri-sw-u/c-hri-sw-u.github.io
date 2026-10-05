@@ -11,11 +11,7 @@ scenes:
     note: "As agents run faster, the slowest link is how quickly people can form a good intent"
     tone: ink
     link: { href: "https://medium.com/@gochris/intent-engineering-42af3438bdc5", label: "Read it on Medium" }
-  - line: "Intent is a tension: the gap between what is and what could be."
-    note: "It comes from your emotions, desires, values and taste"
-  - line: "It never arrives finished. It changes as you make things."
-    note: "A sculptor's idea before the first strike is never the idea behind the last"
-  - line: "A chat box can't hold that. It needs a space for thought."
+  - line: "Intent doesn't fit in a chat box. It needs a space for thought."
     note: "Room for scattered fragments, ideas side by side, and connections everywhere"
   - line: "I had started building one in 2024."
     note: "Cards that collect themselves while you read, inspired by Vannevar Bush's Memex"
