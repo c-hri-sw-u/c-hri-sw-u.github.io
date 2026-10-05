@@ -6,7 +6,7 @@ opener:
 scenes:
   - line: "So I went looking for what only people have."
   - line: "I found intent."
-    note: "AI has no intent of its own. Once the car can drive itself, the only question left is where you want to go."
+    note: "Knowing what we want, and why. It is what sets us apart from AI, and the strongest tool we have."
   - line: "I called the work around it Intent Engineering."
     note: "As agents run faster, the slowest link is how quickly people can form a good intent"
     tone: ink
