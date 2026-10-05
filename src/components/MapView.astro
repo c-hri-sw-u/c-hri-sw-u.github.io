@@ -9,8 +9,9 @@ interface Props {
   works: CollectionEntry<'works'>[];
   onHome: Set<string>;
   codeOf: (w: CollectionEntry<'works'>) => string;
+  hrefOf: (id: string) => string | undefined;
 }
-const { works, onHome, codeOf } = Astro.props;
+const { works, onHome, codeOf, hrefOf } = Astro.props;
 const byId = Object.fromEntries(works.map(w => [w.id, w]));
 const latestId = works[works.length - 1].id;
 
@@ -58,7 +59,7 @@ const kiwiLines = [
 
     {works.map(w => (
       <button class:list={['mapicon', { feat: onHome.has(w.id) }]} data-id={w.id} data-title={w.data.listTitle}
-        data-date={w.data.date} data-preview={w.data.preview} data-url={w.data.legacyUrl}
+        data-date={w.data.date} data-preview={w.data.preview} data-url={hrefOf(w.id)}
         style={`left:${w.data.icon.position[0]}%;top:${w.data.icon.position[1]}%`} aria-label={`${codeOf(w)} ${w.data.listTitle}`}>
         <Fragment set:html={glyph(w.data.icon, codeOf(w))} />
         {w.id === latestId && <span class="bubble now">I’m into this now</span>}

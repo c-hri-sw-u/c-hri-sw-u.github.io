@@ -105,17 +105,33 @@ export function initHome() {
     ];
   }
 
+  // In map mode the header is fixed; padding the body by its height keeps every cell exactly where it
+  // was, so glyphs can fly between cells and icons in either direction without re-measuring.
+  const bar = document.querySelector<HTMLElement>('.bar')!;
+  function enterMapLayout() {
+    document.body.style.paddingTop = bar.offsetHeight + 'px';
+    document.body.classList.add('is-map');
+    setTimeout(() => { if (mode === 'map') setM(rest()); }, reduce ? 0 : 620); // fold the map's own corner in
+  }
+  function leaveMapLayout() {
+    document.body.classList.remove('is-map');
+    document.body.style.paddingTop = '';
+  }
+
+  // History: entering the map pushes #map, so the browser's back button returns to the list
+  // (not to whatever page came before). Leaving undoes that entry. `fromPop` is set when the
+  // browser itself moved through history.
   // `peeling`: the page is being peeled away; the glyphs fly while the map sweeps in, and
   // is-map (which drops the clip) only lands once the peel has finished.
   let landTimer = 0;
-  function goMap(focusId?: string, peeling = false) {
+  function goMap(focusId?: string, peeling = false, fromPop = false) {
     if (mode === 'map' && document.body.classList.contains('is-map')) return;
     mode = 'map'; setPressed();
-    history.replaceState(null, '', '#map');
+    if (!fromPop && location.hash !== '#map') history.pushState({ map: true }, '', '#map');
     const cards = workCards().filter(c => inView(c.getBoundingClientRect()));
     const starts = cards.map(c => [c, c.querySelector('.glyph-btn')!.getBoundingClientRect()] as const);
-    if (peeling) landTimer = window.setTimeout(() => document.body.classList.add('is-map'), reduce ? 0 : 520);
-    else document.body.classList.add('is-map');
+    if (peeling) landTimer = window.setTimeout(enterMapLayout, reduce ? 0 : 520);
+    else enterMapLayout();
     const all = [...plane.querySelectorAll<HTMLElement>('.mapicon')];
     const flying = new Set(cards.map(c => c.dataset.id));
     // Icons already showing in the lifted corner stay put; the flying ones hide until their glyph lands.
@@ -135,20 +151,34 @@ export function initHome() {
     if (focusId) setTimeout(() => { const b = iconEl(focusId); b.focus({ preventScroll: true }); showPreview(b); }, 900);
   }
 
-  function goList() {
+  // `peeled`: the map's corner was peeled away, so the map sweeps off while the glyphs fly home.
+  function goList(peeled = false, fromPop = false) {
     if (mode === 'list') return;
     mode = 'list'; setPressed();
     clearTimeout(landTimer);
-    history.replaceState(null, '', location.pathname);
+    if (!fromPop) {
+      if (history.state?.map) history.back();
+      else history.replaceState(null, '', location.pathname);
+    }
     pv.classList.remove('show');
     const all = [...plane.querySelectorAll<HTMLElement>('.mapicon')];
-    if (reduce) { all.forEach(b => b.classList.remove('on')); document.body.classList.remove('is-map'); setPeel(rest()); return; }
-    // Measure the map icons while the map is up, but the cells only after it is gone: leaving map mode
-    // puts the header back in the flow (and the scrollbar back), which moves the cells.
+    if (reduce) { all.forEach(b => b.classList.remove('on')); leaveMapLayout(); setM(0); setPeel(rest()); return; }
+    // Icons are measured while the map is up; the cells only after it is gone (the scrollbar comes back).
     const from = new Map(all.map(b => [b.dataset.id!, iconTarget(b.dataset.id!)]));
-    all.forEach(b => b.classList.remove('on'));
-    document.body.classList.remove('is-map');
-    peelBack();
+    if (peeled) {
+      root.classList.remove('peeling');
+      setM(full());
+      setTimeout(() => {
+        all.forEach(b => b.classList.remove('on'));
+        leaveMapLayout();
+        root.classList.add('peeling'); setM(0); setPeel(rest());
+        requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('peeling')));
+      }, 520);
+    } else {
+      all.forEach(b => b.classList.remove('on'));
+      leaveMapLayout();
+      peelBack();
+    }
     const flights = workCards().filter(c => inView(c.getBoundingClientRect())).map(c => {
       const t = from.get(c.dataset.id!)!, g = c.querySelector<HTMLElement>('.glyph-btn')!, r = g.getBoundingClientRect();
       const box = { left: t.x - r.width / 2, top: t.y - r.height / 2, width: r.width, height: r.height };
@@ -170,6 +200,8 @@ export function initHome() {
   const rest = () => (innerWidth < 600 ? 40 : 52);
   const full = () => innerWidth + innerHeight + 40;
   const setPeel = (px: number) => root.style.setProperty('--peel', px + 'px');
+  // The same corner in map mode: --mpeel folds the map back to show the page underneath.
+  const setM = (px: number) => root.style.setProperty('--mpeel', px + 'px');
   function peelOpen() {
     root.classList.remove('peeling');
     setPeel(full());
@@ -177,36 +209,50 @@ export function initHome() {
   }
   function peelBack() {
     root.classList.add('peeling');
-    setPeel(full());
+    setPeel(full()); setM(0);
     requestAnimationFrame(() => requestAnimationFrame(() => { root.classList.remove('peeling'); setPeel(rest()); }));
   }
   let drag: { x: number; y: number; moved: boolean } | null = null;
-  peel.addEventListener('pointerenter', e => { if (!drag && e.pointerType === 'mouse') { setPeel(rest() + 22); document.body.classList.add('peeking'); } });
-  peel.addEventListener('pointerleave', () => { if (!drag && mode === 'list') { setPeel(rest()); document.body.classList.remove('peeking'); } });
+  const inMap = () => document.body.classList.contains('is-map');
+  peel.addEventListener('pointerenter', e => {
+    if (drag || e.pointerType !== 'mouse') return;
+    if (inMap()) setM(rest() + 22);
+    else { setPeel(rest() + 22); document.body.classList.add('peeking'); }
+  });
+  peel.addEventListener('pointerleave', () => {
+    if (drag) return;
+    if (inMap()) setM(rest());
+    else if (mode === 'list') { setPeel(rest()); document.body.classList.remove('peeking'); }
+  });
   peel.addEventListener('pointerdown', e => {
     drag = { x: e.clientX, y: e.clientY, moved: false };
     peel.setPointerCapture(e.pointerId);
     root.classList.add('peeling');
-    document.body.classList.add('peeking');
+    if (!inMap()) document.body.classList.add('peeking');
   });
   peel.addEventListener('pointermove', e => {
     if (!drag) return;
     if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 6) drag.moved = true;
     // The fold passes through the pointer.
-    setPeel(Math.max(rest(), e.clientX + e.clientY));
+    (inMap() ? setM : setPeel)(Math.max(rest(), e.clientX + e.clientY));
   });
   const release = (e: PointerEvent) => {
     if (!drag) return;
     const far = e.clientX + e.clientY > 0.32 * (innerWidth + innerHeight);
     const tap = !drag.moved;
     drag = null;
+    if (inMap()) {
+      if (tap || far) goList(true);
+      else { root.classList.remove('peeling'); setM(rest()); }
+      return;
+    }
     if (tap || far) peelOpen();
     else { root.classList.remove('peeling'); setPeel(rest()); document.body.classList.remove('peeking'); }
   };
   peel.addEventListener('pointerup', release);
   peel.addEventListener('pointercancel', release);
-  peel.addEventListener('click', e => { if (e.detail === 0) peelOpen(); }); // keyboard
-  addEventListener('resize', () => { if (mode === 'list' && !drag) setPeel(rest()); });
+  peel.addEventListener('click', e => { if (e.detail === 0) (inMap() ? goList(true) : peelOpen()); }); // keyboard
+  addEventListener('resize', () => { if (drag) return; if (mode === 'list') setPeel(rest()); else if (inMap()) setM(rest()); });
   setPeel(rest());
 
   toMap.addEventListener('click', () => goMap());
@@ -215,7 +261,12 @@ export function initHome() {
     b.addEventListener('click', e => { e.preventDefault(); goMap(b.dataset.id); }));
   addEventListener('keydown', e => { if (e.key === 'Escape' && mode === 'map') goList(); });
 
-  if (mode === 'map') { mode = 'list'; goMap(); }
+  addEventListener('popstate', () => {
+    if (location.hash === '#map') goMap(undefined, false, true);
+    else goList(false, true);
+  });
+
+  if (mode === 'map') { mode = 'list'; goMap(undefined, false, true); }
 
   walker();
   inhabitants(plane, reduce);

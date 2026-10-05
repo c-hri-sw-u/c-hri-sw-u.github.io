@@ -24,7 +24,8 @@
 
 * { box-sizing: border-box }
 @property --peel { syntax: '<length>'; inherits: true; initial-value: 0px }
-html { background: var(--paper-bg); color: var(--fg); transition: --peel .5s var(--ease) }
+@property --mpeel { syntax: '<length>'; inherits: true; initial-value: 0px }
+html { background: var(--paper-bg); color: var(--fg); transition: --peel .5s var(--ease), --mpeel .5s var(--ease) }
 html.peeling { transition: none }
 body { background: transparent }
 body { margin: 0; font-family: var(--font-body); font-size: 14.5px; line-height: 1.55; -webkit-font-smoothing: antialiased; padding-inline: 24px }
@@ -126,12 +127,15 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 #map { position: fixed; inset: 0; z-index: 40; padding: calc(84px + env(safe-area-inset-top, 0px)) 40px calc(110px + env(safe-area-inset-bottom, 0px));
   background: var(--paper-bg);
   clip-path: polygon(0 0, var(--peel) 0, 0 var(--peel)) }
-body.is-map #map { clip-path: none }
+/* In map mode the map has its own dog-eared corner, and the page shows underneath it. */
+body.is-map #map { clip-path: none;
+  -webkit-mask-image: linear-gradient(135deg, transparent calc(var(--mpeel) * .7071), #000 calc(var(--mpeel) * .7071));
+  mask-image: linear-gradient(135deg, transparent calc(var(--mpeel) * .7071), #000 calc(var(--mpeel) * .7071)) }
 /* Under the page it is a shade darker, so the uncovered corner reads as a layer beneath. */
 #map::before { content: ""; position: absolute; inset: 0; background: rgba(60,50,30,.06); pointer-events: none; transition: opacity .4s }
 body.is-map #map::before { opacity: 0 }
-/* Fade only: scaling main would move the cells while glyphs are flying into them. */
-body.is-map main { opacity: 0; pointer-events: none }
+/* The page stays put under the map (it shows through the map's folded corner); it just stops taking clicks. */
+body.is-map main { pointer-events: none }
 html:has(body.is-map) { overflow: hidden }
 .plane { position: relative; width: 100%; height: 100%; max-width: 1240px; margin-inline: auto }
 
@@ -229,7 +233,7 @@ body.is-map .legend { visibility: visible }
 .flap::before { content: ""; position: absolute; inset: 0; clip-path: polygon(100% 0, 100% 100%, 0 100%);
   background: linear-gradient(315deg, #ffffff 0%, #fbfaf8 60%, #efede8 100%) }
 .flap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top left, transparent calc(50% - .5px), rgba(17,17,17,.14) 50%, transparent calc(50% + .5px)) }
-body.is-map .peel { pointer-events: none; opacity: 0 }
+body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
 
 /* ---------- responsive ---------- */
 @media (max-width: 960px) {
