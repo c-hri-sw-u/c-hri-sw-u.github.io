@@ -50,7 +50,7 @@ scenes:
     year: "2025"
   - line: "I designed, modeled and 3D-printed its skeleton."
     caption: "Iterations of Piko's inner structure."
-    note: "Again and again, until two computers, two motors and a camera fit inside a hand puppet and could still move its head and arms"
+    note: "It had to fit inside the fur, move the head and arms, hold the electronics, open easily for debugging, and survive being worn every day"
     media: /media/works/piko/inside.webp
     alt: "Generations of Piko's 3D-printed parts, and the assembled skeleton"
     year: "2025"

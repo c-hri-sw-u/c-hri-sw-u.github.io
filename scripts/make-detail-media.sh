@@ -29,7 +29,9 @@ still lino-app "Lino App/lino-ai.webp"               lino-ai
 
 # Piko
 clip  piko "Piko/IMG_2013.MOV"                       caught
-clip  piko "Piko/6.gif"                              moods
+# moods: 6.gif with its white margin trimmed
+ffmpeg -nostdin -v error -y -i "$SRC/Piko/6.gif" -vf "crop=1024:500:28:42,fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart -an "$OUT/piko/moods.mp4"
+ffmpeg -nostdin -v error -y -i "$OUT/piko/moods.mp4" -frames:v 1 -q:v 3 "$OUT/piko/moods-poster.jpg"
 still piko "Piko/17.webp"                            inside
 clip  piko "Piko/4.gif"                              system
 # flow.webp: the transparent interaction flow (3.png) flattened onto white, trimmed to the chart, then given a white margin
