@@ -1,12 +1,11 @@
 ---
 openerStyle: dock
 opener:
-  - "On a playground, children invent whole games from"
-  - "open ground|Space"
-  - "sand and sticks|Materials"
-  - "a shovel|Tools"
-  - "a slide|Equipments"
-openerNote: "Playground OS gives a computer the same four parts."
+  - "What if a computer worked like a playground?"
+  - "Space"
+  - "Materials"
+  - "Tools"
+  - "Equipments"
 scenes:
   - line: "In 1972, Alan Kay drew two children learning on the grass."
     caption: "From A Personal Computer for Children of All Ages, Alan C. Kay, 1972."

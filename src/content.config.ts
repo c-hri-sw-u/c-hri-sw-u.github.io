@@ -36,7 +36,7 @@ const details = defineCollection({
     // lines: sentences read in turn, the last in italics. equation: terms joined by × or =, one per row.
     // selection: [lead, the selected word, ...capsules] (Risee). context: words and "a|b|c" tags (Lifeo).
     // wheel: [lead, the one answer, where the wheel rests, ...the wheel's replies] (Rethinking Rabbit R1).
-    // dock: [lead, ..."thing|part" capsules] (Playground OS).
+    // dock: [lead, ...the dock's buttons] (Playground OS).
     openerStyle: z.enum(['lines', 'equation', 'poem', 'selection', 'context', 'wheel', 'dock']).default('lines'),
     openerNote: z.string().optional(), // poem: a quiet line under it, saying who wrote it; selection / context / wheel / dock: an italic line under it
     openerMedia: z.string().optional(), // a loop above the opening lines: an mp4, or an animated image with a transparent ground

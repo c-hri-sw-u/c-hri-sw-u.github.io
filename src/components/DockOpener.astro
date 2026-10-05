@@ -1,6 +1,6 @@
 ---
-// Playground OS opens on its dock: the things children play with on a playground turn, one by one,
-// into the four parts of the OS. lead: the sentence above; parts: "thing|part", in the dock's order.
+// Playground OS opens on its dock: the four parts a playground and the OS share, as the buttons the prototype floats
+// over the kitchen. lead: the sentence above; parts: the buttons, in the dock's order.
 interface Props { lead: string; parts: string[] }
 const { lead, parts } = Astro.props;
 // The dock's own icons, redrawn as strokes in a 20-unit box.
@@ -14,24 +14,18 @@ const ICON: Record<string, string> = {
 <div class="dock-open">
   <p class="dock-lead r">{lead}</p>
   <p class="dock r">
-    {parts.map(p => {
-      const [thing, part] = p.split('|');
-      return (
-        <span class="dock-cap">
-          <svg class="dock-icon" viewBox="0 0 20 20" aria-hidden="true" set:html={ICON[part] ?? ''} />
-          <span class="dock-label">
-            <span class="dock-thing">{thing}</span>
-            <span class="dock-part">{part}</span>
-          </span>
-        </span>
-      );
-    })}
+    {parts.map(part => (
+      <span class="dock-cap">
+        <svg class="dock-icon" viewBox="0 0 20 20" aria-hidden="true" set:html={ICON[part] ?? ''} />
+        {part}
+      </span>
+    ))}
   </p>
 </div>
 
 <style is:global>
   .dock-open { display: flex; flex-direction: column; align-items: center; gap: clamp(22px, 4svh, 40px) }
-  .dock-lead { margin: 0; font-size: clamp(26px, 4vw, 48px); font-weight: 300; line-height: 1.2; letter-spacing: -.01em; max-width: 26ch; text-wrap: balance }
+  .dock-lead { margin: 0; font-size: clamp(30px, 4.6vw, 56px); font-weight: 300; line-height: 1.15; letter-spacing: -.01em; max-width: 24ch; text-wrap: balance }
   /* Warm, glassy, like the dock floating over the kitchen in the prototype. */
   .dock {
     margin: 0; display: grid; grid-template-columns: repeat(4, auto); gap: 6px; padding: 7px; border-radius: 999px;
@@ -39,40 +33,13 @@ const ICON: Record<string, string> = {
     box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 22px 44px -22px rgba(60,40,20,.55);
     font-family: var(--font-name); font-size: clamp(14px, 1.6vw, 18px); font-weight: 500;
   }
-  .dock-cap { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .62em 1.15em .62em .95em; border-radius: 999px; background: rgba(255,255,255,.1) }
+  .dock-cap { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .62em 1.15em .62em .95em; border-radius: 999px; background: rgba(255,255,255,.1); white-space: nowrap }
   .dock-icon { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round }
-  .dock-label { display: inline-grid; justify-items: start }
-  .dock-label > * { grid-area: 1 / 1; white-space: nowrap; transition: opacity .5s ease, transform .6s cubic-bezier(.2,.7,.2,1), filter .5s ease }
-  .dock-thing { font-family: var(--font-line); font-style: italic; font-weight: 300; font-size: 1.12em; line-height: 1 }
-  .dock-part, html:not(.js) .dock-thing { opacity: 0; transform: translateY(.45em) }
-  html:not(.js) .dock-part { opacity: 1; transform: none }
-  /* The icon makes room for itself as its thing turns into a part. */
-  html.js .dock-icon { width: 0; margin-right: -.5em; opacity: 0; transition: opacity .5s ease .15s, width .5s cubic-bezier(.2,.7,.2,1), margin .5s cubic-bezier(.2,.7,.2,1) }
-  html.js .dock-cap.turned .dock-icon { width: 1.15em; margin-right: 0; opacity: 1 }
-  .dock-cap.turned .dock-thing { opacity: 0; transform: translateY(-.45em); filter: blur(2px) }
-  .dock-cap.turned .dock-part { opacity: 1; transform: none }
   @media (max-width: 560px) {
     .dock { grid-template-columns: repeat(2, minmax(0, 1fr)); border-radius: 26px; width: min(100%, 340px) }
     .dock-cap { padding-inline: .9em }
   }
-  html.js .gate:has(.dock-open).on .dock-open .dock.r { transition-delay: .9s }
-  html.js .gate:has(.dock-open).on .lines .r { transition-delay: 5s }
-  html.js .gate:has(.dock-open).on .stack > .begin.r { transition-delay: 5.7s }
-  .gate:has(.dock-open) .lines .line.em { font-size: clamp(22px, 2.8vw, 32px) }
+  /* The dock comes in after the question. */
+  html.js .gate:has(.dock-open).on .dock-open .dock.r { transition-delay: .8s }
+  html.js .gate:has(.dock-open).on .stack > .begin.r { transition-delay: 2.2s }
 </style>
-
-<script>
-  // Each thing turns into its part of the OS, left to right.
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  for (const dock of document.querySelectorAll<HTMLElement>('.dock')) {
-    const caps = [...dock.querySelectorAll<HTMLElement>('.dock-cap')];
-    let started = false;
-    const run = () => {
-      if (started) return; started = true;
-      caps.forEach((c, i) => reduce ? c.classList.add('turned') : setTimeout(() => c.classList.add('turned'), 3000 + i * 380));
-    };
-    const gate = dock.closest('.gate')!;
-    new MutationObserver(() => { if (gate.classList.contains('on')) run(); }).observe(gate, { attributes: true, attributeFilter: ['class'] });
-    if (gate.classList.contains('on')) run();
-  }
-</script>
