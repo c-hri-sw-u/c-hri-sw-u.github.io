@@ -86,7 +86,8 @@ python3 scripts/bread-decode.py > /dev/null
 clip  risee "Risee/1.gif"                            orbit
 clip  risee "Risee/2.gif"                            actions
 clip  risee "Risee/widget.gif"                       widget
-still risee "Risee/settings.png"                     settings
+# settings.webp: the window with its corners made transparent, by scripts/risee-settings.py
+python3 scripts/risee-settings.py
 mkdir -p "$OUT/risee" && ffmpeg -nostdin -v error -y -i "$SRC/Risee/icon.png" -vf "scale=128:128:flags=lanczos" -frames:v 1 -c:v libwebp -q:v 90 "$OUT/risee/app-icon.webp"
 
 # Lifeo (1: the context composer over stickers, 2: the map, 3: the context sentence)

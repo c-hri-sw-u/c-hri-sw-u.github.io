@@ -305,12 +305,15 @@ html.js .scene.on .inventory li { opacity: 1; transform: none }
 @media (max-width: 600px) { .inventory { grid-template-columns: 1fr; font-size: 14px } .inventory li { padding: 7px 0 } .inventory small { font-size: 12px; margin-top: 1px } .inventory li:last-child:nth-child(odd) { text-align: left } }
 
 /* ---------- colophon ---------- */
-.colophon dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 16px 32px; margin: 0; text-align: left; width: min(100%, 560px) }
-.colophon dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em; color: var(--dim); padding-top: 5px }
+/* The list is only as wide as its longest line, so it centres on its own text and lines up with Next below it.
+   Labels sit on the baseline of their values. */
+.colophon dl { display: grid; grid-template-columns: max-content minmax(0, max-content); align-items: baseline; gap: 16px 32px; margin: 0; text-align: left; width: fit-content; max-width: min(100%, 560px) }
+.colophon dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em; color: var(--dim) }
 .colophon dd { margin: 0; font-size: 18px; font-weight: 300; line-height: 1.45 }
 .colophon dd a { text-underline-offset: 3px; text-decoration-thickness: 1px }
 .next { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; padding: 14px 22px; border: 1px solid var(--line); border-radius: 999px; font-size: 18px; transition: border-color .2s }
 .next:hover { border-color: currentColor }
+.next > span:last-child { text-align: left }
 .next small { display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .02em; color: var(--dim); text-align: left }
 
 /* ---------- corner counters ---------- */

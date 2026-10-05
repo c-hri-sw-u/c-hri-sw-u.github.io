@@ -22,6 +22,7 @@ scenes:
   - line: "Select text, press a shortcut, and your actions appear."
     note: "Shift + Option + Space, anywhere on your Mac. Translate, Summarize and Polish come built in; add your own in a minute."
     media: /media/works/risee/settings.webp
+    round: 0.0225
     alt: "Risee's Action Settings: a name, a prompt, and whether to save results to history"
     year: "2026"
   - line: "The tools orbit your words."
