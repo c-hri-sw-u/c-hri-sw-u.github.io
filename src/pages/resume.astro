@@ -8,8 +8,8 @@ import '@fontsource/poppins/600.css';
 import '@fontsource/jetbrains-mono/400.css';
 import { person, lino, research, experience, work, education, skills, honors } from '../data/resume';
 const PDF = '/Yixi-Chris-Wu-Resume.pdf';
-// **words** → bold, everything else escaped
-const md = (s: string) => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]!).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+// **words** → bold, [words](url) → link, everything else escaped
+const md = (s: string) => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]!).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
 const entries = [
   { label: 'Research', items: research },
   { label: 'Industry', items: experience },
@@ -21,7 +21,7 @@ const entries = [
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Resume · Yixi (Chris) Wu</title>
-  <meta name="description" content={`${person.name}, ${person.title}. ${person.line}`}>
+  <meta name="description" content={`${person.name}, ${person.title}.`}>
   <link rel="icon" type="image/svg+xml" href="/icon/walking.svg">
 </head>
 <body>
@@ -35,7 +35,7 @@ const entries = [
     <div class="rs-id">
       <h1><img class="rs-walker" src="/icon/walking.svg" alt="" />{person.name}</h1>
       <p class="rs-title">{person.title}</p>
-      <p class="rs-line">{person.line}</p>
+      {person.line && <p class="rs-line">{person.line}</p>}
     </div>
     <ul class="rs-contact">
       {person.contact.map(c => <li><a href={c.href}>{c.label}</a></li>)}
@@ -161,8 +161,9 @@ const entries = [
   .rs-icon { width: 16pt; height: 16pt; border-radius: 4pt; margin-right: 6pt }
   .rs-url { margin-left: auto; font-family: var(--font-mono); font-size: 7pt; font-weight: 400; color: var(--muted); letter-spacing: 0 }
   .rs-lede { margin-top: 5pt !important; font-size: 9.2pt; line-height: 1.4 }
-  .rs-points { list-style: none; padding: 0; margin-top: 8pt !important; display: grid; grid-template-columns: repeat(3, 1fr); gap: 7pt 14pt }
-  .rs-points li { padding-top: 6pt; border-top: 1px solid var(--line) }
+  .rs-points { padding-left: 10pt; margin-top: 6pt !important; font-size: 8.4pt }
+  .rs-points li + li { margin-top: 2.5pt }
+  .rs-points li::marker { color: var(--muted) }
 
   .rs-list { display: grid; gap: 5pt }
   .rs-entry { display: grid; grid-template-columns: .74in minmax(0, 1fr); gap: 0 }
