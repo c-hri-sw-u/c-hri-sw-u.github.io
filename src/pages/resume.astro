@@ -27,7 +27,7 @@ const PDF = '/Yixi-Chris-Wu-Resume.pdf';
 <main class="sheet">
   <header class="rs-head">
     <div>
-      <h1>{person.name}</h1>
+      <h1><img class="rs-walker" src="/icon/walking.svg" alt="" />{person.name}</h1>
       <p class="rs-title">{person.title}</p>
       <p class="rs-line">{person.line}</p>
     </div>
@@ -122,6 +122,9 @@ const PDF = '/Yixi-Chris-Wu-Resume.pdf';
 
   .rs-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 14pt; border-bottom: 1px solid var(--fg) }
   .rs-head h1 { font-size: 23pt; font-weight: 500; line-height: 1; letter-spacing: -.025em }
+  /* The walking figure, the site's mark, beside the name as in the homepage's top-left corner */
+  .rs-head h1 { display: flex; align-items: center; gap: .18em }
+  .rs-walker { width: 1.4em; height: 1.4em; flex: none; margin: -.2em -.06em -.2em -.24em; position: relative; top: -.08em } /* the figure sits small and low in its frame */
   .rs-title { margin-top: 6pt !important; font-size: 11.5pt; font-weight: 500; letter-spacing: -.01em }
   .rs-line { margin-top: 2pt !important; color: var(--muted) }
   .rs-contact { list-style: none; padding: 0; text-align: right; font-family: var(--font-mono); font-size: 7.6pt; line-height: 1.65 }
