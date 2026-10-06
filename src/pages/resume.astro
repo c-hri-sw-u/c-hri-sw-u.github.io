@@ -40,7 +40,7 @@ const sections = [
   <header class="rs-head">
     <h1>{person.name}</h1>
     <p class="rs-title">{person.title}</p>
-    <ul class="rs-contact">{person.contact.map(c => <li><a href={c.href}>{c.label}</a></li>)}</ul>
+    <ul class="rs-contact">{person.contact.map(c => <li>{c.kind && <span>{c.kind}</span>}<a href={c.href}>{c.label}</a></li>)}</ul>
     <!-- The walking figure, the site's mark, large, walking along the line under the header -->
     <div class="rs-walker" id="walker" aria-hidden="true">{looks.map((svg, i) => <div class:list={['rs-look', { on: i === 0 }]} data-look={LOOKS[i]} data-pdf={pdfFor(LOOKS[i])} set:html={svg} />)}</div>
   </header>
@@ -155,7 +155,9 @@ const sections = [
   .rs-head { position: relative; padding-bottom: 16pt; border-bottom: 1px solid var(--fg) }
   .rs-head h1 { font-size: 27pt; font-weight: 500; line-height: 1.05; letter-spacing: -.03em; color: var(--fg) }
   .rs-title { margin-top: 5pt !important; font-size: 11.5pt; color: var(--fg) }
-  .rs-contact { list-style: none; padding: 0; margin-top: 9pt !important; display: flex; flex-wrap: wrap; gap: 4pt 16pt; font-size: 8.6pt }
+  /* Each address is printed in full so it works on paper; a grey word before it says what it is */
+  .rs-contact span { color: var(--muted); margin-right: 3pt }
+  .rs-contact { list-style: none; padding: 0; margin-top: 9pt !important; display: flex; flex-wrap: wrap; gap: 4pt 11pt; font-size: 8.6pt }
 
   .rs-cols { display: grid; grid-template-columns: minmax(0, 1fr) 2.15in; gap: .4in; padding-top: 16pt }
   .sheet h2 { font-size: 9pt; font-weight: 500; color: var(--muted); margin-bottom: 8pt !important }
