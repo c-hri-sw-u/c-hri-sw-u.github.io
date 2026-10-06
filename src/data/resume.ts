@@ -61,7 +61,7 @@ export const projects: Project[] = [
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
     line: 'A wearable AI companion that catches you doomscrolling. Designed its behaviors; modeled and printed its skeleton, up to 10 versions per part.' },
   { name: 'Banana Exoskeleton', href: 'https://c-hri-sw-u.github.io/works/banana-exoskeleton', meta: '2025 · team of 2',
-    line: 'A 3D-printed case that bends to fit any banana. Traced 1,400 bananas with YOLO, clustered the shapes and optimized three cases.' },
+    line: 'A 3D-printed case that bends to fit any banana. Traced 1,400 bananas with computer vision, clustered the shapes and optimized three cases.' },
 ];
 
 export const education = [
