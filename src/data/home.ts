@@ -13,6 +13,7 @@ export interface Cell {
   what: string;
   how: string;
   lead?: boolean;
+  phoneOnly?: boolean; // shown only on phones, where it pairs up the squares
   moments: Moment[];
 }
 
@@ -33,10 +34,11 @@ export const selected: Cell[] = [
     moments: [img('banana-shell')] },
   { id: 'bread-reader', name: 'Bread Reader', what: 'Toaster that reads poems', how: 'Hardware hack',
     moments: [img('bread-cover')] },
+  // On phones it moves up to sit right after Lino (see home.css); wider screens leave it out,
+  // where the website would weigh too much next to the works. It opens lino.one itself.
+  { id: 'lino-site', phoneOnly: true, name: 'lino.one', what: 'The Lino website', how: 'UI design + code',
+    moments: [{ src: '/media/works/lino-app/site.webp', kind: 'image' }] },
 ];
-
-// Not a work on the map: lino.one, shown only on phones as the last square of Selected; it just opens the site.
-export const site = { name: 'lino.one', href: 'https://lino.one', image: '/media/works/lino-app/site.webp', what: 'The Lino website', how: 'Visit ↗' };
 
 export const concepts: Cell[] = [
   { id: 'playground-os', name: 'Playground OS', what: 'An OS for creation', how: 'LLM + XR',

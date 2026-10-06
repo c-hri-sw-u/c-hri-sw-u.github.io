@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import '../styles/home.css';
 import MapView from '../components/MapView.astro';
 import { glyph, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
-import { selected, concepts, site, links, type Cell } from '../data/home';
+import { selected, concepts, links, type Cell } from '../data/home';
 import { experiments } from '../data/playground';
 
 // Chronological path through every work, the same order the legacy map draws its lines in.
@@ -66,9 +66,9 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
       {gi === 1 && <div class="concepts-head"><h2>Concepts</h2><p>Designed, not built</p></div>}
       <section class={cls} aria-label={label}>
         {cells.map(c => (
-          <article class:list={['card', { lead: c.lead }]} data-id={c.id}>
+          <article class:list={['card', { lead: c.lead, 'phone-only': c.phoneOnly }]} data-id={c.id}>
             {hrefOf(c.id)
-              ? <a class="cover" href={hrefOf(c.id)} aria-label={`${c.name}: ${c.what}`}></a>
+              ? <a class="cover" href={hrefOf(c.id)} target={hrefOf(c.id)!.startsWith('http') ? '_blank' : undefined} rel="noopener" aria-label={`${c.name}: ${c.what}`}></a>
               : <div class="cover" style="cursor:default"></div>}
             <button class="glyph-btn" data-id={c.id} aria-label={`Show ${c.name} on the map`}>
               <Fragment set:html={glyph(iconOf(c), codeOf(byId[c.id]))} />
@@ -87,15 +87,6 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
             </div>
           </article>
         ))}
-        {gi === 0 && (
-          <article class="card site">
-            <a class="cover" href={site.href} target="_blank" rel="noopener" aria-label={`${site.what} (${site.name})`}></a>
-            <img class="site-icon" src="/media/works/lino-app/app-icon.webp" alt="" />
-            <span class="name" aria-hidden="true">{site.name}</span>
-            <div class="media"><img class="on" src={site.image} alt="" loading="lazy" decoding="async" /></div>
-            <div class="cap"><div class="what">{site.what}</div><div class="how">{site.how}</div></div>
-          </article>
-        )}
       </section>
     </Fragment>
   ))}

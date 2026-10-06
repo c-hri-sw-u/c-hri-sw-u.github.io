@@ -13,7 +13,8 @@ interface Props {
 }
 const { works, onHome, codeOf, hrefOf } = Astro.props;
 const byId = Object.fromEntries(works.map(w => [w.id, w]));
-const latestId = works[works.length - 1].id;
+// The newest work wears the bubble; lino.one, though later on the path, is Lino's website, not a new pursuit.
+const latestId = [...works].reverse().find(w => w.id !== 'lino-site')!.id;
 
 let linePaths = '';
 for (let i = 0; i < works.length - 1; i++) {

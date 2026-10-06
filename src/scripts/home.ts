@@ -61,6 +61,8 @@ export function initHome() {
   });
 
   // ---------- map previews (hover on desktop, first tap on touch) ----------
+  // Works open in place; a work that is a website (lino.one) opens in a new tab.
+  const go = (url?: string) => { if (!url) return; if (/^https?:/.test(url)) open(url, '_blank', 'noopener'); else location.href = url; };
   let armed: string | null = null;
   function showPreview(b: HTMLElement) {
     const { title, date, preview } = b.dataset;
@@ -109,11 +111,11 @@ export function initHome() {
     const touch = matchMedia('(hover: none)').matches;
     const b = touch ? nearestIcon(e.clientX, e.clientY) : (e.target as Element).closest<HTMLElement>('.mapicon');
     // On a phone the preview is a sheet above the switch: tapping it opens the work.
-    if ((e.target as Element).closest('#preview')) { if (armed) location.href = iconEl(armed).dataset.url || ''; return; }
+    if ((e.target as Element).closest('#preview')) { if (armed) go(iconEl(armed).dataset.url); return; }
     plane.querySelector('.mapicon.armed')?.classList.remove('armed');
     if (!b) { pv.classList.remove('show'); armed = null; return; }
     if (armed !== b.dataset.id && touch) { armed = b.dataset.id!; b.classList.add('armed'); showPreview(b); return; }
-    if (b.dataset.url) location.href = b.dataset.url;
+    if (b.dataset.url) go(b.dataset.url);
     else showPreview(b);
   });
 
