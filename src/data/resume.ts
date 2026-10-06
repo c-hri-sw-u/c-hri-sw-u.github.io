@@ -3,7 +3,8 @@
 // after a change, run `npm run build && npm run resume-pdf` and check the PDF still has one page.
 // In any line, [words](url) is a link. Keep each line to one fact.
 
-export interface Entry { org: string; icon?: string; href?: string; site?: string; when: string; role: string; lines: string[] }
+// href links the org (or, without a site, the role); page links the role to a page about it.
+export interface Entry { org: string; icon?: string; href?: string; site?: string; page?: string; when: string; role: string; lines: string[] }
 export interface Project { name: string; icon?: string; href?: string; meta: string; line: string }
 
 export const person = {
@@ -20,11 +21,11 @@ export const person = {
 
 export const work: Entry[] = [
   {
-    org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', href: 'https://lino.one', site: 'lino.one', when: 'Dec 2025 – Present', role: 'Solo Founder',
+    org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', href: 'https://lino.one', site: 'lino.one', page: 'https://c-hri-sw-u.github.io/works/lino-app', when: 'Dec 2025 – Present', role: 'Solo Founder',
     lines: [
       'I design, build and run Lino: an AI workspace that puts documents, databases and sketches on one canvas, with an agent.',
       'Designed how people and the agent work together: its edits arrive as proposals to review, and every paragraph records who wrote it.',
-      'Launched on macOS in September 2026, Windows in beta.',
+      '[Launched on macOS](https://lino.one) in September 2026, Windows in beta.',
       'Wrote [four essays](https://medium.com/@gochris) on the idea behind it, Intent Engineering.',
     ],
   },

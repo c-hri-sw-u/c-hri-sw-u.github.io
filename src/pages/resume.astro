@@ -52,7 +52,7 @@ const sections = [
           {s.items.map(e => (
             <article class="rs-entry">
               <p class="rs-org">{e.icon && <img class="rs-icon" src={e.icon} alt="" />}<span>{e.org}</span>{e.site && <> · <a href={e.href}>{e.site}</a></>} · {e.when}</p>
-              <h3>{e.href && !e.site ? <a href={e.href}>{e.role}</a> : e.role}</h3>
+              <h3>{e.page || (e.href && !e.site) ? <a href={e.page ?? e.href}>{e.role}</a> : e.role}</h3>
               {e.lines.map(l => <p set:html={md(l)} />)}
             </article>
           ))}
