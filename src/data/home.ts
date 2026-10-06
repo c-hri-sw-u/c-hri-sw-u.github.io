@@ -36,8 +36,9 @@ export const selected: Cell[] = [
     moments: [img('bread-cover')] },
   // On phones it moves up to sit right after Lino (see home.css); wider screens leave it out,
   // where the website would weigh too much next to the works. It opens lino.one itself.
+  // Its video scrolls the site top to bottom; scripts/record-lino-site.mjs records it.
   { id: 'lino-site', phoneOnly: true, name: 'lino.one', what: 'The Lino website', how: 'UI design + code',
-    moments: [{ src: '/media/works/lino-app/site.webp', kind: 'image' }] },
+    moments: [{ src: '/media/works/lino-app/site.mp4', kind: 'video' }] },
 ];
 
 export const concepts: Cell[] = [
