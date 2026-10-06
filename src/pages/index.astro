@@ -93,6 +93,7 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
 
   <div class="concepts-head play-head">
     <h2><a href={links.playground}>Playground</a></h2>
+    <p>Built for fun</p>
     <p class="toys">{experiments.map(x => <a href={`${links.playground}#${x.id}`}>{x.icon && <img src={x.icon} alt="" />}{x.name}</a>)}</p>
     <a class="all" href={links.playground}>All →</a>
   </div>
