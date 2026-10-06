@@ -87,9 +87,13 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 /* At rest a cell shows only its badge and name; the coordinates and the caption come in on hover or focus. */
 .name { position: absolute; top: 12px; left: 52px; right: 120px; z-index: 2; height: 32px; display: flex; align-items: center; font-size: 13.5px; font-weight: 500; letter-spacing: -.005em;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none }
-.card[data-id] :is(.coord, .cap) { opacity: 0; transition: opacity .25s ease }
-.card[data-id]:is(:hover, :focus-within) :is(.coord, .cap) { opacity: 1 }
-@media (hover: none) { .card[data-id] .cap, .card[data-id] .coord { display: none } }
+:is(.card[data-id], .card.site) :is(.coord, .cap) { opacity: 0; transition: opacity .25s ease }
+:is(.card[data-id], .card.site):is(:hover, :focus-within) :is(.coord, .cap) { opacity: 1 }
+@media (hover: none) { :is(.card[data-id], .card.site) :is(.cap, .coord) { display: none } }
+/* lino.one: a wide strip across the end of Selected, the app icon where works have their glyph. */
+.card.site { grid-column: 1 / -1; aspect-ratio: 3 / 1 }
+.card.site .media { padding: 4.2% 8% 2.6% }
+.site-icon { position: absolute; top: 12px; left: 12px; z-index: 2; width: 32px; height: 32px; border-radius: 8px; pointer-events: none }
 .coord em { font-style: normal; color: var(--muted); opacity: .7; margin-right: 3px }
 .xh { position: relative; width: 11px; height: 11px; border: 1px solid var(--muted); border-radius: 50% }
 .xh::before, .xh::after { content: ""; position: absolute; background: var(--muted) }
@@ -276,6 +280,9 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .card { border-radius: 8px }
   .media { padding: 26% 9% 6% }
   .card.lead { aspect-ratio: 4 / 3 }
+  .card.site { aspect-ratio: 16 / 9 }
+  .card.site .media { padding: 13% 5% 5% }
+  .site-icon { top: 8px; left: 8px; width: 26px; height: 26px; border-radius: 6px }
   .card.lead .media { padding: 14% 5% 5% }
   .shelf > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* three concepts: the third spans the row */
   .shelf > .card:last-child .media { padding: 12% 18% 4% }

@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import '../styles/home.css';
 import MapView from '../components/MapView.astro';
 import { glyph, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
-import { selected, concepts, links, type Cell } from '../data/home';
+import { selected, concepts, site, links, type Cell } from '../data/home';
 import { experiments } from '../data/playground';
 
 // Chronological path through every work, the same order the legacy map draws its lines in.
@@ -87,6 +87,15 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
             </div>
           </article>
         ))}
+        {gi === 0 && (
+          <article class="card site">
+            <a class="cover" href={site.href} target="_blank" rel="noopener" aria-label={`${site.what} (${site.name})`}></a>
+            <img class="site-icon" src="/media/works/lino-app/app-icon.webp" alt="" />
+            <span class="name" aria-hidden="true">{site.name}</span>
+            <div class="media"><img class="on" src={site.image} alt="" loading="lazy" decoding="async" /></div>
+            <div class="cap"><div class="what">{site.what}</div><div class="how">{site.how}</div></div>
+          </article>
+        )}
       </section>
     </Fragment>
   ))}
