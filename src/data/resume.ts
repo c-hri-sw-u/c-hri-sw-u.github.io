@@ -32,7 +32,7 @@ export const work: Entry[] = [
   {
     org: 'Glance (Veryloving, Inc.)', href: 'https://c-hri-sw-u.github.io/works/glance-t1', when: 'Jun – Aug 2024', role: 'AI Product Design Intern',
     lines: [
-      'Prototyped AI earphones whose case has a screen with a face: first one that docks into a desktop robot, then T1, whose screen slides open.',
+      'Prototyped AI earphones whose case has a screen. Designed how the screen is used and how the form evolved, through T1.',
     ],
   },
 ];
