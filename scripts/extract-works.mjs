@@ -1,9 +1,9 @@
-// One-off migration: reads the legacy public/works.js and writes one Markdown file per work
+// One-off migration: reads the legacy works.js (now archived in legacy/) and writes one Markdown file per work
 // into src/content/works/. Frontmatter carries everything the homepage and map need; the
 // legacy HTML body stays in works.js until each detail page is rewritten.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 
-const src = readFileSync(new URL('../public/works.js', import.meta.url), 'utf8');
+const src = readFileSync(new URL('../legacy/works.js', import.meta.url), 'utf8');
 const worksData = new Function('console', `${src}\n;return worksData;`)({ log() {} });
 const outDir = new URL('../src/content/works/', import.meta.url);
 mkdirSync(outDir, { recursive: true });

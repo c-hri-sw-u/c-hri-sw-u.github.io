@@ -14,7 +14,6 @@ icon:
   skewed: true
   position: [82, 58]
 preview: "/Assets/Works/breadReader/1.webp"
-legacyUrl: "/template.html?work=bread-reader"
 ---
 
 What if bread could speak? What if your toast held hidden stories? What if a simple slice contained whole digital worlds? What if your breakfast table became a digital library? What if a mysterious machine could decode the poetry baked into bread? 'Bread Reader' is a machine that transforms ordinary bread into digital narratives, revealing the stories and data woven into our daily consumption.

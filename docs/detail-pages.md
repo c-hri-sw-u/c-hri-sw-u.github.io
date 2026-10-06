@@ -19,7 +19,7 @@
 | 某个作品专用的开场或线条画 | `src/components/*.astro` |
 | 媒体 | 原图在 `public/Assets/Works/…`，生成的在 `public/media/works/<id>/`，生成方法写进 `scripts/make-detail-media.sh` |
 
-旧版内容（课程、老师、合作者、原文、Figma 链接）在 `public/works.js`，动笔前先读这一段，并把所有素材逐张看一遍，GIF 拆成帧看。
+旧版内容（课程、老师、合作者、原文、Figma 链接）在 `legacy/works.js`，动笔前先读这一段，并把所有素材逐张看一遍，GIF 拆成帧看。
 
 ## 2. 叙事
 

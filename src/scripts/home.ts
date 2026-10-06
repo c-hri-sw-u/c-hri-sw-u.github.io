@@ -388,7 +388,7 @@ function inhabitants(plane: HTMLElement, reduce: boolean) {
   });
 
   // UFO: click and it lifts off, then settles back.
-  // UFO (public/ufo-and-footer.js): it wobbles, lifts and drops back while its shadow spreads.
+  // UFO (legacy/ufo-and-footer.js): it wobbles, lifts and drops back while its shadow spreads.
   // A second click soon after sends it higher.
   const ufo = document.getElementById('ufo')!;
   const ufoImg = ufo.querySelector<HTMLElement>('img')!, ufoShadow = ufo.querySelector<HTMLElement>('.ufo-shadow')!;
@@ -417,7 +417,7 @@ function inhabitants(plane: HTMLElement, reduce: boolean) {
   ufo.addEventListener('click', ufoGo);
   addEventListener('keydown', e => { if (e.code === 'ShiftLeft' && document.body.classList.contains('is-map')) ufoGo(); });
 
-  // Forests: click one and every tree turns over, coniferous ↔ deciduous (public/tree-flip.js).
+  // Forests: click one and every tree turns over, coniferous ↔ deciduous (legacy/tree-flip.js).
   plane.querySelectorAll<HTMLElement>('.forest').forEach(f => f.addEventListener('click', () => {
     [...f.querySelectorAll<HTMLImageElement>('img')].forEach((img, i) => setTimeout(() => {
       img.classList.add('flip');
@@ -428,7 +428,7 @@ function inhabitants(plane: HTMLElement, reduce: boolean) {
     }, reduce ? 0 : i * 25));
   }));
 
-  // Compass (public/compass.js): the arrowhead points at the pointer and slides outward with distance.
+  // Compass (legacy/compass.js): the arrowhead points at the pointer and slides outward with distance.
   // The angle is unwrapped so the needle never spins the long way round when it crosses ±180°.
   const compass = document.getElementById('compass')!;
   const needle = compass.querySelector<HTMLElement>('.needle')!;

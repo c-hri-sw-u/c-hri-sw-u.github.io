@@ -14,7 +14,6 @@ icon:
   skewed: false
   position: [82, 12]
 preview: "/Assets/Works/Playground OS/1-9.webp"
-legacyUrl: "/template.html?work=playground-os"
 ---
 
 Playground OS is an operating system designed for creation rather than consumption. Inspired by Dynabook and real-world playgrounds, it aims to fulfill Alan Kay's vision of a system that serves as "wheels for the mind." Playground OS can operate on various devices, assist diverse groups of people, and function in all kinds of situations.

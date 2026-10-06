@@ -1,4 +1,4 @@
-// The geometric work icons as inline SVG. Mirrors the Paper.js shapes in public/workIcons.js
+// The geometric work icons as inline SVG. Mirrors the Paper.js shapes in legacy/workIcons.js
 // so the homepage, the mini map and the map view draw the same glyphs as the legacy map.
 
 export type Shape = 'circle' | 'square' | 'star6' | 'star4rounded' | 'star4rotatedRounded' | 'star6rounded' | 'star8rounded';

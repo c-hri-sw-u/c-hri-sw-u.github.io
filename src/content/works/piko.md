@@ -14,7 +14,6 @@ icon:
   skewed: false
   position: [66, 56]
 preview: "/Assets/Works/Piko/0.webp"
-legacyUrl: "/template.html?work=piko"
 ---
 
 Meet Piko, our vision for the future of companionship. Housed within a charming Koala hand puppet exterior, Piko seamlessly blends technology with tactile comfort. Its sophisticated sensing capabilities and expressive body language transcend conventional human-technology interaction, fostering genuine emotional connections rather than simply performing functions. Through strategically integrated sensors, cameras, advanced computer vision, and LLM capabilities, Piko provides attentive supervision, loyal companionship, and nuanced emotional support throughout your daily life - transforming ordinary moments into shared experiences. Contribution: Team lead, Ideation, Full hardware prototyping, Interactive Mechanics - Physical Design and Code Implementation, Interaction System and User Experience Design

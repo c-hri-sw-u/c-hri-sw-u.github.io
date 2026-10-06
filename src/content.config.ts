@@ -22,7 +22,7 @@ const works = defineCollection({
       position: z.tuple([z.number(), z.number()]),
     }),
     preview: z.string(),
-    legacyUrl: z.string().optional(), // works without a detail page yet (new works) have none
+    legacyUrl: z.string().optional(), // where a work without a detail page links instead (lino.one); others have none
   }),
 });
 

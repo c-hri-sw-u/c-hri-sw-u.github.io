@@ -62,7 +62,7 @@ export const coverOf = (id: string) => {
 
 export const links = {
   resume: '/resume/', // the page; its PDF is printed at deploy (scripts/resume-pdf.mjs)
-  playground: '/playground/', // with the slash: /playground alone can resolve to the old playground.html, which forwards here
+  playground: '/playground/', // with the slash, the page's own address
   email: 'cwu14932@gmail.com',
   medium: 'https://medium.com/@gochris',
   linkedin: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/',

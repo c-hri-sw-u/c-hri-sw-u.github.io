@@ -1,6 +1,6 @@
 ---
 // The map of every work: hairline axes, coded glyphs and their path, drawn in the homepage's quiet
-// style. A few inhabitants from the legacy map (public/map.html) stay: two forests, a kiwi, a UFO, the notebook (Medium), the compass; plus the Parthenon's plan where the path begins,
+// style. A few inhabitants from the legacy map (legacy/map.html) stay: two forests, a kiwi, a UFO, the notebook (Medium), the compass; plus the Parthenon's plan where the path begins,
 // and a slide, the way into the Playground.
 import type { CollectionEntry } from 'astro:content';
 import { glyph } from '../lib/glyph';
@@ -28,7 +28,7 @@ if (byId['lino'] && byId['lino-app']) {
   const a = byId['lino'].data.icon.position, b = byId['lino-app'].data.icon.position;
   linePaths += `<path class="tie" d="M${a[0]} ${a[1]}L${b[0]} ${b[1]}"/>`;
 }
-// Forests, as the rows of trees in public/tree-flip.js.
+// Forests, as the rows of trees in legacy/tree-flip.js.
 const forests = [
   { rows: [2, 3, 2, 6, 5, 4, 5], x: 18.5, y: 40, tree: 'Coniferous' },
   { rows: [2, 3, 2, 5, 3], x: 27, y: 31, tree: 'Deciduous' },
