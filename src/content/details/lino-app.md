@@ -22,7 +22,7 @@ scenes:
     media: /media/works/lino-app/prototype-card.webp
     alt: "A Memex card linked to a Vannevar Bush card, from the 2024 prototype"
     year: "2024"
-    link: { href: "/template.html?work=lino", label: "See the prototype" }
+    link: { href: "/works/lino", label: "See the prototype" }
   - line: "It became [icon]Lino, one canvas that people and agents share."
     icon: /media/works/lino-app/app-icon.webp
     caption: "Recorded in the real product. Scenario: a musician built this canvas for a show, note by note, and Lino AI makes the live visual from their thinking."
@@ -92,6 +92,6 @@ colophon:
   - { k: "Years", v: "2025 – present" }
   - { k: "Writing", v: "Intent Engineering and other essays", href: "https://medium.com/@gochris" }
   - { k: "Roadmap", v: "Five lines, from Intent Engineering to integrations", href: "https://lino.one/roadmap" }
-  - { k: "Started as", v: "Lino, a 2024 prototype", href: "/template.html?work=lino" }
+  - { k: "Started as", v: "Lino, a 2024 prototype", href: "/works/lino" }
 next: space-self-log
 ---
