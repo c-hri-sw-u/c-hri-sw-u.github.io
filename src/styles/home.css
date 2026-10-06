@@ -280,7 +280,8 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .card { border-radius: 8px }
   .media { padding: 26% 9% 6% }
   .card.lead { aspect-ratio: 4 / 3 }
-  .card.site { display: grid }
+  .card.site { display: grid; order: -1 } /* right after Lino */
+  .card.lead { order: -2 }
   .grid > .card:nth-child(2) { grid-column: auto; aspect-ratio: 1 / 1 } /* with lino.one the squares pair up */
   .grid > .card:nth-child(2) .media { padding: 26% 9% 6% }
   .site-icon { top: 8px; left: 8px; width: 26px; height: 26px; border-radius: 6px }
