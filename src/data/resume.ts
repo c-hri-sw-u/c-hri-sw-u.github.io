@@ -24,16 +24,17 @@ export const work: Entry[] = [
   {
     org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', href: 'https://lino.one', site: 'lino.one', page: 'https://c-hri-sw-u.github.io/works/lino-app', when: 'Dec 2025 – Present', role: 'Solo Founder',
     lines: [
-      'I design, build and run Lino, a canvas that people and an AI agent share. Its core idea: [Intent Engineering](https://medium.com/@gochris/intent-engineering-42af3438bdc5).',
-      'Instead of a chat box, the agent works from the canvas and web of artifacts the person builds, so the canvas becomes their shared context and memory of crystallized, high-value information.',
-      'Did all of it alone: product strategy, interaction design, agent engineering, the app from front end to back end, the website and all the materials around it.',
-      'Launched on macOS in September 2026.',
+      'Design, build and run Lino, a canvas that people and an AI agent share. Its core idea: [Intent Engineering](https://medium.com/@gochris/intent-engineering-42af3438bdc5).',
+      'Engineered the agent: its context from the canvas, user and canvas memory, tools and skills, permission modes and human-in-the-loop review.',
+      'Did the rest alone too: product strategy, interaction design, the infinite canvas and editor, sync, subscriptions and the website.',
+      'Launched on macOS in September 2026 after about 3,000 commits; Windows in beta.',
     ],
   },
   {
     org: 'Glance (Veryloving, Inc.)', href: 'https://c-hri-sw-u.github.io/works/glance-t1', when: 'Jun – Aug 2024', role: 'AI Product Design Intern',
     lines: [
-      'Prototyped several concepts for AI earphones whose case has a screen: one docks into a desktop robot, another’s screen slides open like a lid.',
+      'Designed concept, interaction and form for AI earphones whose case has a screen: one docks into a desktop robot, another’s screen slides open like a lid.',
+      'Similar products reached the market months later.',
     ],
   },
 ];
@@ -50,18 +51,16 @@ export const research: Entry[] = [
     org: 'Carnegie Mellon University', when: '2025', role: 'Research Assistant',
     lines: [
       '**Interactive Structures Lab.** Designed, 3D-printed and prototyped the cells of a mechanical wall.',
-      '**WHY Lab & L4C.** Rebuilt and extended open-source hardware; designed and built [the lab’s website](https://lab4cybernetics.vercel.app).',
+      '**WHY Lab & Laboratory for Cybernetics.** Rebuilt and extended open-source hardware; designed and built [the lab’s website](https://lab4cybernetics.vercel.app).',
     ],
   },
 ];
 
 export const projects: Project[] = [
   { name: 'Risee', icon: '/media/works/risee/app-icon-ios.webp', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
-    line: 'LLM actions orbit any text you select, as a ring you turn with the arrow keys.' },
+    line: 'LLM actions orbit any text you select, as a ring you turn with the arrow keys. Built in Swift, then rebuilt in Electron over a weekend.' },
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
-    line: 'A wearable AI companion that catches you doomscrolling. I designed its behaviors, and modeled and printed its skeleton, up to 10 versions per part.' },
-  { name: 'Rethinking Rabbit R1', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concept',
-    line: 'Rethought the AI device around conversation instead of ask-and-answer, so it also shows you what you didn’t think to ask.' },
+    line: 'A wearable AI companion that catches you doomscrolling. Designed its behaviors; modeled and printed its skeleton, up to 10 versions per part.' },
 ];
 
 export const education = [
@@ -71,7 +70,7 @@ export const education = [
 ];
 
 export const skills: { t: string; d: string }[] = [
-  { t: 'AI', d: 'Human–AI interaction; agent design and engineering (context, memory, tools)' },
+  { t: 'AI', d: 'Human–AI interaction; agent design and engineering (context, memory, tools and skills)' },
   { t: 'ML', d: 'With sensors (gesture recognition); in production (recommendation system)' },
   { t: 'Engineering', d: 'TypeScript, React, Electron, Swift, Python' },
   { t: 'Design', d: 'Interaction design, design systems, software and hardware prototyping, Figma' },
@@ -79,9 +78,9 @@ export const skills: { t: string; d: string }[] = [
 ];
 
 export const honors: { t: string; when: string }[] = [
-  { t: 'Frank-Ratchye Further Fund', when: '’26' },
+  { t: 'Frank-Ratchye Further Fund grant, CMU', when: '’26' },
   { t: 'Judge’s Choice, Red Robot Hackathon, CMU', when: '’24' },
   { t: 'Best Future Designer, Solar Decathlon China', when: '’21' },
 ];
 
-export const languages = 'English, Mandarin (native)';
+export const languages = 'Mandarin (native), English (fluent)';
