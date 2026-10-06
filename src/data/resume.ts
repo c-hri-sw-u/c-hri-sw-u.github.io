@@ -70,7 +70,7 @@ export const education = [
 
 export const skills: { t: string; d: string }[] = [
   { t: 'AI', d: 'Human–AI interaction; agent design and engineering (context, memory, tools and skills)' },
-  { t: 'ML', d: 'With sensors (gesture recognition); in production (recommendation system)' },
+  { t: 'ML', d: 'Gesture recognition from sensors; a deployed recommendation service' },
   { t: 'Engineering', d: 'TypeScript, React, Electron, Swift, Python, Supabase (PostgreSQL, Edge Functions)' },
   { t: 'Design', d: 'Interaction design, design systems, software and hardware prototyping, Figma' },
   { t: 'Physical', d: 'Raspberry Pi, Arduino, sensors, Rhino + Grasshopper, 3D printing' },
