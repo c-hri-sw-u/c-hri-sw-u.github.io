@@ -65,8 +65,8 @@ export const publications: Publication[] = [
 export const projects: Project[] = [
   { name: 'Risee', icon: '/media/works/risee/app-icon-ios.webp', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
     line: 'LLM actions orbit any text you select, as a ring you turn with the arrow keys. Built in Swift, then rebuilt in Electron over a weekend.' },
-  { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
-    line: 'A wearable AI companion that catches you doomscrolling. Designed its behaviors; modeled and printed its skeleton, up to 10 versions per part.' },
+  { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · led a team of 4',
+    line: 'A wearable AI companion that catches you doomscrolling. Built its hardware: a 3D-printed skeleton (up to 10 versions per part) and the code that moves it.' },
 ];
 
 export const education = [
