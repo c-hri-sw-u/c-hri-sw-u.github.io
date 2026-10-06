@@ -5,7 +5,7 @@ subtitle: "The website for Lino"
 type: "Website | UI design + development | Lino"
 date: "2026 Fall"
 stage: "E"
-order: 3
+order: 2
 seq: 19
 icon:
   shape: "circle"

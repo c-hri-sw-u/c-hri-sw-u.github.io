@@ -4,8 +4,8 @@ listTitle: "Witness"
 subtitle: "A personal AI agent that can see the physical world, and what it came to believe about me"
 type: "Master's Thesis | Agent System + HCI Research | Personal AI Agent | Egocentric Vision | Agent Memory"
 date: "2026 Spring"
-stage: "E"
-order: 1
+stage: "D"
+order: 5
 seq: 1
 icon:
   shape: "star8rounded"

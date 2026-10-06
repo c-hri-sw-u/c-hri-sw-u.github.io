@@ -5,7 +5,7 @@ subtitle: "A canvas that thinks the way you do, and works the way you think"
 type: "Startup | Founder: Product + Design + Engineering | AI Canvas | Desktop App"
 date: "2025 – Present"
 stage: "E"
-order: 2
+order: 1
 seq: 0
 icon:
   shape: "circle"
