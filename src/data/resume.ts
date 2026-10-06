@@ -71,7 +71,7 @@ export const projects: Project[] = [
 
 export const education = [
   { school: 'Carnegie Mellon University', degree: 'Master of Advanced Architectural Design (STEM)', gpa: '3.80/4.0', when: '’24 – ’26',
-    note: 'HCI, Generative AI, Machine Learning, ML in Production, Sensing Systems, Interaction Design' },
+    note: 'HCI, Design of AI Products, Generative AI, Machine Learning, ML in Production, Sensing Systems, Interaction Design' },
   { school: 'Soochow University', degree: 'Bachelor of Architecture', when: '’23' },
 ];
 
