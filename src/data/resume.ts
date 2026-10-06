@@ -49,7 +49,7 @@ export const research: Entry[] = [
     org: 'Carnegie Mellon University', when: '2025', role: 'Research Assistant',
     lines: [
       'Interactive Structures Lab: designed and 3D-printed cells for a mechanical wall, and prototyped their hardware and software.',
-      'WHY Lab & L4C: rebuilt and extended open-source hardware projects.',
+      'WHY Lab & L4C: rebuilt and extended open-source hardware projects, and designed [the lab’s website](https://lab4cybernetics.vercel.app).',
     ],
   },
 ];
