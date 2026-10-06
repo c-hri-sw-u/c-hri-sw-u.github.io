@@ -296,6 +296,30 @@ export function initHome() {
   addEventListener('resize', () => { if (drag) return; if (mode === 'list') setPeel(rest()); else if (inMap()) setM(rest()); });
   setPeel(rest());
 
+  // Scrolling tugs the corner like loose paper: it flicks the way the page moves (out as you scroll
+  // down, tucked in as you scroll up) and springs back with a small overshoot.
+  if (!reduce) {
+    let x = 0, v = 0, raf = 0, lastY = scrollY;
+    const idle = () => drag || mode !== 'list' || document.body.classList.contains('peeking');
+    const tick = () => {
+      // A drag, hover or the map takes the corner over; leave it (and the transition switch) to them.
+      if (idle()) { x = v = 0; raf = 0; return; }
+      v = (v - x * 0.16) * 0.74; x += v;
+      if (Math.abs(x) < 0.1 && Math.abs(v) < 0.1) {
+        raf = 0; root.classList.remove('peeling'); if (!idle()) setPeel(rest()); return;
+      }
+      setPeel(rest() + x);
+      raf = requestAnimationFrame(tick);
+    };
+    addEventListener('scroll', () => {
+      const d = scrollY - lastY; lastY = scrollY;
+      if (idle() || !d) return;
+      v += Math.max(-4, Math.min(4, d * 0.08));
+      x = Math.max(-12, Math.min(16, x));
+      if (!raf) { root.classList.add('peeling'); raf = requestAnimationFrame(tick); }
+    }, { passive: true });
+  }
+
   toMap.addEventListener('click', () => goMap());
   toList.addEventListener('click', () => goList());
   document.querySelectorAll<HTMLElement>('.glyph-btn').forEach(b =>
