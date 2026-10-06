@@ -50,7 +50,7 @@ export const research: Entry[] = [
   {
     org: 'CMU', when: '2025 – 2026', role: 'Research Assistant',
     lines: [
-      '**Interactive Structures Lab.** Designed 3D-printed cells for a mechanical wall.',
+      '**Interactive Structures Lab.** Designed 3D-printed cells for a robotic wall.',
       '**WHY Lab & Laboratory for Cybernetics.** Rebuilt and extended open-source hardware; designed and built [the lab’s website](https://lab4cybernetics.vercel.app).',
     ],
   },
