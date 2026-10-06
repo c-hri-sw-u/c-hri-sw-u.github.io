@@ -23,10 +23,10 @@ export const work: Entry[] = [
   {
     org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', href: 'https://lino.one', site: 'lino.one', page: 'https://c-hri-sw-u.github.io/works/lino-app', when: 'Dec 2025 – Present', role: 'Solo Founder',
     lines: [
-      'I design, build and run Lino, a canvas that people and an AI agent share.',
-      'Instead of a chat box, the agent works from the canvas the person builds: it sees all of it, so nothing has to be pasted in or explained again.',
-      'Did all of it alone: product strategy, interaction design, agent engineering, the app, sync, billing and the website.',
-      '[Launched on macOS](https://lino.one) in September 2026. Its idea: [Intent Engineering](https://medium.com/@gochris).',
+      'I design, build and run Lino, a canvas that people and an AI agent share. Its core idea: [Intent Engineering](https://medium.com/@gochris/intent-engineering-42af3438bdc5).',
+      'Instead of a chat box, the agent works from the canvas and web of artifacts the person builds, so the canvas becomes their shared context and memory of crystallized, high-value information.',
+      'Did all of it alone: product strategy, interaction design, agent engineering, the app from front end to back end, the website and all the materials around it.',
+      '[Launched on macOS](https://lino.one) in September 2026.',
     ],
   },
   {
@@ -61,8 +61,6 @@ export const projects: Project[] = [
     line: 'A wearable AI companion that catches you doomscrolling. I designed its behaviors, and modeled and printed its skeleton, up to 10 versions per part.' },
   { name: 'Rethinking Rabbit R1', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concept',
     line: 'Redesigned the AI device around conversation instead of ask-and-answer: you see what it draws on and choose how much it remembers.' },
-  { name: 'Playground OS', href: 'https://c-hri-sw-u.github.io/works/playground-os', meta: '2024 · solo concept',
-    line: 'An OS for creation, not consumption: build small programs with an agent.' },
 ];
 
 export const education = [
