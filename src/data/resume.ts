@@ -70,7 +70,7 @@ export const education = [
 ];
 
 export const skills: { t: string; d: string }[] = [
-  { t: 'AI', d: 'Human–AI interaction, agent design (context, memory, tools), LLM and VLM APIs' },
+  { t: 'AI', d: 'Human–AI interaction; agent design and engineering (context, memory, tools)' },
   { t: 'ML', d: 'With sensors (gesture recognition); in production (recommendation system)' },
   { t: 'Engineering', d: 'TypeScript, React, Electron, Swift, Python, Supabase' },
   { t: 'Design', d: 'Interaction design, design systems, prototyping, Figma' },
