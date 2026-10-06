@@ -27,7 +27,7 @@ export const work: Entry[] = [
       'Design, build and run Lino, a canvas that people and an AI agent share. Its core idea: [Intent Engineering](https://medium.com/@gochris/intent-engineering-42af3438bdc5).',
       'Engineered the agent: its context from the canvas, user and canvas memory, tools and skills, permission modes and human-in-the-loop review.',
       'Did the rest alone too: product strategy, interaction design, the infinite canvas and editor, sync, subscriptions and the website.',
-      'Launched on macOS in September 2026 after about 3,000 commits; Windows in beta.',
+      'Launched on macOS in Sep 2026 after ~3,000 commits; Windows in beta.',
     ],
   },
   {
@@ -60,6 +60,8 @@ export const projects: Project[] = [
     line: 'LLM actions orbit any text you select, as a ring you turn with the arrow keys. Built in Swift, then rebuilt in Electron over a weekend.' },
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
     line: 'A wearable AI companion that catches you doomscrolling. Designed its behaviors; modeled and printed its skeleton, up to 10 versions per part.' },
+  { name: 'Banana Exoskeleton', href: 'https://c-hri-sw-u.github.io/works/banana-exoskeleton', meta: '2025 · team of 2',
+    line: 'A 3D-printed case that bends to fit any banana. Traced 1,400 bananas with YOLO, clustered the shapes and optimized three cases.' },
 ];
 
 export const education = [
