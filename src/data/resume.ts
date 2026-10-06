@@ -41,8 +41,8 @@ export const research: Entry[] = [
   {
     org: 'Carnegie Mellon University', href: 'https://c-hri-sw-u.github.io/works/space-self-log', when: 'Spring 2026', role: 'Master’s Thesis: Witness',
     lines: [
-      'Built a system that lets a personal agent see: a Swift capture app, a vision-language pipeline and a three-tier memory.',
-      'Lived with it for 157 hours and found where it fails: it misreads scenes and states them as fact.',
+      'Built a system that lets a personal agent see the physical world: a Swift capture app, a vision-language pipeline and a three-tier memory.',
+      'Lived with it for 157 hours and found that seeing was the easy part. The hard part is deciding which moments actually matter.',
     ],
   },
   {
