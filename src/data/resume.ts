@@ -6,6 +6,7 @@
 
 // href links the org (or, without a site, the role); page links the role to a page about it.
 export interface Entry { org: string; icon?: string; href?: string; site?: string; page?: string; when: string; role: string; lines: string[] }
+export interface Publication { title: string; authors: string; venue: string }
 export interface Project { name: string; icon?: string; href?: string; meta: string; line: string }
 
 export const person = {
@@ -49,10 +50,16 @@ export const research: Entry[] = [
   {
     org: 'CMU', when: '2025 – 2026', role: 'Research Assistant',
     lines: [
-      '**Interactive Structures Lab.** Designed, 3D-printed and prototyped the cells of a mechanical wall.',
+      '**Interactive Structures Lab.** Designed 3D-printed cells for a mechanical wall.',
       '**WHY Lab & Laboratory for Cybernetics.** Rebuilt and extended open-source hardware; designed and built [the lab’s website](https://lab4cybernetics.vercel.app).',
     ],
   },
+];
+
+// Cited as the paper lists its authors, with Chris in **bold**.
+export const publications: Publication[] = [
+  { title: 'Objects with Arms: How Task-Relevant Embodiment Shapes Perception in Physical Collaboration',
+    authors: 'V. Y. Han, Z. Wei, A. Y. Li, **C. Wu**, A. Ion', venue: 'IEEE RO-MAN 2026' },
 ];
 
 export const projects: Project[] = [
@@ -60,8 +67,6 @@ export const projects: Project[] = [
     line: 'LLM actions orbit any text you select, as a ring you turn with the arrow keys. Built in Swift, then rebuilt in Electron over a weekend.' },
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
     line: 'A wearable AI companion that catches you doomscrolling. Designed its behaviors; modeled and printed its skeleton, up to 10 versions per part.' },
-  { name: 'Banana Exoskeleton', href: 'https://c-hri-sw-u.github.io/works/banana-exoskeleton', meta: '2025 · team of 2',
-    line: 'A 3D-printed case that bends to fit any banana. Traced 1,400 bananas with computer vision, clustered the shapes and optimized three cases.' },
 ];
 
 export const education = [
