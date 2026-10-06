@@ -255,8 +255,10 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
 @media (max-width: 960px) {
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
   .card.lead { grid-row: span 1; aspect-ratio: 16 / 10 }
-  .grid > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* five cells after the lead: the odd one out spans the row */
-  .grid > .card:last-child .media { padding: 9% 16% 4% }
+  /* Five cells after the lead: one must span the row. Risee's clip is wide, so it takes that row,
+     right under Lino; the four squares pair up below (a portrait cover would sit small in it). */
+  .grid > .card:nth-child(2) { grid-column: span 2; aspect-ratio: 2 / 1 }
+  .grid > .card:nth-child(2) .media { padding: 9% 12% 4% }
 }
 @media (max-width: 600px) {
   .play-head .all { display: none } /* the heading itself opens the page */
@@ -271,8 +273,9 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .card { border-radius: 8px }
   .media { padding: 26% 9% 6% }
   .card.lead .media { padding: 14% 8% 6% }
-  :is(.grid, .shelf) > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* three concepts: the third spans the row */
-  :is(.grid, .shelf) > .card:last-child .media { padding: 12% 18% 4% }
+  .shelf > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* three concepts: the third spans the row */
+  .shelf > .card:last-child .media { padding: 12% 18% 4% }
+  .grid > .card:nth-child(2) .media { padding: 12% 8% 4% }
   .glyph-btn { top: 8px; left: 8px; width: 26px; height: 26px }
   .coord { top: 15px; right: 10px; font-size: 10px; gap: 5px } .xh { display: none }
   .cap { padding: 7px 9px 9px; font-size: 11.5px }
