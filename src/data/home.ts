@@ -35,8 +35,8 @@ export const selected: Cell[] = [
     moments: [img('bread-cover')] },
 ];
 
-// Not a work on the map: a wide picture of lino.one at the end of Selected that just opens the site.
-export const site = { name: 'lino.one', href: 'https://lino.one', image: '/media/home/lino-site.webp', what: 'The Lino website', how: 'Visit ↗' };
+// Not a work on the map: lino.one, shown only on phones as the last square of Selected; it just opens the site.
+export const site = { name: 'lino.one', href: 'https://lino.one', image: '/media/works/lino-app/site.webp', what: 'The Lino website', how: 'Visit ↗' };
 
 export const concepts: Cell[] = [
   { id: 'playground-os', name: 'Playground OS', what: 'An OS for creation', how: 'LLM + XR',

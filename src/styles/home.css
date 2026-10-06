@@ -90,9 +90,9 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 :is(.card[data-id], .card.site) :is(.coord, .cap) { opacity: 0; transition: opacity .25s ease }
 :is(.card[data-id], .card.site):is(:hover, :focus-within) :is(.coord, .cap) { opacity: 1 }
 @media (hover: none) { :is(.card[data-id], .card.site) :is(.cap, .coord) { display: none } }
-/* lino.one: a wide strip across the end of Selected, the app icon where works have their glyph. */
-.card.site { grid-column: 1 / -1; aspect-ratio: 3 / 1 }
-.card.site .media { padding: 4.2% 8% 2.6% }
+/* lino.one: only on phones, where it fills the last pair of squares (on wider screens the
+   website would weigh too much next to the works). The app icon stands where works have a glyph. */
+.card.site { display: none }
 .site-icon { position: absolute; top: 12px; left: 12px; z-index: 2; width: 32px; height: 32px; border-radius: 8px; pointer-events: none }
 .coord em { font-style: normal; color: var(--muted); opacity: .7; margin-right: 3px }
 .xh { position: relative; width: 11px; height: 11px; border: 1px solid var(--muted); border-radius: 50% }
@@ -280,8 +280,9 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .card { border-radius: 8px }
   .media { padding: 26% 9% 6% }
   .card.lead { aspect-ratio: 4 / 3 }
-  .card.site { aspect-ratio: 16 / 9 }
-  .card.site .media { padding: 13% 5% 5% }
+  .card.site { display: grid }
+  .grid > .card:nth-child(2) { grid-column: auto; aspect-ratio: 1 / 1 } /* with lino.one the squares pair up */
+  .grid > .card:nth-child(2) .media { padding: 26% 9% 6% }
   .site-icon { top: 8px; left: 8px; width: 26px; height: 26px; border-radius: 6px }
   .card.lead .media { padding: 14% 5% 5% }
   .shelf > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* three concepts: the third spans the row */
