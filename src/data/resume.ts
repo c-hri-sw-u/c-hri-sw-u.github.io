@@ -1,7 +1,7 @@
 // The resume, at /resume/ (src/pages/resume.astro). Edit it here: the page and the PDF are both made from this file.
 // The PDF is printed from the built page by scripts/resume-pdf.mjs when the site deploys. Keep it to one Letter page:
 // after a change, run `npm run build && npm run resume-pdf` and check the PDF still has one page.
-// In any line, [words](url) is a link. Keep each line to one fact.
+// In any line, [words](url) is a link and **words** is bold. Keep each line to one fact.
 
 // href links the org (or, without a site, the role); page links the role to a page about it.
 export interface Entry { org: string; icon?: string; href?: string; site?: string; page?: string; when: string; role: string; lines: string[] }
@@ -48,8 +48,8 @@ export const research: Entry[] = [
   {
     org: 'Carnegie Mellon University', when: '2025', role: 'Research Assistant',
     lines: [
-      'Interactive Structures Lab: designed and 3D-printed cells for a mechanical wall, and prototyped their hardware and software.',
-      'WHY Lab & L4C: rebuilt and extended open-source hardware projects, and designed and built [the lab’s website](https://lab4cybernetics.vercel.app).',
+      '**Interactive Structures Lab.** Designed, 3D-printed and prototyped the cells of a mechanical wall.',
+      '**WHY Lab & L4C.** Rebuilt and extended open-source hardware; designed and built [the lab’s website](https://lab4cybernetics.vercel.app).',
     ],
   },
 ];
