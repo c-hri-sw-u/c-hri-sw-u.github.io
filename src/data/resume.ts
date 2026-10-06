@@ -65,9 +65,9 @@ export const projects: Project[] = [
 ];
 
 export const education = [
-  { school: 'Carnegie Mellon University', degree: 'Master of Advanced Architectural Design (STEM)', when: '2024 – 2026',
+  { school: 'Carnegie Mellon University', degree: 'Master of Advanced Architectural Design (STEM)', when: '’24 – ’26',
     note: 'Generative AI, Machine Learning, ML in Production, Sensing Systems, Interaction Design' },
-  { school: 'Soochow University', degree: 'Bachelor of Architecture', when: '2023' },
+  { school: 'Soochow University', degree: 'Bachelor of Architecture', when: '’23' },
 ];
 
 export const skills: { t: string; d: string }[] = [
