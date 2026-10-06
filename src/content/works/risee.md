@@ -5,7 +5,7 @@ subtitle: "Select any text, and the tools orbit it"
 type: "Desktop App | Design + Development | macOS native, then Electron | LLM Tool"
 date: "2025 Summer – 2026 Winter"
 stage: "D"
-order: 5
+order: 4
 seq: 17
 icon:
   shape: "circle"

@@ -1,0 +1,16 @@
+<svg width="800px" height="800px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- A playground slide, side on: the map's way into the Playground -->
+  <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Ladder: two rails leaning in, three rungs -->
+    <path d="M10 93 L22 31 M27 93 L39 31" stroke-width="7"/>
+    <path d="M15 76 H31 M18 61 H34 M21 46 H37" stroke-width="6"/>
+    <!-- Handrail over the top of the ladder -->
+    <path d="M22 31 C19 15 38 11 40 27" stroke-width="6"/>
+    <!-- Platform -->
+    <path d="M22 31 H47" stroke-width="8"/>
+    <!-- Chute: down and out, with a flat run-out at the bottom -->
+    <path d="M45 31 C60 32 63 62 78 78 C83 83 88 85 95 85" stroke-width="12"/>
+    <!-- A leg under the chute -->
+    <path d="M69 68 L69 93" stroke-width="6"/>
+  </g>
+</svg>

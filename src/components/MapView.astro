@@ -1,6 +1,7 @@
 ---
 // The map of every work: hairline axes, coded glyphs and their path, drawn in the homepage's quiet
-// style. A few inhabitants from the legacy map (public/map.html) stay: two forests, a kiwi, a UFO, the notebook (Medium), the compass; plus the Parthenon's plan where the path begins.
+// style. A few inhabitants from the legacy map (public/map.html) stay: two forests, a kiwi, a UFO, the notebook (Medium), the compass; plus the Parthenon's plan where the path begins,
+// and a slide, the way into the Playground.
 import type { CollectionEntry } from 'astro:content';
 import { glyph } from '../lib/glyph';
 import { links, coverOf } from '../data/home';
@@ -78,6 +79,7 @@ const kiwiLines = [
     <a class="book map-book" href={links.medium} target="_blank" rel="noopener" style="left:8%;top:68%" aria-label="Notes on Medium" title="Notes on Medium">
       <img class="b-closed" src="/icon/Notebook-closed.svg" alt="" /><img class="b-open" src="/icon/Notebook-open.svg" alt="" />
     </a>
+    <a class="slide" href={links.playground} style="left:92%;top:70%" aria-label="Playground"><img src="/icon/Slide.svg" alt="" /><span class="bubble">Playground</span></a>
     <div class="preview" id="preview"><img alt=""><div><b></b><span></span><em>Open →</em></div></div>
   </div>
 

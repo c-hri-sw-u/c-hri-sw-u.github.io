@@ -5,7 +5,7 @@ subtitle: ""
 type: "Product | Design + Development + Research + Fabrication | Computational Design | Physical UI"
 date: "2025 Spring"
 stage: "D"
-order: 2
+order: 1
 seq: 3
 icon:
   shape: "star8rounded"

@@ -5,7 +5,7 @@ subtitle: "Turn everyday moments abroad into language you keep"
 type: "iOS App | Design only | Contextual translation | Language learning"
 date: "2025 Summer"
 stage: "D"
-order: 4
+order: 3
 seq: 18
 icon:
   shape: "circle"

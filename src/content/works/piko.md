@@ -5,7 +5,7 @@ subtitle: "Embrace the Future of Companionship"
 type: "Product + Interaction | Design + Development + Fabrication | Sensing | Social Robotics"
 date: "2025 Spring"
 stage: "D"
-order: 3
+order: 2
 seq: 2
 icon:
   shape: "star8rounded"
