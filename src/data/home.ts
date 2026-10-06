@@ -14,6 +14,7 @@ export interface Cell {
   how: string;
   lead?: boolean;
   phoneOnly?: boolean; // shown only on phones, where it pairs up the squares
+  mapMoment?: number; // which moment the map's preview shows; the first if unset
   moments: Moment[];
 }
 
@@ -27,6 +28,7 @@ export const selected: Cell[] = [
   { id: 'risee', name: 'Risee', what: 'LLM on any selected text', how: 'Desktop app · Electron',
     moments: [vid('risee-orbit')] },
   { id: 'space-self-log', name: 'Witness', what: 'A personal agent that can see', how: 'Agent memory + egocentric vision',
+    mapMoment: 1, // the floor plan; the map shows only it
     moments: [img('witness-device', true), img('witness-plan', true)] },
   { id: 'piko', name: 'Piko', what: 'Wearable companion', how: 'Hardware + CV + LLM',
     moments: [img('piko-parts')] },
@@ -50,9 +52,11 @@ export const concepts: Cell[] = [
     moments: [img('lifeo-trio', true)] },
 ];
 
-// A homepage work's still: its first moment, or that video's poster. The map's preview uses it, so the two never drift.
+// A homepage work's still: its first moment (or the one mapMoment names), or that video's poster. The map's preview
+// uses it, so the two never drift.
 export const coverOf = (id: string) => {
-  const m = [...selected, ...concepts].find(c => c.id === id)?.moments[0];
+  const c = [...selected, ...concepts].find(c => c.id === id);
+  const m = c?.moments[c.mapMoment ?? 0];
   return m && (m.kind === 'video' ? m.src.replace(/\.mp4$/, '-poster.jpg') : m.src);
 };
 
