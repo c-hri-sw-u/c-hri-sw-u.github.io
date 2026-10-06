@@ -24,7 +24,7 @@ export const work: Entry[] = [
     lines: [
       'I design, build and run Lino: an AI workspace that puts documents, databases and sketches on one canvas, with an agent.',
       'Designed how people and the agent work together: its edits arrive as proposals to review, and every paragraph records who wrote it.',
-      'Launched on macOS in September 2026, Windows in beta. About 3,000 commits.',
+      'Launched on macOS in September 2026, Windows in beta.',
       'Wrote [four essays](https://medium.com/@gochris) on the idea behind it, Intent Engineering.',
     ],
   },
@@ -57,7 +57,7 @@ export const projects: Project[] = [
   { name: 'Risee', icon: '/media/works/risee/app-icon-ios.webp', href: 'https://c-hri-sw-u.github.io/works/risee', meta: '2025 · solo',
     line: 'LLM actions on any selected text, in a ring around the cursor. I use it daily.' },
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
-    line: 'A wearable AI companion that catches you doomscrolling. I designed its moods and behaviors, and 3D-printed its moving skeleton.' },
+    line: 'A wearable AI companion that catches you doomscrolling. I designed its behaviors, and modeled and printed its skeleton, up to 10 versions per part.' },
   { name: 'Rethinking Rabbit R1', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concept',
     line: 'Redesigned the AI device around conversation instead of ask-and-answer: you see what it draws on and choose how much it remembers.' },
   { name: 'Playground OS', href: 'https://c-hri-sw-u.github.io/works/playground-os', meta: '2024 · solo concept',
