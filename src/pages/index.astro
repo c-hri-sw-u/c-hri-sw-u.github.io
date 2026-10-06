@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import '@fontsource/instrument-serif/latin-400-italic.css'; // Lino's wordmark, as on lino.one
 import '../styles/home.css';
 import MapView from '../components/MapView.astro';
 import { glyph, describe, SHAPE_TEXT, type Icon } from '../lib/glyph';
@@ -57,7 +58,7 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
 
 <main id="top">
   <section class="intro">
-    <h1>Hi, I'm Chris.<span class="sub">Design engineer. <span class="keep">Founder of <a href="https://lino.one" target="_blank" rel="noopener"><em>Lino</em></a>.</span></span></h1>
+    <h1>Hi, I'm Chris.<span class="sub">Design engineer. <span class="keep">Founder of <a class="lino-mark" href="https://lino.one" target="_blank" rel="noopener"><img src="/media/works/lino-app/app-icon.webp" alt="" /><em>Lino</em></a>.</span></span></h1>
     <p>Building AI products across software, hardware and space.</p>
   </section>
 

@@ -68,6 +68,10 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .intro h1 .sub { display: block; margin-top: .3em; font-size: .62em; line-height: 1.2; letter-spacing: -.015em }
 .intro h1 a { color: inherit; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .14em; text-decoration-color: rgba(17,17,17,.3); transition: text-decoration-color .2s }
 .intro h1 a:hover { text-decoration-color: currentColor }
+/* Lino as lino.one writes it: the app icon, then the name in an italic serif. */
+.intro h1 .lino-mark { white-space: nowrap }
+.intro h1 .lino-mark img { display: inline-block; width: .92em; height: .92em; margin-right: .16em; vertical-align: -.14em; border-radius: 22%; box-shadow: 0 1px 3px rgba(0,0,0,.08) }
+.intro h1 .lino-mark em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 1.12em; letter-spacing: 0 }
 .intro .keep { white-space: nowrap } /* on a phone the headline breaks between its sentences, not inside the name */
 .intro p { margin: 0; text-wrap: balance; color: var(--muted); font-size: clamp(14.5px, 1.3vw, 17px); font-weight: 400 }
 
