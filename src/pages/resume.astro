@@ -152,14 +152,14 @@ const sections = [
   .sheet a.key { color: var(--fg); font-weight: 500; text-decoration-color: var(--fg) }
   .sheet strong { font-weight: 500; color: var(--fg) }
 
-  .rs-head { position: relative; padding-bottom: 16pt; border-bottom: 1px solid var(--fg) }
+  .rs-head { position: relative; padding-bottom: 11pt; border-bottom: 1px solid var(--fg) }
   .rs-head h1 { font-size: 27pt; font-weight: 500; line-height: 1.05; letter-spacing: -.03em; color: var(--fg) }
   .rs-title { margin-top: 5pt !important; font-size: 11.5pt; color: var(--fg) }
   /* Each address is printed in full so it works on paper; a grey word before it says what it is */
   .rs-contact span { color: var(--muted); margin-right: 3pt }
-  .rs-contact { list-style: none; padding: 0; margin-top: 9pt !important; display: flex; flex-wrap: wrap; gap: 4pt 11pt; font-size: 8.6pt }
+  .rs-contact { list-style: none; padding: 0; margin-top: 7pt !important; display: grid; grid-template-columns: auto auto; justify-content: start; gap: 3pt 16pt; font-size: 8.6pt }
 
-  .rs-cols { display: grid; grid-template-columns: minmax(0, 1fr) 2.15in; gap: .4in; padding-top: 16pt }
+  .rs-cols { display: grid; grid-template-columns: minmax(0, 1fr) 2.15in; gap: .4in; padding-top: 10pt }
   .sheet h2 { font-size: 9pt; font-weight: 500; color: var(--muted); margin-bottom: 8pt !important }
   .rs-main section + section { margin-top: 16pt }
   .rs-side section + section { margin-top: 13pt }
@@ -209,7 +209,7 @@ const sections = [
     .rs-project h3 { font-size: 15px }
     .rs-side, .rs-org { font-size: 13.5px }
     .rs-head { padding-right: 84px }
-    .rs-contact { flex-direction: column; gap: 4px }
+    .rs-contact { grid-template-columns: auto; gap: 4px }
     .rs-walker { --h: 112px }
     .rs-icon { width: 20px; height: 20px; margin: -4px 6px -4px 0; vertical-align: calc(.35em - 6px) }
   }

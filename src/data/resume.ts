@@ -12,10 +12,10 @@ export const person = {
   name: 'Yixi (Chris) Wu',
   title: 'Design engineer · Founder of Lino',
   contact: [
-    { kind: 'Portfolio', label: 'c-hri-sw-u.github.io', href: 'https://c-hri-sw-u.github.io' },
     { label: 'cwu14932@gmail.com', href: 'mailto:cwu14932@gmail.com' },
     { label: '+1 878 600 1596', href: 'tel:+18786001596' },
-    { kind: 'LinkedIn', label: 'linkedin.com/in/yixi-chris-wu-8b115b30a', href: 'https://www.linkedin.com/in/yixi-chris-wu-8b115b30a/' },
+    { kind: 'Portfolio', label: 'c-hri-sw-u.github.io', href: 'https://c-hri-sw-u.github.io' },
+    { kind: 'LinkedIn', label: 'linkedin.com/in/yixi-chris-wu', href: 'https://www.linkedin.com/in/yixi-chris-wu/' },
   ],
   about: 'Trained as an architect, now designing and building AI products, in software and hardware.',
 };
