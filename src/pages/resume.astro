@@ -84,7 +84,7 @@ const sections = [
         {education.map(e => (
           <article class="rs-edu">
             <p class="rs-row"><strong>{e.school}</strong><span>{e.when}</span></p>
-            <p>{e.degree}</p>
+            <p>{e.degree}{e.gpa && <> · GPA {e.gpa}</>}</p>
             {e.note && <p class="rs-faint">{e.note}</p>}
           </article>
         ))}
