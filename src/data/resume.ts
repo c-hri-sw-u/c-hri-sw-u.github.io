@@ -23,7 +23,7 @@ export const work: Entry[] = [
   {
     org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', href: 'https://lino.one', site: 'lino.one', page: 'https://c-hri-sw-u.github.io/works/lino-app', when: 'Dec 2025 – Present', role: 'Solo Founder',
     lines: [
-      'I design, build and run Lino: an AI workspace that puts documents, databases and sketches on one canvas, with an agent.',
+      'I design, build and run Lino: an AI workspace where people and an agent work on the same canvas.',
       'Designed how people and the agent work together: its edits arrive as proposals to review, and every paragraph records who wrote it.',
       '[Launched on macOS](https://lino.one) in September 2026, Windows in beta.',
       'Wrote [four essays](https://medium.com/@gochris) on the idea behind it, Intent Engineering.',
