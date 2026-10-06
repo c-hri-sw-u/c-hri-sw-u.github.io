@@ -71,7 +71,7 @@ scenes:
     gallery: true
     year: "2025"
 colophon:
-  - { k: "Role", v: "Ideation, hardware prototyping, interactive mechanics, interaction design" }
+  - { k: "Role", v: "Team lead: ideation, hardware prototyping, interactive mechanics, interaction design" }
   - { k: "Team", v: "Ashveen Banga, Leo Liu, Narayan Ashanahalli" }
   - { k: "Course", v: "Building User-Focused Sensing Systems, Carnegie Mellon University, with Mayank Goel and Yuvraj Agarwal" }
   - { k: "Year", v: "Spring 2025" }
