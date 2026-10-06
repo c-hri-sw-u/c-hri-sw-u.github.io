@@ -254,7 +254,10 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
 /* ---------- responsive ---------- */
 @media (max-width: 960px) {
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
-  .card.lead { grid-row: span 1; aspect-ratio: 16 / 10 }
+  /* Lino's demo is ~1.6:1; a 16:10 card left it height-bound and barely bigger than Risee's row,
+     so the lead is taller and its video nearly fills the width. */
+  .card.lead { grid-row: span 1; aspect-ratio: 3 / 2 }
+  .card.lead .media { padding: 9% 6% 5% }
   /* Five cells after the lead: one must span the row. Risee's clip is wide, so it takes that row,
      right under Lino; the four squares pair up below (a portrait cover would sit small in it). */
   .grid > .card:nth-child(2) { grid-column: span 2; aspect-ratio: 2 / 1 }
@@ -272,7 +275,8 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .grid, .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px }
   .card { border-radius: 8px }
   .media { padding: 26% 9% 6% }
-  .card.lead .media { padding: 14% 8% 6% }
+  .card.lead { aspect-ratio: 4 / 3 }
+  .card.lead .media { padding: 14% 5% 5% }
   .shelf > .card:last-child { grid-column: span 2; aspect-ratio: 2 / 1 } /* three concepts: the third spans the row */
   .shelf > .card:last-child .media { padding: 12% 18% 4% }
   .grid > .card:nth-child(2) .media { padding: 12% 8% 4% }
