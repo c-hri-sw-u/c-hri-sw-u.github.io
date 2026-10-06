@@ -1,7 +1,7 @@
 // Records lino.one for the homepage's lino.one cell: a 1440x900 desktop window scrolls from the top to the footer at
-// one steady speed, pausing only on the three steps of the pinned "While you work" track. Frames come from Chrome's
-// screencast with their own timestamps, so the video keeps real time. Needs Chrome and ffmpeg. Re-run when the site
-// changes; if the track moves, adjust STOPS. Writes public/media/works/lino-app/site.mp4 and site-poster.jpg.
+// one steady speed, with no stops, so every section gets the same time on screen (the pinned "While you work" track
+// included). Frames come from Chrome's screencast with their own timestamps, so the video keeps real time. Needs Chrome
+// and ffmpeg. Re-run when the site changes. Writes public/media/works/lino-app/site.mp4 and site-poster.jpg.
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -10,8 +10,6 @@ import { chromium } from 'playwright';
 
 const OUT = new URL('../public/media/works/lino-app/', import.meta.url).pathname;
 const SPEED = 450; // px per second
-// [scrollY, ms to stay]: Read, Browse and Plan your day. The track pins at 4838; Browse takes over at ~5525, Plan at ~6125.
-const STOPS = [[4900, 2500], [5800, 2500], [6450, 2500]];
 
 const tmp = mkdtempSync(join(tmpdir(), 'lino-site-'));
 const browser = await chromium.launch({ channel: 'chrome' });
@@ -30,18 +28,15 @@ cdp.on('Page.screencastFrame', f => {
 await page.evaluate(() => scrollTo(0, 0));
 await cdp.send('Page.startScreencast', { format: 'jpeg', quality: 92 });
 const bottom = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-for (const [y, stay] of [...STOPS, [bottom, 0]]) {
-  await page.evaluate(([y, speed]) => new Promise(done => {
-    const y0 = scrollY, t0 = performance.now(), ms = (y - y0) / speed * 1000;
-    const step = now => {
-      const t = Math.min(1, (now - t0) / ms);
-      scrollTo(0, y0 + (y - y0) * t);
-      t < 1 ? requestAnimationFrame(step) : done();
-    };
-    requestAnimationFrame(step);
-  }), [y, SPEED]);
-  await page.waitForTimeout(stay);
-}
+await page.evaluate(([y, speed]) => new Promise(done => {
+  const t0 = performance.now(), ms = y / speed * 1000;
+  const step = now => {
+    const t = Math.min(1, (now - t0) / ms);
+    scrollTo(0, y * t);
+    t < 1 ? requestAnimationFrame(step) : done();
+  };
+  requestAnimationFrame(step);
+}), [bottom, SPEED]);
 await cdp.send('Page.stopScreencast');
 await browser.close();
 
