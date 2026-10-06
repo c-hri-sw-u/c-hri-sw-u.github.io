@@ -14,7 +14,7 @@ const ink = (svg: string) => svg.replace(/<\?xml[^>]*>/, '').replace(/ id="(1475
   .replace(/#ffffff/gi, '#111111').replace(/rgb\(231, 231, 231\)/g, 'rgb(90, 90, 90)');
 const looks = LOOKS.map(id => ink(readFileSync(`public/icon/walking/walking-${id}.svg`, 'utf8')));
 // [words](url) → link, everything else escaped
-const md = (s: string) => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]!).replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+const md = (s: string) => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]!).replace(/\[(.+?)\]\((!?)(.+?)\)/g, (_, t, key, url) => `<a${key ? ' class="key"' : ''} href="${url}">${t}</a>`)
   .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
 const sections = [
   { label: 'Work', items: work },
@@ -53,7 +53,7 @@ const sections = [
           {s.items.map(e => (
             <article class="rs-entry">
               <p class="rs-org">{e.icon && <img class="rs-icon" src={e.icon} alt="" />}<span>{e.org}</span>{e.site && <> · <a href={e.href}>{e.site}</a></>} · {e.when}</p>
-              <h3>{e.page || (e.href && !e.site) ? <a href={e.page ?? e.href}>{e.role}</a> : e.role}</h3>
+              <h3>{e.page || (e.href && !e.site) ? <a class:list={[{ key: e.page }]} href={e.page ?? e.href}>{e.role}</a> : e.role}</h3>
               {e.lines.map(l => <p set:html={md(l)} />)}
             </article>
           ))}
@@ -144,8 +144,12 @@ const sections = [
   }
   .sheet p, .sheet h1, .sheet h2, .sheet h3, .sheet ul, .sheet dl { margin: 0 }
   .sheet p, .sheet dd { text-wrap: pretty } /* no one-word last lines */
-  .sheet a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 2px }
+  /* Two kinds of link: ordinary ones carry a clear grey underline; the few that matter most (class "key", written
+     [words](!url) in resume.ts) are ink, underlined in ink, with an arrow. */
+  .sheet a { text-decoration: underline; text-decoration-color: rgba(17, 17, 17, .35); text-decoration-thickness: 1px; text-underline-offset: 2.5px }
   .sheet a:hover { text-decoration-color: currentColor }
+  .sheet a.key { color: var(--fg); font-weight: 500; text-decoration-color: var(--fg); text-decoration-thickness: 1.5px }
+  .sheet a.key::after { content: '↗'; display: inline-block; margin-left: .12em; font-weight: 400 }
   .sheet strong { font-weight: 500; color: var(--fg) }
 
   .rs-head { position: relative; padding-bottom: 16pt; border-bottom: 1px solid var(--fg) }

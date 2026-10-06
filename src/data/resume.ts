@@ -1,7 +1,7 @@
 // The resume, at /resume/ (src/pages/resume.astro). Edit it here: the page and the PDF are both made from this file.
 // The PDF is printed from the built page by scripts/resume-pdf.mjs when the site deploys. Keep it to one Letter page:
 // after a change, run `npm run build && npm run resume-pdf` and check the PDF still has one page.
-// In any line, [words](url) is a link and **words** is bold. Keep each line to one fact.
+// In any line, [words](url) is a link, [words](!url) a key link (the few that matter most), and **words** is bold. Keep each line to one fact.
 
 // href links the org (or, without a site, the role); page links the role to a page about it.
 export interface Entry { org: string; icon?: string; href?: string; site?: string; page?: string; when: string; role: string; lines: string[] }
@@ -21,12 +21,12 @@ export const person = {
 
 export const work: Entry[] = [
   {
-    org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', href: 'https://lino.one', site: 'lino.one', page: 'https://c-hri-sw-u.github.io/works/lino-app', when: 'Dec 2025 – Present', role: 'Solo Founder',
+    org: 'Lino', icon: '/media/works/lino-app/app-icon.webp', page: 'https://c-hri-sw-u.github.io/works/lino-app', when: 'Dec 2025 – Present', role: 'Solo Founder',
     lines: [
       'I design, build and run Lino, a canvas that people and an AI agent share. Its core idea: [Intent Engineering](https://medium.com/@gochris/intent-engineering-42af3438bdc5).',
       'Instead of a chat box, the agent works from the canvas and web of artifacts the person builds, so the canvas becomes their shared context and memory of crystallized, high-value information.',
       'Did all of it alone: product strategy, interaction design, agent engineering, the app from front end to back end, the website and all the materials around it.',
-      '[Launched on macOS](https://lino.one) in September 2026.',
+      '[Launched on macOS](!https://lino.one) in September 2026.',
     ],
   },
   {
