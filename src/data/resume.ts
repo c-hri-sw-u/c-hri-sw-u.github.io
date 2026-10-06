@@ -40,14 +40,14 @@ export const work: Entry[] = [
 
 export const research: Entry[] = [
   {
-    org: 'Carnegie Mellon University', href: 'https://c-hri-sw-u.github.io/works/space-self-log', when: 'Spring 2026', role: 'Master’s Thesis: Witness',
+    org: 'CMU', href: 'https://c-hri-sw-u.github.io/works/space-self-log', when: 'Spring 2026', role: 'Master’s Thesis: Witness',
     lines: [
       'Built a system that lets a personal agent see the physical world: a Swift capture app, a vision-language pipeline and a three-tier memory.',
       'Lived with it for 157 hours and found that seeing was the easy part. The hard part is deciding which moments actually matter.',
     ],
   },
   {
-    org: 'Carnegie Mellon University', when: '2025 – 2026', role: 'Research Assistant',
+    org: 'CMU', when: '2025 – 2026', role: 'Research Assistant',
     lines: [
       '**Interactive Structures Lab.** Designed, 3D-printed and prototyped the cells of a mechanical wall.',
       '**WHY Lab & Laboratory for Cybernetics.** Rebuilt and extended open-source hardware; designed and built [the lab’s website](https://lab4cybernetics.vercel.app).',
