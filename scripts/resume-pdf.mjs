@@ -24,7 +24,9 @@ const server = createServer(async (req, res) => {
 await new Promise(r => server.listen(0, '127.0.0.1', r));
 const { port } = server.address();
 
-const browser = await chromium.launch();
+// Without this, headless Chromium rounds each glyph's width to the font hinting grid, which opens gaps inside words
+// ("Int eract ive", "m em ory") that show on paper and split words for PDF readers and applicant-tracking systems.
+const browser = await chromium.launch({ args: ['--font-render-hinting=none'] });
 try {
   const page = await browser.newPage();
   await page.goto(`http://127.0.0.1:${port}/resume/`, { waitUntil: 'networkidle' });
