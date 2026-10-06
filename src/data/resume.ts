@@ -60,7 +60,7 @@ export const projects: Project[] = [
   { name: 'Piko', href: 'https://c-hri-sw-u.github.io/works/piko', meta: '2025 · team of 4',
     line: 'A wearable AI companion that catches you doomscrolling. I designed its behaviors, and modeled and printed its skeleton, up to 10 versions per part.' },
   { name: 'Rethinking Rabbit R1', href: 'https://c-hri-sw-u.github.io/works/rethinking-rabbit-r1', meta: '2024 · solo concept',
-    line: 'Redesigned the AI device around conversation instead of ask-and-answer: you see what it draws on and choose how much it remembers.' },
+    line: 'Rethought the AI device around conversation instead of ask-and-answer, so it also shows you what you didn’t think to ask.' },
 ];
 
 export const education = [
