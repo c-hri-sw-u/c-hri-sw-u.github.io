@@ -13,7 +13,7 @@ export interface Cell {
   what: string;
   how: string;
   lead?: boolean;
-  phoneOnly?: boolean; // shown only on phones, where it pairs up the squares
+  phone?: 'first' | 'hide'; // on phones: right after the lead, or left out (see home.css)
   mapMoment?: number; // which moment the map's preview shows; the first if unset
   moments: Moment[];
 }
@@ -36,11 +36,13 @@ export const selected: Cell[] = [
     moments: [img('banana-shell')] },
   { id: 'bread-reader', name: 'Bread Reader', what: 'Toaster that reads poems', how: 'Hardware hack',
     moments: [img('bread-cover')] },
-  // On phones it moves up to sit right after Lino (see home.css); wider screens leave it out,
-  // where the website would weigh too much next to the works. It opens lino.one itself.
-  // Its video scrolls the site top to bottom; scripts/record-lino-site.mjs records it.
-  { id: 'lino-site', phoneOnly: true, name: 'lino.one', what: 'The Lino website', how: 'UI design + code',
+  // The two websites close the grid, each opening the site itself; their videos scroll the site top to bottom
+  // (scripts/record-site.mjs). Wide, they leave the last row one short. On phones, two columns under a full-width
+  // lead need an even count, so only lino.one stays, moved up beside Lino.
+  { id: 'lino-site', phone: 'first', name: 'lino.one', what: 'The Lino website', how: 'UI design + code',
     moments: [{ src: '/media/works/lino-app/site.mp4', kind: 'video' }] },
+  { id: 'boulesis-site', phone: 'hide', name: 'boulesis.one', what: 'The Boulesis website', how: 'UI design + code',
+    moments: [{ src: '/media/works/boulesis-site/site.mp4', kind: 'video' }] },
 ];
 
 export const concepts: Cell[] = [

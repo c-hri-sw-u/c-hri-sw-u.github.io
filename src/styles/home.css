@@ -94,7 +94,6 @@ main { max-width: 1320px; margin-inline: auto; padding-block: 72px 96px; transit
 .card[data-id] :is(.coord, .cap) { opacity: 0; transition: opacity .25s ease }
 .card[data-id]:is(:hover, :focus-within) :is(.coord, .cap) { opacity: 1 }
 @media (hover: none) { .card[data-id] .cap, .card[data-id] .coord { display: none } }
-.card.phone-only { display: none } /* lino.one: see src/data/home.ts */
 .coord em { font-style: normal; color: var(--muted); opacity: .7; margin-right: 3px }
 .xh { position: relative; width: 11px; height: 11px; border: 1px solid var(--muted); border-radius: 50% }
 .xh::before, .xh::after { content: ""; position: absolute; background: var(--muted) }
@@ -306,7 +305,8 @@ body.is-map .peel { width: var(--mpeel, 0px); height: var(--mpeel, 0px) }
   .card { border-radius: 8px }
   .media { padding: 26% 9% 6% }
   .card.lead { aspect-ratio: 4 / 3 }
-  .card.phone-only { display: grid; order: -1 } /* right after Lino */
+  .card.phone-first { order: -1 } /* lino.one, right after Lino */
+  .card.phone-hide { display: none } /* boulesis.one: see src/data/home.ts */
   .card.lead { order: -2 }
   .grid > .card:nth-child(2) { grid-column: auto; aspect-ratio: 1 / 1 } /* with lino.one the squares pair up */
   .grid > .card:nth-child(2) .media { padding: 26% 9% 6% }

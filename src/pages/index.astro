@@ -67,7 +67,7 @@ const walkFrames = ['default', ...Array.from({ length: 9 }, (_, i) => String(i +
       {gi === 1 && <div class="concepts-head"><h2>Concepts</h2><p>Designed, not built</p></div>}
       <section class={cls} aria-label={label}>
         {cells.map(c => (
-          <article class:list={['card', { lead: c.lead, 'phone-only': c.phoneOnly }]} data-id={c.id}>
+          <article class:list={['card', { lead: c.lead, [`phone-${c.phone}`]: c.phone }]} data-id={c.id}>
             {hrefOf(c.id)
               ? <a class="cover" href={hrefOf(c.id)} target={hrefOf(c.id)!.startsWith('http') ? '_blank' : undefined} rel="noopener" aria-label={`${c.name}: ${c.what}`}></a>
               : <div class="cover" style="cursor:default"></div>}
